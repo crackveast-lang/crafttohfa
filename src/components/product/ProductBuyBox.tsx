@@ -48,8 +48,8 @@ export function ProductBuyBox({ product }: { product: Product }) {
       {/* Struck-through list price first, then what you pay, then the saving
           spelled out in rupees as well as a percentage — the percentage alone
           makes people do arithmetic, and ₹56 lands harder than 10% does.
-          plum, not lavender: white on lavender is 3.56:1 and this pill sets
-          its label at text-xs. */}
+          The discount pill is ink: it sets its label at text-xs bold in
+          white, and ink is the only fill in the palette that carries white. */}
       <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
         {/* ink/70 — see ProductCard. At /45 this measured 2.56:1. */}
         {product.compareAtPrice ? (
@@ -61,7 +61,7 @@ export function ProductBuyBox({ product }: { product: Product }) {
           {formatINR(product.price)}
         </span>
         {off ? (
-          <span className="rounded-full bg-plum px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white">
+          <span className="rounded-full bg-ink px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white">
             {off}% off
           </span>
         ) : null}
@@ -87,7 +87,7 @@ export function ProductBuyBox({ product }: { product: Product }) {
           <li key={h} className="flex items-start gap-2.5 text-[0.95rem]">
             <Sparkle
               aria-hidden="true"
-              className="mt-1 size-4 shrink-0 text-lavender"
+              className="mt-1 size-4 shrink-0 text-peach"
             />
             <span className="text-ink/85">{h}</span>
           </li>
@@ -158,7 +158,7 @@ function TrustItem({
 }) {
   return (
     <li className="flex flex-col items-center gap-1.5">
-      <span aria-hidden="true" className="text-lavender">
+      <span aria-hidden="true" className="text-ink">
         {icon}
       </span>
       <span className="text-xs font-medium leading-tight text-ink/70">

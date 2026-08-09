@@ -29,7 +29,7 @@ export default function ContactPage() {
         <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
           {/* Primary: WhatsApp */}
           <Card tone="blush" className="flex flex-col gap-5 p-7 md:p-10">
-            <span className="grid size-14 place-items-center rounded-full border-2 border-ink bg-cream text-lavender shadow-sticker-sm">
+            <span className="grid size-14 place-items-center rounded-full border-2 border-ink bg-cream text-ink shadow-sticker-sm">
               <WhatsAppGlyph className="size-7" />
             </span>
 
@@ -98,7 +98,7 @@ export default function ContactPage() {
             <Card className="flex items-start gap-3 p-6">
               <Sparkle
                 aria-hidden="true"
-                className="mt-0.5 size-5 shrink-0 text-lavender"
+                className="mt-0.5 size-5 shrink-0 text-ink"
               />
               <p className="text-sm leading-relaxed text-ink/75">
                 We&apos;re a small team making things by hand — if we don&apos;t

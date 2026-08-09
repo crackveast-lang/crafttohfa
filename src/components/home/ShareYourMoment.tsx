@@ -44,11 +44,11 @@ export function ShareYourMoment({
               competes with the text sitting on top of it. */}
           <Confetti
             aria-hidden="true"
-            className="pointer-events-none absolute -left-6 -top-4 size-28 text-lavender/15 sway-slow"
+            className="pointer-events-none absolute -left-6 -top-4 size-28 text-peach/70 sway-slow"
           />
           <Sparkle
             aria-hidden="true"
-            className="pointer-events-none absolute -bottom-5 -right-4 size-24 text-lavender/15 float-mid"
+            className="pointer-events-none absolute -bottom-5 -right-4 size-24 text-peach/70 float-mid"
           />
 
           <p
@@ -76,7 +76,7 @@ export function ShareYourMoment({
                 ~21px tall, which is half the 44px minimum tap target — and it
                 would go to exactly the same place as the full-size button
                 directly below. The handle is here to be read and copied. */}
-            <strong className="font-semibold text-plum underline decoration-lavender decoration-2 underline-offset-4">
+            <strong className="font-semibold text-plum underline decoration-peach decoration-2 underline-offset-4">
               {instagramHandle}
             </strong>
             . We&apos;d love to see your little Tohfa moment! ✨

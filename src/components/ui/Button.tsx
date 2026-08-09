@@ -11,17 +11,18 @@ const BASE =
   // If it doesn't fit, shorten the label at that breakpoint instead.
   "whitespace-nowrap text-center leading-none " +
   "transition-all duration-200 ease-bounce select-none " +
-  "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-lavender " +
+  "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-plum " +
   "disabled:pointer-events-none disabled:opacity-50";
 
 const VARIANTS: Record<Variant, string> = {
-  /* PLUM, not lavender, and this is not a style preference.
-     White on lavender is 3.56:1 — below AA at any size, and this variant is
-     every primary call to action on the site. On plum it is 7.10:1.
-     It is also where most of the palette's ~5% plum budget is meant to go:
-     buttons are exactly the "small area, maximum weight" job it exists for. */
+  /* INK, and this is not a style preference. This variant is every primary
+     call to action on the site, so it has to hold white text: on ink that is
+     13.44:1, and ink is the only colour in the palette that clears it. The
+     accent trio are soft by design and top out under 2:1 against white.
+     The colour on this page comes from the blush band it sits on and the
+     peach `sticker` variant beside it — not from the primary button. */
   primary:
-    "bg-plum text-white shadow-soft hover:-translate-y-0.5 hover:shadow-lift active:translate-y-0",
+    "bg-ink text-white shadow-soft hover:-translate-y-0.5 hover:shadow-lift active:translate-y-0",
   secondary:
     "border-2 border-ink/85 bg-transparent text-ink hover:bg-ink hover:text-cream",
   ghost: "text-ink hover:bg-ink/6",

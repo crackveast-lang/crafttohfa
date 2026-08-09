@@ -117,8 +117,9 @@ export function Wordmark({
           />
         </span>
       </span>
-      {/* plum, not lavender: this fallback renders as small as text-xl and
-          lavender is 3.41:1 — below AA at any size under 24px. */}
+      {/* The one word on the site that is allowed to be plum at any size: it
+          is the brand mark, it renders as small as text-xl, and at 7.10:1 it
+          is the only accent that clears AA there. */}
       <span className={onDark ? "text-peach" : "text-plum"}>Tohfa</span>
     </span>
   );

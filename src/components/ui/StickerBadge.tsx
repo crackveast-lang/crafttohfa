@@ -6,10 +6,10 @@ const TONES = {
   blush: "bg-blush",
   sage: "bg-sage",
   cream: "bg-cream",
-  /* The loud one. plum, not lavender: this pill sets its label at 0.65rem
-     bold, and white on lavender is 3.56:1 — nowhere near AA at that size.
-     On plum it is 7.10:1. */
-  plum: "bg-plum text-white border-ink",
+  /* The loud one. This pill sets its label at 0.65rem bold, so it needs the
+     one fill in the palette that carries white: on ink that is 13.44:1.
+     Every other tone here is a soft accent with ink text. */
+  ink: "bg-ink text-white border-ink",
 } as const;
 
 /**

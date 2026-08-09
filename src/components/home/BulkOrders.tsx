@@ -12,7 +12,7 @@ const AUDIENCES = [
 /** Real secondary revenue line — schools and corporate gifting. */
 export function BulkOrders() {
   return (
-    <Section tone="plum">
+    <Section tone="ink">
       {/* Dark bands read as flat cut-outs unless something in them has depth,
           so the doodles drift as the section scrolls. Two of the page's three
           scroll-linked effects are elsewhere; this is the third and last. */}

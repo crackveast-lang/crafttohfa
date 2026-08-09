@@ -14,7 +14,6 @@ const SWATCHES = [
   "bg-blush",
   "bg-peach",
   "bg-sage",
-  "bg-lavender",
   "bg-plum",
   "bg-ink",
 ];
@@ -41,7 +40,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 aria-label="Message CraftTohfa on WhatsApp"
                 data-wa-kind="general"
-                className="grid size-11 place-items-center rounded-full border-2 border-ink/70 transition-colors hover:bg-plum hover:border-plum hover:text-white"
+                className="grid size-11 place-items-center rounded-full border-2 border-ink/70 transition-colors hover:bg-ink hover:border-ink hover:text-white"
               >
                 <WhatsAppGlyph className="size-5" />
               </a>
@@ -50,7 +49,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`CraftTohfa on Instagram, ${siteConfig.social.instagramHandle}`}
-                className="grid size-11 place-items-center rounded-full border-2 border-ink/70 transition-colors hover:bg-plum hover:border-plum hover:text-white"
+                className="grid size-11 place-items-center rounded-full border-2 border-ink/70 transition-colors hover:bg-ink hover:border-ink hover:text-white"
               >
                 <InstagramGlyph className="size-5" />
               </a>

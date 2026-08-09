@@ -63,9 +63,10 @@ export function SectionHeading({
           style={at(0)}
           className={cn(
             "text-eyebrow uppercase",
-            // Plain lavender at 12px fails AA on blush and peach, so the
-            // eyebrow is bold and we lean
-            // on ink/70 for the dark-on-light case.
+            // The main reason plum exists. At 12px none of blush, peach or
+            // sage clears 2:1, so without it every eyebrow on the site would
+            // be the same charcoal as the copy underneath and stop reading as
+            // a separate tier. On the dark band white/85 does the same job.
             tone === "onDark" ? "text-white/85" : "text-plum",
           )}
         >

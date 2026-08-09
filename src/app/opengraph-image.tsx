@@ -15,7 +15,7 @@ export const alt = `${siteConfig.name} — handmade DIY craft kits, rakhis and g
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const PALETTE = ["#FFF9F2", "#F5E1E1", "#F3C7B5", "#B8C7B0", "#9B7BB5", "#332D32"];
+const PALETTE = ["#FFF9F2", "#F5E1E1", "#F3C7B5", "#B8C7B0", "#6F4A7E", "#332D32"];
 
 export default function OgImage() {
   return new ImageResponse(
@@ -55,7 +55,7 @@ export default function OgImage() {
               width: 56,
               height: 56,
               borderRadius: 16,
-              background: "#9B7BB5",
+              background: "#332D32",
               color: "#FFF9F2",
               fontSize: 26,
               fontWeight: 700,

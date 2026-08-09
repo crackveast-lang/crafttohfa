@@ -7,16 +7,17 @@ const TONES = {
   blush: "bg-blush text-ink",
   peach: "bg-peach text-ink",
   sage: "bg-sage text-ink",
-  /* The one dark band on the site, and the ONLY large plum surface anywhere —
-     plum is budgeted at ~5% of the page and primary buttons already spend
-     most of that. One band per page, never two.
+  /* The one dark band on the site. One per page, never two — it is the only
+     place the page goes dark, and a second one spends the contrast the first
+     one bought.
 
-     It is plum rather than lavender because white on lavender is 3.56:1,
-     which fails AA outright. On plum white is 7.10:1, and that headroom is
-     the point: what actually sits on this band is an eyebrow at white/85,
-     card copy at white/80, and glass panels whose white/10 fill lightens the
-     background underneath the text again. All of them still clear 4.5. */
-  plum: "bg-plum text-white",
+     It is `ink` and it has to be: white on ink is 13.44:1, and ink is the
+     only colour in the palette that can carry white at all — blush, peach
+     and sage are all above 0.5 luminance, so white on any of them lands
+     under 2:1. That headroom is also the point, because what actually sits
+     on this band is an eyebrow at white/85, card copy at white/80, and glass
+     panels whose white/10 fill lightens the ground under the text again. */
+  ink: "bg-ink text-white",
   none: "",
 } as const;
 

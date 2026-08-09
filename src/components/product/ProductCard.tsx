@@ -71,7 +71,7 @@ export function ProductCard({
           {off ? (
             <StickerBadge
               size="sm"
-              tone="plum"
+              tone="ink"
               rotate={2}
               reveal
               delay={200 + (product.badges?.length ?? 0) * 90}

@@ -6,7 +6,7 @@ import { PaintBrush, Squiggle } from "@/components/doodles";
 export default function NotFound() {
   return (
     <Container className="flex min-h-[60vh] flex-col items-center justify-center py-24 text-center">
-      <PaintBrush className="size-16 text-lavender" aria-hidden="true" />
+      <PaintBrush className="size-16 text-plum" aria-hidden="true" />
 
       <p className="mt-8 text-eyebrow uppercase text-plum">Error 404</p>
       <h1 className="mt-3 max-w-[16ch] text-h2">

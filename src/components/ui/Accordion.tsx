@@ -39,7 +39,7 @@ export function Accordion({
         className={cn(
           "flex cursor-pointer list-none items-center justify-between gap-4 py-5",
           "font-display text-lg font-semibold [&::-webkit-details-marker]:hidden",
-          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lavender",
+          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-plum",
           // Closed rows were completely inert to the pointer — in a stack of
           // four, three of them gave no feedback at all.
           "transition-colors hover:text-plum",

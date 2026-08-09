@@ -23,7 +23,7 @@ export function FinalCta() {
     // The tints are alpha rather than solid, so `bg-cream` underneath is load
     // bearing — without it the transparent stops fall through to the body and
     // the band loses its own ground.
-    <section className="gradient-drift relative overflow-hidden bg-cream bg-gradient-to-br from-lavender/25 via-blush to-peach/70 py-20 text-ink md:py-28">
+    <section className="gradient-drift relative overflow-hidden bg-cream bg-gradient-to-br from-sage/35 via-blush to-peach/70 py-20 text-ink md:py-28">
       <span
         aria-hidden="true"
         className="pointer-events-none absolute left-6 top-10 block size-24 sway-slow md:size-32"
@@ -78,7 +78,7 @@ export function FinalCta() {
           <div
             data-reveal="rise"
             style={{ animationDelay: "200ms" }}
-            className="pulse-once rounded-full text-lavender"
+            className="pulse-once rounded-full text-plum"
           >
             <WhatsAppButton ctx={{ kind: "general" }} size="lg">
               Order on WhatsApp

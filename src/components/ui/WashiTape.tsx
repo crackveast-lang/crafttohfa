@@ -4,7 +4,6 @@ const TONES = {
   peach: "bg-peach/85",
   blush: "bg-blush/90",
   sage: "bg-sage/75",
-  lavender: "bg-lavender/25",
 } as const;
 
 /**

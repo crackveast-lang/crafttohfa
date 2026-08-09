@@ -86,7 +86,7 @@ export function ScrapbookStack() {
 
         <Squiggle
           aria-hidden="true"
-          className="absolute -right-1 top-2 h-5 w-20 text-lavender/70"
+          className="absolute -right-1 top-2 h-5 w-20 text-sage"
         />
       </div>
     </div>

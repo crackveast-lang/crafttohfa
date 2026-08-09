@@ -84,7 +84,7 @@ export function WhatsInside() {
                   <span
                     data-reveal="sticker"
                     style={{ animationDelay: "220ms" }}
-                    className="absolute -right-1.5 -top-1.5 grid size-5 place-items-center rounded-full bg-plum text-[0.65rem] font-bold text-white"
+                    className="absolute -right-1.5 -top-1.5 grid size-5 place-items-center rounded-full bg-ink text-[0.65rem] font-bold text-white"
                   >
                     {i + 1}
                   </span>
@@ -105,7 +105,7 @@ export function WhatsInside() {
               "why does that matter", which is the thing that actually sells a
               ₹499 box. It sits inside a tinted rule rather than another card
               so it reads as a change of voice rather than another item. */}
-          <div className="mt-12 border-l-2 border-lavender/40 pl-6">
+          <div className="mt-12 border-l-2 border-sage pl-6">
             <p
               data-reveal="rise"
               className="max-w-[44ch] text-body leading-relaxed text-ink/75"

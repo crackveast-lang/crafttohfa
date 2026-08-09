@@ -108,10 +108,14 @@ export function Hero() {
                 all three were built for the two-word poster this used to be.
                 A sentence set at 13vw uppercase would run four lines deep and
                 shout copy that is deliberately quiet, and a 5px offset shadow
-                under lavender (3.41:1, only just clearing the large-text bar)
                 costs legibility the headline can't spare. The clamp tops out
-                where "Made to be remembered." still fits the column at lg. */}
-            <h1 className="mt-2 font-fun text-[clamp(2.25rem,5.4vw,3.75rem)] font-extrabold leading-[1.06] tracking-tight text-lavender">
+                where "Made to be remembered." still fits the column at lg.
+
+                Ink, not an accent. This is the largest type on the site and
+                the first thing anyone reads, so it takes the strongest colour
+                we have (12.86:1 on ivory); the plum script line above it is
+                what carries the brand note here. */}
+            <h1 className="mt-2 font-fun text-[clamp(2.25rem,5.4vw,3.75rem)] font-extrabold leading-[1.06] tracking-tight text-ink">
               <span className="rise-in block" style={{ animationDelay: "1.05s" }}>
                 Made by hand.
               </span>

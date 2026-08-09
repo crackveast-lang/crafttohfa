@@ -93,7 +93,7 @@ export function HowItWorks() {
         {/* One ring outward, once. WhatsApp is the entire conversion path on
             this site and this section exists to explain that, so it earns a
             single tell — but a looping pulse on a green button is a banner ad. */}
-        <div data-reveal="rise" className="pulse-once rounded-full text-lavender">
+        <div data-reveal="rise" className="pulse-once rounded-full text-plum">
           <WhatsAppButton ctx={{ kind: "general" }} size="lg">
             Start a conversation
           </WhatsAppButton>

@@ -152,7 +152,7 @@ export default function AboutPage() {
         <ul className="mt-12 grid gap-8 md:mt-14 md:grid-cols-2 lg:grid-cols-4">
           {PROMISES.map(({ Icon, title, body }) => (
             <li key={title} className="flex flex-col gap-3">
-              <Icon aria-hidden="true" className="size-8 text-lavender" />
+              <Icon aria-hidden="true" className="size-8 text-ink" />
               <h3 className="font-display text-lg font-semibold">{title}</h3>
               <p className="max-w-[32ch] text-[0.92rem] leading-relaxed text-ink/70">
                 {body}
@@ -163,7 +163,7 @@ export default function AboutPage() {
       </Section>
 
       {/* ── What we don't do ── */}
-      <Section tone="plum" width="narrow">
+      <Section tone="ink" width="narrow">
         <SectionHeading
           eyebrow="Just as important"
           title="And what we don't do"
@@ -209,12 +209,13 @@ function Act({
 }) {
   return (
     <article className="grid gap-4 md:grid-cols-[auto_1fr] md:gap-8">
-      {/* Lavender rather than sage: at text-5xl this clears the 3:1 large-text
-          bar on ivory (3.41), and it is the only place on this page the brand
-          colour appears at a size where it is allowed to. */}
+      {/* Plum rather than sage: sage at 1.70:1 on ivory would leave the act
+          numbers as ghosts, and these are the page's only structural
+          signposts. Plum is 6.79:1 and — set once per act, three times on the
+          page — it stays well inside the thin-marks budget. */}
       <p
         aria-hidden="true"
-        className="font-display text-4xl font-semibold text-lavender md:text-5xl"
+        className="font-display text-4xl font-semibold text-plum md:text-5xl"
       >
         {number}
       </p>

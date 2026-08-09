@@ -60,7 +60,7 @@ export default async function ProductOgImage({
               width: 48,
               height: 48,
               borderRadius: 14,
-              background: "#9B7BB5",
+              background: "#332D32",
               color: "#FFF9F2",
               fontSize: 22,
               fontWeight: 700,
@@ -108,7 +108,7 @@ export default async function ProductOgImage({
               style={{
                 display: "flex",
                 alignItems: "center",
-                background: "#9B7BB5",
+                background: "#332D32",
                 color: "#FFFFFF",
                 fontSize: 34,
                 fontWeight: 700,

@@ -5,15 +5,17 @@ import { getActiveFestival, getOrderDeadlineCopy } from "@/lib/festival";
 import { siteConfig } from "@/site.config";
 
 /**
- * Thin lavender strip above the header. The festival clause disappears on its own
- * once the order-by date passes — no one has to remember to take it down.
+ * Thin charcoal strip above the header — it carries white text at 0.78rem, so
+ * ink is the only fill in the palette that clears AA for it. The festival
+ * clause disappears on its own once the order-by date passes, so no one has to
+ * remember to take it down.
  */
 export function AnnouncementBar() {
   const festival = getActiveFestival();
   const deadline = festival ? getOrderDeadlineCopy(festival) : null;
 
   return (
-    <div className="bg-plum text-white">
+    <div className="bg-ink text-white">
       <Container>
         <div className="flex min-h-9 flex-wrap items-center justify-center gap-x-3 gap-y-0.5 py-1.5 text-center text-[0.78rem] font-medium tracking-wide">
           <span className="inline-flex items-center gap-1.5">

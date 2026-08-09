@@ -160,7 +160,7 @@ export function MobileNav() {
           rel="noopener noreferrer"
           aria-label={whatsAppLabel(ctx)}
           data-wa-kind="general"
-          className="mt-5 flex min-h-12 items-center justify-center gap-2 rounded-full bg-plum px-6 font-semibold text-white"
+          className="mt-5 flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-6 font-semibold text-white"
         >
           <WhatsAppGlyph className="size-5" />
           Chat with us

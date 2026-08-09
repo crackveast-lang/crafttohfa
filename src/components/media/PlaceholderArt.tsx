@@ -12,10 +12,10 @@ import { cn } from "@/lib/cn";
  */
 
 const SCHEMES = [
-  { from: "#F5E1E1", to: "#F3C7B5", blob: "#B8C7B0", motif: "#9B7BB5" },
-  { from: "#FFF9F2", to: "#F5E1E1", blob: "#F3C7B5", motif: "#9B7BB5" },
+  { from: "#F5E1E1", to: "#F3C7B5", blob: "#B8C7B0", motif: "#332D32" },
+  { from: "#FFF9F2", to: "#F5E1E1", blob: "#B8C7B0", motif: "#332D32" },
   { from: "#F3C7B5", to: "#B8C7B0", blob: "#FFF9F2", motif: "#332D32" },
-  { from: "#F5E1E1", to: "#FFF9F2", blob: "#9B7BB5", motif: "#9B7BB5" },
+  { from: "#F5E1E1", to: "#FFF9F2", blob: "#F3C7B5", motif: "#6F4A7E" },
 ];
 
 const MOTIFS = {

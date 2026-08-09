@@ -8,60 +8,80 @@
    ========================================================================= */
 
 @theme {
-  /* ---- Palette. Seven colours plus white. Never invent an eighth. --------
-     Need a lighter shade? Use an opacity modifier (bg-lavender/10,
-     border-ink/12) or color-mix(). Adding new hexes turns 7 colours into 20.
+  /* ---- Palette. Six colours plus white. Never invent a seventh. ----------
+     Need a lighter shade? Use an opacity modifier (bg-peach/70,
+     border-ink/12) or color-mix(). Adding new hexes turns 6 colours into 20.
 
-     The brand is now lavender-led over a warm ivory ground, and the whole
-     thing is built to a deliberate RATIO rather than an even spread:
+     Three soft accents over a warm ivory ground, with warm charcoal doing
+     every job that needs weight. Built to a deliberate RATIO rather than an
+     even spread:
 
        ivory   ~60%  every page background, the default Section tone
        white   ~20%  cards and panels — the thing ivory makes look crisp
-       lavender
-       + blush ~15%  brand marks, headings, rules, icons, quiet section bands
-       plum     ~5%  primary buttons and ONE dark band. That is the lot.
+       blush
+       + peach
+       + sage  ~17%  section bands, tape, stickers, doodles, decoration
+       ink      ~2%  primary buttons, ONE dark band per page, and all text
+       plum     ~1%  the single purple note. See the budget below.
 
-     Peach and sage are inside that 15% as small accents, not surfaces. The
-     ratio is the design: lavender stops reading as premium the moment it
-     covers a third of the page, and plum stops reading as a call to action
-     the moment it appears anywhere that isn't one.
+     The ratio IS the design. These three accents are soft by construction —
+     the moment one of them covers a third of the page it stops reading as an
+     accent and starts reading as a theme, and the page loses its ground.
 
      Keep `ink` doing all the heavy lifting for text — see the rules below,
      because in this palette that is not a preference, it is the only thing
      that actually passes.                                                */
   --color-cream: #fff9f2; /* Warm Ivory — the ground, ~60% of every page   */
-  --color-blush: #f5e1e1; /* Blush — quiet section bands                   */
-  --color-peach: #f3c7b5; /* Peach — small accents, icons, decoration      */
-  --color-sage: #b8c7b0; /*  Sage — natural touches, tape, badges          */
-  --color-lavender: #9b7bb5; /* Dusty Lavender — the brand colour          */
-  --color-plum: #6f4a7e; /*  Deep Plum — buttons and the one dark band     */
-  --color-ink: #332d32; /*   Warm Charcoal — ALL text                      */
+  --color-blush: #f5e1e1; /* Blush — section backgrounds, highlights       */
+  --color-peach: #f3c7b5; /* Peach — small accents, tape, decoration       */
+  --color-sage: #b8c7b0; /*  Sage — natural touches, badges, small accents */
+  --color-ink: #332d32; /*   Warm Charcoal — ALL text, buttons, dark band  */
+  --color-plum: #6f4a7e; /*  Deep Plum — the ~1% purple note. Marks only.  */
+
+  /* ---- THE PLUM BUDGET — read this before typing `plum` ------------------
+     Plum is the only colour here that is not in the brief. It earns its
+     place because nothing in the accent trio can be small text: blush, peach
+     and sage are all under 2:1 on white, so without it every eyebrow, label
+     and link hover collapses into the same charcoal as the body copy and the
+     page loses its hierarchy entirely.
+
+     So plum is allowed on THIN MARKS ONLY, and that is the whole list:
+       eyebrows and small labels · link hover · the rating stars · focus
+       rings · the header scroll hairline · the preloader bar.
+
+     It is NOT allowed on any FILL. No plum buttons, no plum bands, no plum
+     badges, no plum pills. Every one of those is `ink` now. A filled plum
+     surface is what turns 1% into 15%, and it is the exact thing this
+     palette was changed to stop doing.
+     ---------------------------------------------------------------------- */
 
   /* ---- CONTRAST RULES — read before typing a text colour -----------------
      Every number below is measured with the WCAG relative-luminance formula,
-     not estimated. This palette is less forgiving than the last one, so the
-     rules are tighter and there is no room to eyeball them.
+     not estimated.
 
                     on ivory  on white  on blush  on peach  on sage
        ink            12.86 ✅  13.44 ✅   10.72 ✅   8.74 ✅   7.58 ✅
        plum            6.79 ✅   7.10 ✅    5.66 ✅   4.62 ✅   4.00 ⚠️
-       lavender        3.41 ❌   3.56 ❌    2.84 ❌   2.32 ❌   2.01 ❌
 
      ink       — the workhorse. ALL body text, every heading, everywhere.
-     plum      — the ONLY brand colour that can be small text. Eyebrows,
-                 labels, link hovers. Clears AA on every surface except sage,
-                 where it is 4.00 — fine for large text, not for small.
-     lavender  — ❌ NEVER small text. Not once. 3.41 on our own background is
-                 below AA and no amount of "but it looks fine" changes that.
-                 Lavender is for FILLS, ICONS, RULES, BORDERS and display
-                 type at 24px+/19px-bold, where the bar drops to 3:1 and it
-                 clears on ivory (3.41) and white (3.56) — and ONLY those
-                 two. On blush it is 2.84 and fails even as large text.
-     sage/peach— decorative surfaces only. Never text at any size.
+                 Also every filled surface that carries white text: white on
+                 ink is 13.44:1, and it is the ONLY colour here that can do
+                 that job. Blush/peach/sage are all above 0.5 luminance, so
+                 white on any of them lands under 2:1.
+     plum      — the ONLY accent that can be small text, and only on the
+                 marks listed in the budget above. Clears AA on every surface
+                 except sage, where it is 4.00 — large text there, not small.
+     blush     — 1.20 on ivory. A SURFACE: quiet section bands, highlights.
+     peach     — 1.47 on ivory, 1.54 on white. Decoration: washi tape,
+                 sticker buttons, doodle fills, the closing gradient. It
+                 cannot carry a line icon on white — at 1.54:1 a 1.5px stroke
+                 is invisible — so meaningful icons are `ink`.
+     sage      — 1.70 on ivory, 1.77 on white. Tape, badges, rules, the
+                 offset paper layer. Never text at any size.
 
-     On a PLUM background use white: 7.10:1, with room for the white/80 and
-     white/85 the dark band actually uses. Do NOT put white on lavender —
-     that is 3.56:1 and it is why the primary button is plum, not lavender.
+     On an INK background use white (13.44:1), with room to spare for the
+     white/80 and white/85 the dark band actually uses, and peach (8.74:1)
+     for the one accent mark on it.
      ---------------------------------------------------------------------- */
 
   /* ---- Radii — chunky, this is a craft brand ---- */
@@ -578,7 +598,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-lavender);
+    outline: 2px solid var(--color-plum);
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -871,7 +891,7 @@
         position: absolute;
         inset: auto 0 -1px 0;
         height: 2px;
-        background-color: var(--color-lavender);
+        background-color: var(--color-plum);
         transform: scaleX(0);
         transform-origin: 0 50%;
         animation: scrollProgress linear;
@@ -933,7 +953,7 @@
     position: absolute;
     inset: 0 auto 0 0;
     border-radius: 999px;
-    background-color: var(--color-lavender);
+    background-color: var(--color-plum);
     animation: preloadBar 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
   .preloader-spin {
