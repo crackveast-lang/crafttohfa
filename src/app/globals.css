@@ -1,0 +1,948 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   CraftTohfa design system
+   Tailwind v4 — CSS-first. There is intentionally NO tailwind.config.ts.
+   Anything you paste from a Tailwind v3 tutorial (config file, `content: [...]`,
+   `theme.extend`, v3 plugins) will silently do nothing. Edit THIS file instead.
+   ========================================================================= */
+
+@theme {
+  /* ---- Palette. Six colours. Never invent a seventh. ----------------------
+     Need a lighter shade? Use an opacity modifier (bg-terracotta/10,
+     border-ink/12) or color-mix(). Adding new hexes turns 6 colours into 20.
+
+     This palette is now entirely warm — cream through terracotta is one
+     family, which is what makes it read as a single brand rather than a
+     theme. `ink` is the only cool note and it does all the heavy lifting for
+     text; keep it that way. If something needs to stand out, reach for the
+     value jump (peach → terracotta) rather than for a new hue.            */
+  --color-cream: #fff7f0;
+  --color-shell: #f7e6d6;
+  --color-peach: #f5cbb4;
+  --color-rose: #dba48f;
+  /* Sampled from the coral ink on the printed CrafTohfa card (#E66C35) and
+     walked darker until white button text clears AA. Hue 15° against the
+     logo's 18.6° — the same family, deep enough to carry type. */
+  --color-terracotta: #b85230;
+  --color-ink: #3d3d3d;
+
+  /* The one derived shade. Terracotta clears AA on cream but NOT on shell
+     (4.02) or peach (3.28), and half this site is shell and peach. This is
+     terracotta pushed darker until it passes on every light background we
+     actually use:
+       on cream 7.05:1   on shell 6.13:1   on peach 5.01:1
+     Use it for small terracotta text. Use --color-terracotta for fills, icons,
+     rules and large display text. */
+  --color-terracotta-deep: #8e3c1b;
+
+  /* ---- CONTRAST RULES — read before typing a text colour -----------------
+     Every number below is measured, not estimated.
+
+     Measured against cream #FFF7F0:
+       ink        #3D3D3D = 10.25:1 ✅ the workhorse. ALL body text.
+       terracotta #B85230 =  4.62:1 ✅ on CREAM only — and only just.
+                                  On shell it is 4.02 and on peach 3.28, both
+                                  of which FAIL. Since a given component often
+                                  does not know which tone it sits on, treat
+                                  plain terracotta as fills / icons / rules /
+                                  backgrounds / large display text, and reach
+                                  for terracotta-deep for any small TEXT.
+       terracotta-deep    =  7.05:1 ✅ small terracotta text (eyebrows, labels).
+                                  Passes on cream, shell AND peach.
+       rose       #DBA48F =  2.04:1 ❌ DECORATIVE ONLY. Never text. Ever.
+
+     On a terracotta background use white (4.90:1). Cream is 4.62:1, which
+     passes but with almost no margin — white is the safe default.
+     ink on peach = 7.28:1 ✅  ink on rose = 5.03:1 ✅  ink on shell = 8.92:1 ✅
+     ---------------------------------------------------------------------- */
+
+  /* ---- Radii — chunky, this is a craft brand ---- */
+  --radius-card: 1.5rem;
+  --radius-frame: 2rem;
+  --radius-blob: 3rem;
+
+  /* ---- Shadows — always warm-tinted, never neutral grey ---- */
+  --shadow-soft: 0 2px 6px -2px rgb(61 61 61 / 0.08),
+    0 18px 40px -24px rgb(61 61 61 / 0.35);
+  --shadow-lift: 0 4px 10px -3px rgb(61 61 61 / 0.1),
+    0 28px 56px -28px rgb(61 61 61 / 0.42);
+  --shadow-sticker: 3px 3px 0 0 var(--color-ink);
+  --shadow-sticker-sm: 2px 2px 0 0 var(--color-ink);
+  --shadow-paper: 0 1px 0 0 rgb(61 61 61 / 0.1),
+    6px 8px 0 -3px rgb(219 164 143 / 0.35);
+
+  /* ---- The two motion curves. There is no third. ------------------------
+     Text SETTLES. Objects BOUNCE. That distinction is the whole system:
+     bounce on a paragraph reads cheap, settle on a sticker reads dead.
+     `settle` is the expo-out curve rise-in has always used, now named so the
+     reveal variants can share it instead of re-typing the literal.        */
+  --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ---- Fluid type scale ---- */
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.18em;
+  --text-eyebrow--font-weight: 600;
+
+  --text-display: clamp(2.5rem, 8vw, 5rem);
+  --text-display--line-height: 0.95;
+  --text-display--letter-spacing: -0.03em;
+
+  /* Poster-scale. Hero headline only. */
+  --text-mega: clamp(3.25rem, 13vw, 7.5rem);
+  --text-mega--line-height: 0.82;
+  --text-mega--letter-spacing: -0.02em;
+
+  --text-h2: clamp(1.875rem, 4vw, 3rem);
+  --text-h2--line-height: 1.05;
+  --text-h2--letter-spacing: -0.02em;
+
+  --text-h3: clamp(1.375rem, 2.2vw, 1.75rem);
+  --text-h3--line-height: 1.15;
+  --text-h3--letter-spacing: -0.01em;
+
+  --text-body: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --text-body--line-height: 1.7;
+
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+/* `inline` so the next/font CSS variables resolve at use-site rather than
+   being frozen into the theme variable. Required for next/font + Tailwind v4. */
+@theme inline {
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-hand: var(--font-caveat), ui-rounded, cursive;
+  /* Hero headline only. */
+  --font-fun: var(--font-baloo), ui-rounded, system-ui, sans-serif;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ── Entrances ───────────────────────────────────────────────────────────
+   All use animation-fill-mode: both, so an element starts at the "from"
+   state and stays at the "to" state. That matters: it means content is
+   never left invisible if something goes wrong, and the global
+   prefers-reduced-motion block (which collapses duration to 0.01ms) lands
+   everything in its final, visible position instantly.               */
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.84);
+  }
+  62% {
+    opacity: 1;
+    transform: scale(1.035);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── Gesture entrances ───────────────────────────────────────────────────
+   These animate the physical actions the design language already depicts:
+   tape gets pressed down, stickers get applied, doodles get drawn, photos
+   get laid on the page. Everything below the hero is built from these.
+
+   IMPORTANT: several of these animate `transform` on elements that already
+   carry a static tilt via the individual `rotate` property (WashiTape,
+   StickerBadge, the testimonial cards). Those compose rather than collide —
+   the keyframe's rotation is applied ON TOP of the resting angle, so a
+   keyframe that ends at `rotate(0deg)` settles the element onto its own
+   tilt rather than straightening it. That is why these end at zero.     */
+
+/* The short rise, for the quiet four-up rows. Travel distance is the clearest
+   tell of an amateur scroll animation — text moves 16-20px, cards 24-28px,
+   photos 32px, and nothing on this site moves further than that. */
+@keyframes riseInSm {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Photos and heavy cards. The scale is what makes it read as weight
+   arriving rather than a div appearing. */
+@keyframes settleIn {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Scrapbook elements: enter over-tilted, settle onto their resting angle. */
+@keyframes tiltIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) rotate(var(--tilt-from, -5deg)) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+/* Washi tape being pressed down: squeezed and crooked, then flat and full. */
+@keyframes tapeDown {
+  0% {
+    opacity: 0;
+    transform: rotate(-7deg) scaleX(0.3);
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg) scaleX(1);
+  }
+}
+
+/* A sticker being pressed on, overshooting before it settles flat. */
+@keyframes stickerPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) rotate(-8deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.08) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Hand-drawn doodles drawing themselves.
+   stroke-dasharray/offset are INHERITED SVG properties, so animating them on
+   the <svg> reaches every path inside without needing a rule per path. The
+   paths carry pathLength="1", which normalises the maths — no JS measuring
+   of getTotalLength(), and one keyframe works for every doodle regardless of
+   its real path length. */
+@keyframes drawIn {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Handwriting appearing as if it is being written: a soft-edged wipe, not a
+   hard clip. The mask is 250% wide with its opaque half leading, so sliding
+   it from 100% to 0% sweeps the visible edge across the text. */
+@keyframes inkReveal {
+  from {
+    opacity: 0.001;
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    -webkit-mask-position: 0% 0;
+    mask-position: 0% 0;
+  }
+}
+
+/* Section dividers drawing themselves across, so a boundary reads authored.
+   Masked rather than clipped, and that is not a style preference: a
+   `clip-path: inset(0 100% 0 0)` start frame folds into IntersectionObserver's
+   intersection geometry, so the element reports a zero intersection rect and
+   never triggers the observer that would start the animation. The reveal
+   deadlocks itself and the divider stays clipped to nothing, permanently.
+   A mask is a paint effect and doesn't touch that geometry. */
+@keyframes wipeIn {
+  from {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+  to {
+    -webkit-mask-position: 0% 0;
+    mask-position: 0% 0;
+  }
+}
+
+/* A "look here" tell on a secondary link, fired ONCE as it arrives. It nudges
+   the arrow and puts it straight back, after which the link reverts to
+   hover-only behaviour. Looping it would make the page fidget. */
+@keyframes arrowNudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  45% {
+    transform: translateX(7px);
+  }
+}
+
+/* Frosted panels condensing out of the dark. The whole point of glass is the
+   blur — a static backdrop-blur pays for the effect without ever showing it. */
+@keyframes glassIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+  }
+}
+
+/* ── Idle motion — the "alive" part ──────────────────────────────────── */
+
+/* The founder photo breathing. This file chose animatable border-radius over
+   clip-path on purpose ("clip-path would jank on scroll") — this is that
+   decision finally being spent.
+
+   Three lumpy keyframes rather than a ping-pong between .blob-a and .blob-b:
+   those two are near mirror images, so interpolating between them passes
+   straight through a circle and the photo visibly stops being a blob halfway
+   round the cycle. Each stop here keeps the same degree of asymmetry, and it
+   begins and ends on .blob-b so nothing about the design at rest changes. */
+@keyframes blobMorph {
+  0%,
+  100% {
+    /* Exactly .blob-b — the shape this photo has always rested at, so the
+       design at rest is unchanged. */
+    border-radius: 63% 37% 42% 58% / 60% 55% 45% 40%;
+  }
+  33% {
+    border-radius: 58% 42% 50% 50% / 52% 62% 38% 48%;
+  }
+  66% {
+    border-radius: 67% 33% 38% 62% / 64% 48% 52% 36%;
+  }
+}
+
+/* Double-beat, tiny amplitude. Unmistakably a heartbeat, never a throb. */
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  8% {
+    transform: scale(1.045);
+  }
+  16% {
+    transform: scale(1);
+  }
+  24% {
+    transform: scale(1.03);
+  }
+  32% {
+    transform: scale(1);
+  }
+}
+
+/* One ring outward from the WhatsApp CTA on entry. Fires ONCE — a looping
+   pulse on a green button is a banner ad. */
+@keyframes pulseRing {
+  0% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
+/* The site's one gradient, breathing. Imperceptible frame to frame,
+   unmistakable over ten seconds. */
+@keyframes gradientDrift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Seeds drifting up across the closing band. */
+@keyframes driftUp {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0);
+  }
+  15%,
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-140px) translateX(18px);
+  }
+}
+
+/* Driven by a scroll timeline, not by time. See `.site-header::after`. */
+@keyframes scrollProgress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* A countdown unit rolling over. Days/hours/minutes only — a roll firing
+   every second is a metronome in the corner of your eye. */
+@keyframes digitRoll {
+  0% {
+    opacity: 0;
+    transform: translateY(-55%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-13px);
+  }
+}
+
+/* A much smaller float than floatY, for things sitting in a tight row. At
+   ±13px six Instagram tiles 12px apart visibly bob into each other's gaps;
+   ±5px just stops the strip reading as a ruler-straight line. */
+@keyframes floatTiny {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes swayTilt {
+  0%,
+  100% {
+    transform: rotate(-2.2deg);
+  }
+  50% {
+    transform: rotate(2.2deg);
+  }
+}
+
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Preloader ───────────────────────────────────────────────────────── */
+@keyframes preloadOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes preloadBar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* ========================================================================= */
+
+@layer base {
+  html {
+    /* Next 16 no longer suppresses smooth scrolling during route changes.
+       The data attribute is what re-enables the suppression. */
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+
+    /* Lets `height: auto` be a transition endpoint, which is what makes the
+       native <details> accordions animate open instead of snapping. Opt-in
+       and inherited, so it has to live on the root. */
+    interpolate-size: allow-keywords;
+  }
+
+  /* ── Native <details>, animated ────────────────────────────────────────
+     The accordions are deliberately zero-JS `<details>`, and the instant
+     snap on open was the harshest moment on the page. `::details-content`
+     is the only hook that can animate it without reaching for JavaScript,
+     so the component stays a server component and stays keyboard- and
+     screen-reader-correct for free.
+
+     Browsers without ::details-content simply ignore all of this and get
+     today's instant snap — which is the current behaviour, so there is no
+     regression to guard against. */
+  details::details-content {
+    block-size: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      block-size 0.3s var(--ease-settle),
+      content-visibility 0.3s allow-discrete,
+      opacity 0.22s ease 0.06s;
+    transition-behavior: allow-discrete;
+  }
+  details[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    /* SOFT rounds the terminals — this is where the friendliness lives,
+       as a typographic axis rather than clipart.
+       WONK is deliberately 0: its alternate ampersand is a lovely piece of
+       type design but it does not read as "and" at a glance, and half our
+       product names contain "&". Legibility wins. */
+    font-variation-settings: "SOFT" 60, "WONK" 0;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  /* Prices and countdown digits must not jitter as they change */
+  .tabular,
+  time {
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::selection {
+    background-color: var(--color-peach);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-terracotta);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer utilities {
+  /* Organic blob masks. border-radius composites cheaper than clip-path
+     and animates smoothly; clip-path would jank on scroll. */
+  .blob-a {
+    border-radius: 42% 58% 63% 37% / 45% 40% 60% 55%;
+  }
+  .blob-b {
+    border-radius: 63% 37% 42% 58% / 60% 55% 45% 40%;
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Paper grain. ~800 bytes inline, zero network requests, and it is
+     single-handedly what stops this reading as "flat Tailwind site". */
+  .paper-grain::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.045;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Full-bleed inside a padded Container */
+  .bleed {
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* ---- Motion utilities -------------------------------------------------
+     Entrances go on an OUTER wrapper and idle motion on an INNER one, so the
+     two never fight over `transform`. Any fixed rotation lives on the element
+     itself, a third level down. Stagger with an inline animation-delay.   */
+  .rise-in {
+    animation: riseIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .pop-in {
+    animation: popIn 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  .float-slow {
+    animation: floatY 7.5s ease-in-out infinite;
+  }
+  .float-mid {
+    animation: floatY 6s ease-in-out infinite;
+  }
+  .float-fast {
+    animation: floatY 4.8s ease-in-out infinite;
+  }
+  .sway-slow {
+    animation: swayTilt 9s ease-in-out infinite;
+  }
+  .sway-mid {
+    animation: swayTilt 6.5s ease-in-out infinite;
+  }
+  /* Two phases, so tiles alternating between them are never in sync. */
+  .float-tiny-a {
+    animation: floatTiny 9s ease-in-out infinite;
+  }
+  .float-tiny-b {
+    animation: floatTiny 7.4s ease-in-out infinite -2.6s;
+  }
+
+  /* ---- Scroll reveals ---------------------------------------------------
+     THE RULE: content is visible by default. Nothing here ever sets
+     `opacity: 0` as a resting state.
+
+     Instead every reveal is an ordinary entrance animation that is PAUSED at
+     its first frame, and it is only paused when <html> carries
+     data-motion="on" — which the inline script in layout.tsx sets before
+     first paint, and only when JavaScript actually runs. <Reveal> then
+     unpauses it via data-revealed when the element scrolls into view.
+
+     So the failure modes all land safe:
+       no JS / hydration error / crawler → nothing pauses → every entrance
+         plays straight through on load and the page reads normally;
+       reduced motion → the block at the bottom of this file force-runs
+         everything at 0.01ms, so it is simply already finished.
+
+     This is the same reasoning as the preloader being pure CSS: a JS-driven
+     hide that fails to un-hide would take the content with it.            */
+  [data-reveal] {
+    animation-duration: 0.7s;
+    animation-timing-function: var(--ease-settle);
+    animation-fill-mode: both;
+  }
+  [data-motion="on"] [data-reveal] {
+    animation-play-state: paused;
+  }
+  [data-motion="on"] [data-reveal][data-revealed] {
+    animation-play-state: running;
+  }
+
+  [data-reveal="rise"] {
+    animation-name: riseIn;
+  }
+  [data-reveal="rise-sm"] {
+    animation-name: riseInSm;
+    animation-duration: 0.5s;
+  }
+  [data-reveal="settle"] {
+    animation-name: settleIn;
+    animation-duration: 0.9s;
+  }
+  [data-reveal="tilt"] {
+    animation-name: tiltIn;
+    animation-duration: 0.75s;
+    animation-timing-function: var(--ease-bounce);
+  }
+  [data-reveal="pop"] {
+    animation-name: popIn;
+    animation-duration: 0.6s;
+    animation-timing-function: var(--ease-bounce);
+  }
+  [data-reveal="sticker"] {
+    animation-name: stickerPop;
+    animation-duration: 0.55s;
+    animation-timing-function: var(--ease-bounce);
+  }
+  [data-reveal="tape"] {
+    animation-name: tapeDown;
+    animation-duration: 0.48s;
+    animation-timing-function: var(--ease-bounce);
+    transform-origin: center;
+  }
+  [data-reveal="glass"] {
+    animation-name: glassIn;
+  }
+  [data-reveal="nudge"] {
+    animation-name: arrowNudge;
+    animation-duration: 0.5s;
+  }
+  /* Near-hard edge, same 250% mask geometry as "ink" — see the note there for
+     why the stops have to clear 40%/60%. */
+  [data-reveal="wipe"] {
+    animation-name: wipeIn;
+    -webkit-mask-image: linear-gradient(90deg, #000 47%, transparent 53%);
+    mask-image: linear-gradient(90deg, #000 47%, transparent 53%);
+    -webkit-mask-size: 250% 100%;
+    mask-size: 250% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+  [data-reveal="draw"] {
+    animation-name: drawIn;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-out;
+    /* Paths inside carry pathLength="1", so 1 unit == the whole path. */
+    stroke-dasharray: 1;
+  }
+  /* The stops are not arbitrary. With a mask 250% of the element's width, the
+     opaque run must be at least 1/2.5 = 40% of the mask to cover the element
+     completely at the end, and the fade must start before 60% so the element
+     is completely uncovered at the start. 45%/58% clears both with a margin —
+     tighten either one and the handwriting ends up permanently half-faded at
+     one edge. */
+  [data-reveal="ink"] {
+    animation-name: inkReveal;
+    animation-duration: 0.9s;
+    animation-timing-function: ease-out;
+    -webkit-mask-image: linear-gradient(90deg, #000 45%, transparent 58%);
+    mask-image: linear-gradient(90deg, #000 45%, transparent 58%);
+    -webkit-mask-size: 250% 100%;
+    mask-size: 250% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+  /* Scroll-linked parallax. MotionController writes --drift / --drift-tilt on
+     the element; this is the only place they are consumed. Keep this on its
+     OWN element, never the one carrying a data-reveal entrance — the two
+     would overwrite each other's transform, which is the same rule the hero
+     flowers already follow. Budget: three of these on a page, no more. */
+  .drift {
+    transform: translateY(var(--drift, 0px)) rotate(var(--drift-tilt, 0deg));
+    will-change: transform;
+  }
+
+  /* ---- Idle loops added for the sections below the hero ---------------- */
+  .blob-morph {
+    animation: blobMorph 12s ease-in-out infinite;
+  }
+  .heartbeat {
+    animation: heartbeat 6s ease-in-out infinite;
+  }
+  .gradient-drift {
+    /* The gradient needs room to travel, or moving its position does nothing. */
+    background-size: 200% 200%;
+    animation: gradientDrift 18s linear infinite;
+  }
+  .drift-up {
+    animation: driftUp 16s linear infinite;
+  }
+  .digit-roll {
+    animation: digitRoll 0.26s var(--ease-settle) both;
+  }
+
+  /* One ring outward, once, from a WhatsApp CTA as it enters view. The ring
+     is a ::after so it never affects layout or the button's own hover
+     transform. */
+  .pulse-once {
+    position: relative;
+  }
+  .pulse-once::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid currentColor;
+    pointer-events: none;
+    opacity: 0;
+    animation: pulseRing 0.9s ease-out 0.2s both;
+  }
+  [data-motion="on"] [data-reveal].pulse-once::after {
+    animation-play-state: paused;
+  }
+  [data-motion="on"] [data-reveal][data-revealed].pulse-once::after {
+    animation-play-state: running;
+  }
+
+  /* ---- Header ----------------------------------------------------------
+     Condenses once the page has moved. `data-scrolled` is set on <html> by
+     MotionController, which keeps Header itself a server component — the
+     alternative was making the whole header client-side for one boolean. */
+  .site-header {
+    transition:
+      background-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+  .site-header-bar {
+    transition: min-height 0.25s var(--ease-settle);
+  }
+  [data-scrolled] .site-header {
+    background-color: color-mix(in oklab, var(--color-cream) 95%, transparent);
+    box-shadow:
+      0 1px 0 0 rgb(61 61 61 / 0.05),
+      0 10px 26px -22px rgb(61 61 61 / 0.5);
+  }
+  [data-scrolled] .site-header-bar {
+    min-height: 3.5rem;
+  }
+
+  /* Scroll-progress hairline along the header's bottom edge.
+     A scroll-driven animation, so it needs no JavaScript and no per-frame
+     work at all. Gated on @supports because a bar stuck at scaleX(0) in a
+     browser without scroll timelines is just an invisible element — and on
+     no-preference because with a scroll timeline the reduced-motion block's
+     duration override doesn't apply, so it is cleaner to opt out entirely. */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: scroll()) {
+      .site-header::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 -1px 0;
+        height: 2px;
+        background-color: var(--color-terracotta);
+        transform: scaleX(0);
+        transform-origin: 0 50%;
+        animation: scrollProgress linear;
+        animation-timeline: scroll(root block);
+      }
+    }
+  }
+
+  /* Snap rails: the right edge should read as "there is more here".
+     The fade MUST be turned off at whatever breakpoint the rail becomes a
+     grid — left on, it stops being a hint and starts looking like the last
+     card is broken. Written as paired classes rather than a Tailwind
+     `md:[mask-image:none]` so the -webkit- prefix gets reset too. */
+  .rail-fade {
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      #000 0,
+      #000 88%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(90deg, #000 0, #000 88%, transparent 100%);
+  }
+  @media (min-width: 48rem) {
+    .rail-fade-md {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
+  @media (min-width: 64rem) {
+    .rail-fade-lg {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
+
+  /* ---- Preloader --------------------------------------------------------
+     Deliberately pure CSS. A JS-driven overlay that fails to hide would lock
+     the whole site behind a blank screen; this one always dismisses itself,
+     even with JavaScript disabled.                                        */
+  .preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    background-color: var(--color-cream);
+    animation: preloadOut 0.45s ease 0.85s both;
+  }
+  .preloader-bar {
+    position: relative;
+    width: 132px;
+    height: 4px;
+    overflow: hidden;
+    border-radius: 999px;
+    background-color: rgb(61 61 61 / 0.12);
+  }
+  .preloader-bar::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    border-radius: 999px;
+    background-color: var(--color-terracotta);
+    animation: preloadBar 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .preloader-spin {
+    animation: spinSlow 5s linear infinite;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .paper-grain::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+
+    /* Delays MUST be cleared too, not just durations. Without this, a
+       staggered entrance still holds its element at opacity 0 for the length
+       of the delay, and the preloader still sits over the page until its
+       delay elapses — so someone who asked for less motion gets a blank
+       screen for two seconds instead of no animation. The negative delay
+       starts each animation already past its first frame. */
+    animation-delay: -0.01ms !important;
+    transition-delay: 0s !important;
+
+    /* Scroll reveals hold themselves at frame 0 with animation-play-state,
+       which the duration override above cannot release — a paused animation
+       stays paused however short it is. Without this line every section
+       below the hero would sit invisible until its observer happened to
+       fire, which for someone who asked for less motion is strictly worse
+       than the animation they were trying to avoid. */
+    animation-play-state: running !important;
+  }
+
+  /* The universal selector above can't reach a pseudo-element that isn't
+     ::before or ::after, so the accordion needs saying explicitly. */
+  details::details-content {
+    transition-duration: 0.01ms !important;
+  }
+}

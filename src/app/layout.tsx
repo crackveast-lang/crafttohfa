@@ -1,0 +1,106 @@
+import type { Metadata, Viewport } from "next";
+import { baloo, caveat, fraunces, jakarta } from "./fonts";
+import "./globals.css";
+
+import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
+import { Preloader } from "@/components/layout/Preloader";
+import { SkipLink } from "@/components/layout/SkipLink";
+import { MotionController } from "@/components/motion/MotionController";
+import { JsonLd } from "@/components/ui/JsonLd";
+import { orgJsonLd } from "@/lib/seo";
+import { siteConfig } from "@/site.config";
+
+/**
+ * Arms the scroll-reveal system, and disarms it again if anything goes wrong.
+ *
+ * Reveals work by pausing an entrance animation at its first frame, and the
+ * ONLY thing that pauses them is `data-motion="on"` on <html>. Setting it
+ * here — inline, parser-blocking, before the body paints — means:
+ *
+ *   • with JavaScript, elements are held before they can flash visible;
+ *   • without it, the attribute is never set, nothing pauses, and every
+ *     entrance simply plays on load. The page is fully readable.
+ *
+ * The timeout is the belt to that braces. If hydration dies for any reason,
+ * MotionController never mounts, `data-motion-ready` never appears, and the
+ * attribute is dropped — releasing every paused animation instead of leaving
+ * the site below the hero invisible. A motion system must never be able to
+ * take the content with it.
+ */
+const ARM_MOTION = `document.documentElement.setAttribute("data-motion","on");
+setTimeout(function(){var e=document.documentElement;
+if(!e.hasAttribute("data-motion-ready"))e.removeAttribute("data-motion")},3000)`;
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `${siteConfig.name} — Handmade DIY Craft Kits, Rakhis & Gift Hampers`,
+    template: `%s · ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  keywords: [
+    "DIY painting kit",
+    "handmade rakhi",
+    "crochet rakhi",
+    "rakhi gift hamper",
+    "kids craft kit India",
+    "Raksha Bandhan gift",
+    "screen-free activities for kids",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} — Handmade DIY Craft Kits, Rakhis & Gift Hampers`,
+    description: siteConfig.description,
+  },
+  twitter: { card: "summary_large_image" },
+  robots: { index: true, follow: true },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#FFF7F0",
+  colorScheme: "light",
+};
+
+export default function RootLayout({ children }: LayoutProps<"/">) {
+  return (
+    <html
+      lang="en-IN"
+      // Next 16 no longer suppresses smooth scrolling on navigation unless
+      // this attribute is present — without it every route change animates.
+      data-scroll-behavior="smooth"
+      // ARM_MOTION adds data-motion to this element before React hydrates, so
+      // the server HTML and the live DOM disagree about it by design and React
+      // logs a mismatch. Rendering the attribute server-side would silence the
+      // warning and break the whole point: with JS disabled the attribute must
+      // NOT be there, or every entrance stays paused at frame 0 and the site
+      // below the hero is invisible.
+      //
+      // This flag is scoped to this element's own attributes — it does not
+      // extend to any descendant — so a real mismatch anywhere else in the
+      // tree still reports normally.
+      suppressHydrationWarning
+      className={`${fraunces.variable} ${jakarta.variable} ${caveat.variable} ${baloo.variable} h-full antialiased`}
+    >
+      <body className="paper-grain flex min-h-full flex-col bg-cream text-ink">
+        <script dangerouslySetInnerHTML={{ __html: ARM_MOTION }} />
+        <MotionController />
+        <Preloader />
+        <SkipLink />
+        <AnnouncementBar />
+        <Header />
+        <main id="main" className="flex-1">
+          {children}
+        </main>
+        <Footer />
+        <JsonLd data={orgJsonLd()} />
+      </body>
+    </html>
+  );
+}

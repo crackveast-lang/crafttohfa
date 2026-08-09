@@ -1,0 +1,125 @@
+import { ImageResponse } from "next/og";
+import { allSlugs, getProduct } from "@/data/products";
+import { formatINR } from "@/lib/format";
+import { siteConfig } from "@/site.config";
+
+export const alt = "CraftTohfa product";
+export const size = { width: 1200, height: 630 };
+export const contentType = "image/png";
+
+export function generateStaticParams() {
+  return allSlugs.map((slug) => ({ slug }));
+}
+
+/** In Next 16 `params` arrives as a Promise here too, not just in page.tsx. */
+export default async function ProductOgImage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const product = getProduct(slug);
+
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          background: "#FFF7F0",
+          padding: 72,
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            bottom: -180,
+            left: -120,
+            width: 480,
+            height: 480,
+            borderRadius: "50%",
+            background: "#F7E6D6",
+            display: "flex",
+          }}
+        />
+
+        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: 48,
+              height: 48,
+              borderRadius: 14,
+              background: "#B85230",
+              color: "#FFF7F0",
+              fontSize: 22,
+              fontWeight: 700,
+            }}
+          >
+            CT
+          </div>
+          <div style={{ fontSize: 28, fontWeight: 700, color: "#3D3D3D" }}>
+            {siteConfig.name}
+          </div>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          <div
+            style={{
+              display: "flex",
+              fontSize: 68,
+              fontWeight: 700,
+              color: "#3D3D3D",
+              lineHeight: 1.06,
+              letterSpacing: -2,
+              maxWidth: 940,
+            }}
+          >
+            {product?.name ?? "Handmade craft kits & rakhis"}
+          </div>
+          {product ? (
+            <div
+              style={{
+                display: "flex",
+                fontSize: 28,
+                color: "#3D3D3D",
+                opacity: 0.72,
+                maxWidth: 860,
+              }}
+            >
+              {product.tagline}
+            </div>
+          ) : null}
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          {product ? (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                background: "#B85230",
+                color: "#FFFFFF",
+                fontSize: 34,
+                fontWeight: 700,
+                padding: "14px 30px",
+                borderRadius: 999,
+              }}
+            >
+              {formatINR(product.price)}
+            </div>
+          ) : null}
+          <div style={{ display: "flex", fontSize: 26, color: "#3D3D3D", opacity: 0.7 }}>
+            Order on WhatsApp
+          </div>
+        </div>
+      </div>
+    ),
+    { ...size },
+  );
+}
