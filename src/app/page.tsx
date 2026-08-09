@@ -8,6 +8,7 @@ import { FounderStrip } from "@/components/home/FounderStrip";
 import { Testimonials } from "@/components/home/Testimonials";
 import { BulkOrders } from "@/components/home/BulkOrders";
 import { InstagramStrip } from "@/components/home/InstagramStrip";
+import { ShareYourMoment } from "@/components/home/ShareYourMoment";
 import { FaqTeaser } from "@/components/home/FaqTeaser";
 import { FinalCta } from "@/components/home/FinalCta";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -27,6 +28,9 @@ export default function Home() {
       <Testimonials />
       <BulkOrders />
       <InstagramStrip />
+      {/* Directly after the Instagram strip on purpose: "here is what we post"
+          → "now post yours". Split up, the two read as two unrelated asks. */}
+      <ShareYourMoment />
       <FaqTeaser />
       <FinalCta />
 

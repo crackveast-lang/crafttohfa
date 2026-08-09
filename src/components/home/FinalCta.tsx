@@ -20,7 +20,10 @@ export function FinalCta() {
     // The site's ONE gradient, and the last thing anyone sees — so it breathes.
     // Imperceptible frame to frame, unmistakable over ten seconds, and it
     // costs a single background-position with no layout or paint consequence.
-    <section className="gradient-drift relative overflow-hidden bg-gradient-to-br from-rose via-peach to-shell py-20 text-ink md:py-28">
+    // The tints are alpha rather than solid, so `bg-cream` underneath is load
+    // bearing — without it the transparent stops fall through to the body and
+    // the band loses its own ground.
+    <section className="gradient-drift relative overflow-hidden bg-cream bg-gradient-to-br from-lavender/25 via-blush to-peach/70 py-20 text-ink md:py-28">
       <span
         aria-hidden="true"
         className="pointer-events-none absolute left-6 top-10 block size-24 sway-slow md:size-32"
@@ -75,7 +78,7 @@ export function FinalCta() {
           <div
             data-reveal="rise"
             style={{ animationDelay: "200ms" }}
-            className="pulse-once rounded-full text-terracotta"
+            className="pulse-once rounded-full text-lavender"
           >
             <WhatsAppButton ctx={{ kind: "general" }} size="lg">
               Order on WhatsApp

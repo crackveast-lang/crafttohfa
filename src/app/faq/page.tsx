@@ -38,7 +38,7 @@ export default function FaqPage() {
                 <li key={group}>
                   <a
                     href={`#${slug(group)}`}
-                    className="inline-flex min-h-11 items-center rounded-full border-2 border-ink/20 px-4 text-sm font-semibold transition-colors hover:border-ink hover:bg-ink hover:text-cream lg:border-0 lg:px-0 lg:hover:bg-transparent lg:hover:text-terracotta-deep"
+                    className="inline-flex min-h-11 items-center rounded-full border-2 border-ink/20 px-4 text-sm font-semibold transition-colors hover:border-ink hover:bg-ink hover:text-cream lg:border-0 lg:px-0 lg:hover:bg-transparent lg:hover:text-plum"
                   >
                     {group}
                   </a>
@@ -64,7 +64,7 @@ export default function FaqPage() {
         </div>
       </Section>
 
-      <Section tone="shell" width="narrow" className="py-16 md:py-20">
+      <Section tone="blush" width="narrow" className="py-16 md:py-20">
         <div className="flex flex-col items-center gap-5 text-center">
           <h2 className="text-h3">Still not sure?</h2>
           <p className="max-w-[44ch] text-body text-ink/75">

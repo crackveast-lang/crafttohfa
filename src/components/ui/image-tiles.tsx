@@ -112,7 +112,7 @@ export default function ImageTiles({
   // White mount + soft shadow only — no outline. The dark border read as a
   // sticker edge and fought the soft, handmade feel of the photographs.
   const tile =
-    "absolute w-[44%] overflow-hidden rounded-3xl bg-white p-2.5 shadow-[0_10px_30px_-8px_rgba(61,61,61,0.30),0_2px_6px_-2px_rgba(61,61,61,0.10)]";
+    "absolute w-[44%] overflow-hidden rounded-3xl bg-white p-2.5 shadow-[0_10px_30px_-8px_rgba(51,45,50,0.30),0_2px_6px_-2px_rgba(51,45,50,0.10)]";
 
   // Deliberately no role="img"/aria-label on the wrapper: that would collapse
   // the three tiles into one node and hide each photo's own alt text.

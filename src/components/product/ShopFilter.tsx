@@ -130,7 +130,7 @@ export function ShopFilter({
           <button
             type="button"
             onClick={() => select("all")}
-            className="font-semibold underline decoration-rose decoration-2 underline-offset-4"
+            className="font-semibold underline decoration-sage decoration-2 underline-offset-4"
           >
             Show everything
           </button>

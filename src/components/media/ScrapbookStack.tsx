@@ -62,7 +62,7 @@ export function ScrapbookStack() {
         <div className="relative mx-auto w-[72%] rotate-[-2deg] overflow-hidden rounded-frame border-2 border-ink bg-cream shadow-lift">
           <WashiTape
             className="left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-1/2"
-            tone="shell"
+            tone="blush"
             rotate={-5}
           />
           <CraftImage
@@ -86,7 +86,7 @@ export function ScrapbookStack() {
 
         <Squiggle
           aria-hidden="true"
-          className="absolute -right-1 top-2 h-5 w-20 text-terracotta/70"
+          className="absolute -right-1 top-2 h-5 w-20 text-lavender/70"
         />
       </div>
     </div>

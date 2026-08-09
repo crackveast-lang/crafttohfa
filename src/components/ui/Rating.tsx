@@ -26,11 +26,16 @@ export function Rating({
     <span className={cn("inline-flex items-center gap-1.5", className)}>
       <span className="flex gap-0.5" aria-hidden="true">
         {Array.from({ length: 5 }, (_, i) => (
+          /* lavender for the filled stars, not sage. Sage on white is 1.77:1
+             and these stars are the shape carrying the rating — filled vs
+             empty has to be legible, which is a 3:1 job. Lavender is 3.56:1
+             and it is the brand colour, so it reads as ours rather than as a
+             generic gold star. */
           <Star
             key={i}
             className={cn(
               size === "sm" ? "size-3.5" : "size-4",
-              i < rounded ? "text-rose" : "text-ink/20",
+              i < rounded ? "text-lavender" : "text-ink/20",
             )}
           />
         ))}

@@ -24,11 +24,24 @@ export function pluralise(n: number, one: string, many = `${one}s`): string {
   return n === 1 ? one : many;
 }
 
-/** Percentage saved, rounded down. Returns null when there is no discount. */
+/**
+ * Percentage saved, rounded DOWN. Returns null when there is no discount.
+ *
+ * Rounding down matters: paired with the ceil() in `listPrice`, the badge can
+ * only ever understate the discount, never overstate it. A "10% OFF" label on
+ * a saving that is really 10.4% is fine; one on a saving that is really 9.8%
+ * is a claim we cannot support.
+ */
 export function discountPercent(
   price: number,
   compareAt?: number,
 ): number | null {
   if (!compareAt || compareAt <= price) return null;
   return Math.floor(((compareAt - price) / compareAt) * 100);
+}
+
+/** Whole rupees saved. Returns null when there is no discount. */
+export function amountSaved(price: number, compareAt?: number): number | null {
+  if (!compareAt || compareAt <= price) return null;
+  return compareAt - price;
 }

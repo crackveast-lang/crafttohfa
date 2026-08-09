@@ -63,10 +63,10 @@ export function SectionHeading({
           style={at(0)}
           className={cn(
             "text-eyebrow uppercase",
-            // Plain terracotta at 12px fails AA on shell and peach, so the
+            // Plain lavender at 12px fails AA on blush and peach, so the
             // eyebrow is bold and we lean
             // on ink/70 for the dark-on-light case.
-            tone === "onDark" ? "text-white/85" : "text-terracotta-deep",
+            tone === "onDark" ? "text-white/85" : "text-plum",
           )}
         >
           {eyebrow}
@@ -91,7 +91,7 @@ export function SectionHeading({
             className={cn(
               "absolute -bottom-3 h-3 w-[min(240px,60%)]",
               centered ? "left-1/2 -translate-x-1/2" : "left-0",
-              tone === "onDark" ? "text-white/60" : "text-rose",
+              tone === "onDark" ? "text-white/60" : "text-sage",
             )}
           />
         ) : null}

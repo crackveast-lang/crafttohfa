@@ -10,6 +10,7 @@ import { ProductGallery } from "@/components/product/ProductGallery";
 import { RelatedProducts } from "@/components/product/RelatedProducts";
 import { StickyBuyBar } from "@/components/product/StickyBuyBar";
 import { Testimonials } from "@/components/home/Testimonials";
+import { ShareYourMoment } from "@/components/home/ShareYourMoment";
 import { FinalCta } from "@/components/home/FinalCta";
 import { Accordion } from "@/components/ui/Accordion";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -57,18 +58,18 @@ export default async function ProductPage(props: PageProps<"/product/[slug]">) {
         ])}
       />
 
-      <div className="border-b border-ink/10 bg-shell">
+      <div className="border-b border-ink/10 bg-blush">
         <Container>
           <nav aria-label="Breadcrumb" className="py-4">
             <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink/60">
               <li>
-                <Link href="/" className="hover:text-terracotta-deep">
+                <Link href="/" className="hover:text-plum">
                   Home
                 </Link>
               </li>
               <li aria-hidden="true">/</li>
               <li>
-                <Link href="/shop" className="hover:text-terracotta-deep">
+                <Link href="/shop" className="hover:text-plum">
                   Shop
                 </Link>
               </li>
@@ -76,7 +77,7 @@ export default async function ProductPage(props: PageProps<"/product/[slug]">) {
               <li>
                 <Link
                   href={`/shop?c=${product.category}`}
-                  className="hover:text-terracotta-deep"
+                  className="hover:text-plum"
                 >
                   {categoryName(product.category)}
                 </Link>
@@ -203,6 +204,8 @@ export default async function ProductPage(props: PageProps<"/product/[slug]">) {
         eyebrow="From other parents"
         title="Bought, made and enjoyed"
       />
+
+      <ShareYourMoment />
 
       <FinalCta />
 

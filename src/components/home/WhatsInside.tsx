@@ -21,28 +21,28 @@ import { getProduct } from "@/data/products";
 const CONTENTS = [
   {
     Icon: RakhiThread,
-    title: "A hand-crocheted rakhi",
-    body: "Worked in soft cotton with pearl and gold beads, on a printed card ready to gift.",
+    title: "A Rakhi, handmade with love",
+    body: "Soft cotton, delicate beads and thoughtful details — made to celebrate the bond.",
   },
   {
     Icon: Heart,
-    title: "A crochet keepsake",
-    body: "A soft toy, keychain or little bag — the part that's still around long after August.",
+    title: "A little keepsake to treasure",
+    body: "Choose a soft crochet toy, keychain or mini bag — something they can keep close even after Raksha Bandhan.",
   },
   {
     Icon: PaintBrush,
-    title: "A bhai–behen idol to paint",
-    body: "The plaster brother-and-sister figure, in every single box, waiting to be coloured in.",
+    title: "A Bhai–Behen keepsake to paint",
+    body: "Bring your sibling bond to life with colours, creativity and a little imagination.",
   },
   {
     Icon: Sparkle,
-    title: "A second piece to paint",
-    body: "A butterfly, a car money box, a strawberry — whichever matches the box you pick.",
+    title: "One more little thing to create",
+    body: "Pick your favourite — a butterfly, car money box, strawberry and more — and make it uniquely yours.",
   },
   {
     Icon: GiftBox,
-    title: "Paints, a brush and a card",
-    body: 'Acrylic pots, a brush, and a "Happy Raksha Bandhan" card, all boxed and ready.',
+    title: "Everything you need to create",
+    body: "Acrylic paints, a brush and a heartfelt Raksha Bandhan card — all packed and ready for your little celebration.",
   },
 ];
 
@@ -54,9 +54,9 @@ export function WhatsInside() {
       <div className="grid gap-12 lg:grid-cols-[1fr_0.85fr] lg:items-start lg:gap-16">
         <div>
           <SectionHeading
-            eyebrow="Every box, the same promise"
-            title="It isn't just a rakhi in a box"
-            intro="Tie the thread in the morning, and there's still something to do together in the afternoon. That's the whole idea."
+            eyebrow="What's inside your hamper"
+            title="It's not just a Rakhi. It's a day to remember. ❤️"
+            intro="Tie the Rakhi in the morning, then spend the afternoon creating, painting and laughing together."
           />
 
           {/* The spine of the section, and the one place on the page where the
@@ -84,7 +84,7 @@ export function WhatsInside() {
                   <span
                     data-reveal="sticker"
                     style={{ animationDelay: "220ms" }}
-                    className="absolute -right-1.5 -top-1.5 grid size-5 place-items-center rounded-full bg-terracotta text-[0.65rem] font-bold text-white"
+                    className="absolute -right-1.5 -top-1.5 grid size-5 place-items-center rounded-full bg-plum text-[0.65rem] font-bold text-white"
                   >
                     {i + 1}
                   </span>
@@ -100,6 +100,35 @@ export function WhatsInside() {
               </li>
             ))}
           </ol>
+
+          {/* The turn. The list above answers "what do I get"; this answers
+              "why does that matter", which is the thing that actually sells a
+              ₹499 box. It sits inside a tinted rule rather than another card
+              so it reads as a change of voice rather than another item. */}
+          <div className="mt-12 border-l-2 border-lavender/40 pl-6">
+            <p
+              data-reveal="rise"
+              className="max-w-[44ch] text-body leading-relaxed text-ink/75"
+            >
+              Because the best part isn&apos;t what&apos;s inside the box…
+            </p>
+            {/* Caveat, and the one line in this section that writes itself on
+                — `ink` is the soft-edged mask wipe reserved for handwriting. */}
+            <p
+              data-reveal="ink"
+              style={{ animationDelay: "180ms" }}
+              className="mt-3 max-w-[22ch] font-hand text-3xl leading-tight text-plum md:text-4xl"
+            >
+              It&apos;s what happens after you open it. ❤️
+            </p>
+            <p
+              data-reveal="rise"
+              style={{ animationDelay: "320ms" }}
+              className="mt-5 text-sm font-bold uppercase tracking-[0.16em] text-ink/70"
+            >
+              Tie it. Paint it. Create together. Make a memory.
+            </p>
+          </div>
 
           {/* Links into the combos filter, not all of /shop: this section
               describes what is in a COMBO BOX specifically, and /shop now
@@ -122,7 +151,7 @@ export function WhatsInside() {
                 looks wrong in a way people feel but can't name. */}
             <WashiTape
               className="left-8 top-0 z-10 -translate-y-1/2"
-              tone="rose"
+              tone="sage"
               rotate={-6}
               reveal
               delay={400}

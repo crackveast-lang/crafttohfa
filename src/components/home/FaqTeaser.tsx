@@ -7,8 +7,10 @@ import { getTopFaqs } from "@/data/faqs";
 export function FaqTeaser() {
   const faqs = getTopFaqs();
 
+  // cream, not blush — ShareYourMoment now sits directly above this and is
+  // blush, and two tinted bands touching lose the boundary between them.
   return (
-    <Section tone="shell" width="narrow">
+    <Section tone="cream" width="narrow">
       <SectionHeading
         eyebrow="Before you ask"
         title="The four we get most"
@@ -40,7 +42,7 @@ export function FaqTeaser() {
           href="/faq"
           data-reveal="rise"
           style={{ animationDelay: "300ms" }}
-          className="group inline-flex min-h-11 items-center gap-2 font-semibold underline decoration-rose decoration-2 underline-offset-8 hover:text-terracotta-deep"
+          className="group inline-flex min-h-11 items-center gap-2 font-semibold underline decoration-sage decoration-2 underline-offset-8 hover:text-plum"
         >
           Read all the questions
           <span

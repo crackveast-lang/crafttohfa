@@ -28,7 +28,7 @@ export const categories: Category[] = [
     blurb:
       "Crocheted by hand in soft cotton. No plastic, no shedding glitter, comfortable all day.",
     doodle: "RakhiThread",
-    tone: "rose",
+    tone: "sage",
     image: {
       src: "/images/products/rakhis/sunflower-rakhi-1.jpeg",
       alt: "A hand-crocheted sunflower rakhi in cotton thread",
@@ -40,7 +40,7 @@ export const categories: Category[] = [
     blurb:
       "Everything laid out and ready — plaster figures, a brush and pots of colour. Open the box and start.",
     doodle: "PaintBrush",
-    tone: "shell",
+    tone: "blush",
     image: {
       src: "/images/products/painting-kits/jungle-joy-animal-kit-1.jpeg",
       alt: "A DIY painting kit with plaster animals, a brush and paint pots",

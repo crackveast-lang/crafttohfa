@@ -82,7 +82,7 @@ export function HowItWorks() {
                 aria-hidden="true"
                 data-reveal="draw"
                 style={{ animationDelay: `${i * 380 + 260}ms` }}
-                className="absolute -right-6 top-6 hidden h-8 w-16 text-rose [animation-duration:0.55s] md:block"
+                className="absolute -right-6 top-6 hidden h-8 w-16 text-sage [animation-duration:0.55s] md:block"
               />
             ) : null}
           </li>
@@ -93,7 +93,7 @@ export function HowItWorks() {
         {/* One ring outward, once. WhatsApp is the entire conversion path on
             this site and this section exists to explain that, so it earns a
             single tell — but a looping pulse on a green button is a banner ad. */}
-        <div data-reveal="rise" className="pulse-once rounded-full text-terracotta">
+        <div data-reveal="rise" className="pulse-once rounded-full text-lavender">
           <WhatsAppButton ctx={{ kind: "general" }} size="lg">
             Start a conversation
           </WhatsAppButton>

@@ -32,13 +32,13 @@ function countable(value: string) {
 export function Testimonials({
   limit = 6,
   showStats = true,
-  tone = "peach",
+  tone = "cream",
   eyebrow = "In their words",
   title = "What lands on the doormat",
 }: {
   limit?: number;
   showStats?: boolean;
-  tone?: "peach" | "cream" | "shell";
+  tone?: "peach" | "cream" | "blush";
   eyebrow?: string;
   title?: string;
 }) {
@@ -129,7 +129,7 @@ export function Testimonials({
             >
               <WashiTape
                 className="left-1/2 top-0 -translate-x-1/2 -translate-y-1/2"
-                tone={i % 2 === 0 ? "shell" : "rose"}
+                tone={i % 2 === 0 ? "blush" : "sage"}
                 rotate={i % 2 === 0 ? -3 : 4}
                 reveal
                 delay={step + 180}
@@ -145,7 +145,7 @@ export function Testimonials({
                 <span className="font-semibold">{t.name}</span>
                 <span className="text-ink/55">{t.city}</span>
                 {t.purchased ? (
-                  <span className="rounded-full bg-shell px-2.5 py-0.5 text-xs text-ink/70">
+                  <span className="rounded-full bg-blush px-2.5 py-0.5 text-xs text-ink/70">
                     {t.purchased}
                   </span>
                 ) : null}

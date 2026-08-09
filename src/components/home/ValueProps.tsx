@@ -49,7 +49,7 @@ export function ValueProps() {
               aria-hidden="true"
               data-reveal="draw"
               style={{ animationDelay: `${i * 60 + 80}ms` }}
-              className="size-8 text-terracotta [animation-duration:0.5s]"
+              className="size-8 text-lavender [animation-duration:0.5s]"
             />
             <h3 className="font-display text-lg font-semibold">{title}</h3>
             <p className="max-w-[30ch] text-[0.92rem] leading-relaxed text-ink/70">

@@ -40,7 +40,7 @@ export function ProductGrid({
 function EmptyState() {
   return (
     <div className="flex flex-col items-center gap-4 rounded-card border-2 border-dashed border-ink/20 px-6 py-16 text-center">
-      <Squiggle className="h-5 w-32 text-rose" aria-hidden="true" />
+      <Squiggle className="h-5 w-32 text-sage" aria-hidden="true" />
       <h3 className="text-h3">Nothing here just yet</h3>
       <p className="max-w-[40ch] text-body text-ink/70">
         Nothing matches that filter right now. Tell us what you&apos;re after and

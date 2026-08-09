@@ -43,7 +43,7 @@ export default function PoliciesPage() {
                 <li key={s.id}>
                   <a
                     href={`#${s.id}`}
-                    className="inline-flex min-h-11 items-center rounded-full border-2 border-ink/20 px-4 text-sm font-semibold transition-colors hover:border-ink hover:bg-ink hover:text-cream lg:border-0 lg:px-0 lg:hover:bg-transparent lg:hover:text-terracotta-deep"
+                    className="inline-flex min-h-11 items-center rounded-full border-2 border-ink/20 px-4 text-sm font-semibold transition-colors hover:border-ink hover:bg-ink hover:text-cream lg:border-0 lg:px-0 lg:hover:bg-transparent lg:hover:text-plum"
                   >
                     {s.title}
                   </a>
@@ -113,9 +113,11 @@ export default function PoliciesPage() {
 
             <Policy id="returns" title="Returns, damages & cancellations">
               <p>
-                <strong>Damaged or wrong item:</strong> send a photo on WhatsApp
-                within 48 hours of delivery and we&apos;ll replace it or refund
-                you in full. No forms.
+                <strong>Damaged or wrong item:</strong> please record a short
+                video as you open the package — it is the quickest way for us
+                to see what happened and sort it out. Send it to us on WhatsApp
+                within 48 hours of delivery and we&apos;ll replace the item or
+                refund you in full. No forms.
               </p>
               <p>
                 <strong>Cancellations:</strong> we can cancel and refund in full
@@ -171,7 +173,7 @@ export default function PoliciesPage() {
               </ul>
             </Policy>
 
-            <div className="rounded-card border-2 border-ink/85 bg-shell p-7 shadow-sticker-sm">
+            <div className="rounded-card border-2 border-ink/85 bg-blush p-7 shadow-sticker-sm">
               <h2 className="text-h3">Something not covered here?</h2>
               <p className="mt-3 text-body text-ink/80">
                 Ask us directly — we&apos;d rather answer than have you guess.

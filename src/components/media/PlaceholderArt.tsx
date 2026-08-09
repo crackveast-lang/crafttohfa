@@ -12,10 +12,10 @@ import { cn } from "@/lib/cn";
  */
 
 const SCHEMES = [
-  { from: "#F7E6D6", to: "#F5CBB4", blob: "#DBA48F", motif: "#B85230" },
-  { from: "#FFF7F0", to: "#F7E6D6", blob: "#F5CBB4", motif: "#B85230" },
-  { from: "#F5CBB4", to: "#DBA48F", blob: "#FFF7F0", motif: "#3D3D3D" },
-  { from: "#F7E6D6", to: "#FFF7F0", blob: "#B85230", motif: "#B85230" },
+  { from: "#F5E1E1", to: "#F3C7B5", blob: "#B8C7B0", motif: "#9B7BB5" },
+  { from: "#FFF9F2", to: "#F5E1E1", blob: "#F3C7B5", motif: "#9B7BB5" },
+  { from: "#F3C7B5", to: "#B8C7B0", blob: "#FFF9F2", motif: "#332D32" },
+  { from: "#F5E1E1", to: "#FFF9F2", blob: "#9B7BB5", motif: "#9B7BB5" },
 ];
 
 const MOTIFS = {
@@ -113,7 +113,7 @@ export function PlaceholderArt({
               x="200"
               y={366 + i * 34}
               textAnchor="middle"
-              fill="#3D3D3D"
+              fill="#332D32"
               fillOpacity="0.55"
               fontFamily="var(--font-caveat), cursive"
               fontSize="30"
@@ -131,14 +131,14 @@ export function PlaceholderArt({
             width="168"
             height="30"
             rx="4"
-            fill="#FFF7F0"
+            fill="#FFF9F2"
             fillOpacity="0.85"
           />
           <text
             x="0"
             y="6"
             textAnchor="middle"
-            fill="#3D3D3D"
+            fill="#332D32"
             fillOpacity="0.6"
             fontFamily="var(--font-jakarta), sans-serif"
             fontSize="12"

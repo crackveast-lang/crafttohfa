@@ -31,7 +31,7 @@ export function Accordion({
       name={name}
       open={defaultOpen}
       className={cn(
-        "group rounded-card border border-ink/12 bg-cream px-5 transition-colors open:bg-shell/60 md:px-6",
+        "group rounded-card border border-ink/12 bg-cream px-5 transition-colors open:bg-blush/60 md:px-6",
         className,
       )}
     >
@@ -39,10 +39,10 @@ export function Accordion({
         className={cn(
           "flex cursor-pointer list-none items-center justify-between gap-4 py-5",
           "font-display text-lg font-semibold [&::-webkit-details-marker]:hidden",
-          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta",
+          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lavender",
           // Closed rows were completely inert to the pointer — in a stack of
           // four, three of them gave no feedback at all.
-          "transition-colors hover:text-terracotta-deep",
+          "transition-colors hover:text-plum",
         )}
       >
         {question}

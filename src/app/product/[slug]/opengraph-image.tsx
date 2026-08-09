@@ -34,7 +34,7 @@ export default async function ProductOgImage({
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#FFF7F0",
+          background: "#FFF9F2",
           padding: 72,
         }}
       >
@@ -46,7 +46,7 @@ export default async function ProductOgImage({
             width: 480,
             height: 480,
             borderRadius: "50%",
-            background: "#F7E6D6",
+            background: "#F5E1E1",
             display: "flex",
           }}
         />
@@ -60,15 +60,15 @@ export default async function ProductOgImage({
               width: 48,
               height: 48,
               borderRadius: 14,
-              background: "#B85230",
-              color: "#FFF7F0",
+              background: "#9B7BB5",
+              color: "#FFF9F2",
               fontSize: 22,
               fontWeight: 700,
             }}
           >
             CT
           </div>
-          <div style={{ fontSize: 28, fontWeight: 700, color: "#3D3D3D" }}>
+          <div style={{ fontSize: 28, fontWeight: 700, color: "#332D32" }}>
             {siteConfig.name}
           </div>
         </div>
@@ -79,7 +79,7 @@ export default async function ProductOgImage({
               display: "flex",
               fontSize: 68,
               fontWeight: 700,
-              color: "#3D3D3D",
+              color: "#332D32",
               lineHeight: 1.06,
               letterSpacing: -2,
               maxWidth: 940,
@@ -92,7 +92,7 @@ export default async function ProductOgImage({
               style={{
                 display: "flex",
                 fontSize: 28,
-                color: "#3D3D3D",
+                color: "#332D32",
                 opacity: 0.72,
                 maxWidth: 860,
               }}
@@ -108,7 +108,7 @@ export default async function ProductOgImage({
               style={{
                 display: "flex",
                 alignItems: "center",
-                background: "#B85230",
+                background: "#9B7BB5",
                 color: "#FFFFFF",
                 fontSize: 34,
                 fontWeight: 700,
@@ -119,7 +119,7 @@ export default async function ProductOgImage({
               {formatINR(product.price)}
             </div>
           ) : null}
-          <div style={{ display: "flex", fontSize: 26, color: "#3D3D3D", opacity: 0.7 }}>
+          <div style={{ display: "flex", fontSize: 26, color: "#332D32", opacity: 0.7 }}>
             Order on WhatsApp
           </div>
         </div>

@@ -9,6 +9,10 @@
 export const siteConfig = {
   name: "CraftTohfa",
   tagline: "Where every craft becomes a memory, and every memory is a Tohfa.",
+  /* The line that sits under the logo, exactly as it is printed on your card.
+     तोहफा is Devanagari and needs the devanagari subset loaded in fonts.ts —
+     see the note there before changing either one. */
+  taglineShort: "Every craft is a तोहफा",
   description:
     "Hand-crocheted rakhis from ₹50, DIY painting kits, crochet keepsakes and rakhi combo boxes — made in small batches by hand, and designed to pull kids away from screens.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://crafttohfa.com",

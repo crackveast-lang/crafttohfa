@@ -26,7 +26,7 @@ export function CountdownBand() {
   const srLabel = `${days} ${pluralise(days, "day")} until ${festival.name}.`;
 
   return (
-    <section className="relative overflow-hidden bg-peach text-ink">
+    <section className="relative overflow-hidden bg-blush text-ink">
       <Divider
         variant="torn"
         className="absolute inset-x-0 -top-px text-cream"

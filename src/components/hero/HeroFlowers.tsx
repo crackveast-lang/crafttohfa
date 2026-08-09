@@ -235,7 +235,7 @@ export function GridPaper({ className }: { className?: string }) {
       className={cn("pointer-events-none absolute inset-0", className)}
       style={{
         backgroundImage:
-          "linear-gradient(to right, rgb(61 61 61 / .055) 1px, transparent 1px), linear-gradient(to bottom, rgb(61 61 61 / .055) 1px, transparent 1px)",
+          "linear-gradient(to right, rgb(51 45 50 / .055) 1px, transparent 1px), linear-gradient(to bottom, rgb(51 45 50 / .055) 1px, transparent 1px)",
         backgroundSize: "38px 38px",
         maskImage:
           "radial-gradient(120% 100% at 50% 0%, black 55%, transparent 100%)",

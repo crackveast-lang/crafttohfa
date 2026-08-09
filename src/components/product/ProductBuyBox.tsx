@@ -4,12 +4,13 @@ import { StickerBadge } from "@/components/ui/StickerBadge";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { Heart, Leaf, Sparkle } from "@/components/doodles";
 import { categoryName } from "@/data/categories";
-import { discountPercent, formatINR } from "@/lib/format";
+import { amountSaved, discountPercent, formatINR } from "@/lib/format";
 import { siteConfig } from "@/site.config";
 import type { Product } from "@/types";
 
 export function ProductBuyBox({ product }: { product: Product }) {
   const off = discountPercent(product.price, product.compareAtPrice);
+  const saved = amountSaved(product.price, product.compareAtPrice);
 
   return (
     <div id="buy-box" className="flex flex-col gap-5 scroll-mt-28">
@@ -44,21 +45,30 @@ export function ProductBuyBox({ product }: { product: Product }) {
         />
       ) : null}
 
-      <div className="flex flex-wrap items-baseline gap-3">
+      {/* Struck-through list price first, then what you pay, then the saving
+          spelled out in rupees as well as a percentage — the percentage alone
+          makes people do arithmetic, and ₹56 lands harder than 10% does.
+          plum, not lavender: white on lavender is 3.56:1 and this pill sets
+          its label at text-xs. */}
+      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        {/* ink/70 — see ProductCard. At /45 this measured 2.56:1. */}
+        {product.compareAtPrice ? (
+          <span className="text-lg text-ink/70 line-through tabular">
+            {formatINR(product.compareAtPrice)}
+          </span>
+        ) : null}
         <span className="font-display text-4xl font-semibold tabular">
           {formatINR(product.price)}
         </span>
-        {product.compareAtPrice ? (
-          <>
-            <span className="text-lg text-ink/45 line-through tabular">
-              {formatINR(product.compareAtPrice)}
-            </span>
-            {off ? (
-              <span className="rounded-full bg-terracotta px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white">
-                Save {off}%
-              </span>
-            ) : null}
-          </>
+        {off ? (
+          <span className="rounded-full bg-plum px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white">
+            {off}% off
+          </span>
+        ) : null}
+        {saved ? (
+          <span className="w-full text-sm font-semibold text-plum">
+            You save {formatINR(saved)}
+          </span>
         ) : null}
         <span className="w-full text-sm text-ink/60">
           Inclusive of all taxes ·{" "}
@@ -77,7 +87,7 @@ export function ProductBuyBox({ product }: { product: Product }) {
           <li key={h} className="flex items-start gap-2.5 text-[0.95rem]">
             <Sparkle
               aria-hidden="true"
-              className="mt-1 size-4 shrink-0 text-terracotta"
+              className="mt-1 size-4 shrink-0 text-lavender"
             />
             <span className="text-ink/85">{h}</span>
           </li>
@@ -148,7 +158,7 @@ function TrustItem({
 }) {
   return (
     <li className="flex flex-col items-center gap-1.5">
-      <span aria-hidden="true" className="text-terracotta">
+      <span aria-hidden="true" className="text-lavender">
         {icon}
       </span>
       <span className="text-xs font-medium leading-tight text-ink/70">

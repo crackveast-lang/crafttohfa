@@ -3,10 +3,13 @@ import { cn } from "@/lib/cn";
 
 const TONES = {
   peach: "bg-peach",
-  shell: "bg-shell",
-  rose: "bg-rose",
+  blush: "bg-blush",
+  sage: "bg-sage",
   cream: "bg-cream",
-  terracotta: "bg-terracotta text-white border-ink",
+  /* The loud one. plum, not lavender: this pill sets its label at 0.65rem
+     bold, and white on lavender is 3.56:1 — nowhere near AA at that size.
+     On plum it is 7.10:1. */
+  plum: "bg-plum text-white border-ink",
 } as const;
 
 /**

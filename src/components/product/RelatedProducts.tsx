@@ -8,7 +8,7 @@ export function RelatedProducts({ slug }: { slug: string }) {
   if (related.length === 0) return null;
 
   return (
-    <Section tone="shell">
+    <Section tone="blush">
       <SectionHeading
         eyebrow="You might also like"
         title="Others often paired with this"

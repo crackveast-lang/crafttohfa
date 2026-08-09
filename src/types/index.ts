@@ -50,7 +50,7 @@ export interface Category {
   blurb: string;
   doodle: "PaintBrush" | "RakhiThread" | "GiftBox" | "Heart";
   /** Tailwind background token used as this category's colour anchor. */
-  tone: "shell" | "peach" | "rose" | "cream";
+  tone: "blush" | "peach" | "sage" | "cream";
   image: ProductImage;
 }
 

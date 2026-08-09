@@ -75,7 +75,7 @@ export const faqs: Faq[] = [
     group: "Shipping",
     question: "What if it arrives damaged?",
     answer:
-      "Send us a photo on WhatsApp within 48 hours of delivery and we'll replace it or refund you. No form to fill in, no arguing.",
+      "We pack every Craft Tohfa with care and love. Please record a short video while opening your package and share it with us — it helps us quickly assist you if your order arrives damaged or has any issue.",
   },
 
   // ── Products ──

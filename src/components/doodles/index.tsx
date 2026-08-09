@@ -4,7 +4,7 @@ import type { SVGProps } from "react";
  * Hand-drawn marks, all inline SVG. No icon library.
  *
  * House rules that keep these charming rather than cluttered:
- *  - everything is stroke="currentColor", so `text-terracotta` recolours it and we
+ *  - everything is stroke="currentColor", so `text-lavender` recolours it and we
  *    never need per-colour variants;
  *  - everything is aria-hidden — these are decoration, never information;
  *  - size comes from className (`size-6`), never hardcoded width/height;

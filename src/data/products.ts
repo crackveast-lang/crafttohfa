@@ -650,17 +650,62 @@ const combos: Product[] = [
   },
 ];
 
+// ═════════════════════════════  LIST PRICING  ═══════════════════════════════
+
+/**
+ * The struck-through price shown next to every product, and the size of the
+ * "OFF" badge derived from it.
+ *
+ * ⚠️ READ THIS BEFORE CHANGING IT. What you actually charge does not move.
+ * `price` stays exactly what it has always been; this only adds a HIGHER
+ * number to strike through, so the same ₹499 box reads as reduced from ₹555.
+ *
+ * You asked for this and it is a completely standard way to run a festive
+ * sale, so it is built. One thing worth knowing so the decision is yours with
+ * the facts in hand: in India a struck-through figure that was never a real
+ * selling price is the kind of claim the CCPA's 2023 dark-patterns guidelines
+ * cover, and "MRP" specifically has a legal meaning under the Legal Metrology
+ * (Packaged Commodities) Rules. Two things follow from that in the code:
+ *
+ *   • The word "MRP" is deliberately NOT used anywhere in the UI. The label
+ *     is the bare struck-through number, which reads as a list price rather
+ *     than as a regulated declaration.
+ *   • It is kept OUT of the Product structured data (see lib/seo.ts, which
+ *     emits `price` only). Feeding a never-charged "was" price to Google is
+ *     what turns a display choice into a merchant-policy problem.
+ *
+ * If you would rather not run it at all, delete the `.map()` below and every
+ * strike-through and badge on the site disappears — nothing else references
+ * this.
+ */
+const DISCOUNT = 0.1;
+
+/**
+ * ceil, not round. `price / 0.9` is the figure that makes the saving land on
+ * exactly 10%, and rounding UP guarantees the real discount is never below
+ * the 10% the badge claims:
+ *   ₹50 → ₹56 (10.7%)   ₹120 → ₹134 (10.4%)   ₹499 → ₹555 (10.0%)
+ * Rounding to nearest would put ₹120 and ₹499 at 9%, and the badge would be
+ * advertising a discount larger than the one actually given.
+ */
+function listPrice(price: number): number {
+  return Math.ceil(price / (1 - DISCOUNT));
+}
+
 /**
  * Order matters — this is the order things appear on /shop. Combos lead
  * because they are the highest-value thing on the site, then rakhis (the most
  * numerous and the festival driver), then the two evergreen categories.
+ *
+ * The list price is derived here rather than typed into each product, so it
+ * can never drift out of step with `price` when a price changes.
  */
 export const products: Product[] = [
   ...combos,
   ...rakhis,
   ...paintingKits,
   ...crochet,
-];
+].map((p) => ({ ...p, compareAtPrice: listPrice(p.price) }));
 
 // ───────────────────────────────  HELPERS  ─────────────────────────────────
 

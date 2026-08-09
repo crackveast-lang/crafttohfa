@@ -2,9 +2,9 @@ import { cn } from "@/lib/cn";
 
 const TONES = {
   peach: "bg-peach/85",
-  shell: "bg-shell/90",
-  rose: "bg-rose/75",
-  terracotta: "bg-terracotta/25",
+  blush: "bg-blush/90",
+  sage: "bg-sage/75",
+  lavender: "bg-lavender/25",
 } as const;
 
 /**

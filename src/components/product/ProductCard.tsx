@@ -71,7 +71,7 @@ export function ProductCard({
           {off ? (
             <StickerBadge
               size="sm"
-              tone="terracotta"
+              tone="plum"
               rotate={2}
               reveal
               delay={200 + (product.badges?.length ?? 0) * 90}
@@ -95,7 +95,7 @@ export function ProductCard({
         <h3 className="text-[1.05rem] leading-snug md:text-h3">
           <Link
             href={`/product/${product.slug}`}
-            className="after:absolute after:inset-0 after:content-[''] hover:text-terracotta-deep focus-visible:outline-none"
+            className="after:absolute after:inset-0 after:content-[''] hover:text-plum focus-visible:outline-none"
           >
             {product.name}
           </Link>
@@ -113,8 +113,12 @@ export function ProductCard({
           <span className="font-display text-xl font-semibold tabular">
             {formatINR(product.price)}
           </span>
+          {/* ink/70, not the ink/50 a struck-through price would normally get:
+              at /50 this measures 2.93:1, and it is real text carrying the
+              whole discount claim. /70 is 5.05:1 and still reads as clearly
+              secondary next to the bold price beside it. */}
           {product.compareAtPrice ? (
-            <span className="text-sm text-ink/50 line-through tabular">
+            <span className="text-sm text-ink/70 line-through tabular">
               {formatINR(product.compareAtPrice)}
             </span>
           ) : null}

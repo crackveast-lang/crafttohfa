@@ -41,7 +41,7 @@ export function ProductGallery({
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="relative overflow-hidden rounded-frame bg-shell shadow-soft">
+      <div className="relative overflow-hidden rounded-frame bg-blush shadow-soft">
         {slides.map((slide, i) => (
           <div key={i} aria-hidden={i !== active} className={cn(i === active ? "block" : "hidden")}>
             {slide}

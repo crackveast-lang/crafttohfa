@@ -8,53 +8,60 @@
    ========================================================================= */
 
 @theme {
-  /* ---- Palette. Six colours. Never invent a seventh. ----------------------
-     Need a lighter shade? Use an opacity modifier (bg-terracotta/10,
-     border-ink/12) or color-mix(). Adding new hexes turns 6 colours into 20.
+  /* ---- Palette. Seven colours plus white. Never invent an eighth. --------
+     Need a lighter shade? Use an opacity modifier (bg-lavender/10,
+     border-ink/12) or color-mix(). Adding new hexes turns 7 colours into 20.
 
-     This palette is now entirely warm — cream through terracotta is one
-     family, which is what makes it read as a single brand rather than a
-     theme. `ink` is the only cool note and it does all the heavy lifting for
-     text; keep it that way. If something needs to stand out, reach for the
-     value jump (peach → terracotta) rather than for a new hue.            */
-  --color-cream: #fff7f0;
-  --color-shell: #f7e6d6;
-  --color-peach: #f5cbb4;
-  --color-rose: #dba48f;
-  /* Sampled from the coral ink on the printed CrafTohfa card (#E66C35) and
-     walked darker until white button text clears AA. Hue 15° against the
-     logo's 18.6° — the same family, deep enough to carry type. */
-  --color-terracotta: #b85230;
-  --color-ink: #3d3d3d;
+     The brand is now lavender-led over a warm ivory ground, and the whole
+     thing is built to a deliberate RATIO rather than an even spread:
 
-  /* The one derived shade. Terracotta clears AA on cream but NOT on shell
-     (4.02) or peach (3.28), and half this site is shell and peach. This is
-     terracotta pushed darker until it passes on every light background we
-     actually use:
-       on cream 7.05:1   on shell 6.13:1   on peach 5.01:1
-     Use it for small terracotta text. Use --color-terracotta for fills, icons,
-     rules and large display text. */
-  --color-terracotta-deep: #8e3c1b;
+       ivory   ~60%  every page background, the default Section tone
+       white   ~20%  cards and panels — the thing ivory makes look crisp
+       lavender
+       + blush ~15%  brand marks, headings, rules, icons, quiet section bands
+       plum     ~5%  primary buttons and ONE dark band. That is the lot.
+
+     Peach and sage are inside that 15% as small accents, not surfaces. The
+     ratio is the design: lavender stops reading as premium the moment it
+     covers a third of the page, and plum stops reading as a call to action
+     the moment it appears anywhere that isn't one.
+
+     Keep `ink` doing all the heavy lifting for text — see the rules below,
+     because in this palette that is not a preference, it is the only thing
+     that actually passes.                                                */
+  --color-cream: #fff9f2; /* Warm Ivory — the ground, ~60% of every page   */
+  --color-blush: #f5e1e1; /* Blush — quiet section bands                   */
+  --color-peach: #f3c7b5; /* Peach — small accents, icons, decoration      */
+  --color-sage: #b8c7b0; /*  Sage — natural touches, tape, badges          */
+  --color-lavender: #9b7bb5; /* Dusty Lavender — the brand colour          */
+  --color-plum: #6f4a7e; /*  Deep Plum — buttons and the one dark band     */
+  --color-ink: #332d32; /*   Warm Charcoal — ALL text                      */
 
   /* ---- CONTRAST RULES — read before typing a text colour -----------------
-     Every number below is measured, not estimated.
+     Every number below is measured with the WCAG relative-luminance formula,
+     not estimated. This palette is less forgiving than the last one, so the
+     rules are tighter and there is no room to eyeball them.
 
-     Measured against cream #FFF7F0:
-       ink        #3D3D3D = 10.25:1 ✅ the workhorse. ALL body text.
-       terracotta #B85230 =  4.62:1 ✅ on CREAM only — and only just.
-                                  On shell it is 4.02 and on peach 3.28, both
-                                  of which FAIL. Since a given component often
-                                  does not know which tone it sits on, treat
-                                  plain terracotta as fills / icons / rules /
-                                  backgrounds / large display text, and reach
-                                  for terracotta-deep for any small TEXT.
-       terracotta-deep    =  7.05:1 ✅ small terracotta text (eyebrows, labels).
-                                  Passes on cream, shell AND peach.
-       rose       #DBA48F =  2.04:1 ❌ DECORATIVE ONLY. Never text. Ever.
+                    on ivory  on white  on blush  on peach  on sage
+       ink            12.86 ✅  13.44 ✅   10.72 ✅   8.74 ✅   7.58 ✅
+       plum            6.79 ✅   7.10 ✅    5.66 ✅   4.62 ✅   4.00 ⚠️
+       lavender        3.41 ❌   3.56 ❌    2.84 ❌   2.32 ❌   2.01 ❌
 
-     On a terracotta background use white (4.90:1). Cream is 4.62:1, which
-     passes but with almost no margin — white is the safe default.
-     ink on peach = 7.28:1 ✅  ink on rose = 5.03:1 ✅  ink on shell = 8.92:1 ✅
+     ink       — the workhorse. ALL body text, every heading, everywhere.
+     plum      — the ONLY brand colour that can be small text. Eyebrows,
+                 labels, link hovers. Clears AA on every surface except sage,
+                 where it is 4.00 — fine for large text, not for small.
+     lavender  — ❌ NEVER small text. Not once. 3.41 on our own background is
+                 below AA and no amount of "but it looks fine" changes that.
+                 Lavender is for FILLS, ICONS, RULES, BORDERS and display
+                 type at 24px+/19px-bold, where the bar drops to 3:1 and it
+                 clears on ivory (3.41) and white (3.56) — and ONLY those
+                 two. On blush it is 2.84 and fails even as large text.
+     sage/peach— decorative surfaces only. Never text at any size.
+
+     On a PLUM background use white: 7.10:1, with room for the white/80 and
+     white/85 the dark band actually uses. Do NOT put white on lavender —
+     that is 3.56:1 and it is why the primary button is plum, not lavender.
      ---------------------------------------------------------------------- */
 
   /* ---- Radii — chunky, this is a craft brand ---- */
@@ -62,15 +69,21 @@
   --radius-frame: 2rem;
   --radius-blob: 3rem;
 
-  /* ---- Shadows — always warm-tinted, never neutral grey ---- */
-  --shadow-soft: 0 2px 6px -2px rgb(61 61 61 / 0.08),
-    0 18px 40px -24px rgb(61 61 61 / 0.35);
-  --shadow-lift: 0 4px 10px -3px rgb(61 61 61 / 0.1),
-    0 28px 56px -28px rgb(61 61 61 / 0.42);
+  /* ---- Shadows — always tinted, never neutral grey ----
+     The rgb() triplets are --color-ink (51 45 50) written out longhand,
+     because a shadow needs an alpha and `var()` can't take one inline. If you
+     ever change --color-ink, change these to match or the shadows drift
+     cool while the text stays warm. */
+  --shadow-soft: 0 2px 6px -2px rgb(51 45 50 / 0.08),
+    0 18px 40px -24px rgb(51 45 50 / 0.35);
+  --shadow-lift: 0 4px 10px -3px rgb(51 45 50 / 0.1),
+    0 28px 56px -28px rgb(51 45 50 / 0.42);
   --shadow-sticker: 3px 3px 0 0 var(--color-ink);
   --shadow-sticker-sm: 2px 2px 0 0 var(--color-ink);
-  --shadow-paper: 0 1px 0 0 rgb(61 61 61 / 0.1),
-    6px 8px 0 -3px rgb(219 164 143 / 0.35);
+  /* The offset "paper" layer behind a stacked photo, tinted sage (184 199
+     176) so it reads as a second sheet rather than a grey drop shadow. */
+  --shadow-paper: 0 1px 0 0 rgb(51 45 50 / 0.1),
+    6px 8px 0 -3px rgb(184 199 176 / 0.45);
 
   /* ---- The two motion curves. There is no third. ------------------------
      Text SETTLES. Objects BOUNCE. That distinction is the whole system:
@@ -565,7 +578,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-terracotta);
+    outline: 2px solid var(--color-lavender);
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -814,11 +827,35 @@
   [data-scrolled] .site-header {
     background-color: color-mix(in oklab, var(--color-cream) 95%, transparent);
     box-shadow:
-      0 1px 0 0 rgb(61 61 61 / 0.05),
-      0 10px 26px -22px rgb(61 61 61 / 0.5);
+      0 1px 0 0 rgb(51 45 50 / 0.05),
+      0 10px 26px -22px rgb(51 45 50 / 0.5);
   }
   [data-scrolled] .site-header-bar {
     min-height: 3.5rem;
+  }
+
+  /* The tagline folds away as the header condenses, which is what lets the bar
+     actually get shorter — with the line still in place the content is taller
+     than the condensed min-height and the shrink does nothing at all.
+
+     max-height rather than display:none so it animates, and it is scoped to
+     `.site-header` so the footer and splash keep theirs permanently. The
+     transition is on the base rule, so it eases open again on scroll back up.
+
+     Without JavaScript `data-scrolled` is never set and the tagline simply
+     stays — the safe direction to fail in. */
+  .site-header .wordmark-tagline {
+    overflow: hidden;
+    max-height: 2rem;
+    transition:
+      max-height 0.25s var(--ease-settle),
+      opacity 0.2s ease,
+      margin-top 0.25s var(--ease-settle);
+  }
+  [data-scrolled] .site-header .wordmark-tagline {
+    max-height: 0;
+    margin-top: 0;
+    opacity: 0;
   }
 
   /* Scroll-progress hairline along the header's bottom edge.
@@ -834,7 +871,7 @@
         position: absolute;
         inset: auto 0 -1px 0;
         height: 2px;
-        background-color: var(--color-terracotta);
+        background-color: var(--color-lavender);
         transform: scaleX(0);
         transform-origin: 0 50%;
         animation: scrollProgress linear;
@@ -889,14 +926,14 @@
     height: 4px;
     overflow: hidden;
     border-radius: 999px;
-    background-color: rgb(61 61 61 / 0.12);
+    background-color: rgb(51 45 50 / 0.12);
   }
   .preloader-bar::after {
     content: "";
     position: absolute;
     inset: 0 auto 0 0;
     border-radius: 999px;
-    background-color: var(--color-terracotta);
+    background-color: var(--color-lavender);
     animation: preloadBar 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
   .preloader-spin {

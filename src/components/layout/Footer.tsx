@@ -8,12 +8,14 @@ import { formatINR } from "@/lib/format";
 import { siteConfig } from "@/site.config";
 import { activeCategories } from "@/data/categories";
 
+/** The whole palette, in value order. Decorative — nothing sits on these. */
 const SWATCHES = [
   "bg-cream",
-  "bg-shell",
+  "bg-blush",
   "bg-peach",
-  "bg-rose",
-  "bg-terracotta",
+  "bg-sage",
+  "bg-lavender",
+  "bg-plum",
   "bg-ink",
 ];
 
@@ -21,14 +23,14 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative mt-auto bg-shell text-ink">
-      <Divider variant="scallop" className="absolute -top-px left-0 w-full text-shell" />
+    <footer className="relative mt-auto bg-blush text-ink">
+      <Divider variant="scallop" className="absolute -top-px left-0 w-full text-blush" />
 
       <Container className="pt-20 pb-10 md:pt-24">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1.2fr] md:gap-8">
           {/* Brand */}
           <div className="flex flex-col gap-4">
-            <Wordmark />
+            <Wordmark tagline />
             <p className="max-w-[34ch] text-sm leading-relaxed text-ink/75">
               {siteConfig.tagline}
             </p>
@@ -39,7 +41,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 aria-label="Message CraftTohfa on WhatsApp"
                 data-wa-kind="general"
-                className="grid size-11 place-items-center rounded-full border-2 border-ink/70 transition-colors hover:bg-terracotta hover:border-terracotta hover:text-white"
+                className="grid size-11 place-items-center rounded-full border-2 border-ink/70 transition-colors hover:bg-plum hover:border-plum hover:text-white"
               >
                 <WhatsAppGlyph className="size-5" />
               </a>
@@ -48,7 +50,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`CraftTohfa on Instagram, ${siteConfig.social.instagramHandle}`}
-                className="grid size-11 place-items-center rounded-full border-2 border-ink/70 transition-colors hover:bg-terracotta hover:border-terracotta hover:text-white"
+                className="grid size-11 place-items-center rounded-full border-2 border-ink/70 transition-colors hover:bg-plum hover:border-plum hover:text-white"
               >
                 <InstagramGlyph className="size-5" />
               </a>
@@ -84,7 +86,7 @@ export function Footer() {
             <li>
               <a
                 href={`mailto:${siteConfig.social.email}`}
-                className="text-sm font-semibold underline decoration-rose decoration-2 underline-offset-4 hover:text-terracotta-deep"
+                className="text-sm font-semibold underline decoration-sage decoration-2 underline-offset-4 hover:text-plum"
               >
                 {siteConfig.social.email}
               </a>
@@ -144,7 +146,7 @@ function FooterLink({
     <li>
       <Link
         href={href}
-        className="text-sm font-medium text-ink/80 transition-colors hover:text-terracotta-deep"
+        className="text-sm font-medium text-ink/80 transition-colors hover:text-plum"
       >
         {children}
       </Link>

@@ -13,9 +13,8 @@ import {
 } from "@/components/hero/HeroFlowers";
 import ImageTiles from "@/components/ui/image-tiles";
 import { CraftImage } from "@/components/media/CraftImage";
-import { getFeaturedProducts, lowestPrice, products } from "@/data/products";
+import { getFeaturedProducts } from "@/data/products";
 import { cn } from "@/lib/cn";
-import { formatINR } from "@/lib/format";
 import { getActiveFestival } from "@/lib/festival";
 import { siteConfig } from "@/site.config";
 import type { Product } from "@/types";
@@ -87,7 +86,7 @@ export function Hero() {
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -left-52 top-40 size-[26rem] rounded-full bg-shell/70"
+        className="pointer-events-none absolute -left-52 top-40 size-[26rem] rounded-full bg-blush/70"
       />
       <SeedScatter className="pointer-events-none z-0 text-ink/30" />
 
@@ -99,56 +98,40 @@ export function Hero() {
               rather than happening behind the splash. */}
           <div className="relative z-10">
             <p
-              className="rise-in font-hand text-3xl text-terracotta-deep md:text-4xl"
+              className="rise-in font-hand text-3xl text-plum md:text-4xl"
               style={{ animationDelay: "0.95s" }}
             >
               {festival ? festival.name : "Handmade"}
             </p>
 
-            <h1 className="mt-1 font-fun text-mega font-extrabold uppercase text-terracotta">
-              <span
-                className="rise-in block"
-                style={{
-                  textShadow: "5px 5px 0 var(--color-rose)",
-                  animationDelay: "1.05s",
-                }}
-              >
-                Rakhi
+            {/* Not `text-mega`, and not uppercase, and no hard offset shadow —
+                all three were built for the two-word poster this used to be.
+                A sentence set at 13vw uppercase would run four lines deep and
+                shout copy that is deliberately quiet, and a 5px offset shadow
+                under lavender (3.41:1, only just clearing the large-text bar)
+                costs legibility the headline can't spare. The clamp tops out
+                where "Made to be remembered." still fits the column at lg. */}
+            <h1 className="mt-2 font-fun text-[clamp(2.25rem,5.4vw,3.75rem)] font-extrabold leading-[1.06] tracking-tight text-lavender">
+              <span className="rise-in block" style={{ animationDelay: "1.05s" }}>
+                Made by hand.
               </span>
-              <span
-                className="rise-in -mt-1 block"
-                style={{
-                  textShadow: "5px 5px 0 var(--color-rose)",
-                  animationDelay: "1.15s",
-                }}
-              >
-                Hampers
+              <span className="rise-in block" style={{ animationDelay: "1.15s" }}>
+                Made to be remembered. ❤️
               </span>
             </h1>
 
             <p
-              className="rise-in mt-5 text-sm font-bold uppercase tracking-[0.18em] text-ink/85 md:text-base"
+              className="rise-in mt-6 max-w-[48ch] text-body leading-relaxed text-ink/75"
               style={{ animationDelay: "1.25s" }}
             >
-              {/* "N boxes" was true when the catalogue was five combo boxes.
-                  With rakhis and single kits in it, most of these are not
-                  boxes — and the "from" price is now a ₹50 rakhi, so the two
-                  halves of this line have to agree about what they count. */}
-              {products.length} handmade pieces · from {formatINR(lowestPrice)}
-            </p>
-
-            <p
-              className="rise-in mt-5 max-w-[44ch] text-body leading-relaxed text-ink/75"
-              style={{ animationDelay: "1.33s" }}
-            >
-              Every box holds a hand-crocheted rakhi, a soft toy to keep, and
-              pieces to paint together — so the day doesn&apos;t end the moment
-              the thread is tied.
+              Handcrafted crochet rakhis, DIY painting kits, little keepsakes,
+              and thoughtfully curated combo boxes — all made to make gifting a
+              little more special.
             </p>
 
             <div
               className="rise-in mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
-              style={{ animationDelay: "1.42s" }}
+              style={{ animationDelay: "1.35s" }}
             >
               <Button href="/shop" size="lg">
                 Shop the collection
@@ -164,11 +147,11 @@ export function Hero() {
 
             <ul
               className="rise-in mt-8 flex flex-wrap gap-x-5 gap-y-1.5 text-sm text-ink/70"
-              style={{ animationDelay: "1.5s" }}
+              style={{ animationDelay: "1.45s" }}
             >
               {TRUST.map((t) => (
                 <li key={t} className="flex items-center gap-1.5">
-                  <span aria-hidden="true" className="text-rose">
+                  <span aria-hidden="true" className="text-sage">
                     ✦
                   </span>
                   {t}
@@ -193,7 +176,7 @@ export function Hero() {
               delay="0.95s"
               idle="float-slow"
             >
-              <Sunflower className="-rotate-[6deg] drop-shadow-[0_10px_18px_rgba(61,61,61,0.10)]" />
+              <Sunflower className="-rotate-[6deg] drop-shadow-[0_10px_18px_rgba(51,45,50,0.10)]" />
             </Bloom>
 
             <Bloom className="right-[1%] top-0 w-[23%]" delay="1.15s" idle="sway-slow">
@@ -213,7 +196,7 @@ export function Hero() {
               delay="1.05s"
               idle="float-mid"
             >
-              <PinkDaisy className="rotate-[8deg] drop-shadow-[0_10px_18px_rgba(61,61,61,0.10)]" />
+              <PinkDaisy className="rotate-[8deg] drop-shadow-[0_10px_18px_rgba(51,45,50,0.10)]" />
             </Bloom>
 
             <SeedCluster className="absolute left-[40%] top-[8%] w-[12%]" rotate={18} />

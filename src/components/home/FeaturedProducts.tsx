@@ -10,7 +10,7 @@ export function FeaturedProducts() {
   const featured = getFeaturedProducts(4);
 
   return (
-    <Section tone="shell">
+    <Section tone="blush">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading
           eyebrow="Loved by little hands"
@@ -20,7 +20,7 @@ export function FeaturedProducts() {
           href="/shop"
           data-reveal="rise"
           style={{ animationDelay: "100ms" }}
-          className="group inline-flex min-h-11 items-center gap-2 font-semibold underline decoration-rose decoration-2 underline-offset-8 hover:text-terracotta-deep"
+          className="group inline-flex min-h-11 items-center gap-2 font-semibold underline decoration-sage decoration-2 underline-offset-8 hover:text-plum"
         >
           See all {products.length}
           {/* One nudge on arrival, then hover-only. The nudge animates

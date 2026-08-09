@@ -6,15 +6,15 @@ import { PaintBrush, Squiggle } from "@/components/doodles";
 export default function NotFound() {
   return (
     <Container className="flex min-h-[60vh] flex-col items-center justify-center py-24 text-center">
-      <PaintBrush className="size-16 text-terracotta" aria-hidden="true" />
+      <PaintBrush className="size-16 text-lavender" aria-hidden="true" />
 
-      <p className="mt-8 text-eyebrow uppercase text-terracotta-deep">Error 404</p>
+      <p className="mt-8 text-eyebrow uppercase text-plum">Error 404</p>
       <h1 className="mt-3 max-w-[16ch] text-h2">
         This page went off to make something
       </h1>
       <Squiggle
         aria-hidden="true"
-        className="mt-4 h-4 w-40 text-rose"
+        className="mt-4 h-4 w-40 text-sage"
       />
       <p className="mt-5 max-w-[46ch] text-body text-ink/75">
         We couldn&apos;t find that page. It may have moved, or the link might have

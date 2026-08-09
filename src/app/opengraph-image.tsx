@@ -15,7 +15,7 @@ export const alt = `${siteConfig.name} — handmade DIY craft kits, rakhis and g
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const PALETTE = ["#FFF7F0", "#F7E6D6", "#F5CBB4", "#DBA48F", "#B85230", "#3D3D3D"];
+const PALETTE = ["#FFF9F2", "#F5E1E1", "#F3C7B5", "#B8C7B0", "#9B7BB5", "#332D32"];
 
 export default function OgImage() {
   return new ImageResponse(
@@ -27,7 +27,7 @@ export default function OgImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#FFF7F0",
+          background: "#FFF9F2",
           padding: 72,
         }}
       >
@@ -40,7 +40,7 @@ export default function OgImage() {
             width: 520,
             height: 520,
             borderRadius: "50%",
-            background: "#F5CBB4",
+            background: "#F3C7B5",
             opacity: 0.5,
             display: "flex",
           }}
@@ -55,15 +55,15 @@ export default function OgImage() {
               width: 56,
               height: 56,
               borderRadius: 16,
-              background: "#B85230",
-              color: "#FFF7F0",
+              background: "#9B7BB5",
+              color: "#FFF9F2",
               fontSize: 26,
               fontWeight: 700,
             }}
           >
             CT
           </div>
-          <div style={{ fontSize: 34, fontWeight: 700, color: "#3D3D3D" }}>
+          <div style={{ fontSize: 34, fontWeight: 700, color: "#332D32" }}>
             {siteConfig.name}
           </div>
         </div>
@@ -74,7 +74,7 @@ export default function OgImage() {
               display: "flex",
               fontSize: 74,
               fontWeight: 700,
-              color: "#3D3D3D",
+              color: "#332D32",
               lineHeight: 1.05,
               letterSpacing: -2,
               maxWidth: 900,
@@ -86,7 +86,7 @@ export default function OgImage() {
             style={{
               display: "flex",
               fontSize: 30,
-              color: "#3D3D3D",
+              color: "#332D32",
               opacity: 0.72,
               maxWidth: 780,
             }}

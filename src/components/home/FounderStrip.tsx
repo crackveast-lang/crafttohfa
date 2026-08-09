@@ -10,7 +10,7 @@ import { Heart } from "@/components/doodles";
  */
 export function FounderStrip() {
   return (
-    <section className="relative overflow-hidden bg-shell py-20 md:py-28">
+    <section className="relative overflow-hidden bg-blush py-20 md:py-28">
       <Container>
         <div className="grid items-center gap-12 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
           <div className="relative mx-auto w-full max-w-[300px]">
@@ -51,7 +51,7 @@ export function FounderStrip() {
             >
               <Heart
                 aria-hidden="true"
-                className="heartbeat size-11 rounded-full border-2 border-ink bg-cream p-2 text-rose shadow-sticker-sm"
+                className="heartbeat size-11 rounded-full border-2 border-ink bg-cream p-2 text-sage shadow-sticker-sm"
               />
             </span>
           </div>
@@ -59,7 +59,7 @@ export function FounderStrip() {
           <div>
             <p
               data-reveal="rise"
-              className="text-eyebrow uppercase text-terracotta-deep"
+              className="text-eyebrow uppercase text-plum"
             >
               Why any of this exists
             </p>
@@ -101,7 +101,7 @@ export function FounderStrip() {
               href="/about"
               data-reveal="rise"
               style={{ animationDelay: "760ms" }}
-              className="group mt-7 inline-flex min-h-11 items-center gap-2 font-semibold underline decoration-rose decoration-2 underline-offset-8 hover:text-terracotta-deep"
+              className="group mt-7 inline-flex min-h-11 items-center gap-2 font-semibold underline decoration-sage decoration-2 underline-offset-8 hover:text-plum"
             >
               Read our story
               <span

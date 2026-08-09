@@ -24,11 +24,12 @@ export function Preloader() {
     <div className="preloader" aria-hidden="true">
       <div className="flex flex-col items-center gap-6">
         <Sunflower className="preloader-spin w-20 md:w-24" />
-        <Wordmark asLink={false} size="lg" />
-        <p className="-mt-2 font-hand text-xl text-terracotta-deep">
-          every craft is a tohfa
-        </p>
-        <span className="preloader-bar mt-1" />
+        {/* The tagline now comes from the Wordmark itself, so the splash and
+            the footer can never drift apart on wording or spelling. It also
+            replaces the old Caveat line: Caveat has no Devanagari, so
+            "तोहफा" set in it would fall back to a system font mid-sentence. */}
+        <Wordmark asLink={false} size="lg" tagline />
+        <span className="preloader-bar mt-3" />
       </div>
     </div>
   );

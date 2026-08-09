@@ -4,17 +4,19 @@ import { Container } from "./Container";
 
 const TONES = {
   cream: "bg-cream text-ink",
-  shell: "bg-shell text-ink",
+  blush: "bg-blush text-ink",
   peach: "bg-peach text-ink",
-  rose: "bg-rose text-ink",
-  /* The one dark band on the site, and it uses the DEEP shade rather than
-     plain terracotta on purpose. White on #B85230 is 4.90:1, which passes on
-     its own but leaves no room for the things that actually sit on this band:
-     an eyebrow at white/85, card copy at white/80, and glass panels whose
-     white/10 fill lightens the background underneath the text again. Every one
-     of those lands under 4.5 on plain terracotta. On terracotta-deep white is
-     7.82:1, so all of them clear it with room to spare. */
-  terracotta: "bg-terracotta-deep text-white",
+  sage: "bg-sage text-ink",
+  /* The one dark band on the site, and the ONLY large plum surface anywhere —
+     plum is budgeted at ~5% of the page and primary buttons already spend
+     most of that. One band per page, never two.
+
+     It is plum rather than lavender because white on lavender is 3.56:1,
+     which fails AA outright. On plum white is 7.10:1, and that headroom is
+     the point: what actually sits on this band is an eyebrow at white/85,
+     card copy at white/80, and glass panels whose white/10 fill lightens the
+     background underneath the text again. All of them still clear 4.5. */
+  plum: "bg-plum text-white",
   none: "",
 } as const;
 

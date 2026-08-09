@@ -11,13 +11,17 @@ const BASE =
   // If it doesn't fit, shorten the label at that breakpoint instead.
   "whitespace-nowrap text-center leading-none " +
   "transition-all duration-200 ease-bounce select-none " +
-  "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-terracotta " +
+  "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-lavender " +
   "disabled:pointer-events-none disabled:opacity-50";
 
 const VARIANTS: Record<Variant, string> = {
-  // White on terracotta = 4.51:1. Cream on terracotta would be 4.26:1 and fail AA.
+  /* PLUM, not lavender, and this is not a style preference.
+     White on lavender is 3.56:1 — below AA at any size, and this variant is
+     every primary call to action on the site. On plum it is 7.10:1.
+     It is also where most of the palette's ~5% plum budget is meant to go:
+     buttons are exactly the "small area, maximum weight" job it exists for. */
   primary:
-    "bg-terracotta text-white shadow-soft hover:-translate-y-0.5 hover:shadow-lift active:translate-y-0",
+    "bg-plum text-white shadow-soft hover:-translate-y-0.5 hover:shadow-lift active:translate-y-0",
   secondary:
     "border-2 border-ink/85 bg-transparent text-ink hover:bg-ink hover:text-cream",
   ghost: "text-ink hover:bg-ink/6",

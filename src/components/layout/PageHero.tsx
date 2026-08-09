@@ -18,21 +18,21 @@ export function PageHero({
   title,
   intro,
   children,
-  tone = "shell",
+  tone = "blush",
   className,
 }: {
   eyebrow?: string;
   title: string;
   intro?: ReactNode;
   children?: ReactNode;
-  tone?: "shell" | "cream" | "peach";
+  tone?: "blush" | "cream" | "peach";
   className?: string;
 }) {
   return (
     <div
       className={cn(
         "relative overflow-hidden border-b border-ink/10",
-        tone === "shell" && "bg-shell",
+        tone === "blush" && "bg-blush",
         tone === "cream" && "bg-cream",
         tone === "peach" && "bg-peach",
         className,
@@ -46,7 +46,7 @@ export function PageHero({
           showed half a striped bar, which read as a rendering glitch. */}
       <WashiTape
         className="right-6 top-6 md:right-16 md:top-8"
-        tone="rose"
+        tone="sage"
         rotate={-8}
         reveal
         delay={320}
@@ -56,7 +56,7 @@ export function PageHero({
         {eyebrow ? (
           <p
             data-reveal="rise"
-            className="text-eyebrow uppercase text-terracotta-deep"
+            className="text-eyebrow uppercase text-plum"
           >
             {eyebrow}
           </p>
@@ -71,7 +71,7 @@ export function PageHero({
             aria-hidden="true"
             data-reveal="draw"
             style={{ animationDelay: "330ms" }}
-            className="absolute -bottom-2 left-0 h-2.5 w-[min(200px,55%)] text-rose md:-bottom-3 md:h-3"
+            className="absolute -bottom-2 left-0 h-2.5 w-[min(200px,55%)] text-sage md:-bottom-3 md:h-3"
           />
         </h1>
         {intro ? (

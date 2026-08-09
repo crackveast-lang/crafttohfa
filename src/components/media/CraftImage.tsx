@@ -44,7 +44,7 @@ export function CraftImage({
   return (
     <div
       className={cn(
-        "relative overflow-hidden bg-shell",
+        "relative overflow-hidden bg-blush",
         ratio === "portrait" && "aspect-4/5",
         ratio === "square" && "aspect-square",
         ratio === "landscape" && "aspect-3/2",
