@@ -30,7 +30,21 @@ jobs:
           cache: npm
 
       - name: Install
-        run: npm ci
+        # `npm install`, deliberately, not `npm ci` — please don't "fix" this.
+        #
+        # sharp ships a wasm32 build whose @emnapi/* dependencies npm resolves
+        # differently on Linux than on the Windows machine the lockfile is
+        # maintained on: the runner wants @emnapi/wasi-threads@1.2.3 where the
+        # lockfile pins 1.2.1, and wants @emnapi/core, which npm on Windows
+        # never writes into the lock at all. `npm ci` treats any of that as a
+        # fatal desync and refuses to install, so the deploy dies before it
+        # builds anything. Regenerating the lockfile does not help, because
+        # the difference comes from the platform, not from staleness.
+        #
+        # `npm install` reconciles instead of failing. Versions are still
+        # driven by the committed lockfile; only these optional native
+        # variants are allowed to differ, and they are build-time only.
+        run: npm install --no-audit --no-fund
 
       - name: Lint
         run: npm run lint
