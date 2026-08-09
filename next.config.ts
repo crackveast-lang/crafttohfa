@@ -1,7 +1,50 @@
 import type { NextConfig } from "next";
 
+/**
+ * GitHub Pages serves static files only — no Node process, so no image
+ * optimiser and no server rendering. That mode is gated behind an env var
+ * rather than switched on permanently, because turning it on unconditionally
+ * would break `npm run dev` and `npm run start` for everyday work.
+ *
+ *   normal local work  →  npm run dev / npm run build && npm run start
+ *   Pages build        →  GITHUB_PAGES=true npm run build   (the workflow)
+ */
+const isPages = process.env.GITHUB_PAGES === "true";
+
+/**
+ * The site lives at crackveast-lang.github.io/crafttohfa, so every internal
+ * URL needs the repo name in front of it. Next prepends this to next/link
+ * hrefs and next/image srcs automatically; `assetPrefix` does the same for
+ * everything under /_next/.
+ */
+const basePath = isPages ? "/crafttohfa" : "";
+
 const nextConfig: NextConfig = {
+  /**
+   * Exposed to the app because `resolvePhoto` has to prepend it by hand.
+   * Next prefixes next/link and next/image automatically — but NOT when the
+   * image is `unoptimized`, which is exactly the mode Pages forces. Without
+   * this every product photo and the logo 404s on the deployed site.
+   */
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
+
+  ...(isPages && {
+    output: "export",
+    basePath,
+    assetPrefix: basePath,
+    // Pages has no directory-index rewriting, so /shop must be written as
+    // /shop/index.html rather than /shop.html or the link 404s.
+    trailingSlash: true,
+  }),
+
   images: {
+    /**
+     * The optimiser cannot run on Pages, so images are served as-is. The
+     * `scripts/shrink-export.mjs` step in the deploy workflow makes up for
+     * some of it by resizing the exported files down from ~1250px.
+     */
+    ...(isPages && { unoptimized: true }),
+
     /**
      * AVIF first, WebP fallback. AVIF is ~20% smaller, which matters a lot on
      * Indian mobile data — at the cost of slower encoding at build time.

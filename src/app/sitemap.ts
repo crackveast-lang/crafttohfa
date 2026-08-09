@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { allSlugs } from "@/data/products";
 import { siteConfig } from "@/site.config";
 
+/** Built from the catalogue, not the request — required by `output: export`. */
+export const dynamic = "force-static";
+
 const STATIC_ROUTES: {
   path: string;
   priority: number;

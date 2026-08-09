@@ -2,6 +2,15 @@ import { ImageResponse } from "next/og";
 import { siteConfig } from "@/site.config";
 
 /** The card that appears when the site is shared on WhatsApp or Instagram. */
+
+/**
+ * This card is drawn from static config, never from the request — so it can be
+ * rendered once at build time. Saying so explicitly is also what `output:
+ * export` requires: a static export has no server to generate it on demand,
+ * and without this the Pages build fails outright.
+ */
+export const dynamic = "force-static";
+
 export const alt = `${siteConfig.name} — handmade DIY craft kits, rakhis and gift hampers`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

@@ -1,0 +1,82 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Lets you re-deploy from the Actions tab without pushing anything.
+  workflow_dispatch:
+
+# Pages needs these to publish; the token is scoped to this run only.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys race. In-progress runs finish rather than being
+# cancelled, so a half-uploaded site is never what ends up live.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - uses: actions/configure-pages@v5
+        id: pages
+
+      - name: Build static export
+        env:
+          # Switches next.config.ts into export mode: output: 'export',
+          # basePath: '/crafttohfa', and unoptimized images.
+          GITHUB_PAGES: "true"
+          # Feeds canonical tags, the sitemap and the WhatsApp/OpenGraph share
+          # previews. configure-pages resolves this to the real Pages URL, so
+          # it stays correct even behind a custom domain.
+          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+        run: npm run build
+
+      - name: Shrink images
+        # Pages cannot run Next's image optimiser, so this does the resizing
+        # that would otherwise happen per-request. Roughly halves the payload.
+        run: node scripts/shrink-export.mjs
+
+      - name: Fix RSC prefetch filenames
+        # Next 16 writes route prefetch payloads to nested directories but
+        # requests them under a flat, dot-joined name. Harmless on a server,
+        # a wall of 404s on a file host. See the script for detail.
+        run: node scripts/flatten-rsc.mjs
+
+      - name: Disable Jekyll
+        # Without this, Pages runs the export through Jekyll, which silently
+        # drops every directory beginning with an underscore — including
+        # _next/, i.e. all the JavaScript and CSS. The site would render as
+        # unstyled HTML with no explanation.
+        run: touch out/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

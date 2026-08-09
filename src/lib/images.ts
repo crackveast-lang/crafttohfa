@@ -4,6 +4,21 @@ import path from "node:path";
 
 const PUBLIC_DIR = path.join(process.cwd(), "public");
 
+/**
+ * Prefixed onto every returned path, empty in normal builds.
+ *
+ * On GitHub Pages the site is served from /crafttohfa/ rather than the domain
+ * root. Next prepends that to next/link hrefs and to next/image srcs by
+ * itself — but NOT to an `unoptimized` image, and Pages has no optimiser so
+ * every image is unoptimized there. This function is the single place every
+ * photo path passes through, which makes it the right place to fix it.
+ *
+ * It applies to the RETURNED path only. The filesystem lookup below still
+ * uses the bare path, because the files sit at public/images/... regardless
+ * of what URL they end up being served from.
+ */
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 /** Extensions we will accept in place of whatever the data file asked for. */
 const ALTERNATES = [".jpg", ".jpeg", ".png", ".webp", ".avif"];
 
@@ -28,7 +43,8 @@ export function resolvePhoto(src: string): string | null {
   const cached = cache.get(src);
   if (cached !== undefined) return cached;
 
-  const result = lookup(src);
+  const found = lookup(src);
+  const result = found === null ? null : BASE_PATH + found;
   cache.set(src, result);
   return result;
 }
