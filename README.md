@@ -37,30 +37,32 @@ npx tsc --noEmit # type check
 
 ## ⚠️ Before you go live — a checklist
 
-Everything here is placeholder content written so the site looks real today.
-Work through these:
+Most of the content is real now. What is left is listed here, and the items
+still marked ⬜ are the ones that would actually mislead a customer.
 
-### 1. Your WhatsApp number — one line
+### 1. Your WhatsApp number — ✅ done
 
-`src/site.config.ts`:
+`src/site.config.ts` is set to `919217208097` / `+91 92172 08097`. If you ever
+change it: digits only, no `+`, no spaces, no dashes — India is `91` followed
+by your 10-digit number, **12 digits in total**. Get that wrong and it fails
+silently: the link still opens WhatsApp perfectly and simply never reaches you.
 
-```ts
-whatsapp: {
-  number: "919999999999",       // ← country code + number, digits only
-  display: "+91 99999 99999",   // ← how it's shown to people
-```
+### 2. Check the products — `src/data/products.ts` — mostly done
 
-Digits only. No `+`, no spaces, no dashes. India is `91` followed by your
-10-digit number. This one value feeds every order button on the site.
+26 products across four categories, written from your own photographs. Prices
+are real: ₹50 rakhis, ₹120 painting kits and crochet, ₹499 combo boxes, all set
+from the `PRICES` block at the top of the file.
 
-### 2. Check the products — `src/data/products.ts`
+Still needs your eye:
 
-The five hampers are real, written from your photographs. Still needs your eye:
-
-- **Every price** — currently ₹749–₹849, invented.
-- **Every `rating`** — invented. Delete the whole `rating` field from any
-  product you don't have real reviews for.
-- **The paint-pot counts** in each `includes` list, counted off the photos.
+- ⬜ **Every `rating`** — invented. Delete the whole `rating` field from any
+  product you don't have real reviews for. Only the five combos have one.
+- ⬜ **Descriptions** were written from the photos, so they describe colour and
+  construction accurately but can't know what you know. Worth a skim.
+- ⬜ **Three rakhis are named descriptively** — Kitty Face, Spider Web,
+  Superhero Shield — rather than by the characters they resemble. Selling
+  merchandise under those trademarks is a real risk for a small shop. Change
+  them if you disagree, but that is why they read the way they do.
 
 ### 3. Real reviews — `src/data/testimonials.ts`
 
@@ -87,13 +89,18 @@ Same reasoning as above: use figures you could back up. Set any of them to
 
 ### 5. Everything else in `src/site.config.ts`
 
-Instagram and Facebook links, email address, shipping rates, and your domain
-(`url`). Check the shipping and returns wording on `/policies` matches what you
-actually do.
+Instagram is set to `instagram.com/craftohfa`. Still to check: the Facebook
+link, the email address, shipping rates, and your domain (`url` — currently
+`https://crafttohfa.com`, which needs to match wherever you actually deploy or
+the sitemap and share cards will point at the wrong place). Check the shipping
+and returns wording on `/policies` matches what you actually do.
 
 ### 6. Photos
 
-- `public/images/products/` — ✅ **all five hamper photos are in**
+- `public/images/products/` — ✅ all 27 product photos are in, sorted by
+  category into `combos/`, `rakhis/`, `painting-kits/` and `crochet/`
+- `public/images/brand/` — ✅ logo and lockup are in, though they were lifted
+  from a photo of your printed card; see that folder's README
 - `public/images/about/` — ⬜ founder + 3 workshop photos still needed
 - `public/images/social/` — ⬜ 6 Instagram tiles still needed
 
@@ -187,6 +194,41 @@ down. For next year, change the two dates and you're done.
 
 ## Deploying
 
-Works as-is on Vercel or Netlify — connect the repo and accept the defaults.
-Set `NEXT_PUBLIC_SITE_URL` to your real domain so links inside WhatsApp
-messages and share previews point to the right place.
+### Vercel — the whole process
+
+1. Go to [vercel.com/new](https://vercel.com/new) and sign in **with GitHub**.
+2. Find `crafttohfa` in the list and press **Import**. If it isn't listed,
+   press *Adjust GitHub App Permissions* and grant access to the repo — it is
+   private, so Vercel has to be told it may see it.
+3. Change nothing. Vercel detects Next.js and the defaults are correct.
+4. Press **Deploy**. It takes about two minutes.
+
+You get a `something.vercel.app` URL immediately. Every push to `main` after
+that redeploys on its own.
+
+### One setting to change afterwards
+
+In Vercel → Settings → Environment Variables, add:
+
+```
+NEXT_PUBLIC_SITE_URL = https://your-real-domain.com
+```
+
+Without it the site falls back to `https://crafttohfa.com` (from
+`src/site.config.ts`), which is what the sitemap, the canonical tags and the
+WhatsApp/OpenGraph share previews will all advertise. If that isn't where the
+site actually lives, those all point at nothing. Redeploy once after adding it.
+
+### A custom domain
+
+Vercel → Settings → Domains → add it, then point your registrar at the records
+it shows you. Free, HTTPS included. Update `NEXT_PUBLIC_SITE_URL` to match.
+
+### Why not GitHub Pages
+
+Pages can only serve static files, so it cannot run Next's image optimiser.
+This site has 27 product photos; without optimisation they ship at full size
+rather than as resized WebP, which is the difference between a fast shop and a
+slow one on an Indian mobile connection. Pages on a free account also requires
+the repository to be public. Vercel is free here, keeps the optimiser, and
+keeps the code private.
