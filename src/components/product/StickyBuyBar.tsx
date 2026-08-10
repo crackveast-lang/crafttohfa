@@ -47,7 +47,10 @@ export function StickyBuyBar({ product }: { product: Product }) {
           <p className="truncate text-xs font-medium text-ink/65">
             {product.name}
           </p>
-          <p className="font-display text-lg font-semibold tabular leading-tight">
+          {/* text-xl, not the text-lg this was: rose needs the large-text
+              threshold to clear AA, and 18px bold misses it by half a pixel.
+              20px does, and the bar has the room. */}
+          <p className="font-display text-xl font-semibold tabular leading-tight text-rose">
             {formatINR(product.price)}
           </p>
         </div>
@@ -60,7 +63,11 @@ export function StickyBuyBar({ product }: { product: Product }) {
           data-wa-kind="product"
           data-wa-slug={product.slug}
           tabIndex={show ? 0 : -1}
-          className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-full bg-whatsapp px-6 font-semibold text-white shadow-soft"
+          // Peach + ink, matching the `whatsapp` Button variant. This one is
+          // hand-rolled rather than using <Button> because it needs tabIndex
+          // control for the hidden state, so the classes have to be kept in
+          // step by hand — see VARIANTS.whatsapp in ui/Button.tsx.
+          className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-full border-2 border-ink/85 bg-peach px-6 font-semibold text-ink shadow-soft"
         >
           <WhatsAppGlyph className="size-5" />
           Order now

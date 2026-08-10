@@ -54,28 +54,45 @@
 
      So the whole allowed list is:
        the one highlighted word in the hero H1 · the heart doodle beside it ·
-       the heart in the "made with love" badge.
+       the heart in the "made with love" badge · THE PRICE FIGURE.
+
+     The price earned its place for the same reason the hero word did: it is
+     the number every visitor is actually looking for, it was competing with
+     body copy for the same charcoal, and it is always set large and bold.
+     Every place it appears has been checked against the 24px / 18.66px-bold
+     threshold — ProductCard is text-xl/600, ProductBuyBox text-4xl,
+     StickyBuyBar was BUMPED from text-lg to text-xl precisely because 18px
+     misses the bold threshold by half a pixel. If you add a fourth place a
+     price is rendered, check its size before you type `text-rose`.
+
+     Struck-through compare-at prices stay ink/70. They are small, and a
+     second warm colour beside the live price would flatten the very contrast
+     that makes the live one read first.
 
      It is NOT body copy, NOT a label, NOT an eyebrow, NOT a link, and NOT a
-     button — every one of those renders under 24px, where 3.67:1 fails.
-     Small marks are still `plum`; that budget is unchanged. It is also not a
-     FILL: rose is saturated enough that a rose band would read as a second
-     brand colour and knock the ratio above out of balance.
+     button. Small marks are still `plum`; that budget is unchanged. It is
+     also not a FILL: rose is saturated enough that a rose band would read as
+     a second brand colour and knock the ratio above out of balance.
      ---------------------------------------------------------------------- */
 
-  /* ---- WhatsApp green — NOT a brand colour, and not in the ratio ---------
-     This is a platform colour, in the same category as the Instagram glyph:
-     it exists so a WhatsApp button is recognisable as a WhatsApp button
-     before anyone reads the label. Use it ONLY on controls that open
-     WhatsApp. It is not a palette member, it never becomes a section tone,
-     and nothing else on the site may reach for it.
+  /* ---- WhatsApp green — RETIRED. Do not reintroduce it. -----------------
+     There used to be a --color-whatsapp here, on the reasoning that a
+     platform colour makes a WhatsApp button recognisable before the label is
+     read. That reasoning was sound for one button and wrong for this site.
 
-     It is #25D366 — WhatsApp's own green, hue 142° at 70% saturation —
-     walked down to 30% lightness. The brand value itself is 1.98:1 against
-     white, so a button using it literally cannot carry its own label; this
-     is the darkest-hue-preserving step that clears AA (4.88:1) and it still
-     reads unmistakably as WhatsApp green next to the glyph. */
-  --color-whatsapp: #17823e;
+     WhatsApp IS the checkout here, so those buttons appear on every product
+     card, the buy box, the sticky bar, the header and the mobile menu — which
+     made a saturated green the most repeated colour on a page built from warm
+     ivory, blush and peach. At that frequency it stopped reading as a
+     platform cue and started reading as a widget pasted onto someone else's
+     design.
+
+     The glyph carries the recognition now, which is the part people actually
+     read, and it costs the palette nothing. The buttons are peach with ink
+     text: 8.74:1, better than the green managed with white on it (4.88:1).
+     See VARIANTS.whatsapp in components/ui/Button.tsx — and note that
+     StickyBuyBar and MobileNav hand-roll the same classes, so all three move
+     together. */
 
   /* ---- THE PLUM BUDGET — read this before typing `plum` ------------------
      Plum is the only colour here that is not in the brief. It earns its

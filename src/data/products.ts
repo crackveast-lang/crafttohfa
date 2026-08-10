@@ -403,9 +403,107 @@ const paintingKits: Product[] = [
     seasonal: false,
     inStock: true,
   },
+  {
+    /* Kept separate from `rocket-paint-kit` rather than replacing its photo:
+       that one is a single flat rocket, this is a shuttle with two boosters
+       cast as three pieces. Different mould, different price of admission in
+       minutes. If you'd rather sell only one of the two, delete this entry —
+       the older one is the one with the shorter craft time. */
+    slug: "space-shuttle-paint-kit",
+    name: "Space Shuttle Paint Kit",
+    category: "painting-kits",
+    price: PRICES.paintingKits,
+    tagline: "A shuttle and two booster rockets, panelled and ready",
+    description:
+      "A plaster space shuttle with a booster rocket either side, moulded with the panel lines and heat tiles raised so a brush catches them. Three paints — blue, red and white — which is exactly the palette the real thing uses.",
+    highlights: [
+      "Three pieces: the shuttle and both boosters",
+      "Panel lines and tile detail raised for painting between",
+      "Blue, red and white — the actual shuttle palette",
+      "Sits nose-up on a shelf when it's done",
+    ],
+    includes: [
+      "1 plaster space shuttle",
+      "2 plaster booster rockets",
+      ...PAINT_KIT_INCLUDES,
+    ],
+    ageRange: "5–12 years",
+    craftTime: "35–50 minutes",
+    images: photos("painting-kits", "space-shuttle-paint-kit", [
+      "An unpainted plaster space shuttle with two booster rockets, blue, red and white paint pots and a brush on a printed CraftTohfa card",
+    ]),
+    badges: ["New"],
+    seasonal: false,
+    inStock: true,
+  },
+  {
+    slug: "dino-squad-paint-kit",
+    name: "Dino Squad Paint Kit",
+    category: "painting-kits",
+    price: PRICES.paintingKits,
+    tagline: "A T-rex, a stegosaurus and a triceratops",
+    description:
+      "Three dinosaurs cast in plaster — a grinning T-rex, a plated stegosaurus and a horned triceratops — with six acrylic pots. Three pieces and six colours means nobody has to agree on what colour a dinosaur is.",
+    highlights: [
+      "Three different dinosaurs, not three of the same",
+      "Plates, horns and scales moulded in relief",
+      "Six acrylic colours and a brush",
+      "The set that gets asked for by name",
+    ],
+    includes: [
+      "1 plaster T-rex",
+      "1 plaster stegosaurus",
+      "1 plaster triceratops",
+      ...PAINT_KIT_INCLUDES,
+    ],
+    ageRange: "4–10 years",
+    craftTime: "45–60 minutes",
+    images: photos("painting-kits", "dino-squad-paint-kit", [
+      "Three unpainted plaster dinosaurs — a T-rex, a stegosaurus and a triceratops — with six paint pots and a brush around a printed CraftTohfa card",
+    ]),
+    badges: ["New"],
+    seasonal: false,
+    inStock: true,
+  },
 ];
 
 // ════════════════════════════  CROCHET KEEPSAKES  ═══════════════════════════
+
+/**
+ * The clip-on pieces — pouches, mini bags and charms — all of which are one
+ * crocheted item on a keyring clip. Same shape of entry fourteen times over,
+ * so the parts that actually differ live in the call and nothing else does.
+ *
+ * NOT used for the two originals below it: those have their own `includes`
+ * (the bunny ships with a printed card) and rewriting them to fit this helper
+ * would change live product pages for no reason.
+ */
+function charm(o: {
+  slug: string;
+  name: string;
+  tagline: string;
+  description: string;
+  highlights: string[];
+  /** What is physically in the packet, beyond the piece itself. */
+  includes: string[];
+  alt: string;
+  badges?: string[];
+}): Product {
+  return {
+    slug: o.slug,
+    name: o.name,
+    category: "crochet",
+    price: PRICES.crochet,
+    tagline: o.tagline,
+    description: o.description,
+    highlights: o.highlights,
+    includes: o.includes,
+    images: photos("crochet", o.slug, [o.alt]),
+    badges: o.badges,
+    seasonal: false,
+    inStock: true,
+  };
+}
 
 const crochet: Product[] = [
   {
@@ -452,6 +550,208 @@ const crochet: Product[] = [
     seasonal: false,
     inStock: true,
   },
+
+  // ── Mini bags and pouches ───────────────────────────────────────────────
+  // Named from the photographs rather than the filenames: two of the files say
+  // "pink" for bags that are plainly blue and peach, and one says "kitty" for
+  // a bunny. The photo is the source of truth.
+
+  charm({
+    slug: "cream-tulip-mini-bag",
+    name: "Cream Tulip Mini Bag",
+    tagline: "Two rows of tulips worked straight into the bag",
+    description:
+      "A little cream drawstring bag with a row of yellow tulips above a row of pink ones, each flower crocheted into the fabric rather than sewn on afterwards. Closes with a pearl button and hangs off a bag on a gold clip.",
+    highlights: [
+      "Tulips worked into the stitch, not appliquéd on",
+      "Pearl button closure",
+      "Gold clip — clips to a school bag or a set of keys",
+    ],
+    includes: ["1 crochet mini bag with a pearl button and gold clip"],
+    alt: "A cream hand-crocheted mini bag with rows of yellow and pink tulips, a pearl button and a gold clip",
+    badges: ["New"],
+  }),
+
+  charm({
+    slug: "blue-tulip-mini-bag",
+    name: "Blue Tulip Mini Bag",
+    tagline: "The tulip bag in cornflower blue",
+    description:
+      "The same tulip bag worked in a soft cornflower blue, with yellow tulips above pink ones and a pearl button at the top. The blue is what makes the yellow read — it is the brightest of the three tulip bags.",
+    highlights: [
+      "Cornflower blue with yellow and pink tulips",
+      "Pearl button closure",
+      "Gold clip and split ring",
+    ],
+    includes: ["1 crochet mini bag with a pearl button and gold clip"],
+    alt: "A cornflower blue hand-crocheted mini bag with rows of yellow and pink tulips, a pearl button and a gold clip",
+    badges: ["New"],
+  }),
+
+  charm({
+    slug: "peach-tulip-mini-bag",
+    name: "Peach Tulip Mini Bag",
+    tagline: "Purple and yellow tulips on soft peach",
+    description:
+      "The tulip bag again in pale peach, this time with purple tulips over yellow ones. The softest colourway of the three and the one that goes with everything.",
+    highlights: [
+      "Peach ground with purple and yellow tulips",
+      "Pearl button closure",
+      "Gold clip and split ring",
+    ],
+    includes: ["1 crochet mini bag with a pearl button and gold clip"],
+    alt: "A pale peach hand-crocheted mini bag with rows of purple and yellow tulips, a pearl button and a gold clip",
+    badges: ["New"],
+  }),
+
+  charm({
+    slug: "strawberry-cloud-handbag",
+    name: "Strawberry Cloud Handbag",
+    tagline: "A plush strawberry on cloud-soft white",
+    description:
+      "A tiny handbag crocheted in thick cloud-puff yarn, with a plush strawberry and a felt leaf on the front. Squashier than the cotton bags and the one small children reach for first.",
+    highlights: [
+      "Worked in thick puff yarn — soft rather than stiff",
+      "Plush strawberry with a felt leaf",
+      "Top handle, sized for a small hand",
+    ],
+    includes: ["1 crochet puff-yarn handbag with a plush strawberry"],
+    alt: "A white cloud-puff crochet handbag with a plush red strawberry and a green felt leaf on the front",
+    badges: ["New"],
+  }),
+
+  charm({
+    slug: "fluffy-kitty-handbag",
+    name: "Fluffy Kitty Handbag",
+    tagline: "A winking cat face on a peach puff bag",
+    description:
+      "A peach puff-yarn handbag with a fluffy white cat face across the front — one eye winking, whiskers and a yellow nose embroidered in, and a bow over one ear. The softest thing in the range to hold.",
+    highlights: [
+      "Fluffy appliquéd cat face with an embroidered wink",
+      "Thick peach puff yarn",
+      "Top handle, sized for a small hand",
+    ],
+    includes: ["1 crochet puff-yarn handbag with a fluffy cat-face front"],
+    alt: "A peach cloud-puff crochet handbag with a fluffy white winking cat face, embroidered whiskers and a yellow nose",
+    badges: ["New"],
+  }),
+
+  charm({
+    slug: "red-bunny-pouch",
+    name: "Red Bunny Pouch",
+    tagline: "A sleepy bunny on a red drawstring pouch",
+    description:
+      "A red drawstring pouch with a white bunny face crocheted onto the front, ears up and eyes closed. The green drawstring is threaded through leaf-shaped loops and finishes in a little berry.",
+    highlights: [
+      "Bunny face worked separately and sewn on",
+      "Green drawstring threaded through crocheted leaves",
+      "Gold clip and split ring",
+    ],
+    includes: ["1 crochet drawstring pouch with a gold clip"],
+    alt: "A red hand-crocheted drawstring pouch with a white sleepy bunny face, green leaf loops and a gold clip",
+    badges: ["New"],
+  }),
+
+  charm({
+    slug: "carrot-pouch-keychain",
+    name: "Carrot Pouch Keychain",
+    tagline: "A carrot on a plate, on a yellow pouch",
+    description:
+      "A sunny yellow drawstring pouch with an orange carrot sitting on a white scalloped disc, and mint-green flowers on the ends of the drawstring. Big enough for coins, earphones or a folded note.",
+    highlights: [
+      "Carrot and scalloped disc worked separately and sewn on",
+      "Mint flowers on both drawstring ends",
+      "Gold clip and split ring",
+    ],
+    includes: ["1 crochet drawstring pouch with a gold clip"],
+    alt: "A yellow hand-crocheted drawstring pouch with an orange carrot on a white scalloped disc and mint-green flower drawstrings",
+    badges: ["New"],
+  }),
+
+  charm({
+    slug: "blue-strawberry-pouch",
+    name: "Blue Strawberry Pouch",
+    tagline: "A big red strawberry on powder blue",
+    description:
+      "A powder-blue drawstring pouch with a large crocheted strawberry across the front, its seeds picked out in white stitches and a dark green top sewn over it. Leaf loops carry the drawstring.",
+    highlights: [
+      "Seeds embroidered in white over the crochet",
+      "Green leaf loops around the top",
+      "Gold clip and split ring",
+    ],
+    includes: ["1 crochet drawstring pouch with a gold clip"],
+    alt: "A powder-blue hand-crocheted drawstring pouch with a large red strawberry, white seed stitches and green leaf loops",
+    badges: ["New"],
+  }),
+
+  // ── Charms ──────────────────────────────────────────────────────────────
+
+  charm({
+    slug: "pink-rainbow-keychain",
+    name: "Pink Rainbow Keychain",
+    tagline: "Three shades of pink between two sand clouds",
+    description:
+      "A chunky crocheted rainbow in coral, blush and cream, resting on two sand-coloured clouds, on a gold ring. Solid enough to keep its arch rather than flopping the way a stuffed one would.",
+    highlights: [
+      "Three pink shades worked as concentric arches",
+      "Sand clouds at both ends",
+      "Gold split ring",
+    ],
+    includes: ["1 crochet rainbow charm on a gold ring"],
+    alt: "A hand-crocheted rainbow charm in coral, blush and cream with sand-coloured clouds, on a gold ring",
+    badges: ["New"],
+  }),
+
+  charm({
+    slug: "blue-rainbow-keychain",
+    name: "Blue Rainbow Keychain",
+    tagline: "The rainbow again, in blues",
+    description:
+      "The same chunky rainbow worked in teal, lilac and mint with lilac clouds, on a gold clip and ring. The pair of them sell about equally, and people quite often take both.",
+    highlights: [
+      "Teal, lilac and mint arches",
+      "Lilac clouds at both ends",
+      "Gold clip and split ring",
+    ],
+    includes: ["1 crochet rainbow charm with a gold clip"],
+    alt: "A hand-crocheted rainbow charm in teal, lilac and mint with lilac clouds, on a gold clip",
+    badges: ["New"],
+  }),
+
+  charm({
+    slug: "pink-piggy-keychain",
+    name: "Pink Piggy Keychain",
+    tagline: "A sitting piglet with a red snout",
+    description:
+      "A little pink pig crocheted in the round, sitting with its legs out in front, with a red snout and black bead eyes. On a gold clip, and small enough to disappear into a coat pocket.",
+    highlights: [
+      "Crocheted in the round — arms, legs and ears all worked separately",
+      "Red snout and black bead eyes",
+      "Gold clip and split ring",
+    ],
+    includes: ["1 crochet piglet charm with a gold clip"],
+    alt: "A pink hand-crocheted sitting piglet charm with a red snout and black bead eyes, on a gold clip",
+    badges: ["New"],
+  }),
+
+  charm({
+    slug: "positive-moo-cow",
+    name: '"Positive Moo" Cow',
+    tagline: "A little cow holding a note that believes in you",
+    description:
+      'A round cream cow with a caramel fringe, horns and a pink snout, holding a card that reads "Positive Moo — don\'t underestimate yourself. I believe in you." The one people buy for a friend sitting an exam rather than for a festival.',
+    highlights: [
+      "Comes holding its own printed note",
+      "Caramel fringe, horns and hooves worked separately",
+      "Sits up on a desk on its own",
+    ],
+    includes: [
+      "1 crochet cow",
+      '1 "Positive Moo" message card',
+    ],
+    alt: 'A cream hand-crocheted cow with a caramel fringe and pink snout, holding a card reading "Positive Moo, don\'t underestimate yourself, I believe in you"',
+    badges: ["New"],
+  }),
 ];
 
 // ═══════════════════════════════  COMBOS  ═══════════════════════════════════
@@ -463,6 +763,56 @@ const IN_EVERY_BOX = [
   '"Happy Raksha Bandhan" card',
   "Gift box with shredded-paper filling",
 ];
+
+/**
+ * The multi-piece paint sets, shipped as combos at your instruction.
+ *
+ * They deliberately do NOT use IN_EVERY_BOX. Every photograph of these shows
+ * plaster pieces, paint pots, a brush and the printed card — there is no
+ * bhai–behen idol and no "Happy Raksha Bandhan" card in any of them, so
+ * listing those would be describing a box we don't pack. `includes` per set
+ * below states only what is actually in the shot, plus the paints and brush.
+ *
+ * They are also NOT seasonal: nothing in them is rakhi-linked, so they should
+ * keep selling in November.
+ */
+const PAINT_SET_EXTRAS = [
+  "Acrylic paint pots and a brush",
+  "Printed CraftTohfa card",
+];
+
+/** Shared by the paint sets — the difference between them is only the pieces. */
+function paintSet(o: {
+  slug: string;
+  name: string;
+  tagline: string;
+  description: string;
+  highlights: string[];
+  pieces: string[];
+  alt: string;
+  ageRange: string;
+  craftTime: string;
+  badges?: string[];
+  featured?: boolean;
+}): Product {
+  return {
+    slug: o.slug,
+    name: o.name,
+    category: "combos",
+    price: PRICES.combos,
+    tagline: o.tagline,
+    description: o.description,
+    highlights: o.highlights,
+    includes: [...o.pieces, ...PAINT_SET_EXTRAS],
+    ageRange: o.ageRange,
+    craftTime: o.craftTime,
+    images: photos("combos", o.slug, [o.alt], "jpg"),
+    badges: o.badges,
+    featured: o.featured,
+    seasonal: false,
+    inStock: true,
+  };
+}
 
 const combos: Product[] = [
   {
@@ -648,6 +998,123 @@ const combos: Product[] = [
     inStock: true,
     rating: { value: 4.8, count: 16 },
   },
+
+  // ── The multi-piece paint sets ──────────────────────────────────────────
+  // No ratings on any of these: they are new, so there is nothing to average.
+
+  paintSet({
+    slug: "little-vehicles-paint-combo",
+    name: "Little Vehicles Paint Set",
+    tagline: "Seven plaster vehicles, and an afternoon to get through them",
+    description:
+      "A whole fleet cast in plaster — a car, a jeep, two buses, a train engine and its carriages — waiting to be painted. The biggest set here by piece count, and the one that keeps two or three children busy at the same table.",
+    highlights: [
+      "Seven separate pieces, so nobody has to take turns",
+      "Chunky moulds with raised windows and wheels to paint between",
+      "Every piece stands up on a shelf afterwards",
+      "Paints and brush supplied — nothing else to buy",
+    ],
+    pieces: [
+      "1 plaster car and 1 plaster jeep",
+      "2 plaster buses",
+      "1 plaster train engine with carriages",
+    ],
+    alt: "Seven unpainted plaster vehicles — a car, a jeep, buses and a train engine with carriages — arranged around a printed CraftTohfa card",
+    ageRange: "4–10 years",
+    craftTime: "60–90 minutes",
+    badges: ["Most pieces"],
+    featured: true,
+  }),
+
+  paintSet({
+    slug: "train-and-friends-paint-combo",
+    name: "Train & Friends Paint Set",
+    tagline: "A train, a bus, a panda and a slice of watermelon",
+    description:
+      "A deliberately mixed set — a chunky train engine, a bus, a round panda face and a watermelon slice — with seven paint pots rather than the usual three or four. The variety is the point: nothing in the box looks like anything else in it.",
+    highlights: [
+      "Four different moulds, not four of the same thing",
+      "Seven acrylic colours — the fullest palette in the range",
+      "Deep relief on the train, so the detail survives a heavy hand",
+      "Finishes in one long sitting",
+    ],
+    pieces: [
+      "1 plaster train engine",
+      "1 plaster bus",
+      "1 plaster panda face",
+      "1 plaster watermelon slice",
+    ],
+    alt: "An unpainted plaster train engine, bus, panda face and watermelon slice with seven paint pots and a brush around a printed CraftTohfa card",
+    ageRange: "4–10 years",
+    craftTime: "50–70 minutes",
+    featured: true,
+  }),
+
+  paintSet({
+    slug: "flower-garden-paint-combo",
+    name: "Flower Garden Paint Set",
+    tagline: "A daisy, a rose, a tulip bunch and a blossom",
+    description:
+      "Four plaster flowers, each moulded from a different bloom — a flat-petalled daisy, a spiral rose, a bunch of tulips and a cherry blossom with its stamens picked out. The quietest set in the range, and the one that tends to get chosen by older children.",
+    highlights: [
+      "Four distinct flowers, each with its own petal detail",
+      "The rose spiral and blossom stamens reward a fine brush",
+      "White, purple, yellow and pink paints supplied",
+      "Looks like something you'd keep on a windowsill",
+    ],
+    pieces: [
+      "1 plaster daisy",
+      "1 plaster rose",
+      "1 plaster tulip bunch",
+      "1 plaster cherry blossom",
+    ],
+    alt: "Four unpainted plaster flowers — a daisy, a rose, a tulip bunch and a cherry blossom — with white, purple, yellow and pink paint pots and a brush on a printed CraftTohfa card",
+    ageRange: "5–12 years",
+    craftTime: "45–60 minutes",
+  }),
+
+  paintSet({
+    slug: "fruit-basket-paint-combo",
+    name: "Fruit Basket Paint Set",
+    tagline: "Strawberry, pineapple, watermelon and orange",
+    description:
+      "Four fruits cast in plaster, each with the texture moulded in — pips on the strawberry, segments on the orange, the crosshatch on the pineapple. Six paint pots, which is enough to get all four right rather than compromising on one.",
+    highlights: [
+      "Pips, segments and rind textures moulded into every piece",
+      "Six acrylic colours — enough for all four fruits",
+      "The one set where the colours are obvious, so younger children can work unaided",
+      "Four pieces, one brush, one afternoon",
+    ],
+    pieces: [
+      "1 plaster strawberry",
+      "1 plaster pineapple",
+      "1 plaster watermelon slice",
+      "1 plaster orange slice",
+    ],
+    alt: "Four unpainted plaster fruits — a strawberry, a pineapple, a watermelon slice and an orange slice — with six paint pots and a brush around a printed CraftTohfa card",
+    ageRange: "4–10 years",
+    craftTime: "45–60 minutes",
+    featured: true,
+  }),
+
+  paintSet({
+    slug: "teddy-and-butterfly-paint-combo",
+    name: "Teddy & Butterfly Paint Set",
+    tagline: "One for each of them, in the same box",
+    description:
+      "A wide-winged butterfly and a sitting teddy bear, both cast in plaster with deep relief, and six paints between them. Two pieces of roughly equal appeal is the whole idea — it is the set that gets bought when there are two children and only one box.",
+    highlights: [
+      "Two pieces, so two children can paint at once",
+      "Deep wing veins and a moulded teddy face to work into",
+      "Six acrylic colours including brown and black for the bear",
+      "Both pieces stand on their own afterwards",
+    ],
+    pieces: ["1 plaster butterfly", "1 plaster teddy bear"],
+    alt: "An unpainted plaster butterfly and teddy bear with six paint pots and a brush around a printed CraftTohfa card",
+    ageRange: "4–10 years",
+    craftTime: "40–55 minutes",
+    badges: ["Two to paint"],
+  }),
 ];
 
 // ═════════════════════════════  LIST PRICING  ═══════════════════════════════

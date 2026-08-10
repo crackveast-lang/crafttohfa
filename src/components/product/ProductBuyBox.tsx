@@ -57,7 +57,9 @@ export function ProductBuyBox({ product }: { product: Product }) {
             {formatINR(product.compareAtPrice)}
           </span>
         ) : null}
-        <span className="font-display text-4xl font-semibold tabular">
+        {/* Rose — see the rose budget in globals.css. At text-4xl this is
+            comfortably past the large-text threshold. */}
+        <span className="font-display text-4xl font-semibold tabular text-rose">
           {formatINR(product.price)}
         </span>
         {off ? (

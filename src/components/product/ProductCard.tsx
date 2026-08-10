@@ -110,7 +110,10 @@ export function ProductCard({
         ) : null}
 
         <div className="mt-auto flex flex-wrap items-baseline gap-x-2 gap-y-0 pt-2">
-          <span className="font-display text-xl font-semibold tabular">
+          {/* Rose, not ink. text-xl at 600 clears the large-text threshold, so
+              3.67:1 is AA here — see the rose budget in globals.css before
+              copying this anywhere smaller. */}
+          <span className="font-display text-xl font-semibold tabular text-rose">
             {formatINR(product.price)}
           </span>
           {/* ink/70, not the ink/50 a struck-through price would normally get:

@@ -38,10 +38,16 @@ const PROMISES = [
   },
 ];
 
+/**
+ * These are photographs of a child mid-craft, not workshop shots, so the alt
+ * text describes what is actually in frame. Deliberately "a child" and never a
+ * name — the pictures carry the feeling, and naming anyone in alt text on a
+ * public shop page is a detail nobody needs and can't take back.
+ */
 const WORKSHOP = [
-  "Yarn and crochet hooks laid out on a work table",
-  "A rakhi half-finished, mid-stitch",
-  "Finished orders packed into boxes ready to post",
+  "A child leaning over a table, brush in hand, painting a plaster piece beside a row of paint pots",
+  "A child holding a plaster piece up close to paint it, with finished painted pieces drying on the table",
+  "Three unpainted plaster dinosaurs and six pots of paint laid out ready to start",
 ];
 
 export default function AboutPage() {
@@ -112,12 +118,19 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* ── Making strip ── */}
+      {/* ── The reason ──
+          This strip used to be "Where it happens" — three planned photos of
+          yarn, hooks and packed boxes. The photos that actually arrived are of
+          a child painting, and a picture of someone using the thing is worth
+          more than a picture of the thing being made. So the heading moved
+          with the pictures: from how we make it to why it is worth making.
+          "Less scrolling" is the same line the shop page opens with — this is
+          the section that shows what that looks like instead of claiming it. */}
       <Section tone="blush">
         <SectionHeading
-          eyebrow="Where it happens"
-          title="No factory, no warehouse"
-          intro="Just a work table, a lot of yarn, and a system that has slowly stopped being chaos."
+          eyebrow="Why we make these"
+          title="Less scrolling. More of this."
+          intro="This is the part we can't pack into a box: a brush picked up, a table gone quiet, and an hour where nobody asks for a screen. The kits are just what gets you there."
         />
 
         <ul className="mt-12 grid gap-6 md:mt-14 md:grid-cols-3">

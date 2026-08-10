@@ -24,9 +24,9 @@ export const siteConfig = {
        12 digits total — count them if you ever change this, because a number
        one digit short fails silently: the link opens WhatsApp perfectly well
        and simply never reaches your account. */
-    number: "919217208097",
+    number: "919243520880",
     /* How the number is shown to humans (footer, contact page). */
-    display: "+91 92172 08097",
+    display: "+91 92435 20880",
     greeting: "Hi CraftTohfa! 👋",
     sign: "Could you please share availability and delivery details?",
     /* Shown next to CTAs so people know what to expect. */
@@ -76,7 +76,7 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/craftohfa",
     instagramHandle: "@craftohfa",
     facebook: "https://facebook.com/craftohfa",
-    email: "hello@craftohfa.com",
+    email: "anjaligupta0927@gmail.com",
   },
 
   /* ⚠️ PLACEHOLDER NUMBERS — replace with your real figures before launch.

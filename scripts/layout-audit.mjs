@@ -12,6 +12,13 @@ const PAGES = [
   "/returns",
 ];
 
+/* Defaults to the dev server. Point it at a `next start` on another port with
+   AUDIT_BASE when you want to audit the production build instead — a long-
+   running `next dev` caches photo lookups in memory, so a photo added after it
+   booted still renders as a placeholder there and skews what you're looking
+   at. */
+const BASE = process.env.AUDIT_BASE ?? "http://localhost:3000";
+
 const browser = await chromium.launch();
 let problems = 0;
 
@@ -25,7 +32,7 @@ for (const width of WIDTHS) {
   const page = await ctx.newPage();
 
   for (const path of PAGES) {
-    await page.goto("http://localhost:3000" + path, {
+    await page.goto(BASE + path, {
       waitUntil: "networkidle",
     });
 

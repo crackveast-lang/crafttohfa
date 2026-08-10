@@ -37,13 +37,23 @@ const VARIANTS: Record<Variant, string> = {
     "border-2 border-ink bg-peach text-ink shadow-sticker -rotate-2 hover:rotate-0 hover:-translate-y-0.5",
   onDark:
     "bg-white text-ink shadow-soft hover:-translate-y-0.5 hover:shadow-lift active:translate-y-0",
-  /* Reserved for controls that open WhatsApp — see the note on
-     --color-whatsapp in globals.css. It carries white at 4.88:1, and the
-     hover is the same lift the primary uses rather than a colour change:
-     any lighter green drops the label below AA, and any darker one stops
-     reading as WhatsApp. */
+  /* Controls that open WhatsApp. PEACH, not WhatsApp green.
+
+     These buttons are the entire checkout on this site, so they appear on
+     every product card, the buy box, the sticky bar, the header and the
+     mobile menu — which meant a platform green was the single most repeated
+     colour on a page whose whole palette is warm ivory, blush and peach. At
+     that frequency it stopped reading as "this opens WhatsApp" and started
+     reading as a third-party widget dropped onto the design.
+
+     Recognition is carried by the GLYPH instead, which is the part people
+     actually read: the mark is unmistakable at 16px and it costs the palette
+     nothing. Peach with ink text is 8.74:1 — better than the green ever was
+     with white on it (4.88:1) — and the ink border gives it the same weight
+     as the primary button it usually sits beside. Hover deepens the fill
+     rather than changing hue, so nothing flashes a new colour into the page. */
   whatsapp:
-    "bg-whatsapp text-white shadow-soft hover:-translate-y-0.5 hover:shadow-lift active:translate-y-0",
+    "border-2 border-ink/85 bg-peach text-ink shadow-soft hover:-translate-y-0.5 hover:bg-peach/75 hover:shadow-lift active:translate-y-0",
 };
 
 const SIZES: Record<Size, string> = {

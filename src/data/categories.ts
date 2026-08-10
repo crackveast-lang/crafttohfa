@@ -12,9 +12,14 @@ import { getProductsByCategory } from "./products";
 export const categories: Category[] = [
   {
     slug: "combos",
-    name: "Rakhi Combo Boxes",
+    /* "Rakhi Combo Boxes" until the paint sets were added here. Five of the
+       ten items in this category now contain no rakhi and no soft toy, so the
+       old name made the breadcrumb on a flower paint set read "Rakhi Combo
+       Boxes" — and the blurb promised a rakhi in every one of them. The slug
+       is untouched, so /shop?c=combos and every existing link still work. */
+    name: "Combo Boxes",
     blurb:
-      "A crochet rakhi, a soft toy to keep, and pieces to paint together. Boxed and ready to give.",
+      "Rakhi hampers with a crochet keepsake and pieces to paint, and multi-piece paint sets with everything for a whole afternoon. Boxed and ready to give.",
     doodle: "GiftBox",
     tone: "peach",
     image: {

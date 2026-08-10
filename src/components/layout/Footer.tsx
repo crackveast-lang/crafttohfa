@@ -40,7 +40,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 aria-label="Message CraftTohfa on WhatsApp"
                 data-wa-kind="general"
-                className="grid size-11 place-items-center rounded-full border-2 border-ink/70 transition-colors hover:border-whatsapp hover:bg-whatsapp hover:text-white"
+                className="grid size-11 place-items-center rounded-full border-2 border-ink/70 transition-colors hover:border-ink hover:bg-ink hover:text-white"
               >
                 <WhatsAppGlyph className="size-5" />
               </a>
