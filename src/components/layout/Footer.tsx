@@ -72,7 +72,8 @@ export function Footer() {
             <FooterLink href="/about">Our story</FooterLink>
             <FooterLink href="/faq">FAQs</FooterLink>
             <FooterLink href="/contact">Contact</FooterLink>
-            <FooterLink href="/policies">Shipping &amp; returns</FooterLink>
+            <FooterLink href="/policies">Shipping &amp; policies</FooterLink>
+            <FooterLink href="/returns">Returns &amp; refunds</FooterLink>
           </FooterColumn>
 
           <FooterColumn title="Ordering">

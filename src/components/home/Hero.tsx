@@ -13,19 +13,11 @@ import {
 } from "@/components/hero/HeroFlowers";
 import ImageTiles from "@/components/ui/image-tiles";
 import { CraftImage } from "@/components/media/CraftImage";
+import { HeroHighlights } from "@/components/home/HeroHighlights";
+import { HeartBurst } from "@/components/doodles";
 import { getFeaturedProducts } from "@/data/products";
 import { cn } from "@/lib/cn";
-import { Wordmark } from "@/components/layout/Wordmark";
-import { siteConfig } from "@/site.config";
 import type { Product } from "@/types";
-
-const TRUST = [
-  siteConfig.trust.familiesServed
-    ? `${siteConfig.trust.familiesServed} happy families`
-    : null,
-  "Handmade in small batches",
-  "Ships across India",
-].filter(Boolean) as string[];
 
 /**
  * One tile of the fan. Rendered on the SERVER and passed into <ImageTiles> as
@@ -99,15 +91,21 @@ export function Hero() {
               behind an opaque overlay. Change the splash timing in
               globals.css and every number here moves with it. */}
           <div className="relative z-10">
-            {/* The mark itself, not a festival name. A hero that opened with
-                "Raksha Bandhan" dated the whole page to one week of the year
-                and had to be mentally discounted the rest of it; the logo says
-                the same "this is a moment" thing and is true in November.
-                The lockup (gift box + confetti above the words) rather than
-                the flat wordmark, so it doesn't read as the header repeating
-                itself a hundred pixels lower. */}
+            {/* A badge, not the logo. The mark used to sit here and it was the
+                header repeating itself a hundred pixels lower — the same
+                artwork twice in the first screen, which spends the hero's
+                strongest position on something already on screen. Three words
+                of intent cost a fraction of the height and say the thing the
+                logo was only implying. */}
             <div className="rise-in" style={{ animationDelay: "1.5s" }}>
-              <Wordmark asLink={false} size="lg" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-blush px-4 py-2 text-eyebrow uppercase text-ink/80">
+                {/* Solid glyph rather than the line doodle: at 12px a 2px
+                    stroke closes up into a blob. */}
+                <span aria-hidden="true" className="heartbeat inline-block text-rose">
+                  ❤
+                </span>
+                Made with love
+              </span>
             </div>
 
             {/* Not `text-mega`, and not uppercase, and no hard offset shadow —
@@ -117,16 +115,31 @@ export function Hero() {
                 costs legibility the headline can't spare. The clamp tops out
                 where "Made to be remembered." still fits the column at lg.
 
-                Ink, not an accent. This is the largest type on the site and
-                the first thing anyone reads, so it takes the strongest colour
-                we have (12.86:1 on ivory); the mark above it carries the
-                brand note here. */}
-            <h1 className="mt-2 font-fun text-[clamp(2.25rem,5.4vw,3.75rem)] font-extrabold leading-[1.06] tracking-tight text-ink">
+                Ink carries the sentence and ONE word is rose. That word is the
+                payoff of the line, so it is the only place worth spending an
+                accent — highlighting more than one turns a hierarchy into
+                stripes. Rose exists purely for this; see the rose budget in
+                globals.css before reaching for it anywhere else. */}
+            <h1 className="mt-5 font-fun text-[clamp(2.25rem,5.4vw,3.75rem)] font-extrabold leading-[1.06] tracking-tight text-ink">
               <span className="rise-in block" style={{ animationDelay: "1.58s" }}>
                 Made by hand.
               </span>
               <span className="rise-in block" style={{ animationDelay: "1.66s" }}>
-                Made to be remembered. ❤️
+                Made to be <span className="text-rose">remembered.</span>
+                {/* In the flow of the line, not absolutely positioned beside
+                    it. The hero clips its overflow, so a mark hung off the
+                    right of the headline is the one thing guaranteed to be
+                    half-cut on a narrow phone; inline it simply wraps with
+                    the words. Sized in `em` so it tracks the clamp. */}
+                <span
+                  aria-hidden="true"
+                  className="pop-in ml-2 inline-block w-[1.15em] align-baseline"
+                  style={{ animationDelay: "1.98s" }}
+                >
+                  <span className="heartbeat block">
+                    <HeartBurst className="w-full text-rose" />
+                  </span>
+                </span>
               </span>
             </h1>
 
@@ -154,20 +167,6 @@ export function Hero() {
                 Chat with us
               </WhatsAppButton>
             </div>
-
-            <ul
-              className="rise-in mt-8 flex flex-wrap gap-x-5 gap-y-1.5 text-sm text-ink/70"
-              style={{ animationDelay: "1.9s" }}
-            >
-              {TRUST.map((t) => (
-                <li key={t} className="flex items-center gap-1.5">
-                  <span aria-hidden="true" className="text-sage">
-                    ✦
-                  </span>
-                  {t}
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* ── Flowers behind, product photos in front ───────────── */}
@@ -224,6 +223,13 @@ export function Hero() {
             </div>
           </div>
         </div>
+
+        {/* The numbers moved out of the copy column and became the hero's
+            closing line. As a three-item text list beside the buttons they
+            were competing with the CTA for the same glance; full width under
+            both columns they are the last thing read on the way out, which is
+            where a trust claim actually does its work. */}
+        <HeroHighlights className="mt-14 lg:mt-16" />
       </Container>
     </section>
   );

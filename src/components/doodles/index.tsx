@@ -99,6 +99,33 @@ export function Heart(props: D) {
   );
 }
 
+/**
+ * The heart with three little motion rays, for the end of the hero headline.
+ *
+ * A separate mark rather than <Heart> plus a Confetti: it is drawn to sit ON a
+ * text baseline, so the heart is nudged down inside the viewBox and the rays
+ * are set to the right of it. That means it can be dropped inline after a word
+ * and it lands where a punctuation mark would, at any headline size, with no
+ * absolute positioning to overflow the hero on a narrow phone.
+ *
+ * The 40×28 viewBox is wider than it is tall on purpose — sized by `w-[1.15em]`
+ * at the call site, it reads as one more glyph in the line rather than a
+ * sticker parked next to it.
+ */
+export function HeartBurst(props: D) {
+  return (
+    <svg viewBox="0 0 40 28" {...base} {...props}>
+      <g transform="translate(0 2)">
+        <path
+          d="M12 20.5S3.5 15.4 3.5 9.6A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8.5 2.6c0 5.8-8.5 10.9-8.5 10.9Z"
+          {...drawable}
+        />
+      </g>
+      <path d="M27 7.5 31.5 4M29 14h5.5M27.5 20.5 32 24" {...drawable} />
+    </svg>
+  );
+}
+
 /** Curved arrow, used between the HowItWorks steps. */
 export function ArrowCurve(props: D) {
   return (
@@ -166,6 +193,16 @@ export function GiftBox(props: D) {
         d="M24 13c-4-1-9-3-9-6.5S20 4 24 13Zm0 0c4-1 9-3 9-6.5S28 4 24 13Z"
         {...drawable}
       />
+    </svg>
+  );
+}
+
+/** Map pin, for "we ship to N cities". */
+export function MapPin(props: D) {
+  return (
+    <svg viewBox="0 0 24 24" {...base} {...props}>
+      <path d="M12 21.5c5-5.4 7.5-9.3 7.5-12.4a7.5 7.5 0 0 0-15 0c0 3.1 2.5 7 7.5 12.4Z" {...drawable} />
+      <circle cx="12" cy="9" r="2.8" {...drawable} />
     </svg>
   );
 }

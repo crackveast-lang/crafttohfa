@@ -8,9 +8,9 @@
    ========================================================================= */
 
 @theme {
-  /* ---- Palette. Six colours plus white. Never invent a seventh. ----------
+  /* ---- Palette. Seven colours plus white. Never invent an eighth. --------
      Need a lighter shade? Use an opacity modifier (bg-peach/70,
-     border-ink/12) or color-mix(). Adding new hexes turns 6 colours into 20.
+     border-ink/12) or color-mix(). Adding new hexes turns 7 colours into 20.
 
      Three soft accents over a warm ivory ground, with warm charcoal doing
      every job that needs weight. Built to a deliberate RATIO rather than an
@@ -23,6 +23,7 @@
        + sage  ~17%  section bands, tape, stickers, doodles, decoration
        ink      ~2%  primary buttons, ONE dark band per page, and all text
        plum     ~1%  the single purple note. See the budget below.
+       rose     <1%  ONE highlighted word in the hero headline. See below.
 
      The ratio IS the design. These three accents are soft by construction —
      the moment one of them covers a third of the page it stops reading as an
@@ -37,6 +38,30 @@
   --color-sage: #b8c7b0; /*  Sage — natural touches, badges, small accents */
   --color-ink: #332d32; /*   Warm Charcoal — ALL text, buttons, dark band  */
   --color-plum: #6f4a7e; /*  Deep Plum — the ~1% purple note. Marks only.  */
+  --color-rose: #ce6249; /*  Deep Rose — display type only. See the budget. */
+
+  /* ---- THE ROSE BUDGET — read this before typing `rose` ------------------
+     Rose exists for exactly one job: the highlighted word in the hero
+     headline, and the little heart mark beside it.
+
+     It is peach walked down until it can actually be read. Peach is the
+     right HUE for that word — soft, warm, handmade — but at 1.47:1 on ivory
+     a peach headline is a headline nobody can read, and the H1 is the
+     largest type on the site and the first thing anyone sees. Rose is the
+     same warm coral family at 3.67:1 on ivory, which clears AA for LARGE
+     text (the ≥24px / ≥18.66px-bold threshold) with the headline's 36–60px
+     to spare.
+
+     So the whole allowed list is:
+       the one highlighted word in the hero H1 · the heart doodle beside it ·
+       the heart in the "made with love" badge.
+
+     It is NOT body copy, NOT a label, NOT an eyebrow, NOT a link, and NOT a
+     button — every one of those renders under 24px, where 3.67:1 fails.
+     Small marks are still `plum`; that budget is unchanged. It is also not a
+     FILL: rose is saturated enough that a rose band would read as a second
+     brand colour and knock the ratio above out of balance.
+     ---------------------------------------------------------------------- */
 
   /* ---- WhatsApp green — NOT a brand colour, and not in the ratio ---------
      This is a platform colour, in the same category as the Instagram glyph:
@@ -76,6 +101,10 @@
                     on ivory  on white  on blush  on peach  on sage
        ink            12.86 ✅  13.44 ✅   10.72 ✅   8.74 ✅   7.58 ✅
        plum            6.79 ✅   7.10 ✅    5.66 ✅   4.62 ✅   4.00 ⚠️
+       rose            3.67 🔠   3.84 🔠    3.06 🔠   1.86 ❌   1.62 ❌
+
+     ✅ passes AA at any size · ⚠️ large text only · 🔠 LARGE TEXT ONLY, and
+     only the three places the rose budget lists · ❌ never.
 
      ink       — the workhorse. ALL body text, every heading, everywhere.
                  Also every filled surface that carries white text: white on
@@ -85,6 +114,9 @@
      plum      — the ONLY accent that can be small text, and only on the
                  marks listed in the budget above. Clears AA on every surface
                  except sage, where it is 4.00 — large text there, not small.
+     rose      — the ONLY accent that can be a headline. Ivory and white
+                 only; on peach and sage it is two warm hues a step apart and
+                 disappears. Never under 24px. See the rose budget above.
      blush     — 1.20 on ivory. A SURFACE: quiet section bands, highlights.
      peach     — 1.47 on ivory, 1.54 on white. Decoration: washi tape,
                  sticker buttons, doodle fills, the closing gradient. It

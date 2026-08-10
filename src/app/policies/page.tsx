@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
 import { Section } from "@/components/layout/Section";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
@@ -134,6 +135,19 @@ export default function PoliciesPage() {
               <p>
                 <strong>Refunds</strong> are returned to the original payment
                 method and typically take 5–7 working days to appear.
+              </p>
+              {/* Its own line rather than a link mid-sentence. `inline-flex
+                  min-h-11` is the same trick the jump-nav above uses: it still
+                  reads as a text link, but the hit area is a 44px finger
+                  target instead of the 22px the type sets at. */}
+              <p>
+                <Link
+                  href="/returns"
+                  className="inline-flex min-h-11 items-center gap-1.5 font-semibold underline decoration-sage decoration-2 underline-offset-4 transition-colors hover:text-plum"
+                >
+                  Read the full return &amp; refund policy
+                  <span aria-hidden="true">→</span>
+                </Link>
               </p>
               <p>
                 <strong>Handmade variation:</strong> small differences in

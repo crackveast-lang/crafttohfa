@@ -9,6 +9,7 @@ const PAGES = [
   "/faq",
   "/contact",
   "/policies",
+  "/returns",
 ];
 
 const browser = await chromium.launch();
