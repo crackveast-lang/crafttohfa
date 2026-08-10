@@ -22,9 +22,8 @@ import type { CategorySlug, Product } from "@/types";
  * changing what a rakhi costs is a one-line edit rather than fifteen.
  */
 const PRICES = {
-  rakhis: 50,
-  paintingKits: 120,
-  crochet: 120,
+  rakhis: 70,
+  crochet: 249,
   combos: 499,
 } as const;
 
@@ -288,183 +287,6 @@ const rakhis: Product[] = [
     alt: "A hand-crocheted shield rakhi with red and white rings, a blue centre and a silver star, worn on a child's wrist",
     badges: ["For brothers"],
   }),
-];
-
-// ═══════════════════════════  DIY PAINTING KITS  ════════════════════════════
-
-/** Every painting kit ships with the same materials. */
-const PAINT_KIT_INCLUDES = [
-  "Acrylic paint pots",
-  "1 paintbrush",
-  "Printed CraftTohfa card",
-];
-
-const paintingKits: Product[] = [
-  {
-    slug: "bhai-behen-idol-paint-kit",
-    name: "Bhai–Behen Idol Paint Kit",
-    category: "painting-kits",
-    price: PRICES.paintingKits,
-    tagline: "The brother-and-sister idol, ready to paint",
-    description:
-      "The plaster bhai–behen figure — a sister tying a rakhi on her brother's wrist, the two of them sat cross-legged. It comes blank with paints and a brush, so the two of them decide what it looks like.",
-    highlights: [
-      "Cast in plaster with real relief detail",
-      "Comes blank — the colours are up to you",
-      "Paints and brush included",
-      "Keeps its place on a shelf long after August",
-    ],
-    includes: ["1 plaster bhai–behen idol", ...PAINT_KIT_INCLUDES],
-    ageRange: "5–12 years",
-    craftTime: "30–45 minutes",
-    images: photos("painting-kits", "bhai-behen-idol-paint-kit", [
-      "An unpainted plaster bhai–behen idol showing a sister tying a rakhi on her brother's wrist",
-      "A close view of the same unpainted bhai–behen idol",
-    ]),
-    badges: ["Most loved"],
-    featured: false,
-    seasonal: true,
-    inStock: true,
-  },
-  {
-    slug: "rocket-paint-kit",
-    name: "Rocket Paint Kit",
-    category: "painting-kits",
-    price: PRICES.paintingKits,
-    tagline: "A plaster rocket, three paints and a brush",
-    description:
-      "A moulded plaster rocket with raised panel lines to paint between, boxed with three acrylic pots and a brush. Small enough to finish in one sitting.",
-    highlights: [
-      "Raised panel lines to paint between",
-      "Three acrylic paints and a brush",
-      "Finishes in one sitting",
-    ],
-    includes: ["1 plaster rocket", ...PAINT_KIT_INCLUDES],
-    ageRange: "4–10 years",
-    craftTime: "25–40 minutes",
-    images: photos("painting-kits", "rocket-paint-kit", [
-      "An unpainted plaster rocket with blue, orange and white paint pots and a brush on a CraftTohfa card",
-    ]),
-    seasonal: false,
-    inStock: true,
-  },
-  {
-    slug: "jungle-joy-animal-kit",
-    name: "Jungle Joy Animal Art Kit",
-    category: "painting-kits",
-    price: PRICES.paintingKits,
-    tagline: "A hippo and a giraffe in one box",
-    description:
-      "Two plaster animals — a round hippo and a long-necked giraffe — with three acrylic pots and a brush. Two pieces means two children can paint at the same time instead of taking turns.",
-    highlights: [
-      "Two figures, so two can paint at once",
-      "Hippo and giraffe, both cast in plaster",
-      "Three acrylic paints and a brush",
-    ],
-    includes: [
-      "1 plaster hippo",
-      "1 plaster giraffe",
-      ...PAINT_KIT_INCLUDES,
-    ],
-    ageRange: "4–10 years",
-    craftTime: "40–55 minutes",
-    images: photos("painting-kits", "jungle-joy-animal-kit", [
-      "An unpainted plaster hippo and giraffe with blue, green and yellow paint pots and a brush on a CraftTohfa card",
-    ]),
-    badges: ["Two to paint"],
-    seasonal: false,
-    inStock: true,
-  },
-  {
-    slug: "paint-my-name-kit",
-    name: "Paint My Name — Personalised Kit",
-    category: "painting-kits",
-    price: PRICES.paintingKits,
-    tagline: "Their name in plaster letters, plus something to paint",
-    description:
-      "Plaster letters cast to spell out whichever name you send us, with a plaster figure and four acrylic pots. Tell us the name over WhatsApp when you order — that is the whole process.",
-    highlights: [
-      "Letters cast to spell any name you send",
-      "Comes with a plaster figure as well",
-      "Four acrylic paints and a brush",
-      "Send the name over WhatsApp when you order",
-    ],
-    includes: [
-      "Plaster letters spelling your chosen name",
-      "1 plaster figure",
-      ...PAINT_KIT_INCLUDES,
-    ],
-    ageRange: "4–12 years",
-    craftTime: "45–60 minutes",
-    images: photos("painting-kits", "paint-my-name-kit", [
-      'Unpainted plaster letters spelling "AMAN" with a plaster race car, four paint pots and a brush on a CraftTohfa card',
-    ]),
-    badges: ["Personalised"],
-    seasonal: false,
-    inStock: true,
-  },
-  {
-    /* Kept separate from `rocket-paint-kit` rather than replacing its photo:
-       that one is a single flat rocket, this is a shuttle with two boosters
-       cast as three pieces. Different mould, different price of admission in
-       minutes. If you'd rather sell only one of the two, delete this entry —
-       the older one is the one with the shorter craft time. */
-    slug: "space-shuttle-paint-kit",
-    name: "Space Shuttle Paint Kit",
-    category: "painting-kits",
-    price: PRICES.paintingKits,
-    tagline: "A shuttle and two booster rockets, panelled and ready",
-    description:
-      "A plaster space shuttle with a booster rocket either side, moulded with the panel lines and heat tiles raised so a brush catches them. Three paints — blue, red and white — which is exactly the palette the real thing uses.",
-    highlights: [
-      "Three pieces: the shuttle and both boosters",
-      "Panel lines and tile detail raised for painting between",
-      "Blue, red and white — the actual shuttle palette",
-      "Sits nose-up on a shelf when it's done",
-    ],
-    includes: [
-      "1 plaster space shuttle",
-      "2 plaster booster rockets",
-      ...PAINT_KIT_INCLUDES,
-    ],
-    ageRange: "5–12 years",
-    craftTime: "35–50 minutes",
-    images: photos("painting-kits", "space-shuttle-paint-kit", [
-      "An unpainted plaster space shuttle with two booster rockets, blue, red and white paint pots and a brush on a printed CraftTohfa card",
-    ]),
-    badges: ["New"],
-    seasonal: false,
-    inStock: true,
-  },
-  {
-    slug: "dino-squad-paint-kit",
-    name: "Dino Squad Paint Kit",
-    category: "painting-kits",
-    price: PRICES.paintingKits,
-    tagline: "A T-rex, a stegosaurus and a triceratops",
-    description:
-      "Three dinosaurs cast in plaster — a grinning T-rex, a plated stegosaurus and a horned triceratops — with six acrylic pots. Three pieces and six colours means nobody has to agree on what colour a dinosaur is.",
-    highlights: [
-      "Three different dinosaurs, not three of the same",
-      "Plates, horns and scales moulded in relief",
-      "Six acrylic colours and a brush",
-      "The set that gets asked for by name",
-    ],
-    includes: [
-      "1 plaster T-rex",
-      "1 plaster stegosaurus",
-      "1 plaster triceratops",
-      ...PAINT_KIT_INCLUDES,
-    ],
-    ageRange: "4–10 years",
-    craftTime: "45–60 minutes",
-    images: photos("painting-kits", "dino-squad-paint-kit", [
-      "Three unpainted plaster dinosaurs — a T-rex, a stegosaurus and a triceratops — with six paint pots and a brush around a printed CraftTohfa card",
-    ]),
-    badges: ["New"],
-    seasonal: false,
-    inStock: true,
-  },
 ];
 
 // ════════════════════════════  CROCHET KEEPSAKES  ═══════════════════════════
@@ -1115,6 +937,53 @@ const combos: Product[] = [
     craftTime: "40–55 minutes",
     badges: ["Two to paint"],
   }),
+
+  /* The two kits kept from the retired DIY Painting Kits category. They are
+     the same kind of thing as the five sets above — plaster pieces, paints and
+     a brush — so they use the same helper and the same price rather than
+     arriving here as ₹120 items in a ₹499 category. */
+
+  paintSet({
+    slug: "jungle-joy-animal-kit",
+    name: "Jungle Joy Animal Art Kit",
+    tagline: "A hippo and a giraffe in one box",
+    description:
+      "Two plaster animals — a round hippo and a long-necked giraffe — with acrylic pots and a brush. Two pieces means two children can paint at the same time instead of taking turns.",
+    highlights: [
+      "Two figures, so two can paint at once",
+      "Hippo and giraffe, both cast in plaster",
+      "Acrylic paints and a brush included",
+      "Both pieces stand up on a shelf afterwards",
+    ],
+    pieces: ["1 plaster hippo", "1 plaster giraffe"],
+    alt: "An unpainted plaster hippo and giraffe with blue, green and yellow paint pots and a brush on a CraftTohfa card",
+    ageRange: "4–10 years",
+    craftTime: "40–55 minutes",
+    badges: ["Two to paint"],
+  }),
+
+  paintSet({
+    slug: "dino-squad-paint-kit",
+    name: "Dino Squad Paint Kit",
+    tagline: "A T-rex, a stegosaurus and a triceratops",
+    description:
+      "Three dinosaurs cast in plaster — a grinning T-rex, a plated stegosaurus and a horned triceratops — with six acrylic pots. Three pieces and six colours means nobody has to agree on what colour a dinosaur is.",
+    highlights: [
+      "Three different dinosaurs, not three of the same",
+      "Plates, horns and scales moulded in relief",
+      "Six acrylic colours and a brush",
+      "The set that gets asked for by name",
+    ],
+    pieces: [
+      "1 plaster T-rex",
+      "1 plaster stegosaurus",
+      "1 plaster triceratops",
+    ],
+    alt: "Three unpainted plaster dinosaurs — a T-rex, a stegosaurus and a triceratops — with six paint pots and a brush around a printed CraftTohfa card",
+    ageRange: "4–10 years",
+    craftTime: "45–60 minutes",
+    badges: ["New"],
+  }),
 ];
 
 // ═════════════════════════════  LIST PRICING  ═══════════════════════════════
@@ -1162,7 +1031,7 @@ function listPrice(price: number): number {
 /**
  * Order matters — this is the order things appear on /shop. Combos lead
  * because they are the highest-value thing on the site, then rakhis (the most
- * numerous and the festival driver), then the two evergreen categories.
+ * numerous and the festival driver), then crochet, which is the evergreen one.
  *
  * The list price is derived here rather than typed into each product, so it
  * can never drift out of step with `price` when a price changes.
@@ -1170,7 +1039,6 @@ function listPrice(price: number): number {
 export const products: Product[] = [
   ...combos,
   ...rakhis,
-  ...paintingKits,
   ...crochet,
 ].map((p) => ({ ...p, compareAtPrice: listPrice(p.price) }));
 

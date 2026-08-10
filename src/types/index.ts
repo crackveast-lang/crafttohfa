@@ -1,9 +1,14 @@
 /**
- * The four things CraftTohfa sells. `combos` was called `hampers` until the
+ * The three things CraftTohfa sells. `combos` was called `hampers` until the
  * catalogue was split by category — it is the same product line, renamed so the
  * URL (/shop?c=combos) matches what these are called everywhere else.
+ *
+ * `painting-kits` was retired: the plaster paint sets all live under `combos`
+ * now. Removing it from this union is deliberate — it makes the compiler find
+ * every last reference rather than leaving a category slug that resolves to
+ * an empty shop page.
  */
-export type CategorySlug = "rakhis" | "combos" | "crochet" | "painting-kits";
+export type CategorySlug = "rakhis" | "combos" | "crochet";
 
 export interface ProductImage {
   /**

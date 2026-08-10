@@ -2,7 +2,9 @@ import type { Category, CategorySlug } from "@/types";
 import { getProductsByCategory } from "./products";
 
 /**
- * The four things CraftTohfa sells, in the order they appear on /shop.
+ * The three things CraftTohfa sells, in the order they appear on /shop.
+ * "DIY Painting Kits" used to sit between rakhis and crochet; the plaster
+ * paint sets are all combos now, so it went with the products.
  *
  * Anything that shows categories uses `activeCategories` below, so a category
  * with nothing in it simply doesn't appear rather than leading to a blank page.
@@ -37,18 +39,6 @@ export const categories: Category[] = [
     image: {
       src: "/images/products/rakhis/sunflower-rakhi-1.jpeg",
       alt: "A hand-crocheted sunflower rakhi in cotton thread",
-    },
-  },
-  {
-    slug: "painting-kits",
-    name: "DIY Painting Kits",
-    blurb:
-      "Everything laid out and ready — plaster figures, a brush and pots of colour. Open the box and start.",
-    doodle: "PaintBrush",
-    tone: "blush",
-    image: {
-      src: "/images/products/painting-kits/jungle-joy-animal-kit-1.jpeg",
-      alt: "A DIY painting kit with plaster animals, a brush and paint pots",
     },
   },
   {

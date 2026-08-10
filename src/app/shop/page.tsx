@@ -11,9 +11,9 @@ import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/site.config";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Shop rakhis, combo boxes, painting kits & crochet",
+  title: "Shop rakhis, combo boxes & crochet keepsakes",
   description:
-    "Browse every CraftTohfa handmade crochet rakhi, DIY painting kit, crochet keepsake and rakhi combo box. Order any of them straight over WhatsApp.",
+    "Browse every CraftTohfa handmade crochet rakhi, crochet keepsake and combo box — rakhi hampers and paint-your-own plaster sets. Order any of them straight over WhatsApp.",
   path: "/shop",
 });
 

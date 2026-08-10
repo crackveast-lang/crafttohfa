@@ -14,7 +14,12 @@ export const siteConfig = {
      see the note there before changing either one. */
   taglineShort: "Every craft is a तोहफा",
   description:
-    "Hand-crocheted rakhis from ₹50, DIY painting kits, crochet keepsakes and rakhi combo boxes — made in small batches by hand, and designed to pull kids away from screens.",
+    /* No price in here on purpose. This string is the default meta description
+       on every page that doesn't set its own, so a figure typed into it goes
+       stale the moment PRICES changes in data/products.ts and there is nothing
+       to make you notice. "from ₹50" survived a rakhi price rise here once
+       already. /shop derives its own "from ₹N" from `lowestPrice`. */
+    "Hand-crocheted rakhis, DIY paint-your-own sets, crochet keepsakes and rakhi combo boxes — made in small batches by hand, and designed to pull kids away from screens.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://crafttohfa.com",
 
   whatsapp: {

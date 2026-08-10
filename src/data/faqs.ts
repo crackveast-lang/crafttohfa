@@ -84,7 +84,7 @@ export const faqs: Faq[] = [
     group: "Products",
     question: "What's actually in a combo box?",
     answer:
-      "Every combo box has the same five things: a hand-crocheted rakhi on a printed card, a crochet keepsake (a soft toy, keychain or little bag), a paint-your-own bhai–behen idol, a second plaster piece to paint that matches the theme, and acrylic paints with a brush. Plus a Happy Raksha Bandhan card, all packed in a gift box. You can also buy the rakhis, painting kits and crochet keepsakes on their own.",
+      "Every combo box has the same five things: a hand-crocheted rakhi on a printed card, a crochet keepsake (a soft toy, keychain or little bag), a paint-your-own bhai–behen idol, a second plaster piece to paint that matches the theme, and acrylic paints with a brush. Plus a Happy Raksha Bandhan card, all packed in a gift box. You can also buy the rakhis and crochet keepsakes on their own.",
   },
   {
     id: "age-suitable",
