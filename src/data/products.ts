@@ -4,9 +4,9 @@ import type { CategorySlug, Product } from "@/types";
  * ┌──────────────────────────────────────────────────────────────────────┐
  * │  YOUR PRODUCT CATALOGUE                                              │
  * │                                                                      │
- * │  Four categories, priced from PRICES below — change a price there    │
- * │  and every product in that category follows. Names, descriptions and │
- * │  photos are real, written from your product photographs.             │
+ * │  Three categories. PRICES below is the DEFAULT for each one — a      │
+ * │  product can override it, and a handful now do; each says why.       │
+ * │  Names, descriptions and photos are written from your photographs.   │
  * │                                                                      │
  * │  ⚠️ STILL PLACEHOLDER — please check and correct:                     │
  * │     • every `rating` (delete the field where you have no reviews)    │
@@ -18,8 +18,14 @@ import type { CategorySlug, Product } from "@/types";
  */
 
 /**
- * One place for every price. Everything in a category shares its price, so
- * changing what a rakhi costs is a one-line edit rather than fifteen.
+ * The DEFAULT price for each category — what a product costs unless it says
+ * otherwise. Changing one of these still moves everything in that category
+ * that hasn't been overridden, which is most of them.
+ *
+ * Overriding: pass `price` to rakhi(), charm() or paintSet(), or set it
+ * directly on a literal product. Every override in this file carries a short
+ * note saying why, because a per-product price with no explanation is
+ * indistinguishable from a typo six months later.
  */
 const PRICES = {
   rakhis: 70,
@@ -67,12 +73,14 @@ function rakhi(o: {
   alt: string;
   badges?: string[];
   featured?: boolean;
+  /** Overrides PRICES.rakhis. Say why at the call site. */
+  price?: number;
 }): Product {
   return {
     slug: o.slug,
     name: o.name,
     category: "rakhis",
-    price: PRICES.rakhis,
+    price: o.price ?? PRICES.rakhis,
     tagline: o.tagline,
     description: o.description,
     highlights: o.highlights,
@@ -232,6 +240,8 @@ const rakhis: Product[] = [
     ],
     alt: 'A hand-crocheted yellow rakhi with a cream scalloped edge and "BRO" embroidered in red',
     badges: ["For brothers"],
+    // Priced with its pearl sibling below rather than with the other rakhis.
+    price: 300,
   }),
   rakhi({
     slug: "bro-pearl-rakhi",
@@ -245,6 +255,9 @@ const rakhis: Product[] = [
       "Adjustable tie",
     ],
     alt: 'A hand-crocheted pink and yellow rakhi with "BRO" spelled out in pearl beads',
+    /* The two "Bro" rakhis are the only ones off the ₹70 base — the sewn
+       lettering is what takes the time. Everything else stays PRICES.rakhis. */
+    price: 300,
   }),
   rakhi({
     slug: "kitty-face-rakhi",
@@ -310,12 +323,14 @@ function charm(o: {
   includes: string[];
   alt: string;
   badges?: string[];
+  /** Overrides PRICES.crochet. Say why at the call site. */
+  price?: number;
 }): Product {
   return {
     slug: o.slug,
     name: o.name,
     category: "crochet",
-    price: PRICES.crochet,
+    price: o.price ?? PRICES.crochet,
     tagline: o.tagline,
     description: o.description,
     highlights: o.highlights,
@@ -332,18 +347,23 @@ const crochet: Product[] = [
     slug: "teddy-bear-keychain",
     name: "Teddy Bear Keychain",
     category: "crochet",
-    price: PRICES.crochet,
-    tagline: "A little bear in blue dungarees and a red scarf",
+    // One of the three ₹300 crochet pieces — the stuffed, jointed ones that
+    // take an evening rather than an hour. See PRICES above.
+    price: 300,
+    tagline: "A little one in blue dungarees, with floppy ears",
+    /* Copy describes the photograph: floppy brown ears, a red top under blue
+       dungarees. The old text said "red scarf", and the combo listing calls
+       this exact piece a puppy. The NAME is left as you have it. */
     description:
-      "A crocheted teddy in blue dungarees with a red scarf, on a keyring clip. Small enough for a school bag, and sturdy enough to survive being on one.",
+      "A crocheted keychain toy with long floppy ears, a red top and blue dungarees, on a keyring clip. Small enough for a school bag, and sturdy enough to survive being on one.",
     highlights: [
       "Crocheted by hand in soft cotton",
       "Metal keyring clip",
       "Clips onto a school bag or a set of keys",
     ],
-    includes: ["1 crochet teddy bear keychain with a keyring clip"],
+    includes: ["1 crochet keychain toy with a keyring clip"],
     images: photos("crochet", "teddy-bear-keychain", [
-      "A hand-crocheted teddy bear keychain wearing blue dungarees and a red scarf",
+      "A hand-crocheted keychain toy with long floppy brown ears, wearing blue dungarees over a red top",
     ]),
     seasonal: false,
     inStock: true,
@@ -352,7 +372,8 @@ const crochet: Product[] = [
     slug: "happy-rabbit-keychain",
     name: '"Happy Rabbit" Keychain',
     category: "crochet",
-    price: PRICES.crochet,
+    // ₹300 tier — stuffed, with its own printed card. See PRICES above.
+    price: 300,
     tagline: "A bunny holding a note that says you are the happiest person",
     description:
       'A cream crochet bunny on a gold keyring clip, holding a small card reading "Happy Rabbit — today you are the happiest person". The one people buy to cheer someone up rather than for a festival.',
@@ -573,6 +594,8 @@ const crochet: Product[] = [
     ],
     alt: 'A cream hand-crocheted cow with a caramel fringe and pink snout, holding a card reading "Positive Moo, don\'t underestimate yourself, I believe in you"',
     badges: ["New"],
+    // ₹300 tier — stuffed, with its own printed card. See PRICES above.
+    price: 300,
   }),
 ];
 
@@ -616,12 +639,16 @@ function paintSet(o: {
   craftTime: string;
   badges?: string[];
   featured?: boolean;
+  /** Overrides PRICES.combos. Say why at the call site. */
+  price?: number;
+  /** Defaults false — the paint sets are evergreen. True for rakhi hampers. */
+  seasonal?: boolean;
 }): Product {
   return {
     slug: o.slug,
     name: o.name,
     category: "combos",
-    price: PRICES.combos,
+    price: o.price ?? PRICES.combos,
     tagline: o.tagline,
     description: o.description,
     highlights: o.highlights,
@@ -631,7 +658,7 @@ function paintSet(o: {
     images: photos("combos", o.slug, [o.alt], "jpg"),
     badges: o.badges,
     featured: o.featured,
-    seasonal: false,
+    seasonal: o.seasonal ?? false,
     inStock: true,
   };
 }
@@ -893,6 +920,8 @@ const combos: Product[] = [
     alt: "Four unpainted plaster flowers — a daisy, a rose, a tulip bunch and a cherry blossom — with white, purple, yellow and pink paint pots and a brush on a printed CraftTohfa card",
     ageRange: "5–12 years",
     craftTime: "45–60 minutes",
+    // The cheapest thing in this category. Four small flowers, four paints.
+    price: 120,
   }),
 
   paintSet({
@@ -917,6 +946,7 @@ const combos: Product[] = [
     ageRange: "4–10 years",
     craftTime: "45–60 minutes",
     featured: true,
+    price: 150,
   }),
 
   paintSet({
@@ -960,6 +990,7 @@ const combos: Product[] = [
     ageRange: "4–10 years",
     craftTime: "40–55 minutes",
     badges: ["Two to paint"],
+    price: 150,
   }),
 
   paintSet({
@@ -983,6 +1014,161 @@ const combos: Product[] = [
     ageRange: "4–10 years",
     craftTime: "45–60 minutes",
     badges: ["New"],
+    price: 150,
+  }),
+
+  // ── The name kits ───────────────────────────────────────────────────────
+  // Three products rather than one personalised listing, as you asked. The
+  // letters are cast to order either way, so each description says so — a
+  // buyer called anything other than Aman, Anya or Dhruvika still has to be
+  // able to work out that this kit is for them.
+
+  paintSet({
+    slug: "aman-name-paint-set",
+    name: "Name Paint Set — Aman",
+    tagline: "Their name in plaster letters, plus a race car to paint",
+    description:
+      "Plaster letters cast to spell a name, shown here as AMAN, with a racing car and four acrylic pots. The letters are made to order — send us the name over WhatsApp and that is the whole process.",
+    highlights: [
+      "Letters cast to spell whichever name you send",
+      "Comes with a plaster racing car as well",
+      "Four acrylic paints and a brush",
+      "Each letter is drilled to hang on a wall or a door",
+    ],
+    pieces: [
+      "Plaster letters spelling your chosen name",
+      "1 plaster racing car",
+    ],
+    alt: 'Unpainted plaster letters spelling "AMAN" with a plaster racing car, four paint pots and a brush on a printed CraftTohfa card',
+    ageRange: "4–12 years",
+    craftTime: "45–60 minutes",
+    badges: ["Personalised"],
+    price: 150,
+  }),
+
+  paintSet({
+    slug: "anya-name-paint-set",
+    name: "Name Paint Set — Anya",
+    tagline: "Their name in plaster letters, plus a butterfly to paint",
+    description:
+      "Plaster letters cast to spell a name, shown here as ANYA, with a wide-winged butterfly and four acrylic pots in teal, lilac, yellow and pink. The letters are made to order — send us the name over WhatsApp when you order.",
+    highlights: [
+      "Letters cast to spell whichever name you send",
+      "Comes with a plaster butterfly as well",
+      "Four acrylic paints and a brush",
+      "Each letter is drilled to hang on a wall or a door",
+    ],
+    pieces: ["Plaster letters spelling your chosen name", "1 plaster butterfly"],
+    alt: 'Unpainted plaster letters spelling "ANYA" with a plaster butterfly, four paint pots and a brush',
+    ageRange: "4–12 years",
+    craftTime: "45–60 minutes",
+    badges: ["Personalised"],
+    price: 150,
+  }),
+
+  paintSet({
+    /* ⚠️ NO PHOTO YET. Nothing named dhruvika exists anywhere on the machine,
+       so this renders the designed placeholder tile until you save one as
+       public/images/products/combos/dhruvika-name-paint-set-1.jpeg — no code
+       change needed when you do. */
+    slug: "dhruvika-name-paint-set",
+    name: "Name Paint Set — Dhruvika",
+    tagline: "Their name in plaster letters, plus a butterfly to paint",
+    description:
+      "Plaster letters cast to spell a name, shown here as DHRUVIKA, with a wide-winged butterfly and four acrylic pots. Longer names take a bigger set of letters and a little more painting — send us the name over WhatsApp when you order.",
+    highlights: [
+      "Letters cast to spell whichever name you send",
+      "Comes with a plaster butterfly as well",
+      "Four acrylic paints and a brush",
+      "Each letter is drilled to hang on a wall or a door",
+    ],
+    pieces: ["Plaster letters spelling your chosen name", "1 plaster butterfly"],
+    alt: 'Unpainted plaster letters spelling "DHRUVIKA" with a plaster butterfly, paint pots and a brush',
+    ageRange: "4–12 years",
+    craftTime: "60–75 minutes",
+    badges: ["Personalised"],
+    price: 150,
+  }),
+
+  // ── Canvas set ──────────────────────────────────────────────────────────
+
+  paintSet({
+    slug: "seashore-canvas-paint-set",
+    name: "Seashore Canvas & Easel Set",
+    tagline: "Four shells mounted on a canvas, with its own easel",
+    description:
+      "A scallop shell, a starfish, a spiral shell and an ammonite set onto a small stretched canvas, with a wooden easel to stand it on and four paints. The only set here that finishes as a framed piece rather than as loose figures.",
+    highlights: [
+      "Four plaster shells already mounted on the canvas",
+      "Wooden easel included — it stands up the moment it's dry",
+      "White, purple, yellow and pink paints",
+      "Ends up as one finished piece, not four things to find a home for",
+    ],
+    pieces: [
+      "1 stretched canvas with four plaster shells mounted on it",
+      "1 wooden display easel",
+    ],
+    alt: "A small canvas on a wooden easel with an unpainted plaster scallop shell, starfish, spiral shell and ammonite mounted on it, beside four paint pots and a brush",
+    ageRange: "5–12 years",
+    craftTime: "45–60 minutes",
+    badges: ["New"],
+    price: 150,
+  }),
+
+  // ── Two more rakhi hampers ──────────────────────────────────────────────
+  // These DO contain a rakhi, a crochet keepsake and the bhai–behen idol, so
+  // unlike the paint sets they are described as the full box.
+
+  paintSet({
+    slug: "car-rainbow-rakhi-combo",
+    name: "Car Rakhi & Blue Rainbow Combo",
+    tagline: "A blue crochet rainbow, a car rakhi, and a car to paint",
+    description:
+      "A chunky crochet rainbow in teal and lilac to keep, a blue crochet car rakhi on its printed card, and two plaster pieces to paint — the bhai–behen idol and a car money box. Boxed on shredded paper, ready to give.",
+    highlights: [
+      "Crochet car rakhi — no flowers, no pearls",
+      "Blue crochet rainbow, a keepsake rather than a filler",
+      "The plaster car is a working money box",
+      "Four paint pots and a brush included",
+    ],
+    pieces: [
+      "1 crochet car rakhi on a printed card",
+      "1 crochet rainbow in teal and lilac",
+      "1 paint-your-own bhai–behen idol",
+      "1 paint-your-own car money box",
+      "Gift box with shredded-paper filling",
+    ],
+    alt: "An open combo box with a teal and lilac crochet rainbow, a blue crochet car rakhi, a bhai–behen idol and a plaster car money box with four paint pots and a brush",
+    ageRange: "5–12 years",
+    craftTime: "45–60 minutes",
+    badges: ["For brothers"],
+    seasonal: true,
+  }),
+
+  paintSet({
+    slug: "strawberry-evil-eye-rakhi-combo",
+    name: "Strawberry Pouch & Evil Eye Combo",
+    tagline: "A strawberry pouch, a nazar rakhi, and a butterfly to paint",
+    description:
+      "A powder-blue crochet pouch with a red strawberry on the front, an evil eye rakhi strung with pearls, and two plaster pieces to paint — the bhai–behen idol and a butterfly. The pouch is the part still in use months after August.",
+    highlights: [
+      "Crochet strawberry pouch on a gold clip — hers to keep",
+      "Evil eye rakhi with pearl beads on the tie",
+      "Idol and butterfly both ready to paint",
+      "Four paint pots and a brush included",
+    ],
+    pieces: [
+      "1 crochet evil eye rakhi on a printed card",
+      "1 powder-blue crochet strawberry pouch",
+      "1 paint-your-own bhai–behen idol",
+      "1 paint-your-own butterfly",
+      "Gift box with shredded-paper filling",
+    ],
+    alt: "An open combo box with a powder-blue crochet strawberry pouch, a crochet evil eye rakhi with pearls, a bhai–behen idol and a plaster butterfly with four paint pots and a brush",
+    ageRange: "5–12 years",
+    craftTime: "45–60 minutes",
+    badges: ["New"],
+    seasonal: true,
   }),
 ];
 
