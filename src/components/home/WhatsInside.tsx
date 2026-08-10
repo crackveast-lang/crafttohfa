@@ -31,12 +31,12 @@ const CONTENTS = [
   },
   {
     Icon: PaintBrush,
-    title: "A Bhai–Behen keepsake to paint",
+    title: "A little keepsake of togetherness",
     body: "Bring your sibling bond to life with colours, creativity and a little imagination.",
   },
   {
     Icon: Sparkle,
-    title: "One more little thing to create",
+    title: "Pick. Create. Make It Yours.",
     body: "Pick your favourite — a butterfly, car money box, strawberry and more — and make it uniquely yours.",
   },
   {
@@ -55,8 +55,8 @@ export function WhatsInside() {
         <div>
           <SectionHeading
             eyebrow="What's inside your hamper"
-            title="It's not just a Rakhi. It's a day to remember. ❤️"
-            intro="Tie the Rakhi in the morning, then spend the afternoon creating, painting and laughing together."
+            title="Made of little things. Meant for big moments."
+            intro="From something to create to something to keep, every piece is thoughtfully chosen to turn a simple gift into a memorable experience."
           />
 
           {/* The spine of the section, and the one place on the page where the

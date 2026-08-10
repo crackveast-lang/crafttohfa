@@ -2,7 +2,13 @@ import Link from "next/link";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "secondary" | "ghost" | "sticker" | "onDark";
+type Variant =
+  | "primary"
+  | "secondary"
+  | "ghost"
+  | "sticker"
+  | "onDark"
+  | "whatsapp";
 type Size = "sm" | "md" | "lg";
 
 const BASE =
@@ -31,6 +37,13 @@ const VARIANTS: Record<Variant, string> = {
     "border-2 border-ink bg-peach text-ink shadow-sticker -rotate-2 hover:rotate-0 hover:-translate-y-0.5",
   onDark:
     "bg-white text-ink shadow-soft hover:-translate-y-0.5 hover:shadow-lift active:translate-y-0",
+  /* Reserved for controls that open WhatsApp — see the note on
+     --color-whatsapp in globals.css. It carries white at 4.88:1, and the
+     hover is the same lift the primary uses rather than a colour change:
+     any lighter green drops the label below AA, and any darker one stops
+     reading as WhatsApp. */
+  whatsapp:
+    "bg-whatsapp text-white shadow-soft hover:-translate-y-0.5 hover:shadow-lift active:translate-y-0",
 };
 
 const SIZES: Record<Size, string> = {

@@ -16,7 +16,7 @@ import type { WhatsAppContext } from "@/types";
  * crawlable. Never convert this to an onClick handler.
  */
 type ButtonStyleProps = {
-  variant?: "primary" | "secondary" | "ghost" | "sticker" | "onDark";
+  variant?: ComponentPropsWithoutRef<typeof Button>["variant"];
   size?: "sm" | "md" | "lg";
   full?: boolean;
   className?: string;
@@ -26,6 +26,12 @@ export function WhatsAppButton({
   ctx,
   children,
   showIcon = true,
+  /* Green by default. These buttons are the entire checkout on this site, and
+     WhatsApp's own colour is what makes one recognisable as "this opens
+     WhatsApp" before the label is read. Callers can still override — the dark
+     band uses `onDark`, and the hero pairs a `secondary` with the primary
+     next to it so the row doesn't read as two competing buttons. */
+  variant = "whatsapp",
   ...rest
 }: {
   ctx: WhatsAppContext;
@@ -42,6 +48,7 @@ export function WhatsAppButton({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={whatsAppLabel(ctx)}
+      variant={variant}
       {...whatsAppDataAttrs(ctx)}
       {...rest}
     >

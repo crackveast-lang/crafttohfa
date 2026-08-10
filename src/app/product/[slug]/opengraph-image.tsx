@@ -108,7 +108,7 @@ export default async function ProductOgImage({
               style={{
                 display: "flex",
                 alignItems: "center",
-                background: "#332D32",
+                background: "#17823E",
                 color: "#FFFFFF",
                 fontSize: 34,
                 fontWeight: 700,
@@ -120,7 +120,7 @@ export default async function ProductOgImage({
             </div>
           ) : null}
           <div style={{ display: "flex", fontSize: 26, color: "#332D32", opacity: 0.7 }}>
-            Order on WhatsApp
+            Order WhatsApp
           </div>
         </div>
       </div>

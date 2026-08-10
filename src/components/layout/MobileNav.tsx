@@ -91,7 +91,7 @@ export function MobileNav() {
         aria-expanded={open}
         aria-controls={panelId}
         aria-label={open ? "Close menu" : "Open menu"}
-        className="grid size-11 place-items-center rounded-full border-2 border-ink/80 text-ink transition-colors hover:bg-ink hover:text-cream md:hidden"
+        className="grid size-11 place-items-center rounded-full border-2 border-ink/80 text-ink transition-colors hover:bg-ink hover:text-cream lg:hidden"
       >
         <svg
           viewBox="0 0 24 24"
@@ -115,7 +115,7 @@ export function MobileNav() {
         onClick={() => setOpen(false)}
         aria-hidden="true"
         className={cn(
-          "fixed inset-0 top-0 z-40 bg-ink/35 backdrop-blur-[2px] transition-opacity duration-200 md:hidden",
+          "fixed inset-0 top-0 z-40 bg-ink/35 backdrop-blur-[2px] transition-opacity duration-200 lg:hidden",
           open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       />
@@ -126,7 +126,7 @@ export function MobileNav() {
         hidden={!open}
         /* Absolute against the sticky <header>, so it tracks the header's
            real position whether or not the announcement bar has scrolled away. */
-        className="absolute inset-x-3 top-[calc(100%+0.5rem)] z-50 rounded-card border-2 border-ink bg-cream p-5 shadow-lift md:hidden"
+        className="absolute inset-x-3 top-[calc(100%+0.5rem)] z-50 rounded-card border-2 border-ink bg-cream p-5 shadow-lift lg:hidden"
       >
         <nav aria-label="Main">
           <ul className="flex flex-col">
@@ -160,7 +160,7 @@ export function MobileNav() {
           rel="noopener noreferrer"
           aria-label={whatsAppLabel(ctx)}
           data-wa-kind="general"
-          className="mt-5 flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-6 font-semibold text-white"
+          className="mt-5 flex min-h-12 items-center justify-center gap-2 rounded-full bg-whatsapp px-6 font-semibold text-white"
         >
           <WhatsAppGlyph className="size-5" />
           Chat with us

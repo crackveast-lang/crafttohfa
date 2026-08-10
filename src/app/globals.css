@@ -38,6 +38,20 @@
   --color-ink: #332d32; /*   Warm Charcoal — ALL text, buttons, dark band  */
   --color-plum: #6f4a7e; /*  Deep Plum — the ~1% purple note. Marks only.  */
 
+  /* ---- WhatsApp green — NOT a brand colour, and not in the ratio ---------
+     This is a platform colour, in the same category as the Instagram glyph:
+     it exists so a WhatsApp button is recognisable as a WhatsApp button
+     before anyone reads the label. Use it ONLY on controls that open
+     WhatsApp. It is not a palette member, it never becomes a section tone,
+     and nothing else on the site may reach for it.
+
+     It is #25D366 — WhatsApp's own green, hue 142° at 70% saturation —
+     walked down to 30% lightness. The brand value itself is 1.98:1 against
+     white, so a button using it literally cannot carry its own label; this
+     is the darkest-hue-preserving step that clears AA (4.88:1) and it still
+     reads unmistakably as WhatsApp green next to the glyph. */
+  --color-whatsapp: #17823e;
+
   /* ---- THE PLUM BUDGET — read this before typing `plum` ------------------
      Plum is the only colour here that is not in the brief. It earns its
      place because nothing in the accent trio can be small text: blush, peach
@@ -521,6 +535,51 @@
   }
 }
 
+/* The gift box lands first, so there is something to open. */
+@keyframes preloadBoxIn {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.84);
+  }
+  62% {
+    opacity: 1;
+    transform: translateY(0) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* The lid comes off and stays off — `both` holds it at the end state, which
+   is why it never drops back onto the name. It lifts AND tilts, because a lid
+   rising straight up reads as a lift and a lid that tilts reads as opened. */
+@keyframes preloadLid {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-56%) rotate(-11deg);
+  }
+}
+
+/* The name rising out of the open box. It travels 100% of its own height, so
+   it begins entirely below `.preloader-window`'s clip and ends entirely
+   inside it, whatever the mark's real size turns out to be. */
+@keyframes preloadName {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ========================================================================= */
 
 @layer base {
@@ -851,7 +910,10 @@
       0 10px 26px -22px rgb(51 45 50 / 0.5);
   }
   [data-scrolled] .site-header-bar {
-    min-height: 3.5rem;
+    /* 4rem, not the old 3.5rem: the mark is now `md` (h-10/h-12), and 3.5rem
+       left the condensed bar shorter than the logo it has to contain, so the
+       shrink had nothing left to give and the border sat on the artwork. */
+    min-height: 4rem;
   }
 
   /* The tagline folds away as the header condenses, which is what lets the bar
@@ -938,8 +1000,47 @@
     display: grid;
     place-items: center;
     background-color: var(--color-cream);
-    animation: preloadOut 0.45s ease 0.85s both;
+    /* Ends at 1.85s. The whole gesture — box lands, lid lifts, name rises —
+       has to finish before this starts, or the splash dismisses mid-reveal
+       and the animation is never actually seen. Hero.tsx's entrance delays
+       are keyed to this number; move one and move the other. */
+    animation: preloadOut 0.45s ease 1.4s both;
   }
+
+  /* The name and the box are ONE column, and the box overlaps the name's clip
+     window by a few pixels (`margin-top: -6px`) with a higher z-index. That
+     overlap is the entire illusion: without it there is a visible hairline
+     the name pops into existence across, and it reads as a slide rather than
+     as something coming out of the box. */
+  .preloader-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .preloader-window {
+    overflow: hidden;
+    /* Room for descenders and the tagline, so nothing is shaved off at the
+       end of the rise. */
+    padding: 0 0.5rem 0.35rem;
+  }
+  .preloader-name {
+    animation: preloadName 0.62s var(--ease-settle) 0.52s both;
+  }
+  .preloader-box {
+    position: relative;
+    z-index: 2;
+    margin-top: -6px;
+    width: 132px;
+    animation: preloadBoxIn 0.5s var(--ease-bounce) 0.05s both;
+  }
+  /* fill-box so the tilt pivots on the lid itself rather than on the SVG's
+     viewBox origin, which would swing it off the side of the box. */
+  .preloader-lid {
+    transform-box: fill-box;
+    transform-origin: 50% 70%;
+    animation: preloadLid 0.5s var(--ease-bounce) 0.42s both;
+  }
+
   .preloader-bar {
     position: relative;
     width: 132px;
@@ -954,10 +1055,7 @@
     inset: 0 auto 0 0;
     border-radius: 999px;
     background-color: var(--color-plum);
-    animation: preloadBar 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-  .preloader-spin {
-    animation: spinSlow 5s linear infinite;
+    animation: preloadBar 1.15s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 }
 

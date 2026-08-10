@@ -2,6 +2,7 @@ import { Hero } from "@/components/home/Hero";
 import { CountdownBand } from "@/components/home/CountdownBand";
 import { WhatsInside } from "@/components/home/WhatsInside";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
+import { Customise } from "@/components/home/Customise";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { ValueProps } from "@/components/home/ValueProps";
 import { FounderStrip } from "@/components/home/FounderStrip";
@@ -22,6 +23,9 @@ export default function Home() {
       <CountdownBand />
       <WhatsInside />
       <FeaturedProducts />
+      {/* Straight after the products, while "can you put her name on it?" is
+          still the question in front of someone. */}
+      <Customise />
       <HowItWorks />
       <ValueProps />
       <FounderStrip />

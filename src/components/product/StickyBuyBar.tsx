@@ -60,7 +60,7 @@ export function StickyBuyBar({ product }: { product: Product }) {
           data-wa-kind="product"
           data-wa-slug={product.slug}
           tabIndex={show ? 0 : -1}
-          className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-full bg-ink px-6 font-semibold text-white shadow-soft"
+          className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-full bg-whatsapp px-6 font-semibold text-white shadow-soft"
         >
           <WhatsAppGlyph className="size-5" />
           Order now

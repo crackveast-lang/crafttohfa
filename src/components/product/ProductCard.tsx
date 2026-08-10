@@ -126,7 +126,7 @@ export function ProductCard({
 
         {/* z-10 keeps this above the stretched link's pseudo-element.
             Sizing note: in the 2-up mobile grid a card is only ~132px wide at
-            320px, leaving ~54px of label room — "Order on WhatsApp" cannot
+            320px, leaving ~54px of label room — "Order WhatsApp" cannot
             fit, so the label shortens rather than wrapping or overflowing.
             The narrowest case is actually the 3-up tablet grid (~179px
             button), which is why the text stays at 0.8rem at every size
@@ -138,7 +138,7 @@ export function ProductCard({
           className="relative z-10 mt-2 gap-1.5 px-3 text-[0.8rem]"
         >
           <span className="sm:hidden">Order</span>
-          <span className="hidden sm:inline">Order on WhatsApp</span>
+          <span className="hidden sm:inline">Order WhatsApp</span>
         </WhatsAppButton>
       </div>
     </Card>

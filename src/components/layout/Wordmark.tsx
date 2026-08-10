@@ -40,6 +40,16 @@ const SIZES = {
     art: "lockup",
     tag: "mt-1.5 text-[0.8rem] md:text-sm",
   },
+  /* The splash. Deliberately the flat `wordmark` art rather than the lockup:
+     the lockup already contains a gift box, and the preloader now draws its
+     own box for the mark to rise out of — two boxes in one frame reads as a
+     mistake. Sized between md and lg so it fills the box's width. */
+  splash: {
+    text: "text-3xl md:text-4xl",
+    logo: "h-14 md:h-16",
+    art: "wordmark",
+    tag: "mt-1.5 text-[0.8rem] md:text-sm",
+  },
 } as const;
 
 const ART = {
@@ -72,7 +82,7 @@ export function Wordmark({
   tagline = false,
 }: {
   className?: string;
-  size?: "sm" | "md" | "lg";
+  size?: keyof typeof SIZES;
   onDark?: boolean;
   asLink?: boolean;
   tagline?: boolean;

@@ -11,7 +11,7 @@ export const faqs: Faq[] = [
     group: "Orders",
     question: "How do I actually place an order?",
     answer:
-      "Tap any 'Order on WhatsApp' button and your WhatsApp opens with the product name and price already filled in. Send it, and we reply to confirm availability, the total including shipping, and how to pay. There is no cart to fight with — you're talking to a person from the first message.",
+      "Tap any 'Order WhatsApp' button and your WhatsApp opens with the product name and price already filled in. Send it, and we reply to confirm availability, the total including shipping, and how to pay. There is no cart to fight with — you're talking to a person from the first message.",
   },
   {
     id: "why-whatsapp",

@@ -48,12 +48,16 @@ export default function ShopPage() {
     <>
       <PageHero
         eyebrow={`${products.length} pieces · from ${formatINR(lowestPrice)}`}
-        title="Everything we make by hand"
+        title="More creating. Less scrolling. 🤍"
         intro={
           <>
-            Crochet rakhis on their own, DIY painting kits, keepsakes to keep,
-            and combo boxes with all three in one. Made in small batches. Free
-            shipping above {formatINR(siteConfig.shipping.freeAbove)}.
+            At Craft Tohfa, we believe childhood is meant to be filled with
+            little moments of creating, imagining and discovering.
+            <span className="mt-4 block">
+              Our thoughtfully curated craft kits and gifts turn ordinary
+              moments into something special. Free shipping above{" "}
+              {formatINR(siteConfig.shipping.freeAbove)}.
+            </span>
           </>
         }
       />

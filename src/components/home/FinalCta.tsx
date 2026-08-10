@@ -81,7 +81,7 @@ export function FinalCta() {
             className="pulse-once rounded-full text-plum"
           >
             <WhatsAppButton ctx={{ kind: "general" }} size="lg">
-              Order on WhatsApp
+              Order WhatsApp
             </WhatsAppButton>
           </div>
           <div data-reveal="rise" style={{ animationDelay: "300ms" }}>

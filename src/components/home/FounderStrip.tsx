@@ -5,8 +5,9 @@ import { WashiTape } from "@/components/ui/WashiTape";
 import { Heart } from "@/components/doodles";
 
 /**
- * The emotional core of the homepage. Kept to one quote of about 45 words —
- * a full biography here would dilute it. The rest lives on /about.
+ * The emotional core of the homepage. Kept to about 50 words in two short
+ * paragraphs — a full biography here would dilute it, and the "Meet Craft
+ * Tohfa" link is the whole point: the long version lives on /about.
  */
 export function FounderStrip() {
   return (
@@ -61,28 +62,34 @@ export function FounderStrip() {
               data-reveal="rise"
               className="text-eyebrow uppercase text-plum"
             >
-              Why any of this exists
+              Our story
             </p>
 
-            <blockquote className="mt-6">
-              <p
-                data-reveal="rise"
-                style={{ animationDelay: "90ms" }}
-                className="max-w-[24ch] font-display text-h3 italic leading-tight md:max-w-[22ch] md:text-h2"
-              >
-                &ldquo;I watched screens quietly replace imagination in my own
-                house. So I started making the thing I wished existed.&rdquo;
-              </p>
-            </blockquote>
+            <h2
+              data-reveal="rise"
+              style={{ animationDelay: "90ms" }}
+              className="mt-6 max-w-[24ch] text-h2 md:max-w-[22ch]"
+            >
+              A Tohfa, Made to Create Memories.
+            </h2>
 
             <p
               data-reveal="rise"
               style={{ animationDelay: "220ms" }}
-              className="mt-8 max-w-[48ch] text-body leading-relaxed text-ink/80"
+              className="mt-7 max-w-[52ch] text-body leading-relaxed text-ink/80"
             >
-              CraftTohfa began at a kitchen table with a crochet hook and a
-              stubborn idea — that making something together should be easy
-              enough to actually happen on a Tuesday evening.
+              Craft Tohfa began with a simple thought — what if the little
+              moments we spend scrolling could become moments spent creating
+              instead?
+            </p>
+
+            <p
+              data-reveal="rise"
+              style={{ animationDelay: "300ms" }}
+              className="mt-4 max-w-[52ch] text-body leading-relaxed text-ink/80"
+            >
+              And so, we started creating thoughtful craft kits and gifts that
+              bring children closer to creativity, imagination and each other.
             </p>
 
             {/* The one signature moment of the section: the handwritten line
@@ -103,7 +110,7 @@ export function FounderStrip() {
               style={{ animationDelay: "760ms" }}
               className="group mt-7 inline-flex min-h-11 items-center gap-2 font-semibold underline decoration-sage decoration-2 underline-offset-8 hover:text-plum"
             >
-              Read our story
+              Meet Craft Tohfa
               <span
                 aria-hidden="true"
                 data-reveal="nudge"

@@ -101,7 +101,7 @@ export function ProductBuyBox({ product }: { product: Product }) {
             size="lg"
             full
           >
-            Order on WhatsApp
+            Order WhatsApp
           </WhatsAppButton>
         ) : (
           <WhatsAppButton

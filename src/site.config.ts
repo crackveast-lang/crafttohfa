@@ -93,6 +93,7 @@ export const siteConfig = {
   nav: [
     { href: "/shop", label: "Shop" },
     { href: "/#whats-inside", label: "What's Inside" },
+    { href: "/#customise", label: "Customise" },
     { href: "/about", label: "Our Story" },
     { href: "/faq", label: "FAQ" },
   ],
