@@ -35,13 +35,18 @@ export function Header() {
         <div className="site-header-bar flex min-h-20 items-center justify-between gap-4">
           <Wordmark size="md" tagline />
 
+          {/* Nav type steps up from 0.95rem to 1.05rem, with roomier padding
+              and full-strength ink. At 0.95rem/85% it was set smaller and
+              lighter than the body copy underneath it, which made the primary
+              navigation the quietest text on the page. The row still fits at
+              lg: five items at this size come to ~470px of the ~1136px bar. */}
           <nav aria-label="Main" className="hidden lg:block">
             <ul className="flex items-center gap-1">
               {siteConfig.nav.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="inline-flex min-h-11 items-center rounded-full px-3.5 text-[0.95rem] font-semibold text-ink/85 transition-colors hover:bg-ink/6 hover:text-ink"
+                    className="inline-flex min-h-12 items-center rounded-full px-4 text-[1.05rem] font-semibold text-ink transition-colors hover:bg-ink/6 hover:text-plum"
                   >
                     {item.label}
                   </Link>
@@ -53,7 +58,9 @@ export function Header() {
           <div className="flex items-center gap-2">
             <WhatsAppButton
               ctx={{ kind: "general" }}
-              size="sm"
+              /* md, not sm: the order button should not be the smallest
+                 control in a bar whose nav just grew. */
+              size="md"
               className="hidden sm:inline-flex"
             >
               WhatsApp us

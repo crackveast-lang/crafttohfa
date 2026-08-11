@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     ],
   },
   title: {
-    default: `${siteConfig.name} — Handmade DIY Craft Kits, Rakhis & Gift Hampers`,
+    default: `${siteConfig.name}, Handmade DIY Craft Kits, Rakhis & Gift Hampers`,
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} — Handmade DIY Craft Kits, Rakhis & Gift Hampers`,
+    title: `${siteConfig.name}, Handmade DIY Craft Kits, Rakhis & Gift Hampers`,
     description: siteConfig.description,
   },
   twitter: { card: "summary_large_image" },

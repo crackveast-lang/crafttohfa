@@ -48,12 +48,20 @@ const VARIANTS: Record<Variant, string> = {
 
      Recognition is carried by the GLYPH instead, which is the part people
      actually read: the mark is unmistakable at 16px and it costs the palette
-     nothing. Peach with ink text is 8.74:1 — better than the green ever was
-     with white on it (4.88:1) — and the ink border gives it the same weight
+     nothing.
+
+     LAVENDER, not peach. It was peach, which is also the washi tape, the
+     doodles, the sticker badges and the closing gradient, so the single most
+     important control on the site was painted the same colour as the
+     decoration around it. Lavender is used for this and nothing else, which
+     is what makes "this is the order button" learnable. Ink on it is 6.55:1,
+     so it carries its own label, and the ink border gives it the same weight
      as the primary button it usually sits beside. Hover deepens the fill
-     rather than changing hue, so nothing flashes a new colour into the page. */
+     rather than changing hue, so nothing flashes a new colour into the page.
+
+     StickyBuyBar and MobileNav hand-roll these same classes. Move all three. */
   whatsapp:
-    "border-2 border-ink/85 bg-peach text-ink shadow-soft hover:-translate-y-0.5 hover:bg-peach/75 hover:shadow-lift active:translate-y-0",
+    "border-2 border-ink/85 bg-lavender text-ink shadow-soft hover:-translate-y-0.5 hover:bg-lavender/75 hover:shadow-lift active:translate-y-0",
 };
 
 const SIZES: Record<Size, string> = {

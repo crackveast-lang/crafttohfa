@@ -137,7 +137,7 @@ export function MobileNav() {
                   // Needed for same-path links like /shop → /shop?c=rakhis,
                   // where the pathname never changes so `open` wouldn't reset.
                   onClick={() => setOpen(false)}
-                  className="flex min-h-12 items-center border-b border-ink/10 font-display text-lg font-semibold"
+                  className="flex min-h-14 items-center border-b border-ink/10 font-display text-xl font-semibold"
                 >
                   {item.label}
                 </Link>
@@ -146,7 +146,7 @@ export function MobileNav() {
             <li>
               <Link
                 href="/contact"
-                className="flex min-h-12 items-center border-b border-ink/10 font-display text-lg font-semibold"
+                className="flex min-h-14 items-center border-b border-ink/10 font-display text-xl font-semibold"
               >
                 Contact
               </Link>
@@ -161,7 +161,7 @@ export function MobileNav() {
           aria-label={whatsAppLabel(ctx)}
           data-wa-kind="general"
           // Peach + ink — keep in step with VARIANTS.whatsapp in ui/Button.tsx.
-          className="mt-5 flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-ink/85 bg-peach px-6 font-semibold text-ink"
+          className="mt-5 flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-ink/85 bg-lavender px-6 font-semibold text-ink"
         >
           <WhatsAppGlyph className="size-5" />
           Chat with us

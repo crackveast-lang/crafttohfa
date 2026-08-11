@@ -182,13 +182,13 @@ export default async function ProductPage(props: PageProps<"/product/[slug]">) {
 
           <Accordion question="Care & safety" name="product-details">
             <p>
-              The acrylic paints are non-toxic but not washable once dry —
+              The acrylic paints are non-toxic but not washable once dry , 
               cover the table and keep a wet cloth handy. Painted pieces need
               about 24 hours to cure fully.
             </p>
             <p className="mt-3">
               Crochet pieces should be hand-washed in cold water and dried
-              flat, never wrung out. Not suitable for children under three —
+              flat, never wrung out. Not suitable for children under three , 
               the beads and small pieces are a choking hazard.
             </p>
           </Accordion>

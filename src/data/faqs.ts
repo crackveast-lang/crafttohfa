@@ -11,14 +11,14 @@ export const faqs: Faq[] = [
     group: "Orders",
     question: "How do I actually place an order?",
     answer:
-      "Tap any 'Order WhatsApp' button and your WhatsApp opens with the product name and price already filled in. Send it, and we reply to confirm availability, the total including shipping, and how to pay. There is no cart to fight with — you're talking to a person from the first message.",
+      "Tap any 'Order WhatsApp' button and your WhatsApp opens with the product name and price already filled in. Send it, and we reply to confirm availability, the total including shipping, and how to pay. There is no cart to fight with. You're talking to a person from the first message.",
   },
   {
     id: "why-whatsapp",
     group: "Orders",
     question: "Why WhatsApp instead of a normal checkout?",
     answer:
-      "Because almost everything here is made to order, and most orders come with a question — a colour change, a delivery date, whether it suits a particular age. Sorting that out in a two-minute chat works far better for both of us than a checkout form ever could.",
+      "Because almost everything here is made to order, and most orders come with a question: a colour change, a delivery date, whether it suits a particular age. Sorting that out in a two-minute chat works far better for both of us than a checkout form ever could.",
   },
   {
     id: "payment",
@@ -40,7 +40,7 @@ export const faqs: Faq[] = [
     group: "Orders",
     question: "Can I cancel or change my order?",
     answer:
-      "Yes, as long as we haven't started making it — usually within a few hours of confirming. Once a piece is underway we can't cancel it, because it was made specifically for you.",
+      "Yes, as long as we haven't started making it, usually within a few hours of confirming. Once a piece is underway we can't cancel it, because it was made specifically for you.",
   },
 
   // ── Shipping ──
@@ -61,7 +61,7 @@ export const faqs: Faq[] = [
     group: "Shipping",
     question: "Will my rakhi reach in time for Raksha Bandhan?",
     answer:
-      "If you order by the date shown in the banner at the top of the site, yes. After that we can often still manage it with express shipping — message us and we'll tell you straight whether it will make it rather than take the order and hope.",
+      "If you order by the date shown in the banner at the top of the site, yes. After that we can often still manage it with express shipping. Message us and we'll tell you straight whether it will make it rather than take the order and hope.",
   },
   {
     id: "international",
@@ -75,7 +75,7 @@ export const faqs: Faq[] = [
     group: "Shipping",
     question: "What if it arrives damaged?",
     answer:
-      "We pack every Craft Tohfa with care and love. Please record a short video while opening your package and share it with us — it helps us quickly assist you if your order arrives damaged or has any issue.",
+      "We pack every Craft Tohfa with care and love. Please record a short video while opening your package and share it with us. It helps us quickly assist you if your order arrives damaged or has any issue.",
   },
 
   // ── Products ──
@@ -98,21 +98,21 @@ export const faqs: Faq[] = [
     group: "Products",
     question: "Are the paints safe for children?",
     answer:
-      "The acrylic paints are non-toxic. The plaster pieces are sturdy but can chip if dropped on a hard floor, and we'd suggest an adult nearby for children under six. Not suitable for under-threes — the beads and small pieces are a choking hazard.",
+      "The acrylic paints are non-toxic. The plaster pieces are sturdy but can chip if dropped on a hard floor, and we'd suggest an adult nearby for children under six. Not suitable for under-threes: the beads and small pieces are a choking hazard.",
   },
   {
     id: "handmade-variation",
     group: "Products",
     question: "Will mine look exactly like the photo?",
     answer:
-      "Very close, but not identical — every rakhi and toy is crocheted by hand, so small variations in the thread and finish are part of it. If a batch differs noticeably from the photos, we send you a picture before dispatch.",
+      "Very close, but not identical. Every rakhi and toy is crocheted by hand, so small variations in the thread and finish are part of it. If a batch differs noticeably from the photos, we send you a picture before dispatch.",
   },
   {
     id: "reuse",
     group: "Products",
     question: "Is there enough paint to finish everything?",
     answer:
-      "Yes, with a bit to spare — we'd rather send too much than have a project stop halfway. The plaster pieces take paint well and a second coat is usually plenty for full coverage.",
+      "Yes, with a bit to spare. We'd rather send too much than have a project stop halfway. The plaster pieces take paint well and a second coat is usually plenty for full coverage.",
   },
 
   // ── Bulk ──
@@ -121,14 +121,14 @@ export const faqs: Faq[] = [
     group: "Bulk orders",
     question: "Do you take bulk or school orders?",
     answer:
-      "Yes — school workshops, birthday party favours, and corporate Raksha Bandhan gifting are a real part of what we do. Pricing improves from around 20 pieces. Message us with the quantity and the date you need it by.",
+      "Yes. School workshops, birthday party favours and corporate Raksha Bandhan gifting are a real part of what we do. Pricing improves from around 20 pieces. Message us with the quantity and the date you need it by.",
   },
   {
     id: "bulk-lead-time",
     group: "Bulk orders",
     question: "How much notice do you need for a bulk order?",
     answer:
-      "Two to three weeks is comfortable for most quantities. Around Raksha Bandhan and Diwali, please give us as much notice as you can — those weeks fill up early.",
+      "Two to three weeks is comfortable for most quantities. Around Raksha Bandhan and Diwali, please give us as much notice as you can. Those weeks fill up early.",
   },
   {
     id: "bulk-branding",

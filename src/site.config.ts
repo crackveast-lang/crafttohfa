@@ -19,7 +19,7 @@ export const siteConfig = {
        stale the moment PRICES changes in data/products.ts and there is nothing
        to make you notice. "from ₹50" survived a rakhi price rise here once
        already. /shop derives its own "from ₹N" from `lowestPrice`. */
-    "Hand-crocheted rakhis, DIY paint-your-own sets, crochet keepsakes and rakhi combo boxes — made in small batches by hand, and designed to pull kids away from screens.",
+    "Hand-crocheted rakhis, DIY paint-your-own sets, crochet keepsakes and rakhi combo boxes. Made in small batches by hand, and designed to pull kids away from screens.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://crafttohfa.com",
 
   whatsapp: {
@@ -65,7 +65,7 @@ export const siteConfig = {
   shipping: {
     freeAbove: 999,
     flatRate: 79,
-    dispatchCopy: "Handmade to order — dispatched in 2–3 working days.",
+    dispatchCopy: "Handmade to order, dispatched in 2–3 working days.",
     deliveryCopy: "Delivered across India in 3–6 working days.",
     codAvailable: false,
   },

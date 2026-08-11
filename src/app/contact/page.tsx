@@ -34,7 +34,7 @@ export default function ContactPage() {
             </span>
 
             <div>
-              <h2 className="text-h3">WhatsApp — the fastest way</h2>
+              <h2 className="text-h3">WhatsApp, the fastest way</h2>
               <p className="mt-3 max-w-[46ch] text-body leading-relaxed text-ink/80">
                 Every order on this site is placed over WhatsApp. It&apos;s also
                 the best place for questions about sizes, ages, colours or
@@ -66,7 +66,7 @@ export default function ContactPage() {
             <Card className="flex flex-col gap-4 p-7">
               <h2 className="font-display text-lg font-semibold">Email</h2>
               <p className="text-[0.95rem] leading-relaxed text-ink/75">
-                Better for anything long — invoices, artwork files, bulk
+                Better for anything long, invoices, artwork files, bulk
                 specifications.
               </p>
               <a
@@ -101,7 +101,7 @@ export default function ContactPage() {
                 className="mt-0.5 size-5 shrink-0 text-ink"
               />
               <p className="text-sm leading-relaxed text-ink/75">
-                We&apos;re a small team making things by hand — if we don&apos;t
+                We&apos;re a small team making things by hand, if we don&apos;t
                 reply instantly, it&apos;s because someone is mid-stitch.
               </p>
             </Card>

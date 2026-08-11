@@ -13,7 +13,7 @@ const STEPS = [
   {
     n: "2",
     title: "Tap the WhatsApp button",
-    body: "Your chat opens with the product and price already written out. Send it — that's the whole order.",
+    body: "Your chat opens with the product and price already written out. Send it, that's the whole order.",
   },
   {
     n: "3",

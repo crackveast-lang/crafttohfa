@@ -100,7 +100,7 @@ export function Wordmark({
       src={logo}
       // When the tagline is rendered beside it, the alt drops to the bare name
       // so the two aren't read out one after the other.
-      alt={tagline ? siteConfig.name : `${siteConfig.name} — every craft is a tohfa`}
+      alt={tagline ? siteConfig.name : `${siteConfig.name}, every craft is a tohfa`}
       width={dims.width}
       height={dims.height}
       priority={false}
@@ -184,7 +184,7 @@ export function Wordmark({
   return (
     <Link
       href="/"
-      aria-label={`${siteConfig.name} — home`}
+      aria-label={`${siteConfig.name}, home`}
       // py-2 gives the logo a 44px+ tap target without disturbing the
       // baseline alignment of the two halves of the wordmark.
       className={cn("group inline-flex shrink-0 items-center py-2", className)}

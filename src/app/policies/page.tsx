@@ -107,7 +107,7 @@ export default function PoliciesPage() {
                 </li>
                 <li>
                   International delivery isn&apos;t a standard option, but ask
-                  us — we have done it and can quote the courier rate.
+                  us. We have done it and can quote the courier rate.
                 </li>
               </ul>
             </Policy>
@@ -115,14 +115,14 @@ export default function PoliciesPage() {
             <Policy id="returns" title="Returns, damages & cancellations">
               <p>
                 <strong>Damaged or wrong item:</strong> please record a short
-                video as you open the package — it is the quickest way for us
+                video as you open the package. It is the quickest way for us
                 to see what happened and sort it out. Send it to us on WhatsApp
                 within 48 hours of delivery and we&apos;ll replace the item or
                 refund you in full. No forms.
               </p>
               <p>
                 <strong>Cancellations:</strong> we can cancel and refund in full
-                any time before we start making your order — usually a few hours
+                any time before we start making your order, usually within a few hours
                 after confirmation. Once work has begun we can&apos;t cancel,
                 because the piece was made specifically for you.
               </p>
@@ -181,7 +181,7 @@ export default function PoliciesPage() {
                   handled a lot or displayed.
                 </li>
                 <li>
-                  Not suitable for children under three — small parts present a
+                  Not suitable for children under three, small parts present a
                   choking hazard.
                 </li>
               </ul>
@@ -190,7 +190,7 @@ export default function PoliciesPage() {
             <div className="rounded-card border-2 border-ink/85 bg-blush p-7 shadow-sticker-sm">
               <h2 className="text-h3">Something not covered here?</h2>
               <p className="mt-3 text-body text-ink/80">
-                Ask us directly — we&apos;d rather answer than have you guess.
+                Ask us directly, we&apos;d rather answer than have you guess.
               </p>
               <WhatsAppButton
                 ctx={{

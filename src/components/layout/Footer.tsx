@@ -78,7 +78,7 @@ export function Footer() {
 
           <FooterColumn title="Ordering">
             <li className="text-sm leading-relaxed text-ink/75">
-              Every order is placed over WhatsApp — no cart, no checkout forms.
+              Every order is placed over WhatsApp. No cart, no checkout forms.
             </li>
             <li className="text-sm leading-relaxed text-ink/75">
               Free shipping above {formatINR(siteConfig.shipping.freeAbove)}.

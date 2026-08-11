@@ -78,7 +78,7 @@ export function FounderStrip() {
               style={{ animationDelay: "220ms" }}
               className="mt-7 max-w-[52ch] text-body leading-relaxed text-ink/80"
             >
-              Craft Tohfa began with a simple thought — what if the little
+              Craft Tohfa began with a simple thought, what if the little
               moments we spend scrolling could become moments spent creating
               instead?
             </p>
@@ -101,7 +101,7 @@ export function FounderStrip() {
               style={{ animationDelay: "620ms" }}
               className="mt-6 font-hand text-2xl text-ink/70"
             >
-              — with love, from our home to yours
+             , with love, from our home to yours
             </p>
 
             <Link

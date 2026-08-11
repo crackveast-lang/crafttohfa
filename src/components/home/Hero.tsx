@@ -148,7 +148,7 @@ export function Hero() {
               style={{ animationDelay: "1.74s" }}
             >
               Handcrafted crochet rakhis, DIY painting kits, little keepsakes,
-              and thoughtfully curated combo boxes — all made to make gifting a
+              and thoughtfully curated combo boxes, all made to make gifting a
               little more special.
             </p>
 

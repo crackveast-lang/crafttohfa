@@ -49,7 +49,7 @@ function EmptyState() {
       <WhatsAppButton
         ctx={{
           kind: "general",
-          note: "I'm looking for something in particular — can you help?",
+          note: "I'm looking for something in particular, can you help?",
         }}
         className="mt-2"
       >

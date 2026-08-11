@@ -55,7 +55,7 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="Our story"
-        title="It started with a little idea—and a lot of heart."
+        title="It started with a little idea, and a lot of heart."
         intro="One mother's wish to create more meaningful moments became a little brand made for creating, gifting and remembering."
       />
 
@@ -67,7 +67,7 @@ export default function AboutPage() {
             title="The little realisation"
             lead="I wanted more moments of making."
             body={[
-              "As a mother, I noticed how easily screens could fill a child's free time. I wanted to create something that felt just as easy to reach for—something that could turn an ordinary afternoon into a little moment of creating, exploring and having fun together.",
+              "As a mother, I noticed how easily screens could fill a child's free time. I wanted to create something that felt just as easy to reach for, something that could turn an ordinary afternoon into a little moment of creating, exploring and having fun together.",
               "It didn't have to be perfect. It just had to be something we could make with our hands.",
             ]}
           />
@@ -76,15 +76,15 @@ export default function AboutPage() {
             title="From an idea to a little box"
             lead="So I started making what I wished I could find."
             body={[
-              "Simple craft activities with everything needed in one place—easy to open, easy to start, and exciting enough to make little hands want to try.",
-              "And as I kept creating, I realised I wanted to do more than make craft kits. I wanted to create handmade gifts with a personal touch—little things that could be made, gifted and remembered.",
+              "Simple craft activities with everything needed in one place, easy to open, easy to start, and exciting enough to make little hands want to try.",
+              "And as I kept creating, I realised I wanted to do more than make craft kits. I wanted to create handmade gifts with a personal touch, little things that could be made, gifted and remembered.",
             ]}
           />
           <Act
             number="03"
             title="And then came Craft Tohfa"
             body={[
-              "The word “Tohfa” means gift, and we truly believe that every craft is a gift—not just to receive, but to create, cherish, and remember.",
+              "The word “Tohfa” means gift, and we truly believe that every craft is a gift, not just to receive, but to create, cherish, and remember.",
               "Each order is handmade with patience, packed with care, and sent with the hope that it brings happiness to your home, just as creating it brought happiness to ours.",
             ]}
           />
@@ -97,7 +97,7 @@ export default function AboutPage() {
             data-reveal="ink"
             className="mx-auto max-w-[24ch] font-hand text-3xl leading-tight text-plum md:text-4xl"
           >
-            Welcome to CraftTohfa — where every craft becomes a memory, and
+            Welcome to CraftTohfa, where every craft becomes a memory, and
             every memory is a Tohfa. ❤️
           </p>
           <p

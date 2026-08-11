@@ -36,7 +36,7 @@ const STEPS = [
     chip: "bg-sage",
     reveal: "sticker",
     title: "Message us within 48 hours",
-    body: "Send us your order details along with the photos or video, on WhatsApp, within 48 hours of delivery. No forms, no ticket numbers — the same chat you ordered in.",
+    body: "Send us your order details along with the photos or video, on WhatsApp, within 48 hours of delivery. No forms, no ticket numbers, the same chat you ordered in.",
   },
   {
     Icon: Sparkle,
@@ -132,7 +132,7 @@ export default function ReturnsPage() {
             <h2 className="text-h3">Cancellations</h2>
             <p className="mt-5 text-body leading-relaxed text-ink/75">
               We can cancel and refund in full any time before we start making
-              your order — usually a few hours after confirmation. Once work has
+              your order, usually a few hours after confirmation. Once work has
               begun we can&apos;t cancel it, because the piece was made
               specifically for you.
             </p>
@@ -163,7 +163,7 @@ export default function ReturnsPage() {
             Made with care, packed with love. <span aria-hidden="true">❤️</span>
           </p>
           <p className="max-w-[46ch] text-body text-ink/75">
-            Something arrived that isn&apos;t right? Tell us — a real person
+            Something arrived that isn&apos;t right? Tell us, a real person
             reads it, and we&apos;d rather fix it than argue about it.
           </p>
           <WhatsAppButton

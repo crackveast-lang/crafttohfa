@@ -2,33 +2,24 @@ import type { Category, CategorySlug } from "@/types";
 import { getProductsByCategory } from "./products";
 
 /**
- * The three things CraftTohfa sells, in the order they appear on /shop.
- * "DIY Painting Kits" used to sit between rakhis and crochet; the plaster
- * paint sets are all combos now, so it went with the products.
+ * The four things CraftTohfa sells, in the order they appear on /shop.
+ *
+ * ORDER IS CHEAPEST-FIRST, and that is a deliberate commercial decision rather
+ * than a tidy alphabetical accident: rakhis start at ₹70, painting kits at
+ * ₹120, crochet at ₹249 and combo boxes at ₹499. Someone landing on /shop
+ * meets the ₹70 rakhis first and reads the brand as approachable. Lead with
+ * the ₹499 boxes and the same catalogue reads as expensive.
+ *
+ * If a price changes enough to reorder these, move the entry. It is not
+ * derived from the data on purpose: a category list that silently reshuffles
+ * itself when one product is repriced is worse than one you edit by hand.
  *
  * Anything that shows categories uses `activeCategories` below, so a category
  * with nothing in it simply doesn't appear rather than leading to a blank page.
- * Each `image` points at a real product photo in that category — never at a
+ * Each `image` points at a real product photo in that category, never at a
  * photo from a different one, or the chip and the grid disagree.
  */
 export const categories: Category[] = [
-  {
-    slug: "combos",
-    /* "Rakhi Combo Boxes" until the paint sets were added here. Five of the
-       ten items in this category now contain no rakhi and no soft toy, so the
-       old name made the breadcrumb on a flower paint set read "Rakhi Combo
-       Boxes" — and the blurb promised a rakhi in every one of them. The slug
-       is untouched, so /shop?c=combos and every existing link still work. */
-    name: "Combo Boxes",
-    blurb:
-      "Rakhi hampers with a crochet keepsake and pieces to paint, and multi-piece paint sets with everything for a whole afternoon. Boxed and ready to give.",
-    doodle: "GiftBox",
-    tone: "peach",
-    image: {
-      src: "/images/products/combos/strawberry-bag-rakhi-paint-hamper-1.jpg",
-      alt: "A rakhi combo box with a crochet handbag, rakhi and pieces to paint",
-    },
-  },
   {
     slug: "rakhis",
     name: "Handmade Rakhis",
@@ -42,15 +33,46 @@ export const categories: Category[] = [
     },
   },
   {
+    /* Back after being folded into `combos` for one release. Eleven paint sets
+       had ended up under "Combo Boxes", where a ₹120 tray of plaster flowers
+       sat next to a ₹499 rakhi hamper and the breadcrumb described neither. */
+    slug: "painting-kits",
+    name: "Painting Kits",
+    blurb:
+      "Plaster pieces cast blank, with the paints and a brush in the box. Open it and start; nothing else to buy.",
+    doodle: "PaintBrush",
+    tone: "blush",
+    image: {
+      src: "/images/products/painting-kits/fruit-basket-paint-combo-1.png",
+      alt: "A painting kit with plaster fruits, paint pots and a brush",
+    },
+  },
+  {
     slug: "crochet",
     name: "Crochet Keepsakes",
     blurb:
-      "The soft toys and keychains on their own — the part of a box that is still around long after August.",
+      "The soft toys and keychains on their own, the part of a box that is still around long after August.",
     doodle: "Heart",
     tone: "cream",
     image: {
       src: "/images/products/crochet/teddy-bear-keychain-1.jpeg",
-      alt: "A hand-crocheted teddy bear keychain in blue dungarees",
+      alt: "A hand-crocheted keychain toy in blue dungarees",
+    },
+  },
+  {
+    /* "Rakhi Combo Boxes" until the paint sets briefly lived here too. Now
+       that they have their own category every box in this one really does
+       contain a rakhi again, so the blurb can promise it. The slug is
+       untouched, so /shop?c=combos and every existing link still work. */
+    slug: "combos",
+    name: "Combo Boxes",
+    blurb:
+      "A rakhi, a crochet keepsake and pieces to paint, boxed on shredded paper and ready to give.",
+    doodle: "GiftBox",
+    tone: "peach",
+    image: {
+      src: "/images/products/combos/strawberry-bag-rakhi-paint-hamper-1.jpg",
+      alt: "A rakhi combo box with a crochet handbag, rakhi and pieces to paint",
     },
   },
 ];

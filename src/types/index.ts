@@ -1,14 +1,16 @@
 /**
- * The three things CraftTohfa sells. `combos` was called `hampers` until the
- * catalogue was split by category — it is the same product line, renamed so the
+ * The four things CraftTohfa sells. `combos` was called `hampers` until the
+ * catalogue was split by category; it is the same product line, renamed so the
  * URL (/shop?c=combos) matches what these are called everywhere else.
  *
- * `painting-kits` was retired: the plaster paint sets all live under `combos`
- * now. Removing it from this union is deliberate — it makes the compiler find
- * every last reference rather than leaving a category slug that resolves to
- * an empty shop page.
+ * `painting-kits` is back. It was folded into `combos` when there were two
+ * paint sets; there are now eleven, and a ₹120 tray of plaster flowers sitting
+ * under "Combo Boxes" next to a ₹499 rakhi hamper described neither of them.
+ * The slug is the original one, so old /shop?c=painting-kits links work again.
+ *
+ * Order here is not meaningful. `categories.ts` owns display order.
  */
-export type CategorySlug = "rakhis" | "combos" | "crochet";
+export type CategorySlug = "rakhis" | "painting-kits" | "crochet" | "combos";
 
 export interface ProductImage {
   /**

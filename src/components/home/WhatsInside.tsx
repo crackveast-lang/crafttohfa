@@ -22,12 +22,12 @@ const CONTENTS = [
   {
     Icon: RakhiThread,
     title: "A Rakhi, handmade with love",
-    body: "Soft cotton, delicate beads and thoughtful details — made to celebrate the bond.",
+    body: "Soft cotton, delicate beads and thoughtful details, made to celebrate the bond.",
   },
   {
     Icon: Heart,
     title: "A little keepsake to treasure",
-    body: "Choose a soft crochet toy, keychain or mini bag — something they can keep close even after Raksha Bandhan.",
+    body: "Choose a soft crochet toy, keychain or mini bag, something they can keep close even after Raksha Bandhan.",
   },
   {
     Icon: PaintBrush,
@@ -37,12 +37,12 @@ const CONTENTS = [
   {
     Icon: Sparkle,
     title: "Pick. Create. Make It Yours.",
-    body: "Pick your favourite — a butterfly, car money box, strawberry and more — and make it uniquely yours.",
+    body: "Pick your favourite, a butterfly, car money box, strawberry and more, and make it uniquely yours.",
   },
   {
     Icon: GiftBox,
     title: "Everything you need to create",
-    body: "Acrylic paints, a brush and a heartfelt Raksha Bandhan card — all packed and ready for your little celebration.",
+    body: "Acrylic paints, a brush and a heartfelt Raksha Bandhan card, all packed and ready for your little celebration.",
   },
 ];
 

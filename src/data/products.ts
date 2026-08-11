@@ -29,6 +29,7 @@ import type { CategorySlug, Product } from "@/types";
  */
 const PRICES = {
   rakhis: 70,
+  paintingKits: 150,
   crochet: 249,
   combos: 499,
 } as const;
@@ -107,13 +108,17 @@ const rakhis: Product[] = [
     ],
     alt: "A hand-crocheted sunflower rakhi with yellow petals, a brown centre and green leaves, worn on a child's wrist",
     badges: ["Bestseller"],
+    /* Featured so the homepage row OPENS on a ₹70 rakhi. Every product flagged
+       featured was a ₹499 combo, so the first thing on the homepage was four
+       of the most expensive things here. See getFeaturedProducts below. */
+    featured: true,
   }),
   rakhi({
     slug: "peacock-rakhi",
     name: "Peacock Rakhi",
     tagline: "A peacock feather, worked in green, yellow and blue",
     description:
-      "The eye of a peacock feather crocheted in three rounds — bright green on the outside, yellow, then a deep blue centre — with a pearl bead either side of the tie. The only one in the range with a feather rather than an animal or a flower.",
+      "The eye of a peacock feather crocheted in three rounds: bright green on the outside, then yellow, then a deep blue centre. A pearl bead sits either side of the tie. The only one in the range with a feather rather than an animal or a flower.",
     highlights: [
       "Three colours worked in concentric rounds",
       "A pearl bead on each side of the tie",
@@ -159,6 +164,8 @@ const rakhis: Product[] = [
       "Crocheted ears worked separately and sewn on",
     ],
     alt: "A hand-crocheted lion rakhi with an orange face, a gold mane and a white muzzle, worn on a child's wrist",
+    // The second ₹70 rakhi on the homepage row. See the note on the sunflower.
+    featured: true,
   }),
   rakhi({
     slug: "teddy-bear-rakhi",
@@ -219,7 +226,7 @@ const rakhis: Product[] = [
     name: '"Bhai" Rakhi',
     tagline: "The word crocheted straight into it",
     description:
-      "A red disc with a yellow border and BHAI worked into the front in yellow thread — crocheted in, not printed on or stuck to it. Finished with a small gold bead.",
+      "A red disc with a yellow border and BHAI worked into the front in yellow thread, crocheted in, not printed on or stuck to it. Finished with a small gold bead.",
     highlights: [
       "The lettering is crocheted in, not printed",
       "Red and yellow cotton with a gold bead",
@@ -376,7 +383,7 @@ const crochet: Product[] = [
     price: 300,
     tagline: "A bunny holding a note that says you are the happiest person",
     description:
-      'A cream crochet bunny on a gold keyring clip, holding a small card reading "Happy Rabbit — today you are the happiest person". The one people buy to cheer someone up rather than for a festival.',
+      'A cream crochet bunny on a gold keyring clip, holding a small card reading "Happy Rabbit, today you are the happiest person". The one people buy to cheer someone up rather than for a festival.',
     highlights: [
       "Comes holding its own printed note",
       "Crocheted by hand in cream cotton",
@@ -408,7 +415,7 @@ const crochet: Product[] = [
     highlights: [
       "Tulips worked into the stitch, not appliquéd on",
       "Pearl button closure",
-      "Gold clip — clips to a school bag or a set of keys",
+      "Gold clip, clips to a school bag or a set of keys",
     ],
     includes: ["1 crochet mini bag with a pearl button and gold clip"],
     alt: "A cream hand-crocheted mini bag with rows of yellow and pink tulips, a pearl button and a gold clip",
@@ -420,7 +427,7 @@ const crochet: Product[] = [
     name: "Blue Tulip Mini Bag",
     tagline: "The tulip bag in cornflower blue",
     description:
-      "The same tulip bag worked in a soft cornflower blue, with yellow tulips above pink ones and a pearl button at the top. The blue is what makes the yellow read — it is the brightest of the three tulip bags.",
+      "The same tulip bag worked in a soft cornflower blue, with yellow tulips above pink ones and a pearl button at the top. The blue is what makes the yellow read, it is the brightest of the three tulip bags.",
     highlights: [
       "Cornflower blue with yellow and pink tulips",
       "Pearl button closure",
@@ -454,7 +461,7 @@ const crochet: Product[] = [
     description:
       "A tiny handbag crocheted in thick cloud-puff yarn, with a plush strawberry and a felt leaf on the front. Squashier than the cotton bags and the one small children reach for first.",
     highlights: [
-      "Worked in thick puff yarn — soft rather than stiff",
+      "Worked in thick puff yarn, soft rather than stiff",
       "Plush strawberry with a felt leaf",
       "Top handle, sized for a small hand",
     ],
@@ -468,7 +475,7 @@ const crochet: Product[] = [
     name: "Fluffy Kitty Handbag",
     tagline: "A winking cat face on a peach puff bag",
     description:
-      "A peach puff-yarn handbag with a fluffy white cat face across the front — one eye winking, whiskers and a yellow nose embroidered in, and a bow over one ear. The softest thing in the range to hold.",
+      "A peach puff-yarn handbag with a fluffy white cat face across the front, one eye winking, whiskers and a yellow nose embroidered in, and a bow over one ear. The softest thing in the range to hold.",
     highlights: [
       "Fluffy appliquéd cat face with an embroidered wink",
       "Thick peach puff yarn",
@@ -568,7 +575,7 @@ const crochet: Product[] = [
     description:
       "A little pink pig crocheted in the round, sitting with its legs out in front, with a red snout and black bead eyes. On a gold clip, and small enough to disappear into a coat pocket.",
     highlights: [
-      "Crocheted in the round — arms, legs and ears all worked separately",
+      "Crocheted in the round, arms, legs and ears all worked separately",
       "Red snout and black bead eyes",
       "Gold clip and split ring",
     ],
@@ -582,7 +589,7 @@ const crochet: Product[] = [
     name: '"Positive Moo" Cow',
     tagline: "A little cow holding a note that believes in you",
     description:
-      'A round cream cow with a caramel fringe, horns and a pink snout, holding a card that reads "Positive Moo — don\'t underestimate yourself. I believe in you." The one people buy for a friend sitting an exam rather than for a festival.',
+      'A round cream cow with a caramel fringe, horns and a pink snout, holding a card that reads "Positive Moo, don\'t underestimate yourself. I believe in you." The one people buy for a friend sitting an exam rather than for a festival.',
     highlights: [
       "Comes holding its own printed note",
       "Caramel fringe, horns and hooves worked separately",
@@ -626,7 +633,19 @@ const PAINT_SET_EXTRAS = [
   "Printed CraftTohfa card",
 ];
 
-/** Shared by the paint sets — the difference between them is only the pieces. */
+/**
+ * Shared by the paint sets. The difference between them is only the pieces.
+ *
+ * Defaults to the `painting-kits` category, because eleven of the thirteen
+ * calls are paint sets. The two that are not are the rakhi hampers at the
+ * bottom of this file, which pass `category: "combos"` explicitly: they use
+ * this helper for its shape, not for its meaning.
+ *
+ * The image directory is DERIVED from the category rather than passed in, so a
+ * product cannot end up filed under one category with its photo in another
+ * folder. Moving a product between categories moves where its photo is looked
+ * for, which is the behaviour you want when you go and move the file.
+ */
 function paintSet(o: {
   slug: string;
   name: string;
@@ -639,29 +658,312 @@ function paintSet(o: {
   craftTime: string;
   badges?: string[];
   featured?: boolean;
-  /** Overrides PRICES.combos. Say why at the call site. */
+  /** Overrides the category default. Say why at the call site. */
   price?: number;
-  /** Defaults false — the paint sets are evergreen. True for rakhi hampers. */
+  /** Defaults false: the paint sets are evergreen. True for rakhi hampers. */
   seasonal?: boolean;
+  /** Defaults to painting-kits. Only the two rakhi hampers set this. */
+  category?: Extract<CategorySlug, "painting-kits" | "combos">;
 }): Product {
+  const category = o.category ?? "painting-kits";
   return {
     slug: o.slug,
     name: o.name,
-    category: "combos",
-    price: o.price ?? PRICES.combos,
+    category,
+    price: o.price ?? (category === "combos" ? PRICES.combos : PRICES.paintingKits),
     tagline: o.tagline,
     description: o.description,
     highlights: o.highlights,
     includes: [...o.pieces, ...PAINT_SET_EXTRAS],
     ageRange: o.ageRange,
     craftTime: o.craftTime,
-    images: photos("combos", o.slug, [o.alt], "jpg"),
+    images: photos(category, o.slug, [o.alt], "jpg"),
     badges: o.badges,
     featured: o.featured,
     seasonal: o.seasonal ?? false,
     inStock: true,
   };
 }
+
+/**
+ * The paint sets: plaster pieces cast blank, with the paints and a brush.
+ *
+ * Their own category again as of this release. They lived under `combos` for
+ * one release, which put a ₹120 tray of plaster flowers on the same shelf as
+ * a ₹499 rakhi hamper and gave both of them a breadcrumb that fitted neither.
+ *
+ * No ratings on any of these: they are new, so there is nothing to average.
+ */
+const paintingKits: Product[] = [
+  paintSet({
+    slug: "little-vehicles-paint-combo",
+    name: "Little Vehicles Paint Set",
+    tagline: "Seven plaster vehicles, and an afternoon to get through them",
+    description:
+      "A whole fleet cast in plaster and waiting to be painted: a car, a jeep, two buses, a train engine and its carriages. The biggest set here by piece count, and the one that keeps two or three children busy at the same table.",
+    highlights: [
+      "Seven separate pieces, so nobody has to take turns",
+      "Chunky moulds with raised windows and wheels to paint between",
+      "Every piece stands up on a shelf afterwards",
+      "Paints and brush supplied, nothing else to buy",
+    ],
+    pieces: [
+      "1 plaster car and 1 plaster jeep",
+      "2 plaster buses",
+      "1 plaster train engine with carriages",
+    ],
+    alt: "Seven unpainted plaster vehicles (a car, a jeep, buses and a train engine with carriages) arranged around a printed CraftTohfa card",
+    ageRange: "4–10 years",
+    craftTime: "60–90 minutes",
+    badges: ["Most pieces"],
+    featured: true,
+    /* NOT the ₹150 category default. Flagged to you as inconsistent with
+       Fruit Basket at ₹150 and still unresolved, so it is left where it was
+       rather than silently repriced. */
+    price: 499,
+  }),
+
+  paintSet({
+    slug: "train-and-friends-paint-combo",
+    name: "Train & Friends Paint Set",
+    tagline: "A train, a bus, a panda and a slice of watermelon",
+    description:
+      "A deliberately mixed set: a chunky train engine, a bus, a round panda face and a watermelon slice, with seven paint pots rather than the usual three or four. The variety is the point: nothing in the box looks like anything else in it.",
+    highlights: [
+      "Four different moulds, not four of the same thing",
+      "Seven acrylic colours, the fullest palette in the range",
+      "Deep relief on the train, so the detail survives a heavy hand",
+      "Finishes in one long sitting",
+    ],
+    pieces: [
+      "1 plaster train engine",
+      "1 plaster bus",
+      "1 plaster panda face",
+      "1 plaster watermelon slice",
+    ],
+    alt: "An unpainted plaster train engine, bus, panda face and watermelon slice with seven paint pots and a brush around a printed CraftTohfa card",
+    ageRange: "4–10 years",
+    craftTime: "50–70 minutes",
+    featured: true,
+    /* NOT the ₹150 category default. Flagged to you as inconsistent with
+       Fruit Basket at ₹150 and still unresolved, so it is left where it was
+       rather than silently repriced. */
+    price: 499,
+  }),
+
+  paintSet({
+    slug: "flower-garden-paint-combo",
+    name: "Flower Garden Paint Set",
+    tagline: "A daisy, a rose, a tulip bunch and a blossom",
+    description:
+      "Four plaster flowers, each moulded from a different bloom: a flat-petalled daisy, a spiral rose, a bunch of tulips and a cherry blossom with its stamens picked out. The quietest set in the range, and the one that tends to get chosen by older children.",
+    highlights: [
+      "Four distinct flowers, each with its own petal detail",
+      "The rose spiral and blossom stamens reward a fine brush",
+      "White, purple, yellow and pink paints supplied",
+      "Looks like something you'd keep on a windowsill",
+    ],
+    pieces: [
+      "1 plaster daisy",
+      "1 plaster rose",
+      "1 plaster tulip bunch",
+      "1 plaster cherry blossom",
+    ],
+    alt: "Four unpainted plaster flowers (a daisy, a rose, a tulip bunch and a cherry blossom) with white, purple, yellow and pink paint pots and a brush on a printed CraftTohfa card",
+    ageRange: "5–12 years",
+    craftTime: "45–60 minutes",
+    // The cheapest thing in this category. Four small flowers, four paints.
+    price: 120,
+  }),
+
+  paintSet({
+    slug: "fruit-basket-paint-combo",
+    name: "Fruit Basket Paint Set",
+    tagline: "Strawberry, pineapple, watermelon and orange",
+    description:
+      "Four fruits cast in plaster, each with the texture moulded in: pips on the strawberry, segments on the orange, the crosshatch on the pineapple. Six paint pots, which is enough to get all four right rather than compromising on one.",
+    highlights: [
+      "Pips, segments and rind textures moulded into every piece",
+      "Six acrylic colours, enough for all four fruits",
+      "The one set where the colours are obvious, so younger children can work unaided",
+      "Four pieces, one brush, one afternoon",
+    ],
+    pieces: [
+      "1 plaster strawberry",
+      "1 plaster pineapple",
+      "1 plaster watermelon slice",
+      "1 plaster orange slice",
+    ],
+    alt: "Four unpainted plaster fruits (a strawberry, a pineapple, a watermelon slice and an orange slice) with six paint pots and a brush around a printed CraftTohfa card",
+    ageRange: "4–10 years",
+    craftTime: "45–60 minutes",
+    featured: true,
+  }),
+
+  paintSet({
+    slug: "teddy-and-butterfly-paint-combo",
+    name: "Teddy & Butterfly Paint Set",
+    tagline: "One for each of them, in the same box",
+    description:
+      "A wide-winged butterfly and a sitting teddy bear, both cast in plaster with deep relief, and six paints between them. Two pieces of roughly equal appeal is the whole idea, it is the set that gets bought when there are two children and only one box.",
+    highlights: [
+      "Two pieces, so two children can paint at once",
+      "Deep wing veins and a moulded teddy face to work into",
+      "Six acrylic colours including brown and black for the bear",
+      "Both pieces stand on their own afterwards",
+    ],
+    pieces: ["1 plaster butterfly", "1 plaster teddy bear"],
+    alt: "An unpainted plaster butterfly and teddy bear with six paint pots and a brush around a printed CraftTohfa card",
+    ageRange: "4–10 years",
+    craftTime: "40–55 minutes",
+    badges: ["Two to paint"],
+    /* NOT the ₹150 category default. Flagged to you as inconsistent with
+       Fruit Basket at ₹150 and still unresolved, so it is left where it was
+       rather than silently repriced. */
+    price: 499,
+  }),
+
+  /* The two kits kept from the retired DIY Painting Kits category. They are
+     the same kind of thing as the five sets above — plaster pieces, paints and
+     a brush — so they use the same helper and the same price rather than
+     arriving here as ₹120 items in a ₹499 category. */
+
+  paintSet({
+    slug: "jungle-joy-animal-kit",
+    name: "Jungle Joy Animal Art Kit",
+    tagline: "A hippo and a giraffe in one box",
+    description:
+      "Two plaster animals, a round hippo and a long-necked giraffe, come with acrylic pots and a brush. Two pieces means two children can paint at the same time instead of taking turns.",
+    highlights: [
+      "Two figures, so two can paint at once",
+      "Hippo and giraffe, both cast in plaster",
+      "Acrylic paints and a brush included",
+      "Both pieces stand up on a shelf afterwards",
+    ],
+    pieces: ["1 plaster hippo", "1 plaster giraffe"],
+    alt: "An unpainted plaster hippo and giraffe with blue, green and yellow paint pots and a brush on a CraftTohfa card",
+    ageRange: "4–10 years",
+    craftTime: "40–55 minutes",
+    badges: ["Two to paint"],
+  }),
+
+  paintSet({
+    slug: "dino-squad-paint-kit",
+    name: "Dino Squad Paint Kit",
+    tagline: "A T-rex, a stegosaurus and a triceratops",
+    description:
+      "Three dinosaurs cast in plaster: a grinning T-rex, a plated stegosaurus and a horned triceratops, with six acrylic pots. Three pieces and six colours means nobody has to agree on what colour a dinosaur is.",
+    highlights: [
+      "Three different dinosaurs, not three of the same",
+      "Plates, horns and scales moulded in relief",
+      "Six acrylic colours and a brush",
+      "The set that gets asked for by name",
+    ],
+    pieces: [
+      "1 plaster T-rex",
+      "1 plaster stegosaurus",
+      "1 plaster triceratops",
+    ],
+    alt: "Three unpainted plaster dinosaurs (a T-rex, a stegosaurus and a triceratops) with six paint pots and a brush around a printed CraftTohfa card",
+    ageRange: "4–10 years",
+    craftTime: "45–60 minutes",
+    badges: ["New"],
+  }),
+
+  // ── The name kits ───────────────────────────────────────────────────────
+  // Three products rather than one personalised listing, as you asked. The
+  // letters are cast to order either way, so each description says so — a
+  // buyer called anything other than Aman, Anya or Dhruvika still has to be
+  // able to work out that this kit is for them.
+
+  paintSet({
+    slug: "aman-name-paint-set",
+    name: "Name Paint Set: Aman",
+    tagline: "Their name in plaster letters, plus a race car to paint",
+    description:
+      "Plaster letters cast to spell a name, shown here as AMAN, with a racing car and four acrylic pots. The letters are made to order, send us the name over WhatsApp and that is the whole process.",
+    highlights: [
+      "Letters cast to spell whichever name you send",
+      "Comes with a plaster racing car as well",
+      "Four acrylic paints and a brush",
+      "Each letter is drilled to hang on a wall or a door",
+    ],
+    pieces: [
+      "Plaster letters spelling your chosen name",
+      "1 plaster racing car",
+    ],
+    alt: 'Unpainted plaster letters spelling "AMAN" with a plaster racing car, four paint pots and a brush on a printed CraftTohfa card',
+    ageRange: "4–12 years",
+    craftTime: "45–60 minutes",
+    badges: ["Personalised"],
+  }),
+
+  paintSet({
+    slug: "anya-name-paint-set",
+    name: "Name Paint Set: Anya",
+    tagline: "Their name in plaster letters, plus a butterfly to paint",
+    description:
+      "Plaster letters cast to spell a name, shown here as ANYA, with a wide-winged butterfly and four acrylic pots in teal, lilac, yellow and pink. The letters are made to order, send us the name over WhatsApp when you order.",
+    highlights: [
+      "Letters cast to spell whichever name you send",
+      "Comes with a plaster butterfly as well",
+      "Four acrylic paints and a brush",
+      "Each letter is drilled to hang on a wall or a door",
+    ],
+    pieces: ["Plaster letters spelling your chosen name", "1 plaster butterfly"],
+    alt: 'Unpainted plaster letters spelling "ANYA" with a plaster butterfly, four paint pots and a brush',
+    ageRange: "4–12 years",
+    craftTime: "45–60 minutes",
+    badges: ["Personalised"],
+  }),
+
+  paintSet({
+    /* ⚠️ NO PHOTO YET. Nothing named dhruvika exists anywhere on the machine,
+       so this renders the designed placeholder tile until you save one as
+       public/images/products/combos/dhruvika-name-paint-set-1.jpeg — no code
+       change needed when you do. */
+    slug: "dhruvika-name-paint-set",
+    name: "Name Paint Set: Dhruvika",
+    tagline: "Their name in plaster letters, plus a butterfly to paint",
+    description:
+      "Plaster letters cast to spell a name, shown here as DHRUVIKA, with a wide-winged butterfly and four acrylic pots. Longer names take a bigger set of letters and a little more painting, send us the name over WhatsApp when you order.",
+    highlights: [
+      "Letters cast to spell whichever name you send",
+      "Comes with a plaster butterfly as well",
+      "Four acrylic paints and a brush",
+      "Each letter is drilled to hang on a wall or a door",
+    ],
+    pieces: ["Plaster letters spelling your chosen name", "1 plaster butterfly"],
+    alt: 'Unpainted plaster letters spelling "DHRUVIKA" with a plaster butterfly, paint pots and a brush',
+    ageRange: "4–12 years",
+    craftTime: "60–75 minutes",
+    badges: ["Personalised"],
+  }),
+
+  // ── Canvas set ──────────────────────────────────────────────────────────
+
+  paintSet({
+    slug: "seashore-canvas-paint-set",
+    name: "Seashore Canvas & Easel Set",
+    tagline: "Four shells mounted on a canvas, with its own easel",
+    description:
+      "A scallop shell, a starfish, a spiral shell and an ammonite set onto a small stretched canvas, with a wooden easel to stand it on and four paints. The only set here that finishes as a framed piece rather than as loose figures.",
+    highlights: [
+      "Four plaster shells already mounted on the canvas",
+      "Wooden easel included, it stands up the moment it's dry",
+      "White, purple, yellow and pink paints",
+      "Ends up as one finished piece, not four things to find a home for",
+    ],
+    pieces: [
+      "1 stretched canvas with four plaster shells mounted on it",
+      "1 wooden display easel",
+    ],
+    alt: "A small canvas on a wooden easel with an unpainted plaster scallop shell, starfish, spiral shell and ammonite mounted on it, beside four paint pots and a brush",
+    ageRange: "5–12 years",
+    craftTime: "45–60 minutes",
+    badges: ["New"],
+  }),
+];
 
 const combos: Product[] = [
   {
@@ -671,12 +973,12 @@ const combos: Product[] = [
     price: PRICES.combos,
     tagline: "A crochet kitty rakhi, a pink piggy friend, and two things to paint",
     description:
-      "A hand-crocheted kitty rakhi with pearl beads, a soft pink crochet piggy to keep, and two plaster pieces waiting to be painted — the bhai–behen idol and a kitty face. Four colours and a brush are in the box, so the afternoon carries on after the thread is tied.",
+      "A hand-crocheted kitty rakhi with pearl beads, a soft pink crochet piggy to keep, and two plaster pieces waiting to be painted: the bhai–behen idol and a kitty face. Four colours and a brush are in the box, so the afternoon carries on after the thread is tied.",
     highlights: [
       "Crochet kitty rakhi with pearl and gold beads",
-      "Soft pink crochet piggy — hers to keep afterwards",
+      "Soft pink crochet piggy, hers to keep afterwards",
       "Two plaster pieces to paint, not one",
-      "Everything supplied — nothing else to buy",
+      "Everything supplied, nothing else to buy",
     ],
     includes: [
       "1 crochet kitty rakhi on a printed card",
@@ -711,7 +1013,7 @@ const combos: Product[] = [
       "A pink crocheted rainbow, a matching butterfly rakhi, and a plaster butterfly to paint alongside the bhai–behen idol. The softest of the five, and the one that tends to get chosen for younger sisters.",
     highlights: [
       "Hand-crocheted pink butterfly rakhi with beads",
-      "Chunky crochet rainbow — a keepsake, not a filler",
+      "Chunky crochet rainbow, a keepsake, not a filler",
       "Butterfly and idol both ready to paint",
       "Four paint pots and a brush included",
     ],
@@ -746,7 +1048,7 @@ const combos: Product[] = [
     description:
       "A crocheted blue car rakhi instead of the usual florals, a puppy keychain in red dungarees, and a plaster car with a coin slot to paint and then actually use. Made for the brother who has never once wanted a rakhi with beads on it.",
     highlights: [
-      "Crochet car rakhi — no flowers, no pearls",
+      "Crochet car rakhi, no flowers, no pearls",
       "Puppy keychain that clips onto a school bag",
       "The plaster car is a working money box",
       "Red, blue and white paints included",
@@ -781,11 +1083,11 @@ const combos: Product[] = [
     price: PRICES.combos,
     tagline: "A crocheted handbag she'll carry long after August",
     description:
-      "A hand-crocheted mini handbag with a felted strawberry on the front — the piece in this collection that outlives the festival by months. With a rainbow spiral rakhi, a plaster strawberry to paint, and the bhai–behen idol.",
+      "A hand-crocheted mini handbag with a felted strawberry on the front, the piece in this collection that outlives the festival by months. With a rainbow spiral rakhi, a plaster strawberry to paint, and the bhai–behen idol.",
     highlights: [
       "Crochet mini handbag with a felted strawberry",
       "Rainbow spiral rakhi with pearl and gold beads",
-      "Four paints — red, yellow, green and pink",
+      "Four paints, red, yellow, green and pink",
       "The bag gets used well past Raksha Bandhan",
     ],
     includes: [
@@ -818,7 +1120,7 @@ const combos: Product[] = [
     price: PRICES.combos,
     tagline: "A bunny with a note, and three pieces to paint",
     description:
-      'A cream crochet bunny holding a small card that reads "Happy Rabbit — today you are the happiest person", a rainbow spiral rakhi, and three plaster pieces to paint: the bhai–behen idol, a starfish and a shell. The most to paint of any box here.',
+      'A cream crochet bunny holding a small card that reads "Happy Rabbit, today you are the happiest person", a rainbow spiral rakhi, and three plaster pieces to paint: the bhai–behen idol, a starfish and a shell. The most to paint of any box here.',
     highlights: [
       "Three plaster pieces to paint, not two",
       "Crochet bunny with its own little note",
@@ -848,285 +1150,20 @@ const combos: Product[] = [
     rating: { value: 4.8, count: 16 },
   },
 
-  // ── The multi-piece paint sets ──────────────────────────────────────────
-  // No ratings on any of these: they are new, so there is nothing to average.
-
-  paintSet({
-    slug: "little-vehicles-paint-combo",
-    name: "Little Vehicles Paint Set",
-    tagline: "Seven plaster vehicles, and an afternoon to get through them",
-    description:
-      "A whole fleet cast in plaster — a car, a jeep, two buses, a train engine and its carriages — waiting to be painted. The biggest set here by piece count, and the one that keeps two or three children busy at the same table.",
-    highlights: [
-      "Seven separate pieces, so nobody has to take turns",
-      "Chunky moulds with raised windows and wheels to paint between",
-      "Every piece stands up on a shelf afterwards",
-      "Paints and brush supplied — nothing else to buy",
-    ],
-    pieces: [
-      "1 plaster car and 1 plaster jeep",
-      "2 plaster buses",
-      "1 plaster train engine with carriages",
-    ],
-    alt: "Seven unpainted plaster vehicles — a car, a jeep, buses and a train engine with carriages — arranged around a printed CraftTohfa card",
-    ageRange: "4–10 years",
-    craftTime: "60–90 minutes",
-    badges: ["Most pieces"],
-    featured: true,
-  }),
-
-  paintSet({
-    slug: "train-and-friends-paint-combo",
-    name: "Train & Friends Paint Set",
-    tagline: "A train, a bus, a panda and a slice of watermelon",
-    description:
-      "A deliberately mixed set — a chunky train engine, a bus, a round panda face and a watermelon slice — with seven paint pots rather than the usual three or four. The variety is the point: nothing in the box looks like anything else in it.",
-    highlights: [
-      "Four different moulds, not four of the same thing",
-      "Seven acrylic colours — the fullest palette in the range",
-      "Deep relief on the train, so the detail survives a heavy hand",
-      "Finishes in one long sitting",
-    ],
-    pieces: [
-      "1 plaster train engine",
-      "1 plaster bus",
-      "1 plaster panda face",
-      "1 plaster watermelon slice",
-    ],
-    alt: "An unpainted plaster train engine, bus, panda face and watermelon slice with seven paint pots and a brush around a printed CraftTohfa card",
-    ageRange: "4–10 years",
-    craftTime: "50–70 minutes",
-    featured: true,
-  }),
-
-  paintSet({
-    slug: "flower-garden-paint-combo",
-    name: "Flower Garden Paint Set",
-    tagline: "A daisy, a rose, a tulip bunch and a blossom",
-    description:
-      "Four plaster flowers, each moulded from a different bloom — a flat-petalled daisy, a spiral rose, a bunch of tulips and a cherry blossom with its stamens picked out. The quietest set in the range, and the one that tends to get chosen by older children.",
-    highlights: [
-      "Four distinct flowers, each with its own petal detail",
-      "The rose spiral and blossom stamens reward a fine brush",
-      "White, purple, yellow and pink paints supplied",
-      "Looks like something you'd keep on a windowsill",
-    ],
-    pieces: [
-      "1 plaster daisy",
-      "1 plaster rose",
-      "1 plaster tulip bunch",
-      "1 plaster cherry blossom",
-    ],
-    alt: "Four unpainted plaster flowers — a daisy, a rose, a tulip bunch and a cherry blossom — with white, purple, yellow and pink paint pots and a brush on a printed CraftTohfa card",
-    ageRange: "5–12 years",
-    craftTime: "45–60 minutes",
-    // The cheapest thing in this category. Four small flowers, four paints.
-    price: 120,
-  }),
-
-  paintSet({
-    slug: "fruit-basket-paint-combo",
-    name: "Fruit Basket Paint Set",
-    tagline: "Strawberry, pineapple, watermelon and orange",
-    description:
-      "Four fruits cast in plaster, each with the texture moulded in — pips on the strawberry, segments on the orange, the crosshatch on the pineapple. Six paint pots, which is enough to get all four right rather than compromising on one.",
-    highlights: [
-      "Pips, segments and rind textures moulded into every piece",
-      "Six acrylic colours — enough for all four fruits",
-      "The one set where the colours are obvious, so younger children can work unaided",
-      "Four pieces, one brush, one afternoon",
-    ],
-    pieces: [
-      "1 plaster strawberry",
-      "1 plaster pineapple",
-      "1 plaster watermelon slice",
-      "1 plaster orange slice",
-    ],
-    alt: "Four unpainted plaster fruits — a strawberry, a pineapple, a watermelon slice and an orange slice — with six paint pots and a brush around a printed CraftTohfa card",
-    ageRange: "4–10 years",
-    craftTime: "45–60 minutes",
-    featured: true,
-    price: 150,
-  }),
-
-  paintSet({
-    slug: "teddy-and-butterfly-paint-combo",
-    name: "Teddy & Butterfly Paint Set",
-    tagline: "One for each of them, in the same box",
-    description:
-      "A wide-winged butterfly and a sitting teddy bear, both cast in plaster with deep relief, and six paints between them. Two pieces of roughly equal appeal is the whole idea — it is the set that gets bought when there are two children and only one box.",
-    highlights: [
-      "Two pieces, so two children can paint at once",
-      "Deep wing veins and a moulded teddy face to work into",
-      "Six acrylic colours including brown and black for the bear",
-      "Both pieces stand on their own afterwards",
-    ],
-    pieces: ["1 plaster butterfly", "1 plaster teddy bear"],
-    alt: "An unpainted plaster butterfly and teddy bear with six paint pots and a brush around a printed CraftTohfa card",
-    ageRange: "4–10 years",
-    craftTime: "40–55 minutes",
-    badges: ["Two to paint"],
-  }),
-
-  /* The two kits kept from the retired DIY Painting Kits category. They are
-     the same kind of thing as the five sets above — plaster pieces, paints and
-     a brush — so they use the same helper and the same price rather than
-     arriving here as ₹120 items in a ₹499 category. */
-
-  paintSet({
-    slug: "jungle-joy-animal-kit",
-    name: "Jungle Joy Animal Art Kit",
-    tagline: "A hippo and a giraffe in one box",
-    description:
-      "Two plaster animals — a round hippo and a long-necked giraffe — with acrylic pots and a brush. Two pieces means two children can paint at the same time instead of taking turns.",
-    highlights: [
-      "Two figures, so two can paint at once",
-      "Hippo and giraffe, both cast in plaster",
-      "Acrylic paints and a brush included",
-      "Both pieces stand up on a shelf afterwards",
-    ],
-    pieces: ["1 plaster hippo", "1 plaster giraffe"],
-    alt: "An unpainted plaster hippo and giraffe with blue, green and yellow paint pots and a brush on a CraftTohfa card",
-    ageRange: "4–10 years",
-    craftTime: "40–55 minutes",
-    badges: ["Two to paint"],
-    price: 150,
-  }),
-
-  paintSet({
-    slug: "dino-squad-paint-kit",
-    name: "Dino Squad Paint Kit",
-    tagline: "A T-rex, a stegosaurus and a triceratops",
-    description:
-      "Three dinosaurs cast in plaster — a grinning T-rex, a plated stegosaurus and a horned triceratops — with six acrylic pots. Three pieces and six colours means nobody has to agree on what colour a dinosaur is.",
-    highlights: [
-      "Three different dinosaurs, not three of the same",
-      "Plates, horns and scales moulded in relief",
-      "Six acrylic colours and a brush",
-      "The set that gets asked for by name",
-    ],
-    pieces: [
-      "1 plaster T-rex",
-      "1 plaster stegosaurus",
-      "1 plaster triceratops",
-    ],
-    alt: "Three unpainted plaster dinosaurs — a T-rex, a stegosaurus and a triceratops — with six paint pots and a brush around a printed CraftTohfa card",
-    ageRange: "4–10 years",
-    craftTime: "45–60 minutes",
-    badges: ["New"],
-    price: 150,
-  }),
-
-  // ── The name kits ───────────────────────────────────────────────────────
-  // Three products rather than one personalised listing, as you asked. The
-  // letters are cast to order either way, so each description says so — a
-  // buyer called anything other than Aman, Anya or Dhruvika still has to be
-  // able to work out that this kit is for them.
-
-  paintSet({
-    slug: "aman-name-paint-set",
-    name: "Name Paint Set — Aman",
-    tagline: "Their name in plaster letters, plus a race car to paint",
-    description:
-      "Plaster letters cast to spell a name, shown here as AMAN, with a racing car and four acrylic pots. The letters are made to order — send us the name over WhatsApp and that is the whole process.",
-    highlights: [
-      "Letters cast to spell whichever name you send",
-      "Comes with a plaster racing car as well",
-      "Four acrylic paints and a brush",
-      "Each letter is drilled to hang on a wall or a door",
-    ],
-    pieces: [
-      "Plaster letters spelling your chosen name",
-      "1 plaster racing car",
-    ],
-    alt: 'Unpainted plaster letters spelling "AMAN" with a plaster racing car, four paint pots and a brush on a printed CraftTohfa card',
-    ageRange: "4–12 years",
-    craftTime: "45–60 minutes",
-    badges: ["Personalised"],
-    price: 150,
-  }),
-
-  paintSet({
-    slug: "anya-name-paint-set",
-    name: "Name Paint Set — Anya",
-    tagline: "Their name in plaster letters, plus a butterfly to paint",
-    description:
-      "Plaster letters cast to spell a name, shown here as ANYA, with a wide-winged butterfly and four acrylic pots in teal, lilac, yellow and pink. The letters are made to order — send us the name over WhatsApp when you order.",
-    highlights: [
-      "Letters cast to spell whichever name you send",
-      "Comes with a plaster butterfly as well",
-      "Four acrylic paints and a brush",
-      "Each letter is drilled to hang on a wall or a door",
-    ],
-    pieces: ["Plaster letters spelling your chosen name", "1 plaster butterfly"],
-    alt: 'Unpainted plaster letters spelling "ANYA" with a plaster butterfly, four paint pots and a brush',
-    ageRange: "4–12 years",
-    craftTime: "45–60 minutes",
-    badges: ["Personalised"],
-    price: 150,
-  }),
-
-  paintSet({
-    /* ⚠️ NO PHOTO YET. Nothing named dhruvika exists anywhere on the machine,
-       so this renders the designed placeholder tile until you save one as
-       public/images/products/combos/dhruvika-name-paint-set-1.jpeg — no code
-       change needed when you do. */
-    slug: "dhruvika-name-paint-set",
-    name: "Name Paint Set — Dhruvika",
-    tagline: "Their name in plaster letters, plus a butterfly to paint",
-    description:
-      "Plaster letters cast to spell a name, shown here as DHRUVIKA, with a wide-winged butterfly and four acrylic pots. Longer names take a bigger set of letters and a little more painting — send us the name over WhatsApp when you order.",
-    highlights: [
-      "Letters cast to spell whichever name you send",
-      "Comes with a plaster butterfly as well",
-      "Four acrylic paints and a brush",
-      "Each letter is drilled to hang on a wall or a door",
-    ],
-    pieces: ["Plaster letters spelling your chosen name", "1 plaster butterfly"],
-    alt: 'Unpainted plaster letters spelling "DHRUVIKA" with a plaster butterfly, paint pots and a brush',
-    ageRange: "4–12 years",
-    craftTime: "60–75 minutes",
-    badges: ["Personalised"],
-    price: 150,
-  }),
-
-  // ── Canvas set ──────────────────────────────────────────────────────────
-
-  paintSet({
-    slug: "seashore-canvas-paint-set",
-    name: "Seashore Canvas & Easel Set",
-    tagline: "Four shells mounted on a canvas, with its own easel",
-    description:
-      "A scallop shell, a starfish, a spiral shell and an ammonite set onto a small stretched canvas, with a wooden easel to stand it on and four paints. The only set here that finishes as a framed piece rather than as loose figures.",
-    highlights: [
-      "Four plaster shells already mounted on the canvas",
-      "Wooden easel included — it stands up the moment it's dry",
-      "White, purple, yellow and pink paints",
-      "Ends up as one finished piece, not four things to find a home for",
-    ],
-    pieces: [
-      "1 stretched canvas with four plaster shells mounted on it",
-      "1 wooden display easel",
-    ],
-    alt: "A small canvas on a wooden easel with an unpainted plaster scallop shell, starfish, spiral shell and ammonite mounted on it, beside four paint pots and a brush",
-    ageRange: "5–12 years",
-    craftTime: "45–60 minutes",
-    badges: ["New"],
-    price: 150,
-  }),
 
   // ── Two more rakhi hampers ──────────────────────────────────────────────
   // These DO contain a rakhi, a crochet keepsake and the bhai–behen idol, so
   // unlike the paint sets they are described as the full box.
 
   paintSet({
+    category: "combos",
     slug: "car-rainbow-rakhi-combo",
     name: "Car Rakhi & Blue Rainbow Combo",
     tagline: "A blue crochet rainbow, a car rakhi, and a car to paint",
     description:
-      "A chunky crochet rainbow in teal and lilac to keep, a blue crochet car rakhi on its printed card, and two plaster pieces to paint — the bhai–behen idol and a car money box. Boxed on shredded paper, ready to give.",
+      "A chunky crochet rainbow in teal and lilac to keep, a blue crochet car rakhi on its printed card, and two plaster pieces to paint: the bhai–behen idol and a car money box. Boxed on shredded paper, ready to give.",
     highlights: [
-      "Crochet car rakhi — no flowers, no pearls",
+      "Crochet car rakhi, no flowers, no pearls",
       "Blue crochet rainbow, a keepsake rather than a filler",
       "The plaster car is a working money box",
       "Four paint pots and a brush included",
@@ -1146,13 +1183,14 @@ const combos: Product[] = [
   }),
 
   paintSet({
+    category: "combos",
     slug: "strawberry-evil-eye-rakhi-combo",
     name: "Strawberry Pouch & Evil Eye Combo",
     tagline: "A strawberry pouch, a nazar rakhi, and a butterfly to paint",
     description:
-      "A powder-blue crochet pouch with a red strawberry on the front, an evil eye rakhi strung with pearls, and two plaster pieces to paint — the bhai–behen idol and a butterfly. The pouch is the part still in use months after August.",
+      "A powder-blue crochet pouch with a red strawberry on the front, an evil eye rakhi strung with pearls, and two plaster pieces to paint: the bhai–behen idol and a butterfly. The pouch is the part still in use months after August.",
     highlights: [
-      "Crochet strawberry pouch on a gold clip — hers to keep",
+      "Crochet strawberry pouch on a gold clip, hers to keep",
       "Evil eye rakhi with pearl beads on the tie",
       "Idol and butterfly both ready to paint",
       "Four paint pots and a brush included",
@@ -1215,18 +1253,31 @@ function listPrice(price: number): number {
 }
 
 /**
- * Order matters — this is the order things appear on /shop. Combos lead
- * because they are the highest-value thing on the site, then rakhis (the most
- * numerous and the festival driver), then crochet, which is the evergreen one.
+ * THE ORDER PRODUCTS APPEAR IN, EVERYWHERE. Cheapest first.
+ *
+ * This used to lead with the ₹499 combo boxes, on the reasoning that they are
+ * the highest-value thing here. The first four things a first-time visitor saw
+ * were therefore the four most expensive, and the brand read as expensive
+ * before they had scrolled far enough to find a ₹70 rakhi. Leading with the
+ * ₹70 rakhis instead reads as approachable, and the ₹499 boxes are still one
+ * scroll away for anyone who wants them.
+ *
+ * `sort` is STABLE in every JS engine we target, so products at the same price
+ * keep the hand-authored order of the arrays below: rakhis before painting
+ * kits before crochet before combos. That is what makes the ₹70 rakhis, not
+ * some arbitrary tie-break, the first thing on the page.
  *
  * The list price is derived here rather than typed into each product, so it
  * can never drift out of step with `price` when a price changes.
  */
 export const products: Product[] = [
-  ...combos,
   ...rakhis,
+  ...paintingKits,
   ...crochet,
-].map((p) => ({ ...p, compareAtPrice: listPrice(p.price) }));
+  ...combos,
+]
+  .map((p) => ({ ...p, compareAtPrice: listPrice(p.price) }))
+  .sort((a, b) => a.price - b.price);
 
 // ───────────────────────────────  HELPERS  ─────────────────────────────────
 
@@ -1240,6 +1291,12 @@ export function getProductsByCategory(category: CategorySlug): Product[] {
   return products.filter((p) => p.category === category);
 }
 
+/**
+ * The homepage row. Inherits the cheapest-first order from `products`, so it
+ * opens on the ₹70 rakhis and climbs from there rather than opening on four
+ * ₹499 boxes. Which products are eligible is still an editorial choice (the
+ * `featured` flag); only their ORDER is derived from price.
+ */
 export function getFeaturedProducts(limit = 4): Product[] {
   const featured = products.filter((p) => p.featured);
   // Never return an empty row just because nothing is flagged featured.

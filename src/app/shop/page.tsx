@@ -13,7 +13,7 @@ import { siteConfig } from "@/site.config";
 export const metadata: Metadata = buildMetadata({
   title: "Shop rakhis, combo boxes & crochet keepsakes",
   description:
-    "Browse every CraftTohfa handmade crochet rakhi, crochet keepsake and combo box — rakhi hampers and paint-your-own plaster sets. Order any of them straight over WhatsApp.",
+    "Browse every CraftTohfa handmade crochet rakhi, crochet keepsake and combo box, rakhi hampers and paint-your-own plaster sets. Order any of them straight over WhatsApp.",
   path: "/shop",
 });
 
@@ -33,11 +33,13 @@ const filters: FilterOption[] = [
   ...(activeCategories.length > 1
     ? activeCategories.map((c) => ({
         id: c.slug,
-        label: c.name
-          .replace("DIY ", "")
-          .replace("Handmade ", "")
-          .replace("Rakhi ", "")
-          .replace(" Keepsakes", ""),
+        /* The full category name, not a shortened one. There used to be a
+           chain of .replace() calls trimming "Handmade Rakhis" down to
+           "Rakhis" and so on, which meant the chip, the breadcrumb and the
+           category card all called the same thing something different. The
+           row scrolls horizontally on a phone, so the longer labels cost
+           nothing. */
+        label: c.name,
         count: getProductsByCategory(c.slug).length,
       }))
     : []),
