@@ -1,4 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import { Heart } from "@/components/doodles";
+import { WashiTape } from "@/components/ui/WashiTape";
+import { resolvePhoto } from "@/lib/images";
 import { PageHero } from "@/components/layout/PageHero";
 import { Section } from "@/components/layout/Section";
 import { ProductCard } from "@/components/product/ProductCard";
@@ -50,7 +54,51 @@ export default function ShopPage() {
     <>
       <PageHero
         eyebrow={`${products.length} pieces · from ${formatINR(lowestPrice)}`}
-        title="More creating. Less scrolling. 🤍"
+        /* Was a 🤍 emoji, which renders as whatever flat glyph the reader's
+           OS ships and looked pasted-on beside a hand-drawn brand. This is
+           the house Heart doodle instead: same stroke weight as every other
+           mark on the site, and it draws itself in on arrival. */
+        title={
+          <>
+            More creating. Less scrolling.{" "}
+            <span
+              aria-hidden="true"
+              className="ml-1 inline-block w-[0.9em] align-baseline"
+            >
+              <span className="heartbeat block">
+                <Heart
+                  data-reveal="draw"
+                  style={{ animationDelay: "420ms" }}
+                  className="w-full text-peach [stroke-width:1.8]"
+                />
+              </span>
+            </span>
+          </>
+        }
+        aside={
+          /* Small on purpose: the source is 309×270, so anything wider than
+             about 300px starts to look soft. A bigger original would let this
+             grow. Tilted and taped so it reads as part of the scrapbook
+             language rather than a stock product shot dropped in. */
+          <div className="relative rotate-2 transition-transform duration-300 hover:rotate-0">
+            <WashiTape
+              className="left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-1/2"
+              tone="peach"
+              rotate={-5}
+              reveal
+              delay={520}
+            />
+            <div className="overflow-hidden rounded-frame border-2 border-ink/85 bg-cream shadow-lift">
+              <Image
+                src={resolvePhoto("/images/brand/shop-gift-box.png") ?? ""}
+                alt="A Craft Tohfa gift box packed with a crochet teddy, a DIY painting kit and paints"
+                width={309}
+                height={270}
+                className="h-auto w-full"
+              />
+            </div>
+          </div>
+        }
         intro={
           <>
             At Craft Tohfa, we believe childhood is meant to be filled with

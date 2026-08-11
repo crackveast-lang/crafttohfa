@@ -12,16 +12,19 @@ import { cn } from "@/lib/cn";
  * └──────────────────────────────────────────────────────────────────────┘
  */
 const C = {
-  /* The big flower's petals. Was #F8D64E, a saturated school-poster yellow:
-     the only primary colour on a page built from warm ivory, blush and peach,
-     and at ~180px across it pulled the eye harder than the headline it sits
-     beside. This is a soft apricot from the same family as `peach`, one step
-     deeper so it still separates from the cream ground and the peach wash
-     behind it rather than dissolving into them. The plum centre stays, and is
-     what keeps the flower from going shapeless now the petals are quieter. */
-  petalYellow: "#F2C49B",
-  petalYellowLine: "#DDA478",
-  centrePlum: "#4E2A5E",
+  /* The big flower. Yellow petals with the light tone moved to the middle.
+     History, because it has been round twice: it started at #F8D64E, a
+     saturated school-poster yellow that pulled harder than the headline; it
+     was then taken all the way to apricot, which read as orange. This is the
+     resolution of both — a soft buttery yellow that is unmistakably yellow
+     without shouting, and the apricot demoted to the inner disc where it is
+     the quiet part. */
+  petalYellow: "#F7D77E",
+  petalYellowLine: "#E0BB62",
+  /* The centre. Deeper than the petals rather than lighter, or the disc
+     vanishes into them: a light centre inside a light flower leaves no
+     middle at all. It replaces the deep plum this used to have. */
+  centreApricot: "#EFB489",
   petalPink: "#F08CA4",
   petalPinkLine: "#E2748F",
   centreYellow: "#F9DC5C",
@@ -72,12 +75,21 @@ function PetalRing({
   );
 }
 
-/** Big yellow sunflower with the deep plum centre. */
+/** Big yellow sunflower with the soft apricot centre. */
 export function Sunflower({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 200 200" className={cn("block h-auto w-full", className)} {...svg}>
       <PetalRing count={18} fill={C.petalYellow} line={C.petalYellowLine} spin={4} />
-      <circle cx="100" cy="100" r="30" fill={C.centrePlum} />
+      {/* A hairline ring, because two soft tones meeting with no edge between
+          them reads as a smudge rather than as a flower with a middle. */}
+      <circle
+        cx="100"
+        cy="100"
+        r="30"
+        fill={C.centreApricot}
+        stroke={C.petalYellowLine}
+        strokeWidth="2"
+      />
       {/* face */}
       <ellipse cx="90" cy="96" rx="3.4" ry="4.6" fill="#1F1026" />
       <ellipse cx="110" cy="96" rx="3.4" ry="4.6" fill="#1F1026" />
