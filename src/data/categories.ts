@@ -51,7 +51,7 @@ export const categories: Category[] = [
     slug: "crochet",
     name: "Crochet Keepsakes",
     blurb:
-      "The soft toys and keychains on their own, the part of a box that is still around long after August.",
+      "The soft toys and keychains on their own, the part of a box that is still being carried around long after it was opened.",
     doodle: "Heart",
     tone: "cream",
     image: {

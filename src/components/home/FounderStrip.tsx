@@ -14,54 +14,70 @@ export function FounderStrip() {
     <section className="relative overflow-hidden bg-blush py-20 md:py-28">
       <Container>
         <div className="grid items-center gap-12 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
-          <div className="relative mx-auto w-full max-w-[300px]">
-            <WashiTape
-              className="-top-3 left-6 z-10"
-              tone="peach"
-              rotate={-8}
-              reveal
-              delay={250}
-            />
-            <div data-reveal="settle">
-              <div data-drift="18" className="drift">
-                {/* The blob BREATHES. globals.css picked animatable
+          <div className="mx-auto w-full max-w-[300px]">
+            {/* The tape and the heart are positioned against THIS box, not the
+                whole column. Without it they anchor to the bottom of the name
+                below and the heart drifts off the photo's corner. */}
+            <div className="relative">
+              <WashiTape
+                className="-top-3 left-6 z-10"
+                tone="peach"
+                rotate={-8}
+                reveal
+                delay={250}
+              />
+              <div data-reveal="settle">
+                <div data-drift="18" className="drift">
+                  {/* The blob BREATHES. globals.css picked animatable
                     border-radius over clip-path on purpose — "clip-path would
                     jank on scroll" — and that decision bought an animation
                     capability nothing had spent yet. It interpolates only
                     partway toward blob-b, so you notice the photo is alive
                     without ever catching it moving. One property, one element,
                     and it is the most premium thing on the site. */}
-                <div className="blob-morph overflow-hidden border-2 border-ink/80 bg-cream">
-                  <CraftImage
-                    src="/images/about/founder.jpg"
-                    alt="The founder of CraftTohfa crocheting at a table"
-                    ratio="square"
-                    sizes="(max-width: 768px) 70vw, 300px"
-                    showPlaceholderLabel={false}
-                    seedKey="founder"
-                  />
+                  <div className="blob-morph overflow-hidden border-2 border-ink/80 bg-cream">
+                    <CraftImage
+                      src="/images/about/founder.jpg"
+                      alt="The founder of CraftTohfa crocheting at a table"
+                      ratio="square"
+                      sizes="(max-width: 768px) 70vw, 300px"
+                      showPlaceholderLabel={false}
+                      seedKey="founder"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            {/* Entrance on the outer element, the endless heartbeat on the
+              {/* Entrance on the outer element, the endless heartbeat on the
                 inner one — the house rule, because both want `transform`. */}
-            <span
-              data-reveal="sticker"
-              style={{ animationDelay: "400ms" }}
-              className="absolute -bottom-3 -right-2 block"
+              <span
+                data-reveal="sticker"
+                style={{ animationDelay: "400ms" }}
+                className="absolute -bottom-3 -right-2 block"
+              >
+                <Heart
+                  aria-hidden="true"
+                  className="heartbeat size-11 rounded-full border-2 border-ink bg-cream p-2 text-sage shadow-sticker-sm"
+                />
+              </span>
+            </div>
+
+            {/* The name under the photo, so the face has someone attached to
+                it. mt-8 clears the heart sticker, which hangs off the
+                bottom-right corner of the blob. */}
+            <div
+              data-reveal="rise"
+              style={{ animationDelay: "520ms" }}
+              className="mt-8 text-center"
             >
-              <Heart
-                aria-hidden="true"
-                className="heartbeat size-11 rounded-full border-2 border-ink bg-cream p-2 text-sage shadow-sticker-sm"
-              />
-            </span>
+              <p className="font-display text-xl font-semibold text-ink">
+                Anjali Gupta
+              </p>
+              <p className="mt-1 text-sm text-ink/70">Founder, Craft Tohfa</p>
+            </div>
           </div>
 
           <div>
-            <p
-              data-reveal="rise"
-              className="text-eyebrow uppercase text-plum"
-            >
+            <p data-reveal="rise" className="text-eyebrow uppercase text-plum">
               Our story
             </p>
 
@@ -96,12 +112,15 @@ export function FounderStrip() {
                 is WRITTEN rather than faded, by wiping a soft-edged mask
                 across it. Highest impact and lowest cost of anything here,
                 and it lands exactly where the emotional beat needs it. */}
+            {/* Was ", with love, from our home to yours" — a stray leading
+                comma where a name used to be. The name now sits under the
+                photo, so this is just the sign-off. */}
             <p
               data-reveal="ink"
               style={{ animationDelay: "620ms" }}
               className="mt-6 font-hand text-2xl text-ink/70"
             >
-             , with love, from our home to yours
+              with love, from our home to yours
             </p>
 
             <Link

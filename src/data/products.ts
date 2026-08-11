@@ -903,10 +903,6 @@ const paintingKits: Product[] = [
   }),
 
   paintSet({
-    /* ⚠️ NO PHOTO YET. Nothing named dhruvika exists anywhere on the machine,
-       so this renders the designed placeholder tile until you save one as
-       public/images/products/combos/dhruvika-name-paint-set-1.jpeg — no code
-       change needed when you do. */
     slug: "dhruvika-name-paint-set",
     name: "Name Paint Set: Dhruvika",
     tagline: "Their name in plaster letters, plus a butterfly to paint",
@@ -919,9 +915,80 @@ const paintingKits: Product[] = [
       "Each letter is drilled to hang on a wall or a door",
     ],
     pieces: ["Plaster letters spelling your chosen name", "1 plaster butterfly"],
-    alt: 'Unpainted plaster letters spelling "DHRUVIKA" with a plaster butterfly, paint pots and a brush',
+    alt: 'Unpainted plaster letters spelling "DHRUVIKA" with a plaster butterfly, paint pots and a brush, boxed on shredded paper',
     ageRange: "4–12 years",
     craftTime: "60–75 minutes",
+    badges: ["Personalised"],
+  }),
+
+  /* ⚠️ THE NEXT THREE HAVE NO PHOTO ON DISK YET.
+     They render the designed "photo coming soon" tile until the files are
+     saved, with no code change needed once they are:
+       public/images/products/painting-kits/advik-name-paint-set-1.jpeg
+       public/images/products/painting-kits/ivana-name-paint-set-1.jpeg
+       public/images/products/painting-kits/neev-name-paint-set-1.jpeg
+     resolvePhoto is forgiving about the extension, so .png works too. */
+
+  paintSet({
+    slug: "advik-name-paint-set",
+    name: "Name Paint Set: Advik",
+    tagline: "Their name in plaster letters, plus a racing car to paint",
+    description:
+      "Plaster letters cast to spell a name, shown here as ADVIK, with a racing car and four acrylic pots in blue, green, orange and pink. The letters are made to order, so send us the name over WhatsApp when you order.",
+    highlights: [
+      "Letters cast to spell whichever name you send",
+      "Comes with a plaster racing car as well",
+      "Four acrylic paints and a brush",
+      "Each letter is drilled to hang on a wall or a door",
+    ],
+    pieces: [
+      "Plaster letters spelling your chosen name",
+      "1 plaster racing car",
+    ],
+    alt: 'Unpainted plaster letters spelling "ADVIK" above a plaster racing car, with blue, green, orange and pink paint pots and a brush on a printed CraftTohfa card',
+    ageRange: "4–12 years",
+    craftTime: "45–60 minutes",
+    badges: ["Personalised"],
+  }),
+
+  paintSet({
+    slug: "ivana-name-paint-set",
+    name: "Name Paint Set: Ivana",
+    tagline: "Their name in plaster letters, plus a butterfly to paint",
+    description:
+      "Plaster letters cast to spell a name, shown here as IVANA, with a wide-winged butterfly and four acrylic pots in teal, lilac, yellow and pink. The letters are made to order, so send us the name over WhatsApp when you order.",
+    highlights: [
+      "Letters cast to spell whichever name you send",
+      "Comes with a plaster butterfly as well",
+      "Four acrylic paints and a brush",
+      "Each letter is drilled to hang on a wall or a door",
+    ],
+    pieces: ["Plaster letters spelling your chosen name", "1 plaster butterfly"],
+    alt: 'Unpainted plaster letters spelling "IVANA" below a plaster butterfly, with teal, lilac, yellow and pink paint pots and a brush',
+    ageRange: "4–12 years",
+    craftTime: "45–60 minutes",
+    badges: ["Personalised"],
+  }),
+
+  paintSet({
+    slug: "neev-name-paint-set",
+    name: "Name Paint Set: Neev",
+    tagline: "A short name, a racing car, and four colours",
+    description:
+      "Plaster letters cast to spell a name, shown here as NEEV, with a racing car and four acrylic pots. A shorter name means fewer letters and a quicker afternoon, which suits the youngest painters. Send us the name over WhatsApp when you order.",
+    highlights: [
+      "Letters cast to spell whichever name you send",
+      "Comes with a plaster racing car as well",
+      "Four acrylic paints and a brush",
+      "Each letter is drilled to hang on a wall or a door",
+    ],
+    pieces: [
+      "Plaster letters spelling your chosen name",
+      "1 plaster racing car",
+    ],
+    alt: 'Unpainted plaster letters spelling "NEEV" above a plaster racing car, with blue, green, orange and pink paint pots and a brush on a printed CraftTohfa card',
+    ageRange: "4–12 years",
+    craftTime: "40–55 minutes",
     badges: ["Personalised"],
   }),
 
@@ -1066,7 +1133,7 @@ const combos: Product[] = [
     name: "Strawberry Bag Combo",
     category: "combos",
     price: PRICES.combos,
-    tagline: "A crocheted handbag she'll carry long after August",
+    tagline: "A crocheted handbag she'll actually keep using",
     description:
       "A hand-crocheted mini handbag with a felted strawberry on the front, the piece in this collection that outlives the festival by months. With a rainbow spiral rakhi, a plaster strawberry to paint, and the bhai–behen idol.",
     highlights: [
@@ -1173,7 +1240,7 @@ const combos: Product[] = [
     name: "Strawberry Pouch & Evil Eye Combo",
     tagline: "A strawberry pouch, a nazar rakhi, and a butterfly to paint",
     description:
-      "A powder-blue crochet pouch with a red strawberry on the front, an evil eye rakhi strung with pearls, and two plaster pieces to paint: the bhai–behen idol and a butterfly. The pouch is the part still in use months after August.",
+      "A powder-blue crochet pouch with a red strawberry on the front, an evil eye rakhi strung with pearls, and two plaster pieces to paint: the bhai–behen idol and a butterfly. The pouch is the part still in use months later.",
     highlights: [
       "Crochet strawberry pouch on a gold clip, hers to keep",
       "Evil eye rakhi with pearl beads on the tie",
