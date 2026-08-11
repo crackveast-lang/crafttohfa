@@ -108,10 +108,6 @@ const rakhis: Product[] = [
     ],
     alt: "A hand-crocheted sunflower rakhi with yellow petals, a brown centre and green leaves, worn on a child's wrist",
     badges: ["Bestseller"],
-    /* Featured so the homepage row OPENS on a ₹70 rakhi. Every product flagged
-       featured was a ₹499 combo, so the first thing on the homepage was four
-       of the most expensive things here. See getFeaturedProducts below. */
-    featured: true,
   }),
   rakhi({
     slug: "peacock-rakhi",
@@ -164,8 +160,6 @@ const rakhis: Product[] = [
       "Crocheted ears worked separately and sewn on",
     ],
     alt: "A hand-crocheted lion rakhi with an orange face, a gold mane and a white muzzle, worn on a child's wrist",
-    // The second ₹70 rakhi on the homepage row. See the note on the sunflower.
-    featured: true,
   }),
   rakhi({
     slug: "teddy-bear-rakhi",
@@ -696,31 +690,22 @@ function paintSet(o: {
  */
 const paintingKits: Product[] = [
   paintSet({
-    slug: "little-vehicles-paint-combo",
-    name: "Little Vehicles Paint Set",
-    tagline: "Seven plaster vehicles, and an afternoon to get through them",
+    slug: "space-rocket-paint-set",
+    name: "Space Rocket Paint Set",
+    tagline: "A shuttle and two boosters, ready for launch",
     description:
-      "A whole fleet cast in plaster and waiting to be painted: a car, a jeep, two buses, a train engine and its carriages. The biggest set here by piece count, and the one that keeps two or three children busy at the same table.",
+      "A space shuttle cast in plaster with a booster rocket either side of it, moulded with panel lines and tiles to paint between. Three pots and a brush in the box, and the whole thing stands up on a shelf once it is dry.",
     highlights: [
-      "Seven separate pieces, so nobody has to take turns",
-      "Chunky moulds with raised windows and wheels to paint between",
-      "Every piece stands up on a shelf afterwards",
-      "Paints and brush supplied, nothing else to buy",
+      "Shuttle and two boosters, three pieces in all",
+      "Panel lines and tiles moulded in to paint between",
+      "Blue, red and white paints and a brush",
+      "Stands up on a shelf afterwards",
     ],
-    pieces: [
-      "1 plaster car and 1 plaster jeep",
-      "2 plaster buses",
-      "1 plaster train engine with carriages",
-    ],
-    alt: "Seven unpainted plaster vehicles (a car, a jeep, buses and a train engine with carriages) arranged around a printed CraftTohfa card",
+    pieces: ["1 plaster space shuttle", "2 plaster booster rockets"],
+    alt: "An unpainted plaster space shuttle with two booster rockets, beside blue, red and white paint pots and a brush on a printed CraftTohfa card",
     ageRange: "4–10 years",
-    craftTime: "60–90 minutes",
-    badges: ["Most pieces"],
-    featured: true,
-    /* NOT the ₹150 category default. Flagged to you as inconsistent with
-       Fruit Basket at ₹150 and still unresolved, so it is left where it was
-       rather than silently repriced. */
-    price: 499,
+    craftTime: "30–45 minutes",
+    badges: ["New"],
   }),
 
   paintSet({
@@ -1292,10 +1277,16 @@ export function getProductsByCategory(category: CategorySlug): Product[] {
 }
 
 /**
- * The homepage row. Inherits the cheapest-first order from `products`, so it
- * opens on the ₹70 rakhis and climbs from there rather than opening on four
- * ₹499 boxes. Which products are eligible is still an editorial choice (the
- * `featured` flag); only their ORDER is derived from price.
+ * ⚠️ NOTHING ON THE SITE CALLS THIS ANY MORE.
+ *
+ * The hero tiles and the homepage product row both name the category they
+ * want (`combos` and `painting-kits`), because "whatever happens to be
+ * flagged featured" produced a mixed row that read as four unrelated things.
+ * The only remaining caller is ScrapbookStack, which is itself unused.
+ *
+ * Kept because `featured` is still set on the five combo boxes and this is
+ * the documented way to read it. If you reach for it, note that the order is
+ * cheapest-first, inherited from `products`.
  */
 export function getFeaturedProducts(limit = 4): Product[] {
   const featured = products.filter((p) => p.featured);

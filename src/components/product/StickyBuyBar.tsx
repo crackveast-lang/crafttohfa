@@ -67,7 +67,7 @@ export function StickyBuyBar({ product }: { product: Product }) {
           // hand-rolled rather than using <Button> because it needs tabIndex
           // control for the hidden state, so the classes have to be kept in
           // step by hand — see VARIANTS.whatsapp in ui/Button.tsx.
-          className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-full border-2 border-ink/85 bg-lavender px-6 font-semibold text-ink shadow-soft"
+          className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-full border-2 border-ink/85 bg-peach px-6 font-semibold text-ink shadow-soft"
         >
           <WhatsAppGlyph className="size-5" />
           Order now

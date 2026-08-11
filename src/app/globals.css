@@ -88,27 +88,16 @@
      design.
 
      The glyph carries the recognition now, which is the part people actually
-     read, and it costs the palette nothing. The buttons are `lavender` with
-     ink text; see the note on that token below.
+     read, and it costs the palette nothing. The buttons are peach with ink
+     text: 8.74:1, better than the green managed with white on it (4.88:1).
      See VARIANTS.whatsapp in components/ui/Button.tsx, and note that
      StickyBuyBar and MobileNav hand-roll the same classes, so all three move
-     together. */
+     together.
 
-  /* ---- Lavender — the order button, and nothing else --------------------
-     Your colour, #c7aebf. A dusty mauve rather than a true lavender, which is
-     precisely why it sits beside blush and peach instead of fighting them.
-
-     It has one job: the fill on every control that opens WhatsApp. Those
-     buttons were peach, which is also the tape, the doodles and the sticker
-     badges, so the single most important control on the site was the same
-     colour as the decoration around it. Giving the order button its own
-     colour is what makes it learnable at a glance.
-
-     Ink on it is 6.55:1, so it carries its own label at any size, and the ink
-     border keeps it the same weight as the primary button beside it. It is
-     NOT a section tone and NOT a general accent: at the rate these buttons
-     repeat, a fourth surface colour would knock the ratio above over. */
-  --color-lavender: #c7aebf;
+     A lavender (#c7aebf) order button shipped for one release and was
+     reverted on request. No --color-lavender token remains: an unused colour
+     in @theme generates utilities that invite exactly the drift the ratio
+     above exists to prevent. */
 
   /* ---- THE PLUM BUDGET — read this before typing `plum` ------------------
      Plum is the only colour here that is not in the brief. It earns its

@@ -4,25 +4,37 @@ import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProductCard } from "@/components/product/ProductCard";
 import { ScrollRow, railItem } from "@/components/ui/ScrollRow";
-import { getFeaturedProducts, products } from "@/data/products";
+import { getProductsByCategory } from "@/data/products";
 
+/**
+ * PAINTING KITS only, not a mixed row and not whatever is flagged featured.
+ *
+ * A row of four that jumped from a ₹70 rakhi to a ₹499 hamper read as four
+ * unrelated things rather than as a range worth browsing. One category makes
+ * it a shelf: same kind of product, four options, an obvious next click. The
+ * category is already sorted cheapest-first, so this opens at ₹120.
+ */
 export function FeaturedProducts() {
-  const featured = getFeaturedProducts(4);
+  const kits = getProductsByCategory("painting-kits");
+  const featured = kits.slice(0, 4);
 
   return (
     <Section tone="blush">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading
-          eyebrow="Loved by little hands"
-          title="What people keep coming back for"
+          eyebrow="Paint it yourself"
+          title="Everything for one very good afternoon"
         />
         <Link
-          href="/shop"
+          href="/shop?c=painting-kits"
           data-reveal="rise"
           style={{ animationDelay: "100ms" }}
           className="group inline-flex min-h-11 items-center gap-2 font-semibold underline decoration-sage decoration-2 underline-offset-8 hover:text-plum"
         >
-          See all {products.length}
+          {/* The count of what the link ACTUALLY filters to. It said "See all
+              47" while pointing at the painting-kits filter, which promises
+              47 and delivers 11. */}
+          See all {kits.length} painting kits
           {/* One nudge on arrival, then hover-only. The nudge animates
               `transform` while the hover uses Tailwind's `translate`
               property, so the two never overwrite each other. */}

@@ -15,7 +15,7 @@ import ImageTiles from "@/components/ui/image-tiles";
 import { CraftImage } from "@/components/media/CraftImage";
 import { HeroHighlights } from "@/components/home/HeroHighlights";
 import { HeartBurst } from "@/components/doodles";
-import { getFeaturedProducts } from "@/data/products";
+import { getProductsByCategory } from "@/data/products";
 import { cn } from "@/lib/cn";
 import type { Product } from "@/types";
 
@@ -64,7 +64,12 @@ function Bloom({
 }
 
 export function Hero() {
-  const tileProducts = getFeaturedProducts(3);
+  /* COMBO BOXES specifically, not whatever happens to be flagged featured.
+     These three tiles are the only photograph in the first screen, and a
+     combo box shot is the one that reads at 200px: an open box, filled, with
+     the card and the paints visible. A rakhi photograph is a close-up of a
+     wrist, which at tile size is a pink blur. */
+  const tileProducts = getProductsByCategory("combos").slice(0, 3);
 
   return (
     <section className="relative overflow-hidden bg-cream">

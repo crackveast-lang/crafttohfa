@@ -12,8 +12,15 @@ import { cn } from "@/lib/cn";
  * └──────────────────────────────────────────────────────────────────────┘
  */
 const C = {
-  petalYellow: "#F8D64E",
-  petalYellowLine: "#E9BE2E",
+  /* The big flower's petals. Was #F8D64E, a saturated school-poster yellow:
+     the only primary colour on a page built from warm ivory, blush and peach,
+     and at ~180px across it pulled the eye harder than the headline it sits
+     beside. This is a soft apricot from the same family as `peach`, one step
+     deeper so it still separates from the cream ground and the peach wash
+     behind it rather than dissolving into them. The plum centre stays, and is
+     what keeps the flower from going shapeless now the petals are quieter. */
+  petalYellow: "#F2C49B",
+  petalYellowLine: "#DDA478",
   centrePlum: "#4E2A5E",
   petalPink: "#F08CA4",
   petalPinkLine: "#E2748F",

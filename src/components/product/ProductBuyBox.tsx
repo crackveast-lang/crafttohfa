@@ -72,12 +72,13 @@ export function ProductBuyBox({ product }: { product: Product }) {
             You save {formatINR(saved)}
           </span>
         ) : null}
-        <span className="w-full text-sm text-ink/60">
-          Inclusive of all taxes ·{" "}
-          {product.price >= siteConfig.shipping.freeAbove
-            ? "Free shipping"
-            : `${formatINR(siteConfig.shipping.flatRate)} shipping`}
-        </span>
+        {/* No tax-and-shipping line here. It used to read "Inclusive of all
+            taxes · ₹79 shipping" directly under the price, which put a
+            surcharge in front of someone at the exact moment they were
+            reading what the thing costs. Shipping is still stated in full on
+            /policies, in the FAQ and in the announcement bar's free-shipping
+            threshold, and it is confirmed in the WhatsApp conversation before
+            anyone pays. */}
       </div>
 
       <p className="max-w-[56ch] text-body leading-relaxed text-ink/80">
