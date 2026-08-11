@@ -706,6 +706,8 @@ const paintingKits: Product[] = [
     ageRange: "4–10 years",
     craftTime: "30–45 minutes",
     badges: ["New"],
+    // Three paints rather than the usual four to six, so below the default.
+    price: 120,
   }),
 
   paintSet({
@@ -730,10 +732,7 @@ const paintingKits: Product[] = [
     ageRange: "4–10 years",
     craftTime: "50–70 minutes",
     featured: true,
-    /* NOT the ₹150 category default. Flagged to you as inconsistent with
-       Fruit Basket at ₹150 and still unresolved, so it is left where it was
-       rather than silently repriced. */
-    price: 499,
+    // No `price` here: ₹150 is the painting-kits default. Was ₹499.
   }),
 
   paintSet({
@@ -802,10 +801,8 @@ const paintingKits: Product[] = [
     ageRange: "4–10 years",
     craftTime: "40–55 minutes",
     badges: ["Two to paint"],
-    /* NOT the ₹150 category default. Flagged to you as inconsistent with
-       Fruit Basket at ₹150 and still unresolved, so it is left where it was
-       rather than silently repriced. */
-    price: 499,
+    // Two pieces, so below the ₹150 default. Was ₹499; you resolved it.
+    price: 120,
   }),
 
   /* The two kits kept from the retired DIY Painting Kits category. They are

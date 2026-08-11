@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Rating } from "@/components/ui/Rating";
-import { StickerBadge } from "@/components/ui/StickerBadge";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { Heart, Leaf, Sparkle } from "@/components/doodles";
 import { categoryName } from "@/data/categories";
@@ -21,11 +20,11 @@ export function ProductBuyBox({ product }: { product: Product }) {
         >
           {categoryName(product.category)}
         </Link>
-        {product.badges?.map((b) => (
-          <StickerBadge key={b} size="sm">
-            {b}
-          </StickerBadge>
-        ))}
+        {/* No `product.badges` pill beside the category either. They are gone
+            from the cards, and leaving them only here would mean a product
+            announced itself as "Two to paint" on its own page and nowhere
+            else. The data still exists on the products if you want them back
+            in one place or both. */}
       </div>
 
       <div>

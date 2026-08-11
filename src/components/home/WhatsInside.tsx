@@ -135,7 +135,7 @@ export function WhatsInside() {
               leads with 15 rakhis that have none of the above in them. */}
           <div data-reveal="rise">
             <Button href="/shop?c=combos" size="lg" className="mt-10">
-              See all five combo boxes
+              Explore all combos
             </Button>
           </div>
         </div>

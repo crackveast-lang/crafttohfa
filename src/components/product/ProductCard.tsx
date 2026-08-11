@@ -49,32 +49,27 @@ export function ProductCard({
           imgClassName="transition-transform duration-[600ms] ease-settle group-hover:scale-[1.04]"
         />
 
-        {/* The badges press themselves on a beat after the card lands. That
-            overshoot is what sells them as stickers rather than printed
-            labels, and it is this section's signature. */}
+        {/* ONLY the discount badge. `product.badges` ("Two to paint",
+            "Bestseller", "For brothers", "Personalised"…) is deliberately not
+            rendered here any more: with one or two of those stacked above the
+            discount, the corner of every card was carrying three competing
+            labels and the one that actually matters — the price cut — was the
+            last thing read. The data is left in place on the products, so
+            turning them back on is putting this map back.
+
+            It presses itself on a beat after the card lands; that overshoot is
+            what sells it as a sticker rather than a printed label. */}
         <div className="pointer-events-none absolute left-3 top-3 flex flex-col items-start gap-1.5">
-          {product.badges?.map((b, i) => (
-            <StickerBadge
-              key={b}
-              size="sm"
-              rotate={i % 2 === 0 ? -3 : 2}
-              reveal
-              delay={200 + i * 90}
-              // The wrapper is pointer-events-none, so the badge's own
-              // hover:rotate-0 can never fire. Straightening on the CARD's
-              // hover is what the gesture was always for.
-              className="group-hover:rotate-0"
-            >
-              {b}
-            </StickerBadge>
-          ))}
           {off ? (
             <StickerBadge
               size="sm"
               tone="ink"
               rotate={2}
               reveal
-              delay={200 + (product.badges?.length ?? 0) * 90}
+              delay={200}
+              // The wrapper is pointer-events-none, so the badge's own
+              // hover:rotate-0 can never fire. Straightening on the CARD's
+              // hover is what the gesture was always for.
               className="group-hover:rotate-0"
             >
               {off}% off

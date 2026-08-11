@@ -23,7 +23,7 @@ export function FeaturedProducts() {
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading
           eyebrow="Paint it yourself"
-          title="Everything for one very good afternoon"
+          title="Pick your creative adventure."
         />
         <Link
           href="/shop?c=painting-kits"

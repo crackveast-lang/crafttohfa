@@ -53,7 +53,10 @@ export default function ShopPage() {
   return (
     <>
       <PageHero
-        eyebrow={`${products.length} pieces · from ${formatINR(lowestPrice)}`}
+        /* Just the price now. The count was doing the opposite of its job:
+           "50 pieces" invites you to notice a catalogue is small long before
+           it invites you to notice it is varied. */
+        eyebrow={`From ${formatINR(lowestPrice)}`}
         /* Was a 🤍 emoji, which renders as whatever flat glyph the reader's
            OS ships and looked pasted-on beside a hand-drawn brand. This is
            the house Heart doodle instead: same stroke weight as every other
