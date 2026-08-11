@@ -18,24 +18,20 @@ export function PageHero({
   title,
   intro,
   children,
-  aside,
   tone = "blush",
   className,
 }: {
   eyebrow?: string;
-  /** ReactNode, not string: /shop sets a doodle inside the headline. */
+  /** ReactNode rather than string, so a page can set a doodle inside it. */
   title: ReactNode;
   intro?: ReactNode;
   children?: ReactNode;
-  /**
-   * Optional artwork for the empty half of the band. Without it the layout is
-   * exactly what it was: one full-width column. With it the text keeps the
-   * left, where it is read first, and this fills the right.
-   */
-  aside?: ReactNode;
   tone?: "blush" | "cream" | "peach";
   className?: string;
 }) {
+  /* There was briefly an `aside` prop here, for the artwork on /shop. That
+     page now has its own ShopHero, so this is back to the one-column band the
+     five quiet pages actually want. */
   return (
     <div
       className={cn(
@@ -61,63 +57,42 @@ export function PageHero({
       />
 
       <Container className="relative py-14 md:py-20">
-        <div
-          className={cn(
-            aside &&
-              "grid items-center gap-10 md:grid-cols-[1.15fr_0.85fr] md:gap-12",
-          )}
+        {eyebrow ? (
+          <p data-reveal="rise" className="text-eyebrow uppercase text-plum">
+            {eyebrow}
+          </p>
+        ) : null}
+        <h1
+          data-reveal="rise"
+          style={{ animationDelay: "80ms" }}
+          className="relative mt-3 inline-block max-w-[18ch] text-h2 md:text-display"
         >
-          <div>
-            {eyebrow ? (
-              <p
-                data-reveal="rise"
-                className="text-eyebrow uppercase text-plum"
-              >
-                {eyebrow}
-              </p>
-            ) : null}
-            <h1
-              data-reveal="rise"
-              style={{ animationDelay: "80ms" }}
-              className="relative mt-3 inline-block max-w-[18ch] text-h2 md:text-display"
-            >
-              {title}
-              <Underline
-                aria-hidden="true"
-                data-reveal="draw"
-                style={{ animationDelay: "330ms" }}
-                className="absolute -bottom-2 left-0 h-2.5 w-[min(200px,55%)] text-sage md:-bottom-3 md:h-3"
-              />
-            </h1>
-            {intro ? (
-              <p
-                data-reveal="rise"
-                style={{ animationDelay: "150ms" }}
-                className="mt-7 max-w-[54ch] text-body leading-relaxed text-ink/75"
-              >
-                {intro}
-              </p>
-            ) : null}
-            {children ? (
-              <div
-                data-reveal="rise"
-                style={{ animationDelay: "220ms" }}
-                className="mt-7"
-              >
-                {children}
-              </div>
-            ) : null}
+          {title}
+          <Underline
+            aria-hidden="true"
+            data-reveal="draw"
+            style={{ animationDelay: "330ms" }}
+            className="absolute -bottom-2 left-0 h-2.5 w-[min(200px,55%)] text-sage md:-bottom-3 md:h-3"
+          />
+        </h1>
+        {intro ? (
+          <p
+            data-reveal="rise"
+            style={{ animationDelay: "150ms" }}
+            className="mt-7 max-w-[54ch] text-body leading-relaxed text-ink/75"
+          >
+            {intro}
+          </p>
+        ) : null}
+        {children ? (
+          <div
+            data-reveal="rise"
+            style={{ animationDelay: "220ms" }}
+            className="mt-7"
+          >
+            {children}
           </div>
-          {aside ? (
-            <div
-              data-reveal="settle"
-              style={{ animationDelay: "180ms" }}
-              className="mx-auto w-full max-w-[300px] md:mx-0 md:ml-auto"
-            >
-              {aside}
-            </div>
-          ) : null}
-        </div>
+        ) : null}
       </Container>
     </div>
   );
