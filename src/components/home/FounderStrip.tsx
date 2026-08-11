@@ -36,10 +36,19 @@ export function FounderStrip() {
                     without ever catching it moving. One property, one element,
                     and it is the most premium thing on the site. */}
                   <div className="blob-morph overflow-hidden border-2 border-ink/80 bg-cream">
+                    {/* The photo's OWN 897x792, not a square. It was previously
+                        padded to a square by replicating the edge rows, and the
+                        bottom row is her hand — so the pad smeared skin tone
+                        into a blurred band across the bottom of the blob. Her
+                        face sits hard against the right edge and the "Made by
+                        Craftohfa" plaque against the left, so there is no square
+                        crop that keeps both; the frame is simply shown as shot.
+                        Do not set ratio="square" here again. */}
                     <CraftImage
                       src="/images/about/founder.jpg"
-                      alt="The founder of CraftTohfa crocheting at a table"
-                      ratio="square"
+                      alt="The founder of Craftohfa with a tray of paint-your-own plaster figures"
+                      ratio="none"
+                      className="aspect-[897/792]"
                       sizes="(max-width: 768px) 70vw, 300px"
                       showPlaceholderLabel={false}
                       seedKey="founder"

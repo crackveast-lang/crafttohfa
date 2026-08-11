@@ -4,19 +4,39 @@ import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProductCard } from "@/components/product/ProductCard";
 import { ScrollRow, railItem } from "@/components/ui/ScrollRow";
-import { getProductsByCategory } from "@/data/products";
+import { getProduct, getProductsByCategory } from "@/data/products";
 
 /**
  * PAINTING KITS only, not a mixed row and not whatever is flagged featured.
  *
  * A row of four that jumped from a ₹70 rakhi to a ₹499 hamper read as four
  * unrelated things rather than as a range worth browsing. One category makes
- * it a shelf: same kind of product, four options, an obvious next click. The
- * category is already sorted cheapest-first, so this opens at ₹120.
+ * it a shelf: same kind of product, four options, an obvious next click.
  */
+
+/**
+ * The four cards, PINNED by slug rather than taken as the four cheapest kits.
+ *
+ * This is the shop window, so it is chosen rather than derived: cheapest-first
+ * meant adding one inexpensive kit silently rewrote the homepage, and it had
+ * put Teddy & Butterfly in slot 3, which is out by request.
+ *
+ * Keep it to four — the row is a 4-up grid at lg. Any slug that goes missing
+ * from products.ts is dropped rather than crashing the homepage, so a typo
+ * here costs you a card, not the page. Order is the display order.
+ */
+const FEATURED_SLUGS = [
+  "space-rocket-paint-set",
+  "flower-garden-paint-combo",
+  "fruit-basket-paint-combo",
+  "train-and-friends-paint-combo",
+] as const;
+
 export function FeaturedProducts() {
   const kits = getProductsByCategory("painting-kits");
-  const featured = kits.slice(0, 4);
+  const featured = FEATURED_SLUGS.map(getProduct).filter(
+    (p) => p !== undefined,
+  );
 
   return (
     <Section tone="blush">

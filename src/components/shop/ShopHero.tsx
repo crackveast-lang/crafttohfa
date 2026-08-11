@@ -2,60 +2,20 @@ import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { WashiTape } from "@/components/ui/WashiTape";
-import {
-  GiftBox,
-  Heart,
-  PaintBrush,
-  Sparkle,
-  Underline,
-} from "@/components/doodles";
+import { Heart, Sparkle, Underline } from "@/components/doodles";
 import { resolvePhoto } from "@/lib/images";
-import { formatINR } from "@/lib/format";
-import { lowestPrice } from "@/data/products";
 
 /**
  * The shop banner.
  *
  * Its own component rather than another prop on PageHero: PageHero is a slim
  * band shared by /about, /faq, /contact, /policies and /returns, and this is a
- * full banner with a photo half and a feature strip under it. Bending the
- * shared one into this shape would have made five quiet pages pay for the one
- * loud one.
+ * full banner with a photo half. Bending the shared one into this shape would
+ * have made five quiet pages pay for the one loud one.
  *
  * The headline is unchanged, including the doodle heart and the hand-drawn
  * underline it has always carried.
  */
-
-/** The four promises under the banner. Icons are all one-stroke doodles. */
-const PROMISES = [
-  {
-    Icon: Sparkle,
-    title: "Premium quality",
-    body: "Safe, non-toxic paints",
-    chip: "bg-blush",
-  },
-  {
-    /* PaintBrush here and GiftBox below, not the other way round: the box
-       belongs to the promise about gifting. Confetti was tried for gifting
-       and is nine dots and six ticks, which at 20px is a smudge. */
-    Icon: PaintBrush,
-    title: "Everything you need",
-    body: "All in one box",
-    chip: "bg-peach",
-  },
-  {
-    Icon: GiftBox,
-    title: "Perfect for gifting",
-    body: "Any occasion",
-    chip: "bg-sage",
-  },
-  {
-    Icon: Heart,
-    title: "Handmade",
-    body: "In small batches, by us",
-    chip: "bg-blush",
-  },
-];
 
 /* The banner photograph. A real open box rather than the small illustrated
    render: this prints at ~560px wide and the render is only 309px across, so
@@ -83,14 +43,12 @@ export function ShopHero() {
         <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16">
           {/* ── Words ───────────────────────────────────────────────── */}
           <div>
-            <p data-reveal="rise" className="text-eyebrow uppercase text-plum">
-              From {formatINR(lowestPrice)}
-            </p>
-
+            {/* No "From ₹N" eyebrow: the prices are on the cards a scroll
+                below, and leading with the cheapest one framed the whole shop
+                as a discount rack. The headline starts the column now. */}
             <h1
               data-reveal="rise"
-              style={{ animationDelay: "80ms" }}
-              className="relative mt-3 inline-block max-w-[18ch] text-h2 md:text-display"
+              className="relative inline-block max-w-[18ch] text-h2 md:text-display"
             >
               More creating. Less scrolling.{" "}
               <span
@@ -182,44 +140,11 @@ export function ShopHero() {
         </div>
       </Container>
 
-      {/* ── The four promises ─────────────────────────────────────────
-          Hairlines are a 1px grid gap over a tinted backdrop rather than
-          borders on the cells, so the dividers are correct at one, two and
-          four columns without a rule per breakpoint. Same trick as the
-          homepage highlight bar. */}
-      <div className="relative border-t border-ink/10 bg-cream/60">
-        <Container className="px-0 md:px-0">
-          <ul className="grid gap-px bg-ink/8 sm:grid-cols-2 lg:grid-cols-4">
-            {PROMISES.map(({ Icon, title, body, chip }, i) => (
-              <li
-                key={title}
-                data-reveal="rise-sm"
-                style={{ animationDelay: `${i * 70}ms` }}
-                className="flex items-center gap-3.5 bg-cream px-5 py-5 md:px-6"
-              >
-                <span
-                  className={`grid size-11 shrink-0 place-items-center rounded-full ${chip}`}
-                >
-                  <Icon
-                    aria-hidden="true"
-                    data-reveal="draw"
-                    style={{ animationDelay: `${i * 70 + 120}ms` }}
-                    className="size-5 text-ink"
-                  />
-                </span>
-                <span className="flex min-w-0 flex-col leading-tight">
-                  <span className="font-display text-[0.95rem] font-semibold text-ink">
-                    {title}
-                  </span>
-                  <span className="mt-0.5 text-sm leading-snug text-ink/65">
-                    {body}
-                  </span>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </div>
+      {/* The four-promise strip that used to sit here — Premium quality /
+          Everything you need / Perfect for gifting / Handmade — is gone. The
+          banner now ends at the photo and the grid goes straight into the
+          products, which is the point of the page. The same promises are still
+          made on the homepage (WhatsInside) and on every product page. */}
     </section>
   );
 }

@@ -32,7 +32,10 @@ export const siteConfig = {
     number: "919243520880",
     /* How the number is shown to humans (footer, contact page). */
     display: "+91 92435 20880",
-    greeting: "Hi CraftTohfa! 👋",
+    /* One 't', matching the @craftohfa handle below and the "Made by
+       Craftohfa" plaque in the photos. This is the first line of every
+       prefilled WhatsApp message, so it is the spelling customers copy. */
+    greeting: "Hi Craftohfa! 👋",
     sign: "Could you please share availability and delivery details?",
     /* Shown next to CTAs so people know what to expect. */
     responseTime: "We usually reply within a few hours",

@@ -32,7 +32,14 @@ export function ProductCard({
   return (
     <Card
       interactive
-      className={cn("group flex flex-col overflow-hidden", className)}
+      // h-full is load-bearing, not decoration. A grid/flex parent stretches
+      // the card's WRAPPER to the tallest cell in the row, but the card itself
+      // is a block box that stops at its own content — so a row containing one
+      // three-line title left every other card short of its slot, with the
+      // price and CTA floating above the shared baseline. Filling the wrapper
+      // is what lets `mt-auto` on the price block pin every CTA to the same
+      // line. Homepage rail, shop grid and ProductGrid all rely on this.
+      className={cn("group flex h-full flex-col overflow-hidden", className)}
     >
       <div className="relative">
         <CraftImage
