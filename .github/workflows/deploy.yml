@@ -55,12 +55,16 @@ jobs:
       - name: Build static export
         env:
           # Switches next.config.ts into export mode: output: 'export',
-          # basePath: '/crafttohfa', and unoptimized images.
+          # trailingSlash, and unoptimized images. NOT a path prefix — the site
+          # is served from the root of the custom domain.
           GITHUB_PAGES: "true"
           # Feeds canonical tags, the sitemap and the WhatsApp/OpenGraph share
-          # previews. configure-pages resolves this to the real Pages URL, so
-          # it stays correct even behind a custom domain.
-          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+          # previews. Written out in full rather than taken from
+          # configure-pages' base_url: that output follows whatever Pages
+          # currently reports, which is http:// until GitHub finishes issuing
+          # the certificate — and an http canonical on every page is not
+          # something anyone would notice quickly.
+          NEXT_PUBLIC_SITE_URL: https://www.craftohfa.com
         run: npm run build
 
       - name: Shrink images

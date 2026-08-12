@@ -12,12 +12,21 @@ import type { NextConfig } from "next";
 const isPages = process.env.GITHUB_PAGES === "true";
 
 /**
- * The site lives at crackveast-lang.github.io/crafttohfa, so every internal
- * URL needs the repo name in front of it. Next prepends this to next/link
- * hrefs and next/image srcs automatically; `assetPrefix` does the same for
- * everything under /_next/.
+ * EMPTY, and it must stay empty.
+ *
+ * The site is served from the root of www.craftohfa.com. It used to live at
+ * crackveast-lang.github.io/crafttohfa, which needed the repo name in front of
+ * every internal URL — but the moment the custom domain was pointed at Pages,
+ * that prefix became a path that does not exist. Every /crafttohfa/_next/*.css
+ * and .js 404'd and the whole site rendered as unstyled HTML: a page-high black
+ * logo and one line of text.
+ *
+ * The old project URL still works: Pages 301s it to the custom domain.
+ *
+ * Only put a value back here if the site is ever served from a SUBDIRECTORY
+ * again — not merely because the build is going to Pages.
  */
-const basePath = isPages ? "/crafttohfa" : "";
+const basePath = "";
 
 const nextConfig: NextConfig = {
   /**

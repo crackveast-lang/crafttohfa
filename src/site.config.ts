@@ -20,7 +20,11 @@ export const siteConfig = {
        to make you notice. "from ₹50" survived a rakhi price rise here once
        already. /shop derives its own "from ₹N" from `lowestPrice`. */
     "Hand-crocheted rakhis, DIY paint-your-own sets, crochet keepsakes and rakhi combo boxes. Made in small batches by hand, and designed to pull kids away from screens.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://crafttohfa.com",
+  /* One 't' in the domain — craftohfa.com, matching the @craftohfa handle
+     below. (Two t's is the repo name, not the site.) The www is not optional:
+     it is the host configured on GitHub Pages, and the bare apex is still
+     parked at the registrar. */
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.craftohfa.com",
 
   whatsapp: {
     /* Format: country code + number, digits only.
