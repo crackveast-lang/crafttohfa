@@ -27,7 +27,7 @@ const CONTENTS = [
   {
     Icon: Heart,
     title: "A little keepsake to treasure",
-    body: "Choose a soft crochet toy, keychain or mini bag, something they can keep close even after Raksha Bandhan.",
+    body: "Choose a soft crochet toy, keychain or mini pouch, something they can keep close even after Raksha Bandhan.",
   },
   {
     Icon: PaintBrush,

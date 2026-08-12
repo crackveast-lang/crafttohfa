@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Sparkle } from "@/components/doodles";
+import { HeartSolid, Sparkle } from "@/components/doodles";
 import { cn } from "@/lib/cn";
 import { resolvePhoto } from "@/lib/images";
 import { siteConfig } from "@/site.config";
@@ -145,6 +145,12 @@ export function Wordmark({
    * TIGHT tracking and Baloo at 700 to echo the hand-lettered card. The hearts
    * are the ornaments from the card, aria-hidden so the line is announced as
    * plain words.
+   *
+   * They are <HeartSolid> and not the U+2764 character they used to be. That
+   * codepoint defaults to emoji presentation on iOS, so iPhones drew a red
+   * system-font emoji here and ignored `text-sage` — the brand mark came out
+   * green on Windows and Android and red on iOS. An SVG is not a font lookup,
+   * so it is sage everywhere. Do not put the character back.
    */
   const taglineLine = tagline ? (
     <span
@@ -156,13 +162,19 @@ export function Wordmark({
         onDark ? "text-white/85" : "text-plum",
       )}
     >
-      <span aria-hidden="true" className={onDark ? "text-peach" : "text-sage"}>
-        ❤
-      </span>
+      <HeartSolid
+        className={cn(
+          "size-[0.9em] shrink-0",
+          onDark ? "text-peach" : "text-sage",
+        )}
+      />
       {siteConfig.taglineShort}
-      <span aria-hidden="true" className={onDark ? "text-peach" : "text-sage"}>
-        ❤
-      </span>
+      <HeartSolid
+        className={cn(
+          "size-[0.9em] shrink-0",
+          onDark ? "text-peach" : "text-sage",
+        )}
+      />
     </span>
   ) : null;
 

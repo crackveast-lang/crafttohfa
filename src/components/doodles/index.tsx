@@ -100,6 +100,34 @@ export function Heart(props: D) {
 }
 
 /**
+ * The filled heart. Same path as <Heart>, painted rather than stroked — see
+ * <Star> for the other one that does this.
+ *
+ * It exists because of a REAL BUG, not for variety. The ornaments either side
+ * of the tagline used to be U+2764 typed straight into the JSX. That codepoint
+ * defaults to EMOJI presentation on iOS, so iPhones and iPads rendered a red
+ * emoji from the system font and ignored `text-sage` entirely — green hearts on
+ * Windows and Android, red ones on iOS, in the brand mark. U+FE0E would ask for
+ * text presentation, but honouring it is up to the platform and Apple's
+ * handling of it is exactly what is not trustworthy here. An inline SVG is not
+ * a font lookup at all, so `currentColor` is the whole story on every device.
+ *
+ * Not a stroked heart: these render at ~10px beside the tagline, and at that
+ * size a 2px stroke closes the middle up into a blob. Same reason the hero
+ * badge uses a solid glyph.
+ *
+ * Deliberately NOT `drawable` — there is no path to draw when the shape is a
+ * fill, and it should never animate in the header anyway.
+ */
+export function HeartSolid(props: D) {
+  return (
+    <svg viewBox="0 0 24 24" {...base} fill="currentColor" stroke="none" {...props}>
+      <path d="M12 20.5S3.5 15.4 3.5 9.6A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8.5 2.6c0 5.8-8.5 10.9-8.5 10.9Z" />
+    </svg>
+  );
+}
+
+/**
  * The heart with three little motion rays, for the end of the hero headline.
  *
  * A separate mark rather than <Heart> plus a Confetti: it is drawn to sit ON a

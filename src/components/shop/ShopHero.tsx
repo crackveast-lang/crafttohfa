@@ -17,12 +17,22 @@ import { resolvePhoto } from "@/lib/images";
  * underline it has always carried.
  */
 
-/* The banner photograph. A real open box rather than the small illustrated
-   render: this prints at ~560px wide and the render is only 309px across, so
-   it would be visibly soft here. `brand/shop-gift-box.png` is therefore no
-   longer referenced anywhere; it is left in the repo rather than deleted, in
-   case it wants a home at a smaller size later. */
-const HERO_PHOTO = "/images/products/combos/little-car-rakhi-paint-hamper-1.jpg";
+/**
+ * The banner photograph: the packed, ribboned box with its thank-you tag, the
+ * rocket and the thank-you card. It shows what actually ARRIVES, rather than
+ * one combo out of fifty, which is the right promise to open the shop with.
+ *
+ * CROPPED TO 3:4 from a 720x1280 phone frame, not centre-cropped by the
+ * browser. The subject runs from the top of the box to the bottom of the card,
+ * y=215..1175 of the original; a 4:5 frame is 900px tall and clipped the
+ * bottom of both the card and the rocket, and letting a 9:16 image size itself
+ * would stand it ~750px tall against a ~480px column of type. The source is
+ * public/images/products/"shop hero image.jpeg" if it ever wants re-cutting.
+ *
+ * (`brand/shop-gift-box.png`, the small illustrated render, is referenced by
+ * nothing — it is only 309px across and goes soft at this size.)
+ */
+const HERO_PHOTO = "/images/brand/shop-hero.jpg";
 
 export function ShopHero() {
   const photo = resolvePhoto(HERO_PHOTO);
@@ -99,7 +109,9 @@ export function ShopHero() {
           </div>
 
           {/* ── Photograph ──────────────────────────────────────────── */}
-          <div className="relative mx-auto w-full max-w-[520px] lg:max-w-none">
+          {/* Capped at 440px because the source is only 720px wide. Any wider
+              and a 2x screen is asking for more pixels than exist. */}
+          <div className="relative mx-auto w-full max-w-[400px] lg:max-w-[440px]">
             <div data-reveal="settle" style={{ animationDelay: "120ms" }}>
               <div className="relative rotate-[1.5deg]">
                 <WashiTape
@@ -109,16 +121,20 @@ export function ShopHero() {
                   reveal
                   delay={480}
                 />
-                <div className="overflow-hidden rounded-frame border-2 border-ink/85 bg-cream shadow-lift">
+                {/* A FIXED frame matching the file's own 3:4, so object-cover
+                    has nothing left to crop and the considered crop survives.
+                    Fixing it also means swapping the photo again later cannot
+                    change the height of the hero. */}
+                <div className="aspect-[3/4] overflow-hidden rounded-frame border-2 border-ink/85 bg-cream shadow-lift">
                   {photo ? (
                     <Image
                       src={photo}
-                      alt="An open Craft Tohfa box with a crochet puppy keychain, a rakhi card, a paint-your-own idol and car, and pots of paint"
-                      width={1254}
-                      height={1254}
+                      alt="A ribboned Craft Tohfa gift box with a thank-you tag, a paint-your-own space rocket and a thank-you card"
+                      width={720}
+                      height={960}
                       priority
-                      sizes="(max-width: 1024px) 90vw, 520px"
-                      className="h-auto w-full"
+                      sizes="(max-width: 1024px) 90vw, 440px"
+                      className="size-full object-cover"
                     />
                   ) : null}
                 </div>

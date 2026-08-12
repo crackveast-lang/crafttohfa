@@ -14,7 +14,7 @@ import {
 import ImageTiles from "@/components/ui/image-tiles";
 import { CraftImage } from "@/components/media/CraftImage";
 import { HeroHighlights } from "@/components/home/HeroHighlights";
-import { HeartBurst } from "@/components/doodles";
+import { HeartBurst, HeartSolid } from "@/components/doodles";
 import { getProductsByCategory } from "@/data/products";
 import { cn } from "@/lib/cn";
 import type { Product } from "@/types";
@@ -86,8 +86,17 @@ export function Hero() {
       />
       <SeedScatter className="pointer-events-none z-0 text-ink/30" />
 
-      <Container className="relative py-12 md:py-16 lg:py-20">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:gap-8">
+      {/* THE VERTICAL BUDGET, and why several numbers here are responsive.
+          On a 390x844 phone the first screen is ~745px after Safari's own
+          chrome, and the announcement bar plus the header take ~92px of it.
+          Everything from here to the flowers has to fit in what is left, or
+          the hero lands as a wall of type with the artwork entirely below the
+          fold — which is exactly what it was doing. The mobile values (py-8,
+          gap-6, the tighter margins and the 1.85rem headline floor) are what
+          buy the flower column its ~220px. Measure before changing any of
+          them; `md:` and up are the originals and should stay that way. */}
+      <Container className="relative py-6 md:py-16 lg:py-20">
+        <div className="grid items-center gap-5 md:gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:gap-8">
           {/* ── Words ─────────────────────────────────────────────────
               Each block rises in on a stagger. Every delay on this page is
               keyed to the preloader, which now runs its gift-box gesture and
@@ -104,10 +113,13 @@ export function Hero() {
                 logo was only implying. */}
             <div className="rise-in" style={{ animationDelay: "1.5s" }}>
               <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-blush px-4 py-2 text-eyebrow uppercase text-ink/80">
-                {/* Solid glyph rather than the line doodle: at 12px a 2px
-                    stroke closes up into a blob. */}
-                <span aria-hidden="true" className="heartbeat inline-block text-rose">
-                  ❤
+                {/* Solid mark rather than the line doodle: at 12px a 2px
+                    stroke closes up into a blob. <HeartSolid> and not the
+                    U+2764 character that was here — see the note on the
+                    component; iOS renders that codepoint as a system emoji and
+                    drops the colour. Same bug as the one in the wordmark. */}
+                <span className="heartbeat inline-block">
+                  <HeartSolid className="size-[0.95em] text-rose" />
                 </span>
                 Made with love
               </span>
@@ -118,19 +130,24 @@ export function Hero() {
                 A sentence set at 13vw uppercase would run four lines deep and
                 shout copy that is deliberately quiet, and a 5px offset shadow
                 costs legibility the headline can't spare. The clamp tops out
-                where "Made to be remembered." still fits the column at lg.
+                where "worth holding onto." still fits the column at lg.
 
-                Ink carries the sentence and ONE word is rose. That word is the
-                payoff of the line, so it is the only place worth spending an
-                accent — highlighting more than one turns a hierarchy into
+                The MOBILE floor is 1.85rem rather than 2.25rem, and it is
+                doing a specific job: see the note on the vertical budget
+                below. Desktop is untouched — the clamp only bottoms out below
+                ~640px, so nothing above `sm` moves by a pixel.
+
+                Ink carries the sentence and ONE phrase is rose. That phrase is
+                the payoff of the line, so it is the only place worth spending
+                an accent — highlighting more than one turns a hierarchy into
                 stripes. Rose exists purely for this; see the rose budget in
                 globals.css before reaching for it anywhere else. */}
-            <h1 className="mt-5 font-fun text-[clamp(2.25rem,5.4vw,3.75rem)] font-extrabold leading-[1.06] tracking-tight text-ink">
+            <h1 className="mt-4 font-fun text-[clamp(1.85rem,5.4vw,3.75rem)] font-extrabold leading-[1.06] tracking-tight text-ink md:mt-5">
               <span className="rise-in block" style={{ animationDelay: "1.58s" }}>
-                Made by hand.
+                Made for moments
               </span>
               <span className="rise-in block" style={{ animationDelay: "1.66s" }}>
-                Made to be <span className="text-rose">remembered.</span>
+                worth <span className="text-rose">holding onto.</span>
                 {/* In the flow of the line, not absolutely positioned beside
                     it. The hero clips its overflow, so a mark hung off the
                     right of the headline is the one thing guaranteed to be
@@ -149,7 +166,7 @@ export function Hero() {
             </h1>
 
             <p
-              className="rise-in mt-6 max-w-[48ch] text-body leading-relaxed text-ink/75"
+              className="rise-in mt-4 max-w-[48ch] text-body leading-relaxed text-ink/75 md:mt-6"
               style={{ animationDelay: "1.74s" }}
             >
               Handcrafted crochet rakhis, DIY painting kits, little keepsakes,
@@ -157,17 +174,26 @@ export function Hero() {
               little more special.
             </p>
 
+            {/* Side by side from 390px up rather than stacked until `sm`.
+                Two full-width lg buttons cost ~116px of the first screen and
+                the second one is the softer of the two asks, so it does not
+                need its own row. `flex-wrap` still lets them stack if the
+                labels ever grow. */}
             <div
-              className="rise-in mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
+              className="rise-in mt-4 flex flex-wrap gap-2.5 md:mt-8 md:gap-3"
               style={{ animationDelay: "1.82s" }}
             >
-              <Button href="/shop" size="lg">
+              {/* min-h-12 on phones rather than lg's 14. 48px is still well
+                  clear of the 44px tap minimum, and the two of them stack
+                  here, so the 8px comes off the fold twice. */}
+              <Button href="/shop" size="lg" className="min-h-12 md:min-h-14">
                 Shop the collection
               </Button>
               <WhatsAppButton
                 ctx={{ kind: "general" }}
                 variant="secondary"
                 size="lg"
+                className="min-h-12 md:min-h-14"
               >
                 Chat with us
               </WhatsAppButton>

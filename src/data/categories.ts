@@ -72,7 +72,7 @@ export const categories: Category[] = [
     tone: "peach",
     image: {
       src: "/images/products/combos/strawberry-bag-rakhi-paint-hamper-1.jpg",
-      alt: "A rakhi combo box with a crochet handbag, rakhi and pieces to paint",
+      alt: "A rakhi combo box with a crochet pouch, rakhi and pieces to paint",
     },
   },
 ];

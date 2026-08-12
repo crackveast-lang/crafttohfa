@@ -242,7 +242,7 @@ const rakhis: Product[] = [
     alt: 'A hand-crocheted yellow rakhi with a cream scalloped edge and "BRO" embroidered in red',
     badges: ["For brothers"],
     // Priced with its pearl sibling below rather than with the other rakhis.
-    price: 300,
+    price: 150,
   }),
   rakhi({
     slug: "bro-pearl-rakhi",
@@ -258,7 +258,7 @@ const rakhis: Product[] = [
     alt: 'A hand-crocheted pink and yellow rakhi with "BRO" spelled out in pearl beads',
     /* The two "Bro" rakhis are the only ones off the ₹70 base — the sewn
        lettering is what takes the time. Everything else stays PRICES.rakhis. */
-    price: 300,
+    price: 150,
   }),
   rakhi({
     slug: "kitty-face-rakhi",
@@ -395,90 +395,87 @@ const crochet: Product[] = [
     inStock: true,
   },
 
-  // ── Mini bags and pouches ───────────────────────────────────────────────
+  // ── Mini pouches ────────────────────────────────────────────────────────
   // Named from the photographs rather than the filenames: two of the files say
-  // "pink" for bags that are plainly blue and peach, and one says "kitty" for
+  // "pink" for pieces that are plainly blue and peach, and one says "kitty" for
   // a bunny. The photo is the source of truth.
+  //
+  // POUCH, NOT BAG, in every title here. They are palm-sized clip-on pieces and
+  // "bag" oversold them — a customer reading "mini bag" pictures something she
+  // could put a phone in. The SLUGS still say bag on purpose: they are live
+  // URLs, printed on nothing but linked from Instagram, and renaming a slug
+  // silently 404s every link anyone has already shared. Slug and title are
+  // allowed to disagree; a dead link is not.
 
   charm({
     slug: "cream-tulip-mini-bag",
-    name: "Cream Tulip Mini Bag",
-    tagline: "Two rows of tulips worked straight into the bag",
+    name: "Cream Tulip Mini Pouch",
+    tagline: "Two rows of tulips worked straight into the pouch",
     description:
-      "A little cream drawstring bag with a row of yellow tulips above a row of pink ones, each flower crocheted into the fabric rather than sewn on afterwards. Closes with a pearl button and hangs off a bag on a gold clip.",
+      "A little cream drawstring pouch with a row of yellow tulips above a row of pink ones, each flower crocheted into the fabric rather than sewn on afterwards. Closes with a pearl button and hangs off a bag on a gold clip.",
     highlights: [
       "Tulips worked into the stitch, not appliquéd on",
       "Pearl button closure",
       "Gold clip, clips to a school bag or a set of keys",
     ],
-    includes: ["1 crochet mini bag with a pearl button and gold clip"],
-    alt: "A cream hand-crocheted mini bag with rows of yellow and pink tulips, a pearl button and a gold clip",
+    includes: ["1 crochet mini pouch with a pearl button and gold clip"],
+    alt: "A cream hand-crocheted mini pouch with rows of yellow and pink tulips, a pearl button and a gold clip",
     badges: ["New"],
   }),
 
   charm({
     slug: "blue-tulip-mini-bag",
-    name: "Blue Tulip Mini Bag",
-    tagline: "The tulip bag in cornflower blue",
+    name: "Blue Tulip Mini Pouch",
+    tagline: "The tulip pouch in cornflower blue",
     description:
-      "The same tulip bag worked in a soft cornflower blue, with yellow tulips above pink ones and a pearl button at the top. The blue is what makes the yellow read, it is the brightest of the three tulip bags.",
+      "The same tulip pouch worked in a soft cornflower blue, with yellow tulips above pink ones and a pearl button at the top. The blue is what makes the yellow read, it is the brightest of the three.",
     highlights: [
       "Cornflower blue with yellow and pink tulips",
       "Pearl button closure",
       "Gold clip and split ring",
     ],
-    includes: ["1 crochet mini bag with a pearl button and gold clip"],
-    alt: "A cornflower blue hand-crocheted mini bag with rows of yellow and pink tulips, a pearl button and a gold clip",
+    includes: ["1 crochet mini pouch with a pearl button and gold clip"],
+    alt: "A cornflower blue hand-crocheted mini pouch with rows of yellow and pink tulips, a pearl button and a gold clip",
     badges: ["New"],
   }),
 
   charm({
     slug: "peach-tulip-mini-bag",
-    name: "Peach Tulip Mini Bag",
+    name: "Peach Tulip Mini Pouch",
     tagline: "Purple and yellow tulips on soft peach",
     description:
-      "The tulip bag again in pale peach, this time with purple tulips over yellow ones. The softest colourway of the three and the one that goes with everything.",
+      "The tulip pouch again in pale peach, this time with purple tulips over yellow ones. The softest colourway of the three and the one that goes with everything.",
     highlights: [
       "Peach ground with purple and yellow tulips",
       "Pearl button closure",
       "Gold clip and split ring",
     ],
-    includes: ["1 crochet mini bag with a pearl button and gold clip"],
-    alt: "A pale peach hand-crocheted mini bag with rows of purple and yellow tulips, a pearl button and a gold clip",
+    includes: ["1 crochet mini pouch with a pearl button and gold clip"],
+    alt: "A pale peach hand-crocheted mini pouch with rows of purple and yellow tulips, a pearl button and a gold clip",
     badges: ["New"],
   }),
 
   charm({
     slug: "strawberry-cloud-handbag",
-    name: "Strawberry Cloud Handbag",
+    name: "Strawberry Cloud Pouch",
     tagline: "A plush strawberry on cloud-soft white",
     description:
-      "A tiny handbag crocheted in thick cloud-puff yarn, with a plush strawberry and a felt leaf on the front. Squashier than the cotton bags and the one small children reach for first.",
+      "A tiny pouch crocheted in thick cloud-puff yarn, with a plush strawberry and a felt leaf on the front. Squashier than the cotton ones and the one small children reach for first.",
     highlights: [
       "Worked in thick puff yarn, soft rather than stiff",
       "Plush strawberry with a felt leaf",
       "Top handle, sized for a small hand",
     ],
-    includes: ["1 crochet puff-yarn handbag with a plush strawberry"],
-    alt: "A white cloud-puff crochet handbag with a plush red strawberry and a green felt leaf on the front",
+    includes: ["1 crochet puff-yarn pouch with a plush strawberry"],
+    alt: "A white cloud-puff crochet pouch with a plush red strawberry and a green felt leaf on the front",
     badges: ["New"],
   }),
 
-  charm({
-    slug: "fluffy-kitty-handbag",
-    name: "Fluffy Kitty Handbag",
-    tagline: "A winking cat face on a peach puff bag",
-    description:
-      "A peach puff-yarn handbag with a fluffy white cat face across the front, one eye winking, whiskers and a yellow nose embroidered in, and a bow over one ear. The softest thing in the range to hold.",
-    highlights: [
-      "Fluffy appliquéd cat face with an embroidered wink",
-      "Thick peach puff yarn",
-      "Top handle, sized for a small hand",
-    ],
-    includes: ["1 crochet puff-yarn handbag with a fluffy cat-face front"],
-    alt: "A peach cloud-puff crochet handbag with a fluffy white winking cat face, embroidered whiskers and a yellow nose",
-    badges: ["New"],
-  }),
+  /* "Fluffy Kitty Handbag" (fluffy-kitty-handbag) was withdrawn here. Nothing
+     else in the codebase named it — no combo listed it, no route hardcoded it —
+     so removing the entry is the whole job. Its photo is left in
+     public/images/products/crochet/ rather than deleted, in case it comes
+     back. */
 
   charm({
     slug: "red-bunny-pouch",
@@ -1127,21 +1124,21 @@ const combos: Product[] = [
 
   {
     slug: "strawberry-bag-rakhi-paint-hamper",
-    name: "Strawberry Bag Combo",
+    name: "Strawberry Pouch Combo",
     category: "combos",
     price: PRICES.combos,
-    tagline: "A crocheted handbag she'll actually keep using",
+    tagline: "A crocheted pouch she'll actually keep using",
     description:
-      "A hand-crocheted mini handbag with a felted strawberry on the front, the piece in this collection that outlives the festival by months. With a rainbow spiral rakhi, a plaster strawberry to paint, and the bhai–behen idol.",
+      "A hand-crocheted mini pouch with a felted strawberry on the front, the piece in this collection that outlives the festival by months. With a rainbow spiral rakhi, a plaster strawberry to paint, and the bhai–behen idol.",
     highlights: [
-      "Crochet mini handbag with a felted strawberry",
+      "Crochet mini pouch with a felted strawberry",
       "Rainbow spiral rakhi with pearl and gold beads",
       "Four paints, red, yellow, green and pink",
-      "The bag gets used well past Raksha Bandhan",
+      "The pouch gets used well past Raksha Bandhan",
     ],
     includes: [
       "1 rainbow crochet rakhi on a printed card",
-      "1 crochet strawberry handbag",
+      "1 crochet strawberry pouch",
       "1 paint-your-own strawberry",
       ...IN_EVERY_BOX,
     ],
@@ -1151,7 +1148,7 @@ const combos: Product[] = [
       "combos",
       "strawberry-bag-rakhi-paint-hamper",
       [
-        "Strawberry bag combo box with a white crochet handbag, a rainbow crochet rakhi, a bhai–behen idol and a plaster strawberry with four paint pots",
+        "Strawberry pouch combo box with a white crochet pouch, a rainbow crochet rakhi, a bhai–behen idol and a plaster strawberry with four paint pots",
       ],
       "jpg",
     ),

@@ -25,8 +25,8 @@ export default function FaqPage() {
 
       <PageHero
         eyebrow="Help"
-        title="Questions, answered properly"
-        intro="If yours isn't here, message us, a real person reads it."
+        title="Questions? We've got you."
+        intro="From ordering to unboxing, here's everything you need to know."
       />
 
       <Section tone="cream">

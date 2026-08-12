@@ -50,7 +50,7 @@ export const testimonials: Testimonial[] = [
     name: "Meera K.",
     city: "Ahmedabad",
     rating: 5,
-    purchased: "Strawberry Bag Combo",
+    purchased: "Strawberry Pouch Combo",
     isPlaceholder: true,
   },
   {
@@ -60,7 +60,7 @@ export const testimonials: Testimonial[] = [
     name: "Ritu D.",
     city: "Jaipur",
     rating: 5,
-    purchased: "Strawberry Bag Combo",
+    purchased: "Strawberry Pouch Combo",
     isPlaceholder: true,
   },
   {
