@@ -14,7 +14,7 @@ import {
 import ImageTiles from "@/components/ui/image-tiles";
 import { CraftImage } from "@/components/media/CraftImage";
 import { HeroHighlights } from "@/components/home/HeroHighlights";
-import { HeartBurst } from "@/components/doodles";
+import { HeartBurst, HeartSolid } from "@/components/doodles";
 import { getProductsByCategory } from "@/data/products";
 import { cn } from "@/lib/cn";
 import type { Product } from "@/types";
@@ -105,9 +105,32 @@ export function Hero() {
               behind an opaque overlay. Change the splash timing in
               globals.css and every number here moves with it. */}
           <div className="relative z-10">
-            {/* The "Made with love" pill that used to open this column is gone,
-                by request. The headline is the first thing in the hero now, so
-                it starts the 1.5s stagger the badge used to hold. */}
+            {/* A badge, not the logo. The mark used to sit here and it was the
+                header repeating itself a hundred pixels lower — the same
+                artwork twice in the first screen, which spends the hero's
+                strongest position on something already on screen. Three words
+                of intent cost a fraction of the height and say the thing the
+                logo was only implying.
+
+                Removed for one release and asked back. It carries the same
+                mobile indent as everything else in this column — left flush
+                while the headline under it was inset, it read as a mistake. */}
+            <div
+              className="rise-in ps-[7%] md:ps-0"
+              style={{ animationDelay: "1.5s" }}
+            >
+              <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-blush px-4 py-2 text-eyebrow uppercase text-ink/80">
+                {/* Solid mark rather than the line doodle: at 12px a 2px
+                    stroke closes up into a blob. <HeartSolid> and not the
+                    U+2764 character that was here — see the note on the
+                    component; iOS renders that codepoint as a system emoji and
+                    drops the colour. Same bug as the one in the wordmark. */}
+                <span className="heartbeat inline-block">
+                  <HeartSolid className="size-[0.95em] text-rose" />
+                </span>
+                Made with love
+              </span>
+            </div>
 
             {/* Not `text-mega`, and not uppercase, and no hard offset shadow —
                 all three were built for the two-word poster this used to be.
@@ -134,11 +157,11 @@ export function Hero() {
                 not enough to cost the headline a line. It is dropped at `md`,
                 where the grid gives the column its own whitespace and an
                 indent would only eat into the measure. */}
-            <h1 className="ps-[7%] font-fun text-[clamp(1.85rem,5.4vw,3.75rem)] font-extrabold leading-[1.06] tracking-tight text-ink md:ps-0">
-              <span className="rise-in block" style={{ animationDelay: "1.5s" }}>
+            <h1 className="mt-4 ps-[7%] font-fun text-[clamp(1.85rem,5.4vw,3.75rem)] font-extrabold leading-[1.06] tracking-tight text-ink md:ps-0 md:mt-5">
+              <span className="rise-in block" style={{ animationDelay: "1.58s" }}>
                 Made for moments
               </span>
-              <span className="rise-in block" style={{ animationDelay: "1.58s" }}>
+              <span className="rise-in block" style={{ animationDelay: "1.66s" }}>
                 worth <span className="text-rose">holding onto.</span>
                 {/* In the flow of the line, not absolutely positioned beside
                     it. The hero clips its overflow, so a mark hung off the
@@ -159,7 +182,7 @@ export function Hero() {
 
             <p
               className="rise-in mt-4 max-w-[48ch] ps-[7%] text-body leading-relaxed text-ink/75 md:mt-6 md:ps-0"
-              style={{ animationDelay: "1.66s" }}
+              style={{ animationDelay: "1.74s" }}
             >
               Handcrafted crochet rakhis, DIY painting kits, little keepsakes,
               and thoughtfully curated combo boxes, all made to make gifting a
@@ -173,7 +196,7 @@ export function Hero() {
                 labels ever grow. */}
             <div
               className="rise-in mt-4 flex flex-wrap gap-2.5 ps-[7%] md:mt-8 md:gap-3 md:ps-0"
-              style={{ animationDelay: "1.74s" }}
+              style={{ animationDelay: "1.82s" }}
             >
               {/* min-h-12 on phones rather than lg's 14. 48px is still well
                   clear of the 44px tap minimum, and the two of them stack

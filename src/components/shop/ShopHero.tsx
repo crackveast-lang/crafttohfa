@@ -22,12 +22,15 @@ import { resolvePhoto } from "@/lib/images";
  * rocket and the thank-you card. It shows what actually ARRIVES, rather than
  * one combo out of fifty, which is the right promise to open the shop with.
  *
- * CROPPED TO 3:4 from a 720x1280 phone frame, not centre-cropped by the
- * browser. The subject runs from the top of the box to the bottom of the card,
- * y=215..1175 of the original; a 4:5 frame is 900px tall and clipped the
- * bottom of both the card and the rocket, and letting a 9:16 image size itself
- * would stand it ~750px tall against a ~480px column of type. The source is
- * public/images/products/"shop hero image.jpeg" if it ever wants re-cutting.
+ * CROPPED TO 3:4 from a 941x1672 phone frame, not centre-cropped by the
+ * browser: y=280..1535, which is the top of the box down to the base of the
+ * rocket. Letting a 9:16 image size itself would stand it ~750px tall against
+ * a ~480px column of type. The source is public/images/"now changes"/
+ * "shop banner images.png" if it ever wants re-cutting.
+ *
+ * ⚠️ The Devanagari on the card and the gift tag in this shot reads लोकऊ, not
+ * तोहफा, and the shot it replaced had it right. Nothing in the code can fix
+ * that — it needs a clean photograph. Flagged, not silently accepted.
  *
  * (`brand/shop-gift-box.png`, the small illustrated render, is referenced by
  * nothing — it is only 309px across and goes soft at this size.)
@@ -129,9 +132,9 @@ export function ShopHero() {
                   {photo ? (
                     <Image
                       src={photo}
-                      alt="A ribboned Craft Tohfa gift box with a thank-you tag, a paint-your-own space rocket and a thank-you card"
-                      width={720}
-                      height={960}
+                      alt="A ribboned Craft Tohfa gift box with dried flowers, a thank-you tag and a paint-your-own space rocket"
+                      width={941}
+                      height={1255}
                       priority
                       sizes="(max-width: 1024px) 90vw, 440px"
                       className="size-full object-cover"

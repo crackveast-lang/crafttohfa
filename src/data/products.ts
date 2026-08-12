@@ -241,8 +241,6 @@ const rakhis: Product[] = [
     ],
     alt: 'A hand-crocheted yellow rakhi with a cream scalloped edge and "BRO" embroidered in red',
     badges: ["For brothers"],
-    // Priced with its pearl sibling below rather than with the other rakhis.
-    price: 150,
   }),
   rakhi({
     slug: "bro-pearl-rakhi",
@@ -256,9 +254,10 @@ const rakhis: Product[] = [
       "Adjustable tie",
     ],
     alt: 'A hand-crocheted pink and yellow rakhi with "BRO" spelled out in pearl beads',
-    /* The two "Bro" rakhis are the only ones off the ₹70 base — the sewn
-       lettering is what takes the time. Everything else stays PRICES.rakhis. */
-    price: 150,
+    /* No `price` on either "Bro" rakhi any more. They were the only two off the
+       ₹70 base, went to ₹150, and are now back on it — so the override is
+       deleted rather than written as `price: 70`, which would silently stop
+       tracking PRICES.rakhis the next time that moves. */
   }),
   rakhi({
     slug: "kitty-face-rakhi",
