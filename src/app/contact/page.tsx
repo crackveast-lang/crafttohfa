@@ -12,7 +12,7 @@ import { siteConfig } from "@/site.config";
 export const metadata: Metadata = buildMetadata({
   title: "Contact us",
   description:
-    "Message CraftTohfa on WhatsApp, email us, or find us on Instagram. Bulk and school enquiries welcome.",
+    "Message Craftohfa on WhatsApp, email us, or find us on Instagram. Bulk and school enquiries welcome.",
   path: "/contact",
 });
 

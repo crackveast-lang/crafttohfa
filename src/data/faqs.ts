@@ -75,7 +75,7 @@ export const faqs: Faq[] = [
     group: "Shipping",
     question: "What if it arrives damaged?",
     answer:
-      "We pack every Craft Tohfa with care and love. Please record a short video while opening your package and share it with us. It helps us quickly assist you if your order arrives damaged or has any issue.",
+      "We pack every Craftohfa order with care and love. Please record a short video while opening your package and share it with us. It helps us quickly assist you if your order arrives damaged or has any issue.",
   },
 
   // ── Products ──

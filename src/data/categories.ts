@@ -2,7 +2,7 @@ import type { Category, CategorySlug } from "@/types";
 import { getProductsByCategory } from "./products";
 
 /**
- * The four things CraftTohfa sells, in the order they appear on /shop.
+ * The four things Craftohfa sells, in the order they appear on /shop.
  *
  * ORDER IS CHEAPEST-FIRST, and that is a deliberate commercial decision rather
  * than a tidy alphabetical accident: rakhis start at ₹70, painting kits at

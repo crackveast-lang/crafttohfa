@@ -620,7 +620,7 @@ const IN_EVERY_BOX = [
  */
 const PAINT_SET_EXTRAS = [
   "Acrylic paint pots and a brush",
-  "Printed CraftTohfa card",
+  "Printed Craftohfa card",
 ];
 
 /**
@@ -698,7 +698,7 @@ const paintingKits: Product[] = [
       "Stands up on a shelf afterwards",
     ],
     pieces: ["1 plaster space shuttle", "2 plaster booster rockets"],
-    alt: "An unpainted plaster space shuttle with two booster rockets, beside blue, red and white paint pots and a brush on a printed CraftTohfa card",
+    alt: "An unpainted plaster space shuttle with two booster rockets, beside blue, red and white paint pots and a brush on a printed Craftohfa card",
     ageRange: "4–10 years",
     craftTime: "30–45 minutes",
     badges: ["New"],
@@ -708,23 +708,28 @@ const paintingKits: Product[] = [
 
   paintSet({
     slug: "train-and-friends-paint-combo",
-    name: "Train & Friends Paint Set",
-    tagline: "A train, a bus, a panda and a slice of watermelon",
-    description:
-      "A deliberately mixed set: a chunky train engine, a bus, a round panda face and a watermelon slice, with seven paint pots rather than the usual three or four. The variety is the point: nothing in the box looks like anything else in it.",
+    name: "Train, Car, Bus Paint Set",
+    tagline: "A train, a bus and a car",
+    description: "A train, a bus and car painting kit.",
     highlights: [
       "Four different moulds, not four of the same thing",
       "Seven acrylic colours, the fullest palette in the range",
       "Deep relief on the train, so the detail survives a heavy hand",
       "Finishes in one long sitting",
     ],
+    /* ⚠️ The NAME and DESCRIPTION above say train / car / bus, as supplied.
+       The photographed kit is a train, a bus, a panda face and a watermelon
+       slice — there is no car in it. The list below and the alt text describe
+       what is actually in the shot, because this is the list a customer
+       checks their parcel against. Re-shoot the kit or rename the product,
+       but do not "fix" this list to match the title. */
     pieces: [
       "1 plaster train engine",
       "1 plaster bus",
       "1 plaster panda face",
       "1 plaster watermelon slice",
     ],
-    alt: "An unpainted plaster train engine, bus, panda face and watermelon slice with seven paint pots and a brush around a printed CraftTohfa card",
+    alt: "An unpainted plaster train engine, bus, panda face and watermelon slice with seven paint pots and a brush around a printed Craftohfa card",
     ageRange: "4–10 years",
     craftTime: "50–70 minutes",
     featured: true,
@@ -749,7 +754,7 @@ const paintingKits: Product[] = [
       "1 plaster tulip bunch",
       "1 plaster cherry blossom",
     ],
-    alt: "Four unpainted plaster flowers (a daisy, a rose, a tulip bunch and a cherry blossom) with white, purple, yellow and pink paint pots and a brush on a printed CraftTohfa card",
+    alt: "Four unpainted plaster flowers (a daisy, a rose, a tulip bunch and a cherry blossom) with white, purple, yellow and pink paint pots and a brush on a printed Craftohfa card",
     ageRange: "5–12 years",
     craftTime: "45–60 minutes",
     // The cheapest thing in this category. Four small flowers, four paints.
@@ -774,7 +779,7 @@ const paintingKits: Product[] = [
       "1 plaster watermelon slice",
       "1 plaster orange slice",
     ],
-    alt: "Four unpainted plaster fruits (a strawberry, a pineapple, a watermelon slice and an orange slice) with six paint pots and a brush around a printed CraftTohfa card",
+    alt: "Four unpainted plaster fruits (a strawberry, a pineapple, a watermelon slice and an orange slice) with six paint pots and a brush around a printed Craftohfa card",
     ageRange: "4–10 years",
     craftTime: "45–60 minutes",
     featured: true,
@@ -793,7 +798,7 @@ const paintingKits: Product[] = [
       "Both pieces stand on their own afterwards",
     ],
     pieces: ["1 plaster butterfly", "1 plaster teddy bear"],
-    alt: "An unpainted plaster butterfly and teddy bear with six paint pots and a brush around a printed CraftTohfa card",
+    alt: "An unpainted plaster butterfly and teddy bear with six paint pots and a brush around a printed Craftohfa card",
     ageRange: "4–10 years",
     craftTime: "40–55 minutes",
     badges: ["Two to paint"],
@@ -819,7 +824,7 @@ const paintingKits: Product[] = [
       "Both pieces stand up on a shelf afterwards",
     ],
     pieces: ["1 plaster hippo", "1 plaster giraffe"],
-    alt: "An unpainted plaster hippo and giraffe with blue, green and yellow paint pots and a brush on a CraftTohfa card",
+    alt: "An unpainted plaster hippo and giraffe with blue, green and yellow paint pots and a brush on a Craftohfa card",
     ageRange: "4–10 years",
     craftTime: "40–55 minutes",
     badges: ["Two to paint"],
@@ -842,7 +847,7 @@ const paintingKits: Product[] = [
       "1 plaster stegosaurus",
       "1 plaster triceratops",
     ],
-    alt: "Three unpainted plaster dinosaurs (a T-rex, a stegosaurus and a triceratops) with six paint pots and a brush around a printed CraftTohfa card",
+    alt: "Three unpainted plaster dinosaurs (a T-rex, a stegosaurus and a triceratops) with six paint pots and a brush around a printed Craftohfa card",
     ageRange: "4–10 years",
     craftTime: "45–60 minutes",
     badges: ["New"],
@@ -870,7 +875,7 @@ const paintingKits: Product[] = [
       "Plaster letters spelling your chosen name",
       "1 plaster racing car",
     ],
-    alt: 'Unpainted plaster letters spelling "AMAN" with a plaster racing car, four paint pots and a brush on a printed CraftTohfa card',
+    alt: 'Unpainted plaster letters spelling "AMAN" with a plaster racing car, four paint pots and a brush on a printed Craftohfa card',
     ageRange: "4–12 years",
     craftTime: "45–60 minutes",
     badges: ["Personalised"],
@@ -938,7 +943,7 @@ const paintingKits: Product[] = [
       "Plaster letters spelling your chosen name",
       "1 plaster racing car",
     ],
-    alt: 'Unpainted plaster letters spelling "ADVIK" above a plaster racing car, with blue, green, orange and pink paint pots and a brush on a printed CraftTohfa card',
+    alt: 'Unpainted plaster letters spelling "ADVIK" above a plaster racing car, with blue, green, orange and pink paint pots and a brush on a printed Craftohfa card',
     ageRange: "4–12 years",
     craftTime: "45–60 minutes",
     badges: ["Personalised"],
@@ -979,7 +984,7 @@ const paintingKits: Product[] = [
       "Plaster letters spelling your chosen name",
       "1 plaster racing car",
     ],
-    alt: 'Unpainted plaster letters spelling "NEEV" above a plaster racing car, with blue, green, orange and pink paint pots and a brush on a printed CraftTohfa card',
+    alt: 'Unpainted plaster letters spelling "NEEV" above a plaster racing car, with blue, green, orange and pink paint pots and a brush on a printed Craftohfa card',
     ageRange: "4–12 years",
     craftTime: "40–55 minutes",
     badges: ["Personalised"],

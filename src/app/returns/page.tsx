@@ -10,7 +10,7 @@ import { siteConfig } from "@/site.config";
 export const metadata: Metadata = buildMetadata({
   title: "Return & refund policy",
   description:
-    "CraftTohfa accepts returns on items that arrive damaged, defective or incorrect. Record an unboxing video, message us within 48 hours, and we'll arrange a replacement or refund.",
+    "Craftohfa accepts returns on items that arrive damaged, defective or incorrect. Record an unboxing video, message us within 48 hours, and we'll arrange a replacement or refund.",
   path: "/returns",
 });
 

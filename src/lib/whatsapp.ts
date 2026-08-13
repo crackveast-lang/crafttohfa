@@ -80,7 +80,7 @@ export function whatsAppLabel(ctx: WhatsAppContext): string {
     case "bulk":
       return "Enquire about bulk orders on WhatsApp";
     case "general":
-      return "Message CraftTohfa on WhatsApp";
+      return "Message Craftohfa on WhatsApp";
   }
 }
 

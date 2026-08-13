@@ -13,10 +13,9 @@ import { siteConfig } from "@/site.config";
  * and a whole extra band that often would start reading as furniture — a
  * card reads as a note pinned to the page, which is what it is.
  *
- * The handle comes from site.config rather than being typed in. It is
- * @craftohfa with ONE 't' — the same handle printed on the QR card in your
- * product photos. Hard-coding "@CraftTohfa" here would send everyone who
- * tries to tag you to an account that isn't yours.
+ * The handle comes from site.config rather than being typed in — @craftohfa,
+ * the same handle printed on the QR card in your product photos. Typing it
+ * here by hand is how it drifts out of sync with the real account.
  */
 export function ShareYourMoment({
   tone = "blush",
@@ -63,7 +62,7 @@ export function ShareYourMoment({
             style={{ animationDelay: "90ms" }}
             className="relative mx-auto mt-4 max-w-[20ch] text-h2"
           >
-            Share your CraftTohfa moment 🤍
+            Share your Craftohfa moment 🤍
           </h2>
 
           <p

@@ -38,7 +38,7 @@ export function Footer() {
                 href={buildWhatsAppUrl({ kind: "general" })}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Message CraftTohfa on WhatsApp"
+                aria-label="Message Craftohfa on WhatsApp"
                 data-wa-kind="general"
                 className="grid size-11 place-items-center rounded-full border-2 border-ink/70 transition-colors hover:border-ink hover:bg-ink hover:text-white"
               >
@@ -48,7 +48,7 @@ export function Footer() {
                 href={siteConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`CraftTohfa on Instagram, ${siteConfig.social.instagramHandle}`}
+                aria-label={`Craftohfa on Instagram, ${siteConfig.social.instagramHandle}`}
                 className="grid size-11 place-items-center rounded-full border-2 border-ink/70 transition-colors hover:bg-ink hover:border-ink hover:text-white"
               >
                 <InstagramGlyph className="size-5" />
@@ -68,7 +68,7 @@ export function Footer() {
             ))}
           </FooterColumn>
 
-          <FooterColumn title="CraftTohfa">
+          <FooterColumn title="Craftohfa">
             <FooterLink href="/about">Our story</FooterLink>
             <FooterLink href="/faq">FAQs</FooterLink>
             <FooterLink href="/contact">Contact</FooterLink>

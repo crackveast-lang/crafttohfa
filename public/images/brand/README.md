@@ -25,7 +25,7 @@ showing nothing.
 
 ## Where these came from
 
-They were lifted from the printed CrafTohfa card photographed in
+They were lifted from the printed Craftohfa card photographed in
 `public/images/products/painting-kits/rocket-paint-kit-1.jpeg` — cropped,
 background keyed out to transparency, and sharpened.
 

@@ -114,6 +114,9 @@ export function Wordmark({
         onDark ? "text-white" : "text-ink",
       )}
     >
+      {/* "Craftohfa" is one word, so the mark is split where the two halves
+          it is built from meet: "Craft" in ink, "ohfa" in plum, with the
+          sparkle sitting over the shared 't'. Do not put a space in it. */}
       <span className="relative">
         Craf
         <span className="relative">
@@ -127,10 +130,10 @@ export function Wordmark({
           />
         </span>
       </span>
-      {/* The one word on the site that is allowed to be plum at any size: it
+      {/* The one part of the site that is allowed to be plum at any size: it
           is the brand mark, it renders as small as text-xl, and at 7.10:1 it
           is the only accent that clears AA there. */}
-      <span className={onDark ? "text-peach" : "text-plum"}>Tohfa</span>
+      <span className={onDark ? "text-peach" : "text-plum"}>ohfa</span>
     </span>
   );
 

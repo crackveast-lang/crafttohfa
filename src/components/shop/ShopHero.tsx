@@ -89,7 +89,7 @@ export function ShopHero() {
               style={{ animationDelay: "150ms" }}
               className="mt-7 max-w-[48ch] text-body leading-relaxed text-ink/75"
             >
-              At Craft Tohfa, we believe childhood is meant to be filled with
+              At Craftohfa, we believe childhood is meant to be filled with
               little moments of creating, imagining and discovering.
             </p>
             <p
@@ -132,7 +132,7 @@ export function ShopHero() {
                   {photo ? (
                     <Image
                       src={photo}
-                      alt="A ribboned Craft Tohfa gift box with dried flowers, a thank-you tag and a paint-your-own space rocket"
+                      alt="A ribboned Craftohfa gift box with dried flowers, a thank-you tag and a paint-your-own space rocket"
                       width={941}
                       height={1255}
                       priority

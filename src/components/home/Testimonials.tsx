@@ -4,10 +4,24 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { WashiTape } from "@/components/ui/WashiTape";
 import { Rating } from "@/components/ui/Rating";
 import { getTestimonials } from "@/data/testimonials";
+import { cn } from "@/lib/cn";
 import { siteConfig } from "@/site.config";
 
 /** Rotations are fixed per index so the layout is stable across renders. */
 const TILT = [-1.6, 1.2, -0.8, 1.8, -1.2, 0.9];
+
+/**
+ * Written out rather than interpolated, so Tailwind can see the classes. The
+ * width belongs in here with the column count and NOT on the base class list:
+ * two max-w-* utilities on one element resolve by CSS source order, not by
+ * the order you wrote them, so a base max-w-2xl would beat max-w-md about
+ * half the time.
+ */
+const STAT_COLS: Record<number, string> = {
+  1: "max-w-xs grid-cols-1",
+  2: "max-w-md grid-cols-2",
+  3: "max-w-2xl grid-cols-3",
+};
 
 /**
  * Splits "4.9★" / "500+" into the parts a roll-up counter needs, so the stat
@@ -63,9 +77,19 @@ export function Testimonials({
           verbatim on the last frame — so no-JS, reduced motion and crawlers
           all get the real number, and the format is never written twice.
           `.tabular` is already global on these, so nothing shifts width while
-          the digits climb. */}
+          the digits climb.
+
+          Columns follow the COUNT of tiles. Nulling a figure in site.config.ts
+          is a supported way of saying "we can't back this up yet", and a
+          hard-coded grid-cols-3 answered that by leaving a visible hole where
+          the third tile used to be. */}
       {showStats && stats.length > 0 ? (
-        <ul className="mx-auto mt-14 grid max-w-2xl grid-cols-3 gap-4">
+        <ul
+          className={cn(
+            "mx-auto mt-14 grid gap-4",
+            STAT_COLS[stats.length] ?? STAT_COLS[3],
+          )}
+        >
           {stats.map((s, i) => {
             const count = countable(s.value);
             return (

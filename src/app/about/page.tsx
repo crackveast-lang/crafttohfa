@@ -11,7 +11,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Our story",
   description:
-    "CraftTohfa started with one mother's wish for more moments of making, and became a little brand built for creating, gifting and remembering.",
+    "Craftohfa started with one mother's wish for more moments of making, and became a little brand built for creating, gifting and remembering.",
   path: "/about",
 });
 
@@ -82,7 +82,7 @@ export default function AboutPage() {
           />
           <Act
             number="03"
-            title="And then came Craft Tohfa"
+            title="And then came Craftohfa"
             body={[
               "The word “Tohfa” means gift, and we truly believe that every craft is a gift, not just to receive, but to create, cherish, and remember.",
               "Each order is handmade with patience, packed with care, and sent with the hope that it brings happiness to your home, just as creating it brought happiness to ours.",
@@ -97,7 +97,7 @@ export default function AboutPage() {
             data-reveal="ink"
             className="mx-auto max-w-[24ch] font-hand text-3xl leading-tight text-plum md:text-4xl"
           >
-            Welcome to CraftTohfa, where every craft becomes a memory, and
+            Welcome to Craftohfa, where every craft becomes a memory, and
             every memory is a Tohfa. ❤️
           </p>
           <p

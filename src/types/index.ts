@@ -1,5 +1,5 @@
 /**
- * The four things CraftTohfa sells. `combos` was called `hampers` until the
+ * The four things Craftohfa sells. `combos` was called `hampers` until the
  * catalogue was split by category; it is the same product line, renamed so the
  * URL (/shop?c=combos) matches what these are called everywhere else.
  *

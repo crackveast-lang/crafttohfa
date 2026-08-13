@@ -1,4 +1,4 @@
-# CraftTohfa
+# Craftohfa
 
 Handmade DIY painting kits, crochet rakhis and rakhi gift hampers.
 
@@ -173,7 +173,7 @@ down. For next year, change the two dates and you're done.
   will silently do nothing.
 - **Six colours only.** New shades come from opacity (`bg-terracotta/10`), never
   new hex values. The accent is `terracotta` (`#B85230`), sampled from the coral
-  ink on the printed CrafTohfa card and darkened until white button text clears
+  ink on the printed Craftohfa card and darkened until white button text clears
   WCAG AA.
 - **Contrast rules are documented at the top of `globals.css`**, with measured
   ratios. In short: plain `terracotta` is a fill/icon/large-display colour — it

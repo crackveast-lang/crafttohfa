@@ -8,7 +8,13 @@ type Highlight = {
   /** The tint behind the icon chip. Ink on all three clears 7.5:1. */
   chip: string;
   value: string;
-  label: string;
+  /**
+   * The descriptor under the figure. Null for cells that are a claim rather
+   * than a statistic ("Handmade gift"), where a second line would only be
+   * padding — the cells are vertically centred, so a one-line cell sits
+   * correctly in a row of two-line ones.
+   */
+  label: string | null;
 };
 
 const { trust } = siteConfig;
@@ -24,10 +30,14 @@ const { trust } = siteConfig;
  */
 const CANDIDATES: (Omit<Highlight, "value"> & { value: string | null })[] = [
   {
+    /* Not a figure, and deliberately so: this cell used to carry
+       trust.familiesServed ("500+ Happy families gifted"), a placeholder
+       nobody could back up. It now states the one thing about the range that
+       is true of every single item in it and needs no evidence. */
     Icon: Heart,
     chip: "bg-blush",
-    value: trust.familiesServed,
-    label: "Happy families gifted",
+    value: "Handmade gift",
+    label: null,
   },
   {
     Icon: Star,
@@ -121,9 +131,11 @@ export function HeroHighlights({ className }: { className?: string }) {
               <span className="tabular font-display text-xl font-semibold text-ink">
                 {value}
               </span>
-              <span className="mt-0.5 text-sm leading-snug text-ink/65">
-                {label}
-              </span>
+              {label ? (
+                <span className="mt-0.5 text-sm leading-snug text-ink/65">
+                  {label}
+                </span>
+              ) : null}
             </span>
           </li>
         ))}

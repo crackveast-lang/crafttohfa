@@ -7,7 +7,7 @@
  */
 
 export const siteConfig = {
-  name: "CraftTohfa",
+  name: "Craftohfa",
   tagline: "Where every craft becomes a memory, and every memory is a Tohfa.",
   /* The line that sits under the logo, exactly as it is printed on your card.
      तोहफा is Devanagari and needs the devanagari subset loaded in fonts.ts —
@@ -20,10 +20,11 @@ export const siteConfig = {
        to make you notice. "from ₹50" survived a rakhi price rise here once
        already. /shop derives its own "from ₹N" from `lowestPrice`. */
     "Hand-crocheted rakhis, DIY paint-your-own sets, crochet keepsakes and rakhi combo boxes. Made in small batches by hand, and designed to pull kids away from screens.",
-  /* One 't' in the domain — craftohfa.com, matching the @craftohfa handle
-     below. (Two t's is the repo name, not the site.) The www is not optional:
-     it is the host configured on GitHub Pages, and the bare apex is still
-     parked at the registrar. */
+  /* craftohfa.com, spelled exactly like the brand name and the @craftohfa
+     handle below. (The repo is still called crafttohfa, with two t's — that
+     is the repo, not the site.) The www is not optional: it is the host
+     configured on GitHub Pages, and the bare apex is still parked at the
+     registrar. */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.craftohfa.com",
 
   whatsapp: {
@@ -36,7 +37,7 @@ export const siteConfig = {
     number: "919243520880",
     /* How the number is shown to humans (footer, contact page). */
     display: "+91 92435 20880",
-    /* One 't', matching the @craftohfa handle below and the "Made by
+    /* Spelled to match the @craftohfa handle below and the "Made by
        Craftohfa" plaque in the photos. This is the first line of every
        prefilled WhatsApp message, so it is the spelling customers copy. */
     greeting: "Hi Craftohfa! 👋",
@@ -78,8 +79,7 @@ export const siteConfig = {
   },
 
   social: {
-    /* @craftohfa — one 't', not "crafttohfa". Matches the QR card printed in
-       your product photos.
+    /* @craftohfa — matches the QR card printed in your product photos.
        The link you sent had ?igsh=…&utm_source=qr on the end; those are
        tracking parameters Instagram adds when you share from a QR code, and
        they are stripped here. They would follow every visitor from the site,
@@ -97,7 +97,12 @@ export const siteConfig = {
      If you would rather not publish numbers at all, set these to null and the
      trust strip hides itself. */
   trust: {
-    familiesServed: "500+" as string | null,
+    /* Null on purpose. "500+ happy families" was an invented figure and it is
+       now off the site entirely — the hero cell that carried it states
+       "Handmade gift" instead. Set a real, defensible number here and both
+       the hero bar and the testimonial stat tiles pick it back up on their
+       own; leaving it null is the supported state, not a broken one. */
+    familiesServed: null as string | null,
     citiesShipped: "60+" as string | null,
     avgRating: 4.9 as number | null,
   },

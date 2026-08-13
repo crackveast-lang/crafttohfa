@@ -2,7 +2,7 @@ import { Wordmark } from "./Wordmark";
 
 /**
  * The branded splash on first paint: a wrapped gift box lands, its lid lifts
- * off, and the CraftTohfa mark rises out of it.
+ * off, and the Craftohfa mark rises out of it.
  *
  * Pure CSS, and that is the whole design decision. A JavaScript-driven overlay
  * that fails to run — hydration error, blocked script, slow 3G timeout —

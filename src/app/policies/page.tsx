@@ -10,7 +10,7 @@ import { siteConfig } from "@/site.config";
 export const metadata: Metadata = buildMetadata({
   title: "Shipping, returns & policies",
   description:
-    "How CraftTohfa orders are placed and paid for, delivery timelines across India, our returns and damages policy, and product care and safety notes.",
+    "How Craftohfa orders are placed and paid for, delivery timelines across India, our returns and damages policy, and product care and safety notes.",
   path: "/policies",
 });
 
@@ -56,7 +56,7 @@ export default function PoliciesPage() {
           <div className="flex max-w-[62ch] flex-col gap-14">
             <Policy id="ordering" title="How ordering works">
               <p>
-                CraftTohfa doesn&apos;t use a shopping cart. Every order is
+                Craftohfa doesn&apos;t use a shopping cart. Every order is
                 placed as a WhatsApp conversation, because nearly everything we
                 sell is made after you order it.
               </p>

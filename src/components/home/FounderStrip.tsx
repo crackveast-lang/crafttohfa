@@ -6,8 +6,8 @@ import { Heart } from "@/components/doodles";
 
 /**
  * The emotional core of the homepage. Kept to about 50 words in two short
- * paragraphs — a full biography here would dilute it, and the "Meet Craft
- * Tohfa" link is the whole point: the long version lives on /about.
+ * paragraphs — a full biography here would dilute it, and the "Meet
+ * Craftohfa" link is the whole point: the long version lives on /about.
  */
 export function FounderStrip() {
   return (
@@ -81,7 +81,7 @@ export function FounderStrip() {
               <p className="font-display text-xl font-semibold text-ink">
                 Anjali Gupta
               </p>
-              <p className="mt-1 text-sm text-ink/70">Founder, Craft Tohfa</p>
+              <p className="mt-1 text-sm text-ink/70">Founder, Craftohfa</p>
             </div>
           </div>
 
@@ -103,7 +103,7 @@ export function FounderStrip() {
               style={{ animationDelay: "220ms" }}
               className="mt-7 max-w-[52ch] text-body leading-relaxed text-ink/80"
             >
-              Craft Tohfa began with a simple thought, what if the little
+              Craftohfa began with a simple thought, what if the little
               moments we spend scrolling could become moments spent creating
               instead?
             </p>
@@ -138,7 +138,7 @@ export function FounderStrip() {
               style={{ animationDelay: "760ms" }}
               className="group mt-7 inline-flex min-h-11 items-center gap-2 font-semibold underline decoration-sage decoration-2 underline-offset-8 hover:text-plum"
             >
-              Meet Craft Tohfa
+              Meet Craftohfa
               <span
                 aria-hidden="true"
                 data-reveal="nudge"

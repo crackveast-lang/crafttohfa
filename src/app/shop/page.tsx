@@ -11,7 +11,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Shop rakhis, combo boxes & crochet keepsakes",
   description:
-    "Browse every CraftTohfa handmade crochet rakhi, crochet keepsake and combo box, rakhi hampers and paint-your-own plaster sets. Order any of them straight over WhatsApp.",
+    "Browse every Craftohfa handmade crochet rakhi, crochet keepsake and combo box, rakhi hampers and paint-your-own plaster sets. Order any of them straight over WhatsApp.",
   path: "/shop",
 });
 
