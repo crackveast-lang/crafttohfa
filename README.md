@@ -50,8 +50,8 @@ silently: the link still opens WhatsApp perfectly and simply never reaches you.
 ### 2. Check the products — `src/data/products.ts` — mostly done
 
 26 products across four categories, written from your own photographs. Prices
-are real: ₹50 rakhis, ₹120 painting kits and crochet, ₹499 combo boxes, all set
-from the `PRICES` block at the top of the file.
+are real: ₹120 rakhis, ₹120–150 painting kits, ₹249–300 crochet, ₹499 combo
+boxes, all set from the `PRICES` block at the top of the file.
 
 Still needs your eye:
 

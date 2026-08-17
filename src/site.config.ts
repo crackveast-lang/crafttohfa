@@ -71,7 +71,7 @@ export const siteConfig = {
   ],
 
   shipping: {
-    freeAbove: 999,
+    freeAbove: 499,
     flatRate: 79,
     dispatchCopy: "Handmade to order, dispatched in 2–3 working days.",
     deliveryCopy: "Delivered across India in 3–6 working days.",

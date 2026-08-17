@@ -28,7 +28,7 @@ import type { CategorySlug, Product } from "@/types";
  * indistinguishable from a typo six months later.
  */
 const PRICES = {
-  rakhis: 70,
+  rakhis: 120,
   paintingKits: 150,
   crochet: 249,
   combos: 499,
@@ -255,9 +255,10 @@ const rakhis: Product[] = [
     ],
     alt: 'A hand-crocheted pink and yellow rakhi with "BRO" spelled out in pearl beads',
     /* No `price` on either "Bro" rakhi any more. They were the only two off the
-       ₹70 base, went to ₹150, and are now back on it — so the override is
-       deleted rather than written as `price: 70`, which would silently stop
-       tracking PRICES.rakhis the next time that moves. */
+       rakhi base, went to ₹150, and are now back on it — so the override is
+       deleted rather than written as a literal, which would silently stop
+       tracking PRICES.rakhis the next time that moves. It has moved once since
+       (₹70 → ₹120) and these two followed, which is the point. */
   }),
   rakhi({
     slug: "kitty-face-rakhi",
@@ -1294,7 +1295,7 @@ const DISCOUNT = 0.1;
  * ceil, not round. `price / 0.9` is the figure that makes the saving land on
  * exactly 10%, and rounding UP guarantees the real discount is never below
  * the 10% the badge claims:
- *   ₹50 → ₹56 (10.7%)   ₹120 → ₹134 (10.4%)   ₹499 → ₹555 (10.0%)
+ *   ₹120 → ₹134 (10.4%)   ₹249 → ₹277 (10.1%)   ₹499 → ₹555 (10.0%)
  * Rounding to nearest would put ₹120 and ₹499 at 9%, and the badge would be
  * advertising a discount larger than the one actually given.
  */
@@ -1308,14 +1309,15 @@ function listPrice(price: number): number {
  * This used to lead with the ₹499 combo boxes, on the reasoning that they are
  * the highest-value thing here. The first four things a first-time visitor saw
  * were therefore the four most expensive, and the brand read as expensive
- * before they had scrolled far enough to find a ₹70 rakhi. Leading with the
- * ₹70 rakhis instead reads as approachable, and the ₹499 boxes are still one
+ * before they had scrolled far enough to find a ₹120 rakhi. Leading with the
+ * ₹120 rakhis instead reads as approachable, and the ₹499 boxes are still one
  * scroll away for anyone who wants them.
  *
  * `sort` is STABLE in every JS engine we target, so products at the same price
  * keep the hand-authored order of the arrays below: rakhis before painting
- * kits before crochet before combos. That is what makes the ₹70 rakhis, not
- * some arbitrary tie-break, the first thing on the page.
+ * kits before crochet before combos. That is what keeps the ₹120 rakhis ahead
+ * of the ₹120 painting kits they now tie with, rather than some arbitrary
+ * tie-break deciding what a first-time visitor meets first.
  *
  * The list price is derived here rather than typed into each product, so it
  * can never drift out of step with `price` when a price changes.

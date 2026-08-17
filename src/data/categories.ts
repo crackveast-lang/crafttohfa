@@ -5,9 +5,9 @@ import { getProductsByCategory } from "./products";
  * The four things Craftohfa sells, in the order they appear on /shop.
  *
  * ORDER IS CHEAPEST-FIRST, and that is a deliberate commercial decision rather
- * than a tidy alphabetical accident: rakhis start at ₹70, painting kits at
+ * than a tidy alphabetical accident: rakhis and painting kits both start at
  * ₹120, crochet at ₹249 and combo boxes at ₹499. Someone landing on /shop
- * meets the ₹70 rakhis first and reads the brand as approachable. Lead with
+ * meets the ₹120 rakhis first and reads the brand as approachable. Lead with
  * the ₹499 boxes and the same catalogue reads as expensive.
  *
  * If a price changes enough to reorder these, move the entry. It is not

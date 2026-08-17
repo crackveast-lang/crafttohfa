@@ -9,7 +9,7 @@ import { getProduct, getProductsByCategory } from "@/data/products";
 /**
  * PAINTING KITS only, not a mixed row and not whatever is flagged featured.
  *
- * A row of four that jumped from a ₹70 rakhi to a ₹499 hamper read as four
+ * A row of four that jumped from a ₹120 rakhi to a ₹499 hamper read as four
  * unrelated things rather than as a range worth browsing. One category makes
  * it a shelf: same kind of product, four options, an obvious next click.
  */
