@@ -43,7 +43,7 @@ export const categories: Category[] = [
     doodle: "PaintBrush",
     tone: "blush",
     image: {
-      src: "/images/products/painting-kits/fruit-basket-paint-combo-1.png",
+      src: "/images/products/painting-kits/fruit-basket-paint-combo-1.jpg",
       alt: "A painting kit with plaster fruits, paint pots and a brush",
     },
   },
