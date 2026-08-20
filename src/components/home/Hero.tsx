@@ -11,18 +11,19 @@ import {
   SeedScatter,
   Sunflower,
 } from "@/components/hero/HeroFlowers";
-import ImageTiles from "@/components/ui/image-tiles";
+import HeroMarquee from "@/components/ui/hero-marquee";
 import { CraftImage } from "@/components/media/CraftImage";
 import { HeroHighlights } from "@/components/home/HeroHighlights";
 import { HeartBurst, HeartSolid } from "@/components/doodles";
 import { getProductsByCategory } from "@/data/products";
+import { resolvePhoto } from "@/lib/images";
 import { cn } from "@/lib/cn";
-import type { Product } from "@/types";
+import type { CategorySlug, Product } from "@/types";
 
 /**
- * One tile of the fan. Rendered on the SERVER and passed into <ImageTiles> as
- * a prop, so the photo keeps next/image optimisation and the placeholder
- * fallback — a client component can't call CraftImage itself.
+ * One slide of the marquee. Rendered on the SERVER and passed into
+ * <HeroMarquee> as a prop, so the photo keeps next/image optimisation and the
+ * placeholder fallback — a client component can't call CraftImage itself.
  */
 function TileImage({ product, eager }: { product: Product; eager?: boolean }) {
   return (
@@ -31,12 +32,51 @@ function TileImage({ product, eager }: { product: Product; eager?: boolean }) {
       alt={product.images[0]?.alt ?? product.name}
       motif={product.category}
       seedKey={product.slug}
-      ratio="square"
-      sizes="(max-width: 1024px) 40vw, 200px"
+      ratio="portrait"
+      sizes="(max-width: 768px) 128px, 176px"
       eager={eager}
       showPlaceholderLabel={false}
     />
   );
+}
+
+/**
+ * The strip should read as the whole shop rather than one shelf of it, so it
+ * takes products round-robin across the four categories — combo box, then
+ * rakhi, then paint kit, then crochet, and round again — instead of the three
+ * combo boxes the fanned tiles used to show.
+ *
+ * It keeps ONLY products whose photograph actually exists on disk. A designed
+ * placeholder is fine on a product grid, where it is one cell among twenty
+ * and clearly a card awaiting its photo; in a moving strip of ten it is the
+ * one thing your eye stops on.
+ */
+const MARQUEE_CATEGORIES: CategorySlug[] = [
+  "combos",
+  "rakhis",
+  "painting-kits",
+  "crochet",
+];
+
+function marqueeProducts(limit: number): Product[] {
+  const pools = MARQUEE_CATEGORIES.map((category) =>
+    getProductsByCategory(category).filter((p) =>
+      resolvePhoto(p.images[0]?.src ?? ""),
+    ),
+  );
+
+  const picked: Product[] = [];
+  for (let round = 0; picked.length < limit; round++) {
+    const before = picked.length;
+    for (const pool of pools) {
+      if (!pool[round]) continue;
+      picked.push(pool[round]);
+      if (picked.length === limit) break;
+    }
+    // Every pool exhausted — take what we have rather than loop forever.
+    if (picked.length === before) break;
+  }
+  return picked;
 }
 
 /** Positions a flower, gives it an entrance, and keeps it gently moving. */
@@ -64,67 +104,157 @@ function Bloom({
 }
 
 export function Hero() {
-  /* COMBO BOXES specifically, not whatever happens to be flagged featured.
-     These three tiles are the only photograph in the first screen, and a
-     combo box shot is the one that reads at 200px: an open box, filled, with
-     the card and the paints visible. A rakhi photograph is a close-up of a
-     wrist, which at tile size is a pink blur. */
-  const tileProducts = getProductsByCategory("combos").slice(0, 3);
+  /* Ten is two full rounds of the four categories plus two, and about as many
+     as fit in one pass of the marquee before the duplicate set comes round —
+     which is what keeps the loop from feeling like a short cycle. */
+  const slides = marqueeProducts(10);
 
   return (
-    <section className="relative overflow-hidden bg-cream">
+    /* The gap under the header lives HERE, on the section, and not as `pt-` on
+       the Container below — which is where it used to be and where it caused a
+       problem. The flowers are positioned as percentages of the words block,
+       so any padding inside that block grows their coordinate space without
+       moving the words' own top edge: add 32px of breathing room that way and
+       the text steps down while every flower stays where it was, drifting out
+       of the composition. Padding the section moves the whole arrangement —
+       words and flowers together — as one piece. */
+    <section className="relative overflow-hidden bg-cream pt-10 md:pt-20 lg:pt-24">
       <GridPaper />
 
-      {/* Soft colour washes behind everything */}
+      {/* Soft colour washes behind everything. They used to sit off the top
+          right and the left edge, framing a two-column layout from the
+          outside. With the words now centred, that pair reads as lopsided
+          unless it is roughly symmetric about the middle — so peach comes
+          down over the left shoulder of the headline and blush answers it on
+          the right, a little lower. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -right-40 -top-48 size-[38rem] rounded-full bg-peach/35 blur-[2px]"
+        className="pointer-events-none absolute -left-48 -top-52 size-[38rem] rounded-full bg-peach/35 blur-[2px]"
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -left-52 top-40 size-[26rem] rounded-full bg-blush/70"
+        className="pointer-events-none absolute -right-44 top-24 size-[26rem] rounded-full bg-blush/70"
       />
       <SeedScatter className="pointer-events-none z-0 text-ink/30" />
 
-      {/* THE VERTICAL BUDGET, and why several numbers here are responsive.
-          On a 390x844 phone the first screen is ~745px after Safari's own
-          chrome, and the announcement bar plus the header take ~92px of it.
-          Everything from here to the flowers has to fit in what is left, or
-          the hero lands as a wall of type with the artwork entirely below the
-          fold — which is exactly what it was doing. The mobile values (py-8,
-          gap-6, the tighter margins and the 1.85rem headline floor) are what
-          buy the flower column its ~220px. Measure before changing any of
-          them; `md:` and up are the originals and should stay that way. */}
-      <Container className="relative py-6 md:py-16 lg:py-20">
-        <div className="grid items-center gap-5 md:gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:gap-8">
-          {/* ── Words ─────────────────────────────────────────────────
-              Each block rises in on a stagger. Every delay on this page is
-              keyed to the preloader, which now runs its gift-box gesture and
-              clears at ~1.85s: the first element starts at 1.5s so it is
-              rising as the splash fades, and nothing before that is animating
-              behind an opaque overlay. Change the splash timing in
-              globals.css and every number here moves with it. */}
-          <div className="relative z-10">
+      {/* ── Words, with the flowers framing them ──────────────────────────
+          Centred now, and the whole column is one measure rather than a
+          headline, a paragraph and a button row that each found their own
+          width. Each block still rises in on a stagger, and every delay on
+          this page is keyed to the preloader, which runs its gift-box gesture
+          and clears at ~1.85s: the first element starts at 1.5s so it is
+          rising as the splash fades, and nothing before that is animating
+          behind an opaque overlay. Change the splash timing in globals.css
+          and every number here moves with it.
+
+          THE VERTICAL BUDGET, and why every gap in here is responsive. On a
+          390x844 phone the first screen is ~745px after Safari's own chrome,
+          and the announcement bar plus the header take ~92px of it. The photo
+          strip below wants ~200px more, and it has to stay on that first
+          screen — a hero whose photographs are all below the fold is a wall of
+          type. So the mobile gaps are the tight ones (mt-6 / mt-5 / mt-6) and
+          `md:` and up get the roomy set (mt-8 / mt-7 / mt-10). Measure before
+          changing any of them; the mobile column has about 40px of slack in
+          it, not 100.
+
+          The mobile ps-[7%] indent every block used to carry is gone, and
+          deliberately: it existed to nudge a LEFT-ALIGNED column off the
+          gutter. On centred text an indent is just a column that isn't
+          centred any more. */}
+      <div className="relative">
+        {/* ── Flowers ─────────────────────────────────────────────────────
+            They no longer live in a grid cell of their own — there isn't one
+            any more — so they flank the centred column instead, keeping the
+            reference's diagonal: the two big blooms on one, the two leaves on
+            the other.
+
+            Measured against THIS wrapper — the words — and not against the
+            section. The section's height swings by ~140px between desktop and
+            mobile because the trust bar at the bottom re-flows from one row to
+            four, so a flower placed at `top-[40%]` of the section sits beside
+            the buttons at one width and on top of the photo strip at another.
+            The copy is what they are supposed to frame, so the copy is what
+            they are measured against. They still overflow this box freely; it
+            is only a coordinate space.
+
+            Every size has a mobile value roughly half the desktop one, and on
+            mobile both big blooms sit up in the BADGE row rather than beside
+            the headline: at 390px the words take the full width of the screen
+            and there is no margin to stand in, but the badge is a 200px pill
+            in the middle of the line, so the two top corners are the one
+            place that is reliably empty.
+
+            Three nested layers per flower, because each owns a different
+            transform:
+              outer  → position + pop-in entrance
+              inner  → the endless float/sway that keeps it alive
+              svg    → its fixed tilt
+            Collapsing these would make the animations overwrite each other
+            and the flower would sit dead still. */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <Bloom
+            className="-left-[7%] top-[2%] w-[21%] sm:-left-[3%] sm:w-[17%] lg:left-[2%] lg:top-[6%] lg:w-[15%]"
+            delay="1.5s"
+            idle="float-slow"
+          >
+            <Sunflower className="-rotate-[6deg] drop-shadow-[0_10px_18px_rgba(51,45,50,0.10)]" />
+          </Bloom>
+
+          <Bloom
+            className="-right-[7%] top-[2%] w-[19%] sm:-right-[3%] sm:w-[16%] lg:right-[2%] lg:top-[14%] lg:w-[14%]"
+            delay="1.56s"
+            idle="float-mid"
+          >
+            <PinkDaisy className="rotate-[8deg] drop-shadow-[0_10px_18px_rgba(51,45,50,0.10)]" />
+          </Bloom>
+
+          <Bloom
+            className="-right-[2%] top-[70%] w-[11%] sm:right-[2%] sm:w-[9%] lg:right-[9%] lg:top-[58%] lg:w-[7%]"
+            delay="1.62s"
+            idle="sway-slow"
+          >
+            <BlueLeaf className="rotate-[16deg]" />
+          </Bloom>
+
+          <Bloom
+            className="-left-[3%] top-[76%] w-[10%] sm:left-[2%] sm:w-[8.5%] lg:left-[10%] lg:top-[66%] lg:w-[6.5%]"
+            delay="1.7s"
+            idle="sway-mid"
+          >
+            <GreenLeaf className="-rotate-[34deg]" />
+          </Bloom>
+
+          {/* The ticks that used to cluster around the photo fan. The same
+              three, moved out onto the shoulders of the centred column. */}
+          <SeedCluster
+            className="absolute left-[4%] top-[40%] w-[7%] lg:left-[14%] lg:top-[26%] lg:w-[4%]"
+            rotate={18}
+          />
+          <SeedCluster
+            className="absolute right-[4%] top-[50%] w-[6.5%] lg:right-[17%] lg:top-[34%] lg:w-[3.6%]"
+            rotate={-26}
+          />
+          <SeedCluster
+            className="absolute left-[9%] top-[92%] w-[6%] lg:left-[9%] lg:top-[80%] lg:w-[3.4%]"
+            rotate={8}
+          />
+        </div>
+
+        <Container className="relative z-10 text-center">
+          <div className="mx-auto flex max-w-3xl flex-col items-center">
             {/* A badge, not the logo. The mark used to sit here and it was the
                 header repeating itself a hundred pixels lower — the same
                 artwork twice in the first screen, which spends the hero's
                 strongest position on something already on screen. Three words
                 of intent cost a fraction of the height and say the thing the
-                logo was only implying.
-
-                Removed for one release and asked back. It carries the same
-                mobile indent as everything else in this column — left flush
-                while the headline under it was inset, it read as a mistake. */}
-            <div
-              className="rise-in ps-[7%] md:ps-0"
-              style={{ animationDelay: "1.5s" }}
-            >
+                logo was only implying. */}
+            <div className="rise-in" style={{ animationDelay: "1.5s" }}>
               <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-blush px-4 py-2 text-eyebrow uppercase text-ink/80">
-                {/* Solid mark rather than the line doodle: at 12px a 2px
-                    stroke closes up into a blob. <HeartSolid> and not the
-                    U+2764 character that was here — see the note on the
-                    component; iOS renders that codepoint as a system emoji and
-                    drops the colour. Same bug as the one in the wordmark. */}
+                {/* Solid mark rather than the line doodle: at 12px a 2px stroke
+                    closes up into a blob. <HeartSolid> and not the U+2764
+                    character that was here — see the note on the component; iOS
+                    renders that codepoint as a system emoji and drops the
+                    colour. Same bug as the one in the wordmark. */}
                 <span className="heartbeat inline-block">
                   <HeartSolid className="size-[0.95em] text-rose" />
                 </span>
@@ -133,31 +263,23 @@ export function Hero() {
             </div>
 
             {/* Not `text-mega`, and not uppercase, and no hard offset shadow —
-                all three were built for the two-word poster this used to be.
-                A sentence set at 13vw uppercase would run four lines deep and
+                all three were built for the two-word poster this used to be. A
+                sentence set at 13vw uppercase would run four lines deep and
                 shout copy that is deliberately quiet, and a 5px offset shadow
-                costs legibility the headline can't spare. The clamp tops out
-                where "worth holding onto." still fits the column at lg.
+                costs legibility the headline can't spare.
 
-                The MOBILE floor is 1.85rem rather than 2.25rem, and it is
-                doing a specific job: see the note on the vertical budget
-                below. Desktop is untouched — the clamp only bottoms out below
-                ~640px, so nothing above `sm` moves by a pixel.
+                The clamp runs a little larger than the two-column version's did
+                (2rem–4.25rem against 1.85–3.75). A centred headline gets the
+                full measure instead of half a grid, so the old ceiling left it
+                looking undersized in the middle of the page; max-w-[19ch] is
+                what holds it to the two lines it is written as.
 
                 Ink carries the sentence and ONE phrase is rose. That phrase is
                 the payoff of the line, so it is the only place worth spending
                 an accent — highlighting more than one turns a hierarchy into
                 stripes. Rose exists purely for this; see the rose budget in
                 globals.css before reaching for it anywhere else. */}
-            {/* ps-[7%] on PHONES ONLY, and the paragraph and buttons below
-                carry the same indent so the column reads as one block that has
-                been nudged in — a headline indented on its own just looks
-                misaligned against the copy under it. 7% of a 350px content
-                width is ~25px: enough to feel like breathing room on the left,
-                not enough to cost the headline a line. It is dropped at `md`,
-                where the grid gives the column its own whitespace and an
-                indent would only eat into the measure. */}
-            <h1 className="mt-4 ps-[7%] font-fun text-[clamp(1.85rem,5.4vw,3.75rem)] font-extrabold leading-[1.06] tracking-tight text-ink md:ps-0 md:mt-5">
+            <h1 className="mt-6 max-w-[19ch] font-fun text-[clamp(1.9rem,6.2vw,4.25rem)] font-extrabold leading-[1.06] tracking-tight text-ink md:mt-8">
               <span className="rise-in block" style={{ animationDelay: "1.58s" }}>
                 Made for moments
               </span>
@@ -166,8 +288,8 @@ export function Hero() {
                 {/* In the flow of the line, not absolutely positioned beside
                     it. The hero clips its overflow, so a mark hung off the
                     right of the headline is the one thing guaranteed to be
-                    half-cut on a narrow phone; inline it simply wraps with
-                    the words. Sized in `em` so it tracks the clamp. */}
+                    half-cut on a narrow phone; inline it simply wraps with the
+                    words. Sized in `em` so it tracks the clamp. */}
                 <span
                   aria-hidden="true"
                   className="pop-in ml-2 inline-block w-[1.15em] align-baseline"
@@ -180,8 +302,13 @@ export function Hero() {
               </span>
             </h1>
 
+            {/* 24ch on PHONES, 54ch from `sm` up. The narrow measure is not
+                about readability — it is what leaves the flowers a margin to
+                stand in. Centred text at the full 350px of a 390px screen
+                touches both gutters, and every piece of decoration then has a
+                choice between sitting on the words or not appearing at all. */}
             <p
-              className="rise-in mt-4 max-w-[48ch] ps-[7%] text-body leading-relaxed text-ink/75 md:mt-6 md:ps-0"
+              className="rise-in mt-5 max-w-[24ch] text-body leading-relaxed text-ink/75 sm:max-w-[54ch] md:mt-7"
               style={{ animationDelay: "1.74s" }}
             >
               Handcrafted crochet rakhis, DIY painting kits, little keepsakes,
@@ -189,18 +316,19 @@ export function Hero() {
               little more special.
             </p>
 
-            {/* Side by side from 390px up rather than stacked until `sm`.
-                Two full-width lg buttons cost ~116px of the first screen and
-                the second one is the softer of the two asks, so it does not
-                need its own row. `flex-wrap` still lets them stack if the
-                labels ever grow. */}
+            {/* Side by side from 390px up rather than stacked until `sm`. Two
+                full-width lg buttons cost ~116px of the first screen and the
+                second one is the softer of the two asks, so it does not need
+                its own row. `flex-wrap` still lets them stack if the labels
+                ever grow, and `justify-center` keeps them under the column when
+                they do. */}
             <div
-              className="rise-in mt-4 flex flex-wrap gap-2.5 ps-[7%] md:mt-8 md:gap-3 md:ps-0"
+              className="rise-in mt-6 flex flex-wrap justify-center gap-2.5 md:mt-10 md:gap-3"
               style={{ animationDelay: "1.82s" }}
             >
               {/* min-h-12 on phones rather than lg's 14. 48px is still well
-                  clear of the 44px tap minimum, and the two of them stack
-                  here, so the 8px comes off the fold twice. */}
+                  clear of the 44px tap minimum, and the two of them stack here,
+                  so the 8px comes off the fold twice. */}
               <Button href="/shop" size="lg" className="min-h-12 md:min-h-14">
                 Shop the collection
               </Button>
@@ -214,68 +342,45 @@ export function Hero() {
               </WhatsAppButton>
             </div>
           </div>
+        </Container>
+      </div>
 
-          {/* ── Flowers behind, product photos in front ───────────── */}
-          <div className="relative mx-auto aspect-square w-full max-w-[460px] lg:max-w-none">
-            {/* Flowers sit at the corners on the reference's diagonal, leaving
-                the middle clear for the photo fan to land on.
+      {/* ── The photographs ───────────────────────────────────────────────
+          Outside the Container on purpose: the strip has to run edge to edge
+          and dissolve into the cream, and a max-w-[1200px] wrapper would stop
+          it dead at the gutter on a wide screen — the one thing an endless
+          marquee must not do.
 
-                Three nested layers, because each owns a different transform:
-                  outer  → position + pop-in entrance
-                  inner  → the endless float/sway that keeps it alive
-                  svg    → its fixed tilt
-                Collapsing these would make the animations overwrite each
-                other and the flower would sit dead still. */}
-            <Bloom
-              className="-left-[3%] -top-[2%] w-[42%]"
-              delay="1.5s"
-              idle="float-slow"
-            >
-              <Sunflower className="-rotate-[6deg] drop-shadow-[0_10px_18px_rgba(51,45,50,0.10)]" />
-            </Bloom>
+          It carries the load-keyed entrance like everything else, at 1.9s, so
+          it arrives after the buttons rather than being the first thing
+          moving. The horizontal drift itself starts at hydration and spends
+          its first second behind the splash; that is fine, a loop with no
+          beginning has nothing to miss. */}
+      <div
+        className="rise-in relative z-10 mt-10 md:mt-14"
+        style={{ animationDelay: "1.9s" }}
+      >
+        <HeroMarquee
+          slides={slides.map((product, i) => (
+            /* The first slide is the eager one: it is the left-most thing on
+               screen when the strip starts, so it is the LCP candidate. */
+            <TileImage key={product.slug} product={product} eager={i === 0} />
+          ))}
+        />
+      </div>
 
-            <Bloom className="right-[1%] top-0 w-[23%]" delay="1.62s" idle="sway-slow">
-              <BlueLeaf className="rotate-[16deg]" />
-            </Bloom>
+      {/* The numbers close the hero, under the photographs. As a three-item
+          text list beside the buttons they were competing with the CTA for
+          the same glance; full width at the bottom they are the last thing
+          read on the way out, which is where a trust claim actually does its
+          work.
 
-            <Bloom
-              className="-left-[2%] top-[60%] w-[22%]"
-              delay="1.7s"
-              idle="sway-mid"
-            >
-              <GreenLeaf className="-rotate-[34deg]" />
-            </Bloom>
-
-            <Bloom
-              className="-bottom-[3%] -right-[3%] w-[44%]"
-              delay="1.56s"
-              idle="float-mid"
-            >
-              <PinkDaisy className="rotate-[8deg] drop-shadow-[0_10px_18px_rgba(51,45,50,0.10)]" />
-            </Bloom>
-
-            <SeedCluster className="absolute left-[40%] top-[8%] w-[12%]" rotate={18} />
-            <SeedCluster className="absolute bottom-[4%] left-[26%] w-[11%]" rotate={-26} />
-            <SeedCluster className="absolute right-[6%] top-[44%] w-[10%]" rotate={8} />
-
-            {/* The fanned photo tiles, layered over the flowers */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <ImageTiles
-                className="w-[78%] -translate-y-[4%]"
-                leftImage={<TileImage product={tileProducts[0]} />}
-                middleImage={<TileImage product={tileProducts[1]} eager />}
-                rightImage={<TileImage product={tileProducts[2]} />}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* The numbers moved out of the copy column and became the hero's
-            closing line. As a three-item text list beside the buttons they
-            were competing with the CTA for the same glance; full width under
-            both columns they are the last thing read on the way out, which is
-            where a trust claim actually does its work. */}
-        <HeroHighlights className="mt-14 lg:mt-16" />
+          It sits a long way clear of the strip on purpose — mt-14 rather than
+          the mt-6 it started at. Tucked up against the photographs it read as
+          a caption belonging to them; with the gap it reads as its own band,
+          which is what it is. */}
+      <Container className="relative z-10 pb-14 md:pb-20">
+        <HeroHighlights className="mt-10 md:mt-14" />
       </Container>
     </section>
   );

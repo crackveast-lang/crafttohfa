@@ -222,14 +222,18 @@ export function SeedCluster({
  * one. Fixed-size elements at percentage positions stay the same shape at
  * every viewport.
  *
- * Positions are [left%, top%, rotation] and are kept clear of the left column
- * where the headline and paragraph sit.
+ * Positions are [left%, top%, rotation]. They used to keep clear of the LEFT
+ * column, which is where the headline and paragraph sat. The hero is centred
+ * now, so the sixteen marks were pushed out to the two outer thirds and the
+ * band under the buttons — the same scatter, wrapped around the words instead
+ * of sitting beside them. Sixteen faint ticks behind a headline read as dirt
+ * on the screen; the middle has to stay empty.
  */
 const SEEDS: [number, number, number][] = [
-  [16, 12, -32], [7, 42, 20], [12, 74, -12], [26, 88, 34],
-  [38, 8, 14], [45, 36, -28], [41, 62, 40], [52, 84, -18],
-  [58, 16, 26], [63, 50, -36], [69, 78, 10], [76, 26, -22],
-  [83, 60, 30], [88, 10, -14], [93, 44, 18], [97, 76, -30],
+  [5, 14, -32], [11, 38, 20], [4, 62, -12], [14, 80, 34],
+  [22, 10, 14], [19, 54, -28], [25, 70, 40], [30, 90, -18],
+  [70, 12, 26], [76, 44, -36], [69, 74, 10], [82, 24, -22],
+  [88, 58, 30], [95, 14, -14], [92, 84, 18], [50, 94, -30],
 ];
 
 export function SeedScatter({ className }: { className?: string }) {
