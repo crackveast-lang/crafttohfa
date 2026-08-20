@@ -39,19 +39,32 @@ export function getCountdown(target: string | Date, now: Date = new Date()): Cou
   };
 }
 
-/** "Order by 20 August so your rakhis reach in time." */
-export function getOrderByCopy(festival: Festival): string {
+/**
+ * "Order by 30 October for Diwali delivery." — or null when the festival
+ * carries no note, which is how a festival opts out of order-by copy
+ * altogether. Every caller has to handle the null and render nothing.
+ */
+export function getOrderByCopy(festival: Festival): string | null {
+  if (!festival.note) return null;
   return festival.note.replace("{orderBy}", formatDateIN(festival.orderByDate));
 }
 
-/** "Rakhi orders close in 13 days" — null once the order-by date has passed. */
+/**
+ * "Diwali orders close in 13 days" — null once the order-by date has passed.
+ *
+ * Also null ON the order-by date itself. That last day used to get its own
+ * sentence, "Last day to order for {name}", and it was removed on request for
+ * the same reason the Raksha Bandhan note was: we keep taking orders past the
+ * cut-off, so the loudest possible version of "you have missed it" is the one
+ * line we least want in the announcement bar. Counting down to the day is
+ * fine; standing on it and shouting is not.
+ */
 export function getOrderDeadlineCopy(
   festival: Festival,
   now: Date = new Date(),
 ): string | null {
   const { days, over } = getCountdown(festival.orderByDate, now);
-  if (over) return null;
-  if (days === 0) return `Last day to order for ${festival.name}`;
+  if (over || days === 0) return null;
   return `${festival.name} orders close in ${days} ${pluralise(days, "day")}`;
 }
 

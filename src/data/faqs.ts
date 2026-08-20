@@ -60,8 +60,12 @@ export const faqs: Faq[] = [
     id: "rakhi-deadline",
     group: "Shipping",
     question: "Will my rakhi reach in time for Raksha Bandhan?",
+    /* This used to open with "If you order by the date shown in the banner at
+       the top of the site" — and the banner stopped carrying a date when the
+       order-by copy was removed, which left the answer pointing at something
+       that is not there. It now asks for the date instead of quoting one. */
     answer:
-      "If you order by the date shown in the banner at the top of the site, yes. After that we can often still manage it with express shipping. Message us and we'll tell you straight whether it will make it rather than take the order and hope.",
+      "Usually, yes — and where it is tight we will say so rather than take the order and hope. Message us with the date you need it by and we'll confirm whether it makes it, with express shipping if that is what it takes.",
   },
   {
     id: "international",

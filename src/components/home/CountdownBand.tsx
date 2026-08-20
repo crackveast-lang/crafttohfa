@@ -23,6 +23,7 @@ export function CountdownBand() {
   if (!festival) return null;
 
   const { days } = getCountdown(festival.date);
+  const orderBy = getOrderByCopy(festival);
   const srLabel = `${days} ${pluralise(days, "day")} until ${festival.name}.`;
 
   return (
@@ -66,16 +67,23 @@ export function CountdownBand() {
           <CountdownClock target={festival.date} srLabel={srLabel} />
         </div>
 
-        <p
-          data-reveal="rise"
-          style={{ animationDelay: "420ms" }}
-          className="mx-auto mt-8 max-w-[42ch] text-body font-medium"
-        >
-          {getOrderByCopy(festival)}
-        </p>
+        {/* Only when the festival actually carries a note. Raksha Bandhan has
+            none — see site.config.ts — and an empty <p> here would still cost
+            its margin, leaving a hole between the clock and the button. */}
+        {orderBy ? (
+          <p
+            data-reveal="rise"
+            style={{ animationDelay: "420ms" }}
+            className="mx-auto mt-8 max-w-[42ch] text-body font-medium"
+          >
+            {orderBy}
+          </p>
+        ) : null}
 
         <div data-reveal="rise" style={{ animationDelay: "500ms" }}>
-          <Button href="/shop" size="lg" className="mt-7">
+          {/* mt-7 when the note is there to push against, mt-9 when it isn't:
+              the button would otherwise sit right under the clock. */}
+          <Button href="/shop" size="lg" className={orderBy ? "mt-7" : "mt-9"}>
             Shop the rakhi collection
           </Button>
         </div>

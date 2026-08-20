@@ -57,10 +57,16 @@ export const siteConfig = {
    */
   festivals: [
     {
+      /* NO `note` here, deliberately. It used to read "Order by {orderBy} so
+         your rakhis reach in time." and it was removed on request: the
+         order-by date has arrived and we are still taking orders, so a line
+         telling people the window is closing works against us. `note` is
+         optional — the countdown band and the closing CTA render without one
+         rather than leaving an empty paragraph. Put a sentence back here and
+         both pick it up again automatically. */
       name: "Raksha Bandhan",
       date: "2026-08-28T00:00:00+05:30",
       orderByDate: "2026-08-20T23:59:59+05:30",
-      note: "Order by {orderBy} so your rakhis reach in time.",
     },
     {
       name: "Diwali",

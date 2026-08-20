@@ -89,7 +89,13 @@ export interface Festival {
   name: string;
   date: string;
   orderByDate: string;
-  note: string;
+  /**
+   * The order-by sentence, with a {orderBy} token for the date. OPTIONAL:
+   * leave it off and the countdown band and the closing CTA simply render
+   * without one, rather than showing an empty paragraph. Raksha Bandhan runs
+   * without it — see the note in site.config.ts.
+   */
+  note?: string;
 }
 
 export type WhatsAppContext =
