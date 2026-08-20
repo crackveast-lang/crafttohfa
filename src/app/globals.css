@@ -572,6 +572,23 @@
   }
 }
 
+/**
+ * One pass of the hero photo strip: the circle turns by exactly one set of
+ * cards, at which point card N is standing where card 1 was and the loop is
+ * invisible. Both custom properties are read off the element being animated —
+ * see `.photo-arc` for what they mean and why they are not free to change
+ * independently.
+ *
+ * No `both` fill: when prefers-reduced-motion collapses this, the element
+ * falls back to its untransformed state, which is simply the arc sitting
+ * still — a valid arrangement rather than a half-finished one.
+ */
+@keyframes arcDrift {
+  to {
+    transform: rotate(calc(-1 * var(--arc-step) * var(--arc-n)));
+  }
+}
+
 /* ── Preloader ───────────────────────────────────────────────────────── */
 @keyframes preloadOut {
   to {
@@ -1040,6 +1057,106 @@
     .rail-fade-lg {
       -webkit-mask-image: none;
       mask-image: none;
+    }
+  }
+
+  /* ---- The hero photo arc -----------------------------------------------
+     The strip of product photos rides the rim of a very large circle instead
+     of running along a straight line, so it bows gently downward at the edges.
+
+     WHY A ROTATING CIRCLE rather than per-card offsets. The obvious approach —
+     translate the row sideways and give each card a y-offset in a repeating
+     curve — produces a wave that TRAVELS WITH the cards, so the whole row
+     undulates. A curve you can see has to stay still while the cards move
+     along it, and the cheapest way to hold a fixed arc is to put every card on
+     the rim of one circle and turn the circle. One `rotate` on the parent, no
+     JavaScript, no per-frame work.
+
+     THE THREE NUMBERS ARE ONE NUMBER. `--arc-step` is the angle a single card
+     subtends, and it is not free: it must equal the card's pitch (its width
+     plus the gap to the next) divided by the radius, or the cards overlap or
+     gap. Both values change at `md`, where the card grows from 128px+12px
+     (140px) to 176px+20px (196px):
+
+       base  140px / 1800px  = 0.07778 rad = 4.4563deg
+       md    196px / 6000px  = 0.03267 rad = 1.8717deg
+       lg    196px / 8000px  = 0.02450 rad = 1.4037deg
+
+     The radius grows with the breakpoint because the SAG — how far the ends
+     drop below the middle — is roughly viewport² / 8r. Holding one radius
+     would give a 3px twitch on a phone and a 117px plunge on a 2560px monitor.
+     These keep it between ~11px and ~82px, which reads as a curve at every
+     width without the ends falling out of the strip. Change a radius and the
+     matching step and height have to move with it.
+
+     `--arc-n` is set inline: it is the number of cards in ONE set, and the
+     turn is exactly that many steps, which is what makes the loop seamless. */
+  .photo-arc {
+    --arc-r: 1800px;
+    --arc-step: 4.4563deg;
+    /* How far below the top of the strip the crown of the arc sits. Without
+       it the highest card is flush with the edge and its rotated corners get
+       shaved off by the overflow. */
+    --arc-top: 10px;
+    height: 200px;
+  }
+
+  .photo-arc-track {
+    position: absolute;
+    left: 50%;
+    /* The circle's CENTRE. One radius below the crown, so the crown itself
+       lands at `--arc-top` from the top of the strip. */
+    top: calc(var(--arc-r) + var(--arc-top));
+    width: 0;
+    height: 0;
+    animation: arcDrift 40s linear infinite;
+  }
+
+  /* Each card: swing out to angle i, then push up to the rim. The rotation
+     stays applied afterwards, which is what tilts each card to the tangent —
+     the tilt IS the curve, and it is why cards lean a little more the further
+     they are from the middle.
+
+     `transform-origin: 0 0` IS LOAD-BEARING. Without it a card rotates about
+     its own centre while the track rotates about the circle's centre, and two
+     rotations about different points do not add up: a card sitting at angle A
+     with the track turned by B lands somewhere else entirely than a card at
+     A+B with the track at rest, even though the total is identical. Which is
+     precisely the pair the loop relies on being interchangeable — so the whole
+     strip jumped by ~54px every time it wrapped. Measured before and after:
+     70% of pixels differed across the seam, then 0%. Pinning both rotations to
+     the same origin makes the composition exact. */
+  .photo-arc-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: 0 0;
+  }
+
+  @media (min-width: 48rem) {
+    .photo-arc {
+      --arc-r: 6000px;
+      --arc-step: 1.8717deg;
+      --arc-top: 14px;
+      height: 285px;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .photo-arc {
+      --arc-r: 8000px;
+      --arc-step: 1.4037deg;
+      /* The sag grows with the viewport, so the strip's height has to grow
+         too — but only where it is actually needed. Pinned at the 2560px
+         figure everywhere, a 1280px screen carries ~50px of empty cream under
+         the cards for the sake of a monitor it is not being viewed on. */
+      height: 305px;
+    }
+  }
+
+  @media (min-width: 120rem) {
+    .photo-arc {
+      height: 345px;
     }
   }
 

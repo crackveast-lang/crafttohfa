@@ -62,26 +62,31 @@ function comboPhotos(): Product[] {
 }
 
 /**
- * ONE SET OF THE STRIP HAS TO BE WIDER THAN THE WIDEST SCREEN.
+ * HOW MANY CARDS THE RIM NEEDS, and it is not "enough to fill the screen".
  *
- * The marquee's track is exactly two copies of what it is given, and it
- * travels one copy per pass. So if a copy is narrower than the viewport, the
- * moment it has travelled its own width there is nothing left behind it and a
- * band of empty cream opens at the right edge — for the rest of the pass.
+ * The marquee holds exactly two copies of this list on the rim of its circle
+ * and turns by one copy per pass. Coverage has to hold at BOTH ends of that
+ * turn, and those two conditions pull against each other: at the start, the
+ * rim must already reach past the left edge of the screen; at the end, after
+ * a whole copy has swung away, what is left must still reach the right edge.
  *
- * With every category in play that never came up; ten slides was always wider
- * than any screen. Restricted to combo boxes there are only about seven
- * photographs, which at 176px + a 20px margin is ~1370px — fine at 1280, a
- * visible hole at 1920. So the list is cycled up to a count that clears the
- * widest screen worth designing for:
+ * Writing the rim's offset as `crown` cards (see HeroMarquee) and the pitch as
+ * p, the two conditions are
  *
- *   2560px ÷ 196px per slide ≈ 13.1  →  14
+ *   crown·p ≥ w/2          reach the left edge at t=0
+ *   (N − 1 − crown)·p ≥ w/2    still reach the right edge at t=end
  *
- * Repeating means a photograph can appear twice in one pass. That is the
- * lesser problem by a distance: the repeats sit seven slides apart, and a gap
- * in the strip reads as broken where a repeat reads as a pattern.
+ * which only both hold when N ≥ w/p + 1. At the 196px desktop pitch and a
+ * 2560px monitor that is 14.1, so:
+ *
+ *   N = 16, crown = 8   →   covers to 2940px, with two cards of slack
+ *
+ * Restricted to combo boxes there are only seven photographs with a picture,
+ * so the list is cycled to reach that. Repeating means a box can appear twice
+ * in one pass; that is the lesser problem by a distance, because a repeat
+ * reads as a pattern and a hole in the strip reads as broken.
  */
-const MIN_SLIDES = 14;
+const MIN_SLIDES = 16;
 
 function fillStrip(products: Product[], min = MIN_SLIDES): Product[] {
   if (products.length === 0) return products;

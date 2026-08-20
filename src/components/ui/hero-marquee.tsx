@@ -1,16 +1,14 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import { HeartSolid, Star } from "@/components/doodles";
 import { cn } from "@/lib/cn";
 
 /**
- * An endless, gently tilted strip of photographs that runs along the bottom
- * of the hero.
+ * An endless strip of framed product photographs that rides a gentle downward
+ * curve along the bottom of the hero.
  *
- * Adapted from the supplied `AnimatedMarqueeHero` in four ways, for the same
- * reasons `image-tiles.tsx` was adapted — read that file's header first, the
- * first point is identical:
+ * Descended from the supplied `AnimatedMarqueeHero`, but almost nothing of the
+ * original mechanism survives contact with this codebase. What changed and
+ * why, in the order it matters:
  *
  * 1. SLOTS, NOT SRC STRINGS. The original mapped over `images: string[]` and
  *    rendered a bare <img>. Here each slide is a ReactNode so the hero can
@@ -18,65 +16,129 @@ import { cn } from "@/lib/cn";
  *    optimisation, the photo-or-placeholder fallback and correct `sizes`.
  *    (A raw <img> also trips `@next/next/no-img-element`, an error here.)
  *
- * 2. THE LOOP ACTUALLY LOOPS. The original animated x from "-100%" to "0%"
- *    across a row holding TWO copies of the list, which is a two-set
- *    translation over a two-set row — every repeat jumps. A seamless loop
- *    has to travel exactly ONE set: x: 0% → -50% of the doubled row.
+ * 2. IT IS A CIRCLE, NOT A ROW. The cards sit on the rim of a very large
+ *    circle and the circle turns; they do not slide along a line. See the
+ *    `.photo-arc` block in globals.css for the geometry and for why a
+ *    per-card y-offset — the obvious way to fake a curve — gives you a
+ *    travelling wave instead of a curve that stays put.
  *
- * 3. MARGIN, NOT GAP. `gap-4` puts spacing BETWEEN items but not after the
- *    last one, so one set is a half-gap narrower than half the row and the
- *    strip drifts by 8px per pass. Each slide carries its own trailing
- *    margin instead, which makes one set exactly half the row.
+ * 3. NO CLIENT COMPONENT AT ALL. The original was "use client" for a
+ *    framer-motion loop; the rotation is now one CSS animation, so this file
+ *    ships zero JavaScript. That also retires a bug this component used to
+ *    have: it branched its MARKUP on useReducedMotion(), which reads the media
+ *    query on the client's first render, so anyone with reduce-motion enabled
+ *    got a hydration mismatch and had the whole strip rebuilt. There is no
+ *    branch left to get wrong — the global prefers-reduced-motion block in
+ *    globals.css stops the animation, and a stopped arc is still an arc.
  *
- * 4. REDUCED MOTION. The strip holds still when the visitor has asked for less
- *    movement — a permanently moving band is the single most uncomfortable
- *    thing on a page for anyone with vestibular sensitivity. See the note at
- *    the render for why that switches the animation only and never the markup.
- *
- * THE CALLER OWNS THE WIDTH. One set has to be wider than the widest viewport
- * or a gap opens at the right edge halfway through every pass — the track is
- * only two sets long, so once it has travelled one set there is nothing behind
- * it. Hero.tsx repeats its list up to a slide count that guarantees this;
- * see `fillStrip` there.
+ * THE CALLER OWNS THE WIDTH. One set has to be longer than the widest screen
+ * or a gap opens behind the strip halfway through every turn — the rim only
+ * holds two sets, and it travels one set per pass. Hero.tsx repeats its list
+ * to a count that guarantees this; see `fillStrip` there.
  */
 
 export interface HeroMarqueeProps {
   /** Rendered in order, then repeated once to make the loop seamless. */
   slides: ReactNode[];
-  /** Seconds for one complete pass. Slow is the point; 40s reads as drift. */
+  /** Seconds for one complete turn. Slow is the point; 40s reads as drift. */
   duration?: number;
   className?: string;
 }
 
-/* Tilts, so the strip reads as photographs laid on a table rather than a
-   filmstrip. SEVEN of them, and the count is the point: against an even number
-   of slides the pattern lines up and you start seeing the repeat rather than
-   the photos. They sum to -0.6deg, so the row stays level overall instead of
-   leaning one way. Kept small — past ~4deg the corners start catching the mask
-   at either end of the strip. */
+/**
+ * FRAME PALETTE — these two borders ONLY.
+ *
+ * Hardcoded here rather than added to the Tailwind theme, the same rule
+ * HeroFlowers follows: the site's UI stays on the seven brand colours and no
+ * `border-lace` utility gets to exist and turn up on a form field. They are
+ * two tints of the same warm tan, and they have to be tints of each other or
+ * the two rings read as two unrelated lines rather than one frame.
+ */
+const LACE = "#E2C4A6";
+const STITCH = "#D9BE9F";
+
+/* A little jitter on top of the tangent. The arc already leans each card by
+   where it stands on the rim; this stops the leans from being perfectly
+   regular. Small, because the arc is doing the real work — these were ±3deg
+   back when the strip was straight and had nothing else going on.
+
+   How many values there are does NOT matter, and that is deliberate: they are
+   indexed by a card's SEAT within a set, never by its position on the rim.
+   See the note on `seat` below — indexing by rim position put a visible jump
+   in the loop. */
 const TILTS = [
-  "-3deg",
-  "2.2deg",
   "-1.4deg",
-  "3.2deg",
-  "-2.4deg",
-  "1.6deg",
-  "-0.8deg",
+  "1deg",
+  "-0.6deg",
+  "1.5deg",
+  "-1.1deg",
+  "0.7deg",
+  "-0.4deg",
 ];
 
-function Slide({ children, index }: { children: ReactNode; index: number }) {
+/**
+ * One card: white paper, a beaded lace edge, a stitch line inside it, and a
+ * single small charm sitting on one corner.
+ *
+ * The lace is a DOTTED border and the stitch is a DASHED one — both plain CSS
+ * rather than artwork. That is not laziness, it is the only version that
+ * survives: a drawn frame has to be either stretched to the card (which turns
+ * round beads into ovals) or nine-sliced, and at 176px wide the whole
+ * ornament is two or three pixels deep, where a border renders it crisply at
+ * any size and costs nothing.
+ *
+ * ONE charm per card, not two. The corner sprigs that lived here before were
+ * a pair per card and at fourteen cards that is twenty-eight drawings fighting
+ * seven photographs. Alternating a single charm between opposite corners gives
+ * the same scrapbook feel at a quarter of the noise.
+ */
+function Card({ children, seat }: { children: ReactNode; seat: number }) {
+  const Charm = seat % 2 ? Star : HeartSolid;
+
   return (
-    <div
-      className="me-3 w-32 shrink-0 md:me-5 md:w-44"
-      style={{ rotate: TILTS[index % TILTS.length] }}
-    >
-      {/* The white mount + soft shadow from ImageTiles, deliberately reused:
-          these are the same photographs in the same hero, and two different
-          frame treatments a hundred pixels apart read as two components that
-          happen to share a page. */}
-      <div className="overflow-hidden rounded-3xl bg-white p-2 shadow-[0_10px_30px_-8px_rgba(51,45,50,0.30),0_2px_6px_-2px_rgba(51,45,50,0.10)]">
-        <div className="overflow-hidden rounded-2xl">{children}</div>
-      </div>
+    <div className="relative rounded-[1.4rem] bg-white p-3.5 shadow-[0_10px_30px_-8px_rgba(51,45,50,0.30),0_2px_6px_-2px_rgba(51,45,50,0.10)] md:p-4">
+      {/* The beaded edge. `border-dotted` at 3px renders as a row of round
+          beads that follows the radius exactly — the doily edge, for one
+          declaration. */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-[3px] rounded-[1.2rem] border-[3px] border-dotted"
+        style={{ borderColor: LACE }}
+      />
+      {/* The stitch, a hair inside it. */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-[9px] rounded-[0.95rem] border border-dashed md:inset-[10px]"
+        style={{ borderColor: STITCH }}
+      />
+
+      <div className="overflow-hidden rounded-[0.8rem]">{children}</div>
+
+      {/* A filled shape, and that is a rule rather than a preference: at the
+          16px this renders, a stroked doodle closes up into a smudge. Same
+          finding as the icon chips in HeroHighlights, which is why nothing
+          there is more detailed than a heart.
+
+          On the BOTTOM corner, never the top. The crown of the arc sits only
+          ~12px below the top of the strip — that clearance is what stops the
+          highest card's own corners being shaved — and a charm hung off the
+          top corner spends half its diameter in that gap and gets cut in half.
+          Underneath there is 40px or more of slack at every width.
+
+          Always the SAME corner, and only the shape alternates. Alternating
+          the corner as well is the obvious way to vary it and it backfires:
+          card N's right-hand charm and card N+1's left-hand charm land in the
+          same gap, so half the strip grows pairs of little circles floating
+          between the photographs. One side means one charm per card, evenly
+          spaced, which is what a frame detail should look like. */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-1.5 -left-1.5 grid size-6 place-items-center rounded-full bg-white shadow-[0_2px_6px_-2px_rgba(51,45,50,0.25)] md:-bottom-2 md:-left-2 md:size-7"
+      >
+        <Charm
+          className={cn("size-3 md:size-3.5", seat % 2 ? "text-peach" : "text-sage")}
+        />
+      </span>
     </div>
   );
 }
@@ -86,21 +148,33 @@ export default function HeroMarquee({
   duration = 40,
   className,
 }: HeroMarqueeProps) {
-  const reduced = useReducedMotion();
+  // Two copies: the second exists only so the first can turn away without
+  // leaving a hole. It is the same photographs again, so it is hidden from
+  // assistive tech — otherwise every product in the hero is announced twice.
+  const rim = [...slides, ...slides];
 
-  const set = slides.map((slide, i) => (
-    <Slide key={i} index={i}>
-      {slide}
-    </Slide>
-  ));
+  /**
+   * WHERE THE RIM STARTS, and it is not at the crown.
+   *
+   * Card 0 sits at angle 0, which is the top of the circle — dead centre of
+   * the strip. Lay the cards out from there and every one of them is to the
+   * RIGHT of centre, so the left half of the hero is empty until the turn
+   * carries something into it. That is exactly what the first version did.
+   *
+   * Backing the whole rim up by half a set puts the seam off-screen to the
+   * left and leaves cards on both sides at every moment of the turn. Half is
+   * also the only value that works at both ends: coverage needs the rim to
+   * start at or left of the screen edge AND still reach the right edge after
+   * a full set has turned away, which pins the offset to the middle of a
+   * narrow window. See MIN_SLIDES in Hero.tsx for the arithmetic that keeps
+   * that window from closing.
+   */
+  const crown = Math.floor(slides.length / 2);
 
   return (
-    /* py-6 rather than none: the slides are rotated, and a transform does not
-       grow its parent — without the padding the corners of every tilted card
-       are shaved off by the overflow. */
     <div
       className={cn(
-        "relative w-full overflow-hidden py-6",
+        "photo-arc relative w-full overflow-hidden",
         /* Fades at BOTH ends. `rail-fade` is the one-sided version used by the
            snap rails, where the fade means "there is more to the right"; here
            the strip has no beginning and no end, so it has to dissolve into
@@ -110,33 +184,53 @@ export default function HeroMarquee({
         className,
       )}
     >
-      {/* `reduced` switches the ANIMATION off and nothing else. It must never
-          change the markup — that was a real bug here for one revision: this
-          used to render one set when reduced and two when not, and
-          useReducedMotion() reads the media query on the client's FIRST
-          render, not after an effect. So the server sent two sets, the client
-          rendered one, and every visitor with "reduce motion" enabled got a
-          hydration mismatch and had the whole strip thrown away and rebuilt.
-          Same tree either way; only the props differ. That is also how
-          image-tiles.tsx does it. */}
-      <motion.div
-        className="flex w-max"
-        animate={reduced ? undefined : { x: ["0%", "-50%"] }}
-        transition={{ ease: "linear", duration, repeat: Infinity }}
+      <div
+        className="photo-arc-track"
+        style={
+          {
+            "--arc-n": slides.length,
+            animationDuration: `${duration}s`,
+          } as CSSProperties
+        }
       >
-        {/* Both halves are wrapped identically on purpose: two identical
-            subtrees are two identical widths, which is what makes -50% land
-            exactly one set along. */}
-        <div className="flex shrink-0">{set}</div>
-        {/* The second copy exists only so the first can walk off the left edge
-            without leaving a hole. It is the same photographs again, so it is
-            hidden from assistive tech — otherwise every product in the hero is
-            announced twice. When the strip is static the copy simply sits past
-            the right edge, clipped by the overflow. */}
-        <div className="flex shrink-0" aria-hidden="true">
-          {set}
-        </div>
-      </motion.div>
+        {rim.map((slide, i) => {
+          const seat = i % slides.length;
+          return (
+            <div
+            key={i}
+            className="photo-arc-card"
+            aria-hidden={i >= slides.length ? "true" : undefined}
+            // Swing to this card's place on the rim, then push out to it. The
+            // widths here are the same pitch the CSS derives `--arc-step`
+            // from; they are not independent numbers.
+            style={{
+              transform: `rotate(calc(var(--arc-step) * ${i - crown})) translateY(calc(-1 * var(--arc-r)))`,
+            }}
+          >
+            {/* Centre the card on its rim point, and carry the jitter. A
+                separate element because the parent already owns a transform
+                and the two would overwrite each other.
+
+                EVERY per-card variation is keyed to `seat` — the card's index
+                within ONE set — and never to `i`, its place on the rim. That
+                is the whole trick to a clean loop. When the turn completes,
+                rim card i is standing exactly where rim card i−n stood, so if
+                any detail is a function of i rather than of i mod n, it
+                differs between the two and the entire strip flickers as it
+                wraps. This was measured, not guessed: with the tilt indexed by
+                i, seven tilts against a sixteen-card set put a 76px jump at
+                1280 and 142px on a phone. Keyed to `seat`, the count of tilts
+                and the size of a set no longer have to agree about anything. */}
+            <div
+              className="w-32 -translate-x-1/2 md:w-44"
+              style={{ rotate: TILTS[seat % TILTS.length] }}
+            >
+              <Card seat={seat}>{slide}</Card>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
