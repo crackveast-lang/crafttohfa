@@ -18,7 +18,7 @@ import { HeartBurst, HeartSolid } from "@/components/doodles";
 import { getProductsByCategory } from "@/data/products";
 import { resolvePhoto } from "@/lib/images";
 import { cn } from "@/lib/cn";
-import type { CategorySlug, Product } from "@/types";
+import type { Product } from "@/types";
 
 /**
  * One slide of the marquee. Rendered on the SERVER and passed into
@@ -41,42 +41,53 @@ function TileImage({ product, eager }: { product: Product; eager?: boolean }) {
 }
 
 /**
- * The strip should read as the whole shop rather than one shelf of it, so it
- * takes products round-robin across the four categories — combo box, then
- * rakhi, then paint kit, then crochet, and round again — instead of the three
- * combo boxes the fanned tiles used to show.
+ * COMBO BOXES ONLY. The strip briefly ran round-robin across all four
+ * categories, and it is back to the one category on request.
  *
- * It keeps ONLY products whose photograph actually exists on disk. A designed
- * placeholder is fine on a product grid, where it is one cell among twenty
- * and clearly a card awaiting its photo; in a moving strip of ten it is the
- * one thing your eye stops on.
+ * It also happens to be the category that survives being 176px wide: a combo
+ * box shot is an open box, filled, with the card and the paints visible, which
+ * still reads at that size. A rakhi photograph is a close-up of a wrist, and a
+ * wrist at 176px is a pink blur — the same reasoning the original three fanned
+ * tiles were picked on.
+ *
+ * Only products whose photograph actually exists on disk. A designed
+ * placeholder is fine on a product grid, where it is one cell among twenty and
+ * clearly a card awaiting its photo; in a moving strip it is the one thing
+ * your eye stops on.
  */
-const MARQUEE_CATEGORIES: CategorySlug[] = [
-  "combos",
-  "rakhis",
-  "painting-kits",
-  "crochet",
-];
-
-function marqueeProducts(limit: number): Product[] {
-  const pools = MARQUEE_CATEGORIES.map((category) =>
-    getProductsByCategory(category).filter((p) =>
-      resolvePhoto(p.images[0]?.src ?? ""),
-    ),
+function comboPhotos(): Product[] {
+  return getProductsByCategory("combos").filter((p) =>
+    resolvePhoto(p.images[0]?.src ?? ""),
   );
+}
 
-  const picked: Product[] = [];
-  for (let round = 0; picked.length < limit; round++) {
-    const before = picked.length;
-    for (const pool of pools) {
-      if (!pool[round]) continue;
-      picked.push(pool[round]);
-      if (picked.length === limit) break;
-    }
-    // Every pool exhausted — take what we have rather than loop forever.
-    if (picked.length === before) break;
-  }
-  return picked;
+/**
+ * ONE SET OF THE STRIP HAS TO BE WIDER THAN THE WIDEST SCREEN.
+ *
+ * The marquee's track is exactly two copies of what it is given, and it
+ * travels one copy per pass. So if a copy is narrower than the viewport, the
+ * moment it has travelled its own width there is nothing left behind it and a
+ * band of empty cream opens at the right edge — for the rest of the pass.
+ *
+ * With every category in play that never came up; ten slides was always wider
+ * than any screen. Restricted to combo boxes there are only about seven
+ * photographs, which at 176px + a 20px margin is ~1370px — fine at 1280, a
+ * visible hole at 1920. So the list is cycled up to a count that clears the
+ * widest screen worth designing for:
+ *
+ *   2560px ÷ 196px per slide ≈ 13.1  →  14
+ *
+ * Repeating means a photograph can appear twice in one pass. That is the
+ * lesser problem by a distance: the repeats sit seven slides apart, and a gap
+ * in the strip reads as broken where a repeat reads as a pattern.
+ */
+const MIN_SLIDES = 14;
+
+function fillStrip(products: Product[], min = MIN_SLIDES): Product[] {
+  if (products.length === 0) return products;
+  const out: Product[] = [];
+  while (out.length < min) out.push(products[out.length % products.length]);
+  return out;
 }
 
 /** Positions a flower, gives it an entrance, and keeps it gently moving. */
@@ -104,10 +115,7 @@ function Bloom({
 }
 
 export function Hero() {
-  /* Ten is two full rounds of the four categories plus two, and about as many
-     as fit in one pass of the marquee before the duplicate set comes round —
-     which is what keeps the loop from feeling like a short cycle. */
-  const slides = marqueeProducts(10);
+  const slides = fillStrip(comboPhotos());
 
   return (
     /* The gap under the header lives HERE, on the section, and not as `pt-` on
@@ -363,8 +371,12 @@ export function Hero() {
         <HeroMarquee
           slides={slides.map((product, i) => (
             /* The first slide is the eager one: it is the left-most thing on
-               screen when the strip starts, so it is the LCP candidate. */
-            <TileImage key={product.slug} product={product} eager={i === 0} />
+               screen when the strip starts, so it is the LCP candidate.
+
+               Keyed by INDEX, not by slug: fillStrip cycles the combo boxes to
+               fill the strip, so the same product legitimately appears more
+               than once and a slug key would collide. */
+            <TileImage key={i} product={product} eager={i === 0} />
           ))}
         />
       </div>

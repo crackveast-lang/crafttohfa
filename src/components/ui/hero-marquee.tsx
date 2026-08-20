@@ -2,10 +2,6 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
-import {
-  BotanicalCorner,
-  FRAME_LINE,
-} from "@/components/hero/BotanicalCorner";
 import { cn } from "@/lib/cn";
 
 /**
@@ -37,11 +33,11 @@ import { cn } from "@/lib/cn";
  *    thing on a page for anyone with vestibular sensitivity. See the note at
  *    the render for why that switches the animation only and never the markup.
  *
- * 5. THE CARDS ARE A BORDER, NOT A CROP. The original rendered each image as a
- *    bare rounded rectangle. Here each one is white paper with a hairline
- *    frame and a botanical sprig on two opposite corners — see BotanicalCorner
- *    — which is what makes the strip read as part of this hero rather than as
- *    a component dropped into it.
+ * THE CALLER OWNS THE WIDTH. One set has to be wider than the widest viewport
+ * or a gap opens at the right edge halfway through every pass — the track is
+ * only two sets long, so once it has travelled one set there is nothing behind
+ * it. Hero.tsx repeats its list up to a slide count that guarantees this;
+ * see `fillStrip` there.
  */
 
 export interface HeroMarqueeProps {
@@ -53,11 +49,11 @@ export interface HeroMarqueeProps {
 }
 
 /* Tilts, so the strip reads as photographs laid on a table rather than a
-   filmstrip. SEVEN of them against ten slides, which is the whole point of the
-   number: with four the pattern lines up twice per pass and you start seeing
-   the repeat rather than the photos. They sum to -0.6deg, so the row stays
-   level overall instead of drifting one way. Kept small — past ~4deg the
-   corners of a decorated card start catching the mask at either end. */
+   filmstrip. SEVEN of them, and the count is the point: against an even number
+   of slides the pattern lines up and you start seeing the repeat rather than
+   the photos. They sum to -0.6deg, so the row stays level overall instead of
+   leaning one way. Kept small — past ~4deg the corners start catching the mask
+   at either end of the strip. */
 const TILTS = [
   "-3deg",
   "2.2deg",
@@ -68,61 +64,19 @@ const TILTS = [
   "-0.8deg",
 ];
 
-/**
- * The corner sprigs go on OPPOSITE corners, and which pair alternates down the
- * strip: even slides get top-left + bottom-right, odd slides top-right +
- * bottom-left. Two corners rather than four keeps the photograph clear on the
- * other diagonal, and alternating the pair means no two neighbours are the
- * same drawing in the same place.
- */
-function Corners({ flipped }: { flipped: boolean }) {
-  const a = flipped ? "-right-[4%] -top-[4%] rotate-90" : "-left-[4%] -top-[4%]";
-  const b = flipped
-    ? "-bottom-[4%] -left-[4%] -rotate-90"
-    : "-bottom-[4%] -right-[4%] rotate-180";
-
-  return (
-    <>
-      <span className={cn("pointer-events-none absolute w-[56%] md:w-[62%]", a)}>
-        <BotanicalCorner />
-      </span>
-      <span className={cn("pointer-events-none absolute w-[56%] md:w-[62%]", b)}>
-        <BotanicalCorner />
-      </span>
-    </>
-  );
-}
-
 function Slide({ children, index }: { children: ReactNode; index: number }) {
   return (
     <div
-      className="relative me-6 w-32 shrink-0 md:me-9 md:w-44"
+      className="me-3 w-32 shrink-0 md:me-5 md:w-44"
       style={{ rotate: TILTS[index % TILTS.length] }}
     >
-      {/* The card is still white paper with the soft shadow from ImageTiles —
+      {/* The white mount + soft shadow from ImageTiles, deliberately reused:
           these are the same photographs in the same hero, and two different
-          mounts a hundred pixels apart read as two components that happen to
-          share a page. What changed is what is ON the paper.
-
-          NOT overflow-hidden, unlike the tiles: the sprigs are supposed to
-          break the edge of the card the way the foliage crosses the frame in
-          the reference. Clipping them to the card would leave two quarter
-          circles of leaves and no sense that anything grew there. */}
-      <div className="relative rounded-[1.35rem] bg-white p-2.5 shadow-[0_10px_30px_-8px_rgba(51,45,50,0.30),0_2px_6px_-2px_rgba(51,45,50,0.10)] md:p-3">
-        {/* The hairline square from the reference, sitting between the paper
-            and the photograph. It is what makes the sprigs read as a border
-            rather than as leaves dropped on a corner. */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-1.5 rounded-[1.1rem] border md:inset-2"
-          style={{ borderColor: FRAME_LINE }}
-        />
-        <div className="overflow-hidden rounded-[0.95rem]">{children}</div>
+          frame treatments a hundred pixels apart read as two components that
+          happen to share a page. */}
+      <div className="overflow-hidden rounded-3xl bg-white p-2 shadow-[0_10px_30px_-8px_rgba(51,45,50,0.30),0_2px_6px_-2px_rgba(51,45,50,0.10)]">
+        <div className="overflow-hidden rounded-2xl">{children}</div>
       </div>
-
-      {/* Outside the paper div so they layer over the photograph's corners
-          rather than under them. */}
-      <Corners flipped={index % 2 === 1} />
     </div>
   );
 }
@@ -141,15 +95,12 @@ export default function HeroMarquee({
   ));
 
   return (
-    /* Generous vertical padding rather than none, and it is load-bearing: the
-       slides are both rotated AND carry sprigs that hang ~9% outside the card,
-       neither of which grows the parent — a transform never does, and the
-       sprigs are absolutely positioned. Without the padding the overflow here
-       shaves the top off every leaf. Same reasoning behind the `me-` on each
-       slide: the gap has to clear two neighbouring sprigs, not two cards. */
+    /* py-6 rather than none: the slides are rotated, and a transform does not
+       grow its parent — without the padding the corners of every tilted card
+       are shaved off by the overflow. */
     <div
       className={cn(
-        "relative w-full overflow-hidden py-9 md:py-11",
+        "relative w-full overflow-hidden py-6",
         /* Fades at BOTH ends. `rail-fade` is the one-sided version used by the
            snap rails, where the fade means "there is more to the right"; here
            the strip has no beginning and no end, so it has to dissolve into
