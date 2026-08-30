@@ -15,8 +15,14 @@ import { pluralise } from "@/lib/format";
  * Festival urgency band.
  *
  * Returns null when there is no upcoming festival, which is the whole point:
- * the day after Raksha Bandhan this section simply stops existing instead of
+ * the day after a festival this section simply stops existing instead of
  * counting down into negative numbers or needing someone to remove it.
+ *
+ * It renders NOTHING at the moment — `festivals` in site.config.ts is empty
+ * since Raksha Bandhan 2026 passed. Put a festival back there and the whole
+ * band returns, artwork and clock and all. Do not delete this component to
+ * tidy up an empty homepage; deleting it is what makes adding the next
+ * festival a rebuild rather than a one-line edit.
  */
 export function CountdownBand() {
   const festival = getActiveFestival();
@@ -34,7 +40,7 @@ export function CountdownBand() {
         reveal
       />
 
-      {/* The signature beat of this section: the two rakhi threads draw
+      {/* The signature beat of this section: the two threaded doodles draw
           themselves in from the edges of the page toward the clock, the right
           one trailing the left. They are the only decoration here, and having
           them appear fully-formed wasted the one gesture the artwork is for. */}
@@ -67,9 +73,9 @@ export function CountdownBand() {
           <CountdownClock target={festival.date} srLabel={srLabel} />
         </div>
 
-        {/* Only when the festival actually carries a note. Raksha Bandhan has
-            none — see site.config.ts — and an empty <p> here would still cost
-            its margin, leaving a hole between the clock and the button. */}
+        {/* Only when the festival actually carries a note. `note` is optional
+            — see site.config.ts — and an empty <p> here would still cost its
+            margin, leaving a hole between the clock and the button. */}
         {orderBy ? (
           <p
             data-reveal="rise"
@@ -84,7 +90,7 @@ export function CountdownBand() {
           {/* mt-7 when the note is there to push against, mt-9 when it isn't:
               the button would otherwise sit right under the clock. */}
           <Button href="/shop" size="lg" className={orderBy ? "mt-7" : "mt-9"}>
-            Shop the rakhi collection
+            Shop the collection
           </Button>
         </div>
       </Container>

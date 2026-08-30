@@ -134,7 +134,7 @@ export function MobileNav() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  // Needed for same-path links like /shop → /shop?c=rakhis,
+                  // Needed for same-path links like /shop → /shop?c=combos,
                   // where the pathname never changes so `open` wouldn't reset.
                   onClick={() => setOpen(false)}
                   className="flex min-h-14 items-center border-b border-ink/10 font-display text-xl font-semibold"

@@ -1,16 +1,22 @@
 /**
- * The four things Craftohfa sells. `combos` was called `hampers` until the
+ * The three things Craftohfa sells. `combos` was called `hampers` until the
  * catalogue was split by category; it is the same product line, renamed so the
  * URL (/shop?c=combos) matches what these are called everywhere else.
  *
  * `painting-kits` is back. It was folded into `combos` when there were two
  * paint sets; there are now eleven, and a ₹120 tray of plaster flowers sitting
- * under "Combo Boxes" next to a ₹499 rakhi hamper described neither of them.
+ * under "Combo Boxes" next to a ₹499 combo box described neither of them.
  * The slug is the original one, so old /shop?c=painting-kits links work again.
+ *
+ * There was a fourth, `rakhis`, holding fifteen standalone crocheted rakhis.
+ * It was retired once Raksha Bandhan 2026 had passed. The combo boxes still
+ * contain a rakhi and are unaffected; it is only the standalone category that
+ * is gone. Re-adding it means putting the slug back here, restoring the entry
+ * in categories.ts and the `rakhi()` builder in data/products.ts.
  *
  * Order here is not meaningful. `categories.ts` owns display order.
  */
-export type CategorySlug = "rakhis" | "painting-kits" | "crochet" | "combos";
+export type CategorySlug = "painting-kits" | "crochet" | "combos";
 
 export interface ProductImage {
   /**
@@ -39,7 +45,7 @@ export interface Product {
   includes: string[];
   ageRange?: string;
   craftTime?: string;
-  /** Rakhis per pack, where relevant. */
+  /** Pieces per pack, where relevant. */
   pieces?: number;
   /** images[0] is the card image and the OG image. */
   images: ProductImage[];
@@ -92,8 +98,7 @@ export interface Festival {
   /**
    * The order-by sentence, with a {orderBy} token for the date. OPTIONAL:
    * leave it off and the countdown band and the closing CTA simply render
-   * without one, rather than showing an empty paragraph. Raksha Bandhan runs
-   * without it — see the note in site.config.ts.
+   * without one, rather than showing an empty paragraph.
    */
   note?: string;
 }

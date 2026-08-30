@@ -15,6 +15,6 @@ Drop files in here with these exact names. No code changes needed.
 keep the face well inside the frame rather than near an edge.
 
 Good candidates for the workshop three: yarn and hooks on the work table, a
-rakhi mid-stitch, and orders boxed up ready to post. They don't have to be
+a keepsake mid-stitch, and orders boxed up ready to post. They don't have to be
 polished — slightly imperfect, real photos suit this brand better than styled
 stock ones.

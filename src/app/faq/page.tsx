@@ -10,7 +10,7 @@ import { buildMetadata, faqJsonLd } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Questions & answers",
   description:
-    "How ordering over WhatsApp works, delivery timelines across India, rakhi deadlines, age guidance for kits, and bulk orders for schools.",
+    "How ordering over WhatsApp works, delivery timelines across India, age guidance for kits, and bulk orders for schools.",
   path: "/faq",
 });
 

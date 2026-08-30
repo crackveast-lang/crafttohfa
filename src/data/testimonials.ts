@@ -16,7 +16,7 @@ export const testimonials: Testimonial[] = [
   {
     id: "t1",
     quote:
-      "They tied the rakhi in the morning and were still painting the little idol at lunch. That's the first Raksha Bandhan nobody asked for the iPad.",
+      "They opened it after breakfast and were still painting the little idol at lunch. First weekend in months nobody asked for the iPad.",
     name: "Priya S.",
     city: "Pune",
     rating: 5,
@@ -36,7 +36,7 @@ export const testimonials: Testimonial[] = [
   {
     id: "t3",
     quote:
-      "My brother is nine and refuses anything with flowers on it. The crochet car rakhi was the first one he's worn all day without complaining.",
+      "My brother is nine and refuses anything with flowers on it. The little car money box is the one thing he painted without being asked twice.",
     name: "Sneha R.",
     city: "Delhi",
     rating: 5,

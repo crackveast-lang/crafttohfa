@@ -46,9 +46,9 @@ function TileImage({ product, eager }: { product: Product; eager?: boolean }) {
  *
  * It also happens to be the category that survives being 176px wide: a combo
  * box shot is an open box, filled, with the card and the paints visible, which
- * still reads at that size. A rakhi photograph is a close-up of a wrist, and a
- * wrist at 176px is a pink blur — the same reasoning the original three fanned
- * tiles were picked on.
+ * still reads at that size. A close-up of a single small charm at 176px is a
+ * coloured blur — the same reasoning the original three fanned tiles were
+ * picked on.
  *
  * Only products whose photograph actually exists on disk. A designed
  * placeholder is fine on a product grid, where it is one cell among twenty and
@@ -324,9 +324,9 @@ export function Hero() {
               className="rise-in mt-5 max-w-[24ch] text-body leading-relaxed text-ink/75 sm:max-w-[54ch] md:mt-7"
               style={{ animationDelay: "1.74s" }}
             >
-              Handcrafted crochet rakhis, DIY painting kits, little keepsakes,
-              and thoughtfully curated combo boxes, all made to make gifting a
-              little more special.
+              DIY painting kits, handcrafted crochet keepsakes, little
+              charms, and thoughtfully curated combo boxes, all made to make
+              gifting a little more special.
             </p>
 
             {/* Side by side from 390px up rather than stacked until `sm`. Two

@@ -11,7 +11,7 @@ import { siteConfig } from "@/site.config";
  */
 export const dynamic = "force-static";
 
-export const alt = `${siteConfig.name}, handmade DIY craft kits, rakhis and gift hampers`;
+export const alt = `${siteConfig.name}, handmade DIY craft kits and gift hampers`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -91,7 +91,7 @@ export default function OgImage() {
               maxWidth: 780,
             }}
           >
-            DIY painting kits · Handmade rakhis · Gift hampers
+            DIY painting kits · Crochet keepsakes · Gift hampers
           </div>
         </div>
 

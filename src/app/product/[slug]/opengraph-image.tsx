@@ -85,7 +85,7 @@ export default async function ProductOgImage({
               maxWidth: 940,
             }}
           >
-            {product?.name ?? "Handmade craft kits & rakhis"}
+            {product?.name ?? "Handmade craft kits & gift hampers"}
           </div>
           {product ? (
             <div

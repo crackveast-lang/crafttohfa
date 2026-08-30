@@ -2,13 +2,18 @@ import type { Category, CategorySlug } from "@/types";
 import { getProductsByCategory } from "./products";
 
 /**
- * The four things Craftohfa sells, in the order they appear on /shop.
+ * The three things Craftohfa sells, in the order they appear on /shop.
  *
  * ORDER IS CHEAPEST-FIRST, and that is a deliberate commercial decision rather
- * than a tidy alphabetical accident: rakhis and painting kits both start at
- * ₹120, crochet at ₹249 and combo boxes at ₹499. Someone landing on /shop
- * meets the ₹120 rakhis first and reads the brand as approachable. Lead with
- * the ₹499 boxes and the same catalogue reads as expensive.
+ * than a tidy alphabetical accident: painting kits start at ₹120, crochet at
+ * ₹249 and combo boxes at ₹499. Someone landing on /shop meets the ₹120
+ * painting kits first and reads the brand as approachable. Lead with the ₹499
+ * boxes and the same catalogue reads as expensive.
+ *
+ * A fourth category, "Handmade Rakhis", sat at the top of this list until
+ * Raksha Bandhan 2026 passed and the standalone rakhis were retired. Its
+ * entry is gone rather than emptied, because `activeCategories` hides an
+ * empty category but the type still has to list a slug nothing uses.
  *
  * If a price changes enough to reorder these, move the entry. It is not
  * derived from the data on purpose: a category list that silently reshuffles
@@ -21,21 +26,9 @@ import { getProductsByCategory } from "./products";
  */
 export const categories: Category[] = [
   {
-    slug: "rakhis",
-    name: "Handmade Rakhis",
-    blurb:
-      "Crocheted by hand in soft cotton. No plastic, no shedding glitter, comfortable all day.",
-    doodle: "RakhiThread",
-    tone: "sage",
-    image: {
-      src: "/images/products/rakhis/sunflower-rakhi-1.jpeg",
-      alt: "A hand-crocheted sunflower rakhi in cotton thread",
-    },
-  },
-  {
     /* Back after being folded into `combos` for one release. Eleven paint sets
        had ended up under "Combo Boxes", where a ₹120 tray of plaster flowers
-       sat next to a ₹499 rakhi hamper and the breadcrumb described neither. */
+       sat next to a ₹499 combo box and the breadcrumb described neither. */
     slug: "painting-kits",
     name: "Painting Kits",
     blurb:
@@ -60,19 +53,21 @@ export const categories: Category[] = [
     },
   },
   {
-    /* "Rakhi Combo Boxes" until the paint sets briefly lived here too. Now
-       that they have their own category every box in this one really does
-       contain a rakhi again, so the blurb can promise it. The slug is
-       untouched, so /shop?c=combos and every existing link still work. */
+    /* "Rakhi Combo Boxes" until the paint sets briefly lived here too. Every
+       box in this one does still contain a crocheted rakhi — retiring the
+       standalone rakhi category did not change what is packed in these — but
+       the blurb leads on the craft rather than the festival now that Raksha
+       Bandhan has passed. The slug is untouched, so /shop?c=combos and every
+       existing link still work. */
     slug: "combos",
     name: "Combo Boxes",
     blurb:
-      "A rakhi, a crochet keepsake and pieces to paint, boxed on shredded paper and ready to give.",
+      "A crochet keepsake to hold on to and plaster pieces to paint, boxed on shredded paper and ready to give.",
     doodle: "GiftBox",
     tone: "peach",
     image: {
       src: "/images/products/combos/strawberry-bag-rakhi-paint-hamper-1.jpg",
-      alt: "A rakhi combo box with a crochet pouch, rakhi and pieces to paint",
+      alt: "A combo box with a crochet pouch, a crocheted charm and pieces to paint",
     },
   },
 ];

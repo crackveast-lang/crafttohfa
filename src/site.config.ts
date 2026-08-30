@@ -6,6 +6,10 @@
  * └──────────────────────────────────────────────────────────────────────┘
  */
 
+/* Type-only, so this stays a leaf module at runtime: types/index.ts
+   imports nothing, and nothing here can become a require cycle. */
+import type { Festival } from "@/types";
+
 export const siteConfig = {
   name: "Craftohfa",
   tagline: "Where every craft becomes a memory, and every memory is a Tohfa.",
@@ -17,9 +21,9 @@ export const siteConfig = {
     /* No price in here on purpose. This string is the default meta description
        on every page that doesn't set its own, so a figure typed into it goes
        stale the moment PRICES changes in data/products.ts and there is nothing
-       to make you notice. "from ₹50" survived a rakhi price rise here once
-       already. /shop derives its own "from ₹N" from `lowestPrice`. */
-    "Hand-crocheted rakhis, DIY paint-your-own sets, crochet keepsakes and rakhi combo boxes. Made in small batches by hand, and designed to pull kids away from screens.",
+       to make you notice. "from ₹50" survived a price rise here once already.
+       /shop derives its own "from ₹N" from `lowestPrice`. */
+    "DIY paint-your-own sets, hand-crocheted keepsakes and craft combo boxes. Made in small batches by hand, and designed to pull kids away from screens.",
   /* craftohfa.com, spelled exactly like the brand name and the @craftohfa
      handle below. (The repo is still called crafttohfa, with two t's — that
      is the repo, not the site.) The www is not optional: it is the host
@@ -52,29 +56,29 @@ export const siteConfig = {
    * and returns null when there is none — so all of it auto-hides after the
    * date rather than counting down into negative numbers.
    *
-   * To set up next year: change these two dates. That is the entire job.
-   * Dates are IST (+05:30). `note` supports a {orderBy} token.
+   * ⚠️ DELIBERATELY EMPTY. Raksha Bandhan 2026 has passed and Diwali was taken
+   * out with it, so `getActiveFestival()` returns null and the countdown band,
+   * the announcement bar and the closing CTA's urgency line all hide
+   * themselves. This is a supported state, not a broken one — nothing here
+   * renders an empty shell waiting for a date.
+   *
+   * TO TURN THE URGENCY UI BACK ON: add one entry back. That is the entire
+   * job — nothing else needs touching, and the band, the bar and the CTA all
+   * reappear on their own. Dates are IST (+05:30), and `note` is optional and
+   * supports a {orderBy} token:
+   *
+   *   {
+   *     name: "Diwali",
+   *     date: "2026-11-08T00:00:00+05:30",
+   *     orderByDate: "2026-10-30T23:59:59+05:30",
+   *     note: "Order by {orderBy} for Diwali delivery.",
+   *   }
+   *
+   * A past date is harmless: entries already behind us are filtered out, so a
+   * festival left here after the fact hides itself rather than counting down
+   * into negative numbers.
    */
-  festivals: [
-    {
-      /* NO `note` here, deliberately. It used to read "Order by {orderBy} so
-         your rakhis reach in time." and it was removed on request: the
-         order-by date has arrived and we are still taking orders, so a line
-         telling people the window is closing works against us. `note` is
-         optional — the countdown band and the closing CTA render without one
-         rather than leaving an empty paragraph. Put a sentence back here and
-         both pick it up again automatically. */
-      name: "Raksha Bandhan",
-      date: "2026-08-28T00:00:00+05:30",
-      orderByDate: "2026-08-20T23:59:59+05:30",
-    },
-    {
-      name: "Diwali",
-      date: "2026-11-08T00:00:00+05:30",
-      orderByDate: "2026-10-30T23:59:59+05:30",
-      note: "Order by {orderBy} for Diwali delivery.",
-    },
-  ],
+  festivals: [] as Festival[],
 
   shipping: {
     freeAbove: 499,

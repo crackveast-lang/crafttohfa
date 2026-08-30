@@ -1,6 +1,6 @@
 # Craftohfa
 
-Handmade DIY painting kits, crochet rakhis and rakhi gift hampers.
+Handmade DIY painting kits, crochet keepsakes and craft gift hampers.
 
 Built with Next.js 16 (App Router) + TypeScript + Tailwind CSS v4. Every page is
 statically generated. **There is no cart and no checkout** — every buy button
@@ -49,9 +49,16 @@ silently: the link still opens WhatsApp perfectly and simply never reaches you.
 
 ### 2. Check the products — `src/data/products.ts` — mostly done
 
-26 products across four categories, written from your own photographs. Prices
-are real: ₹120 rakhis, ₹120–150 painting kits, ₹249–300 crochet, ₹499 combo
-boxes, all set from the `PRICES` block at the top of the file.
+34 products across three categories, written from your own photographs. Prices
+are real: ₹120–150 painting kits, ₹249–300 crochet, ₹499 combo boxes, all set
+from the `PRICES` block at the top of the file.
+
+A fourth category, 15 standalone crocheted rakhis, was retired after Raksha
+Bandhan 2026 along with both festival countdowns. The combo boxes still contain
+a rakhi and were left exactly as they were. To bring the category back, restore
+the `rakhis` slug in `src/types/index.ts`, its entry in `src/data/categories.ts`
+and the `rakhi()` builder and array in `src/data/products.ts` — all four are
+in the git history, and each carries a comment saying so.
 
 Still needs your eye:
 
@@ -59,10 +66,6 @@ Still needs your eye:
   product you don't have real reviews for. Only the five combos have one.
 - ⬜ **Descriptions** were written from the photos, so they describe colour and
   construction accurately but can't know what you know. Worth a skim.
-- ⬜ **Three rakhis are named descriptively** — Kitty Face, Spider Web,
-  Superhero Shield — rather than by the characters they resemble. Selling
-  merchandise under those trademarks is a real risk for a small shop. Change
-  them if you disagree, but that is why they read the way they do.
 
 ### 3. Real reviews — `src/data/testimonials.ts`
 
@@ -97,8 +100,8 @@ and returns wording on `/policies` matches what you actually do.
 
 ### 6. Photos
 
-- `public/images/products/` — ✅ all 27 product photos are in, sorted by
-  category into `combos/`, `rakhis/`, `painting-kits/` and `crochet/`
+- `public/images/products/` — ✅ all product photos are in, sorted by
+  category into `combos/`, `painting-kits/` and `crochet/`
 - `public/images/brand/` — ✅ logo and lockup are in, though they were lifted
   from a photo of your printed card; see that folder's README
 - `public/images/about/` — ⬜ founder + 3 workshop photos still needed
@@ -227,7 +230,7 @@ it shows you. Free, HTTPS included. Update `NEXT_PUBLIC_SITE_URL` to match.
 ### Why not GitHub Pages
 
 Pages can only serve static files, so it cannot run Next's image optimiser.
-This site has 27 product photos; without optimisation they ship at full size
+This site has 34 product photos; without optimisation they ship at full size
 rather than as resized WebP, which is the difference between a fast shop and a
 slow one on an Indian mobile connection. Pages on a free account also requires
 the repository to be public. Vercel is free here, keeps the optimiser, and

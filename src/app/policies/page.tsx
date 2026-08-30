@@ -100,10 +100,10 @@ export default function PoliciesPage() {
                   is picked up.
                 </li>
                 <li>
-                  Around Raksha Bandhan and Diwali couriers slow down. We
-                  publish an order-by date at the top of the site and we
-                  don&apos;t take orders we don&apos;t believe will arrive in
-                  time.
+                  Around the festive season couriers slow down. When there is
+                  an order-by date it is published at the top of the site, and
+                  we don&apos;t take orders we don&apos;t believe will arrive
+                  in time.
                 </li>
                 <li>
                   International delivery isn&apos;t a standard option, but ask

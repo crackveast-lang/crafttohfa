@@ -6,7 +6,7 @@ import { Confetti, Sparkle } from "@/components/doodles";
 const AUDIENCES = [
   { title: "Schools & workshops", detail: "Craft sessions for a full classroom" },
   { title: "Birthday parties", detail: "Return gifts children actually keep" },
-  { title: "Corporate gifting", detail: "Raksha Bandhan and Diwali hampers" },
+  { title: "Corporate gifting", detail: "Festive and end-of-year hampers" },
 ];
 
 /** Real secondary revenue line — schools and corporate gifting. */

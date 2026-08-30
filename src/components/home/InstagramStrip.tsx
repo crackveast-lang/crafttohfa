@@ -6,7 +6,7 @@ import { InstagramGlyph } from "@/components/doodles";
 import { siteConfig } from "@/site.config";
 
 const TILES = [
-  "A rakhi being crocheted, work in progress",
+  "A keepsake being crocheted, work in progress",
   "A finished painting kit drying on a windowsill",
   "Orders packed and ready for dispatch",
   "A child holding up a finished canvas",

@@ -8,7 +8,7 @@ const STEPS = [
   {
     n: "1",
     title: "Find something you like",
-    body: "Browse the rakhis, kits, keepsakes and combo boxes. Every page tells you exactly what you get and who it suits.",
+    body: "Browse the kits, keepsakes and combo boxes. Every page tells you exactly what you get and who it suits.",
   },
   {
     n: "2",

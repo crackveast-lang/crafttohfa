@@ -57,13 +57,15 @@ export const faqs: Faq[] = [
     answer: `Flat ${formatINR(shipping.flatRate)} anywhere in India, and free on orders above ${formatINR(shipping.freeAbove)}.`,
   },
   {
-    id: "rakhi-deadline",
+    id: "delivery-deadline",
     group: "Shipping",
-    question: "Will my rakhi reach in time for Raksha Bandhan?",
-    /* This used to open with "If you order by the date shown in the banner at
-       the top of the site" — and the banner stopped carrying a date when the
-       order-by copy was removed, which left the answer pointing at something
-       that is not there. It now asks for the date instead of quoting one. */
+    question: "Will it arrive in time for a particular date?",
+    /* Deliberately quotes NO date. This was "Will my rakhi reach in time for
+       Raksha Bandhan?" and before that it opened with "If you order by the
+       date shown in the banner at the top of the site" — which broke the day
+       the banner stopped carrying one. Asking for the customer's date instead
+       of naming ours is the version that cannot go stale, whether or not
+       there is a festival in site.config.ts. */
     answer:
       "Usually, yes — and where it is tight we will say so rather than take the order and hope. Message us with the date you need it by and we'll confirm whether it makes it, with express shipping if that is what it takes.",
   },
@@ -88,7 +90,7 @@ export const faqs: Faq[] = [
     group: "Products",
     question: "What's actually in a combo box?",
     answer:
-      "Every combo box has the same five things: a hand-crocheted rakhi on a printed card, a crochet keepsake (a soft toy, keychain or little bag), a paint-your-own bhai–behen idol, a second plaster piece to paint that matches the theme, and acrylic paints with a brush. Plus a Happy Raksha Bandhan card, all packed in a gift box. You can also buy the rakhis and crochet keepsakes on their own.",
+      "Every combo box has the same five things: a hand-crocheted rakhi on a printed card, a crochet keepsake (a soft toy, keychain or little bag), a paint-your-own bhai–behen idol, a second plaster piece to paint that matches the theme, and acrylic paints with a brush. Plus a greeting card, all packed in a gift box. You can also buy the crochet keepsakes and the painting kits on their own.",
   },
   {
     id: "age-suitable",
@@ -109,7 +111,7 @@ export const faqs: Faq[] = [
     group: "Products",
     question: "Will mine look exactly like the photo?",
     answer:
-      "Very close, but not identical. Every rakhi and toy is crocheted by hand, so small variations in the thread and finish are part of it. If a batch differs noticeably from the photos, we send you a picture before dispatch.",
+      "Very close, but not identical. Every keepsake and toy is crocheted by hand, so small variations in the thread and finish are part of it. If a batch differs noticeably from the photos, we send you a picture before dispatch.",
   },
   {
     id: "reuse",
@@ -125,14 +127,14 @@ export const faqs: Faq[] = [
     group: "Bulk orders",
     question: "Do you take bulk or school orders?",
     answer:
-      "Yes. School workshops, birthday party favours and corporate Raksha Bandhan gifting are a real part of what we do. Pricing improves from around 20 pieces. Message us with the quantity and the date you need it by.",
+      "Yes. School workshops, birthday party favours and corporate festive gifting are a real part of what we do. Pricing improves from around 20 pieces. Message us with the quantity and the date you need it by.",
   },
   {
     id: "bulk-lead-time",
     group: "Bulk orders",
     question: "How much notice do you need for a bulk order?",
     answer:
-      "Two to three weeks is comfortable for most quantities. Around Raksha Bandhan and Diwali, please give us as much notice as you can. Those weeks fill up early.",
+      "Two to three weeks is comfortable for most quantities. Around the festive season, please give us as much notice as you can. Those weeks fill up early.",
   },
   {
     id: "bulk-branding",
@@ -156,7 +158,7 @@ export function getFaqsByGroup(group: FaqGroup): Faq[] {
 
 /** The four shown on the homepage teaser. */
 export function getTopFaqs(): Faq[] {
-  const ids = ["how-to-order", "delivery-time", "rakhi-deadline", "age-suitable"];
+  const ids = ["how-to-order", "delivery-time", "delivery-deadline", "age-suitable"];
   return ids
     .map((id) => faqs.find((f) => f.id === id))
     .filter((f): f is Faq => Boolean(f));

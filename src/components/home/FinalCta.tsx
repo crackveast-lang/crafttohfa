@@ -69,9 +69,10 @@ export function FinalCta() {
           style={{ animationDelay: "100ms" }}
           className="mx-auto mt-6 max-w-[46ch] text-body leading-relaxed text-ink/80"
         >
-          {/* The generic line is the fallback for BOTH cases now: no festival
-              ahead, and a festival that carries no order-by note. Raksha
-              Bandhan is the second — see site.config.ts. */}
+          {/* The generic line is the fallback for BOTH cases: no festival
+              ahead, and a festival that carries one but no order-by note.
+              `festivals` is empty right now, so this is the first — see
+              site.config.ts. */}
           {(festival && getOrderByCopy(festival)) ||
             "Tell us who it's for and we'll help you pick."}
         </p>

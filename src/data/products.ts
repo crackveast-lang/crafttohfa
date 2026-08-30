@@ -22,13 +22,12 @@ import type { CategorySlug, Product } from "@/types";
  * otherwise. Changing one of these still moves everything in that category
  * that hasn't been overridden, which is most of them.
  *
- * Overriding: pass `price` to rakhi(), charm() or paintSet(), or set it
+ * Overriding: pass `price` to charm() or paintSet(), or set it
  * directly on a literal product. Every override in this file carries a short
  * note saying why, because a per-product price with no explanation is
  * indistinguishable from a typo six months later.
  */
 const PRICES = {
-  rakhis: 120,
   paintingKits: 150,
   crochet: 249,
   combos: 499,
@@ -50,258 +49,6 @@ function photos(
     alt,
   }));
 }
-
-// ═══════════════════════════════  RAKHIS  ═══════════════════════════════════
-
-/** Every rakhi ships the same way, so it is described once. */
-const RAKHI_INCLUDES = [
-  "1 hand-crocheted rakhi",
-  "Adjustable cotton tie",
-  "Presented on a printed card",
-];
-
-/**
- * The rakhis differ only in what they depict, so the shared fields live here
- * and each entry below supplies just the parts that are actually different.
- * Fifteen near-identical literal objects would bury those differences.
- */
-function rakhi(o: {
-  slug: string;
-  name: string;
-  tagline: string;
-  description: string;
-  highlights: string[];
-  alt: string;
-  badges?: string[];
-  featured?: boolean;
-  /** Overrides PRICES.rakhis. Say why at the call site. */
-  price?: number;
-}): Product {
-  return {
-    slug: o.slug,
-    name: o.name,
-    category: "rakhis",
-    price: o.price ?? PRICES.rakhis,
-    tagline: o.tagline,
-    description: o.description,
-    highlights: o.highlights,
-    includes: RAKHI_INCLUDES,
-    images: photos("rakhis", o.slug, [o.alt]),
-    badges: o.badges,
-    featured: o.featured,
-    seasonal: true,
-    inStock: true,
-  };
-}
-
-const rakhis: Product[] = [
-  rakhi({
-    slug: "sunflower-rakhi",
-    name: "Sunflower Rakhi",
-    tagline: "Yellow petals, a brown centre and two green leaves",
-    description:
-      "A full sunflower crocheted in yellow with a deep brown centre and a green leaf on each side, finished with pearl beads on the tie. One of the larger rakhis in the range.",
-    highlights: [
-      "Crocheted petals, centre and leaves worked separately",
-      "Pearl beads on the tie",
-      "No plastic and no shedding glitter",
-    ],
-    alt: "A hand-crocheted sunflower rakhi with yellow petals, a brown centre and green leaves, worn on a child's wrist",
-    badges: ["Bestseller"],
-  }),
-  rakhi({
-    slug: "peacock-rakhi",
-    name: "Peacock Rakhi",
-    tagline: "A peacock feather, worked in green, yellow and blue",
-    description:
-      "The eye of a peacock feather crocheted in three rounds: bright green on the outside, then yellow, then a deep blue centre. A pearl bead sits either side of the tie. The only one in the range with a feather rather than an animal or a flower.",
-    highlights: [
-      "Three colours worked in concentric rounds",
-      "A pearl bead on each side of the tie",
-      "Crocheted by hand in soft cotton",
-    ],
-    alt: "A hand-crocheted peacock feather rakhi in green, yellow and blue with pearl beads, worn on a child's wrist",
-  }),
-  rakhi({
-    slug: "butterfly-rakhi",
-    name: "Butterfly Rakhi",
-    tagline: "A pink butterfly with beaded antennae",
-    description:
-      "A butterfly crocheted in bright pink, with fine black beaded antennae and a pearl bead either side of the tie. The lightest thing in the range to wear.",
-    highlights: [
-      "Beaded antennae, sewn on by hand",
-      "A pearl bead on each side of the tie",
-      "Light enough to forget you are wearing it",
-    ],
-    alt: "A hand-crocheted pink butterfly rakhi with black beaded antennae and pearl beads, worn on a child's wrist",
-  }),
-  rakhi({
-    slug: "lion-rakhi",
-    name: "Lion Rakhi",
-    tagline: "A dark mane worked all the way round",
-    description:
-      "A lion with a deep brown mane crocheted in a full ring around a cream face, with ears sewn on top. Sturdy enough to survive a whole day of being shown to people.",
-    highlights: [
-      "Mane worked as a full ring around the face",
-      "Ears crocheted separately and sewn on",
-      "Crocheted by hand in soft cotton",
-    ],
-    alt: "A hand-crocheted lion rakhi with a dark brown mane and a cream face, worn on a child's wrist",
-  }),
-  rakhi({
-    slug: "cute-lion-rakhi",
-    name: "Golden Lion Rakhi",
-    tagline: "The same lion, in orange and gold",
-    description:
-      "The lion again, this time with an orange face, a gold mane and a white muzzle with a stitched smile. A pearl and a gold bead sit on the tie. Brighter than the brown one, and the pair sell about equally.",
-    highlights: [
-      "Orange and gold colourway with a white muzzle",
-      "Pearl and gold beads on the tie",
-      "Crocheted ears worked separately and sewn on",
-    ],
-    alt: "A hand-crocheted lion rakhi with an orange face, a gold mane and a white muzzle, worn on a child's wrist",
-  }),
-  rakhi({
-    slug: "teddy-bear-rakhi",
-    name: "Red Teddy Bear Rakhi",
-    tagline: "A teddy that stays on the wrist",
-    description:
-      "A crocheted teddy bear face in red and cream cotton, on an adjustable tie. Chunky enough to feel like a toy rather than a decoration.",
-    highlights: [
-      "Chunky crochet teddy face",
-      "Red and cream cotton",
-      "Adjustable tie",
-    ],
-    alt: "A hand-crocheted red teddy bear rakhi",
-  }),
-  rakhi({
-    slug: "blue-car-rakhi",
-    name: "Blue Car Rakhi",
-    tagline: "For the brother who does not want flowers",
-    description:
-      "A little blue car crocheted in cotton thread, on an adjustable tie. The one that gets ordered for brothers who have never once wanted a rakhi with beads on it.",
-    highlights: [
-      "No flowers, no pearls",
-      "Crocheted by hand in soft cotton",
-      "Adjustable tie",
-    ],
-    alt: "A hand-crocheted blue car rakhi",
-    badges: ["For brothers"],
-  }),
-  rakhi({
-    slug: "evil-eye-rakhi",
-    name: "Evil Eye Rakhi",
-    tagline: "A nazar, crocheted in blue and white",
-    description:
-      "A crocheted evil eye in deep blue, pale blue and white, finished with a pearl bead on the tie. Meant as protection, and it happens to go with everything.",
-    highlights: [
-      "Crocheted nazar in three shades of blue",
-      "Single pearl bead on the tie",
-      "Adjustable cotton tie",
-    ],
-    alt: "A hand-crocheted evil eye rakhi in blue and white with a pearl bead",
-    badges: ["New"],
-  }),
-  rakhi({
-    slug: "rainbow-spiral-rakhi",
-    name: "Rainbow Spiral Rakhi",
-    tagline: "Pink, blue and yellow, worked in a spiral",
-    description:
-      "Concentric rings of pink, pale blue and yellow crocheted into a spiral, with a pearl bead on the tie. The brightest thing in the range.",
-    highlights: [
-      "Worked as a spiral, not stitched in sections",
-      "Pearl bead on the cotton tie",
-      "Adjustable tie",
-    ],
-    alt: "A hand-crocheted rainbow spiral rakhi in pink, blue and yellow with a pearl bead, worn on a child's wrist",
-  }),
-  rakhi({
-    slug: "bhai-word-rakhi",
-    name: '"Bhai" Rakhi',
-    tagline: "The word crocheted straight into it",
-    description:
-      "A red disc with a yellow border and BHAI worked into the front in yellow thread, crocheted in, not printed on or stuck to it. Finished with a small gold bead.",
-    highlights: [
-      "The lettering is crocheted in, not printed",
-      "Red and yellow cotton with a gold bead",
-      "Adjustable tie",
-    ],
-    alt: 'A hand-crocheted rakhi in red and yellow with the word "BHAI" worked into the front',
-  }),
-  rakhi({
-    slug: "bro-word-rakhi",
-    name: '"Bro" Rakhi',
-    tagline: "BRO, embroidered in red on yellow",
-    description:
-      "A yellow disc with a cream scalloped edge and BRO embroidered across it in red thread. For a brother who would find anything else too much.",
-    highlights: [
-      "Hand-embroidered lettering",
-      "Cream scalloped border",
-      "Adjustable tie",
-    ],
-    alt: 'A hand-crocheted yellow rakhi with a cream scalloped edge and "BRO" embroidered in red',
-    badges: ["For brothers"],
-  }),
-  rakhi({
-    slug: "bro-pearl-rakhi",
-    name: '"Bro" Pearl Rakhi',
-    tagline: "The letters picked out in pearls",
-    description:
-      "A yellow centre with a pink crocheted border, and BRO spelled out across it in individually sewn pearl beads. The dressiest of the three word rakhis.",
-    highlights: [
-      "Lettering picked out in sewn pearl beads",
-      "Pink and yellow cotton",
-      "Adjustable tie",
-    ],
-    alt: 'A hand-crocheted pink and yellow rakhi with "BRO" spelled out in pearl beads',
-    /* No `price` on either "Bro" rakhi any more. They were the only two off the
-       rakhi base, went to ₹150, and are now back on it — so the override is
-       deleted rather than written as a literal, which would silently stop
-       tracking PRICES.rakhis the next time that moves. It has moved once since
-       (₹70 → ₹120) and these two followed, which is the point. */
-  }),
-  rakhi({
-    slug: "kitty-face-rakhi",
-    name: "Kitty Face Rakhi",
-    tagline: "A cream cat face with a red bow and a yellow nose",
-    description:
-      "A cream crochet cat face with a red bow crocheted separately and sewn to one ear, a small yellow nose and embroidered whiskers. On a red tie with a gold and pearl bead.",
-    highlights: [
-      "Bow worked separately and sewn on",
-      "Embroidered whiskers and a yellow nose",
-      "Red tie with gold and pearl beads",
-    ],
-    alt: "A cream hand-crocheted cat face rakhi with a red bow, a yellow nose and embroidered whiskers, worn on a child's wrist",
-  }),
-  rakhi({
-    slug: "spider-web-rakhi",
-    name: "Spider Web Rakhi",
-    tagline: "A red web mask with white eyes and a blue border",
-    description:
-      "A red disc with black web lines embroidered across it and two white eyes, finished with a bright blue crocheted border. Made for the brother whose entire personality is superheroes.",
-    highlights: [
-      "Web lines embroidered over the crochet",
-      "White eyes appliquéd on by hand",
-      "Blue border worked around the edge",
-    ],
-    alt: "A hand-crocheted red spider mask rakhi with black web lines, white eyes and a blue border, worn on a child's wrist",
-    badges: ["For brothers"],
-  }),
-  rakhi({
-    slug: "captain-shield-rakhi",
-    name: "Superhero Shield Rakhi",
-    tagline: "Red and white rings around a silver star",
-    description:
-      "A shield crocheted as concentric rings of red and white around a blue centre, with a silver star sewn on top. The other one for superhero brothers.",
-    highlights: [
-      "Rings worked in red and white around a blue centre",
-      "Silver star appliquéd on by hand",
-      "Crocheted by hand in soft cotton",
-    ],
-    alt: "A hand-crocheted shield rakhi with red and white rings, a blue centre and a silver star, worn on a child's wrist",
-    badges: ["For brothers"],
-  }),
-];
 
 // ════════════════════════════  CROCHET KEEPSAKES  ═══════════════════════════
 
@@ -1309,21 +1056,20 @@ function listPrice(price: number): number {
  * This used to lead with the ₹499 combo boxes, on the reasoning that they are
  * the highest-value thing here. The first four things a first-time visitor saw
  * were therefore the four most expensive, and the brand read as expensive
- * before they had scrolled far enough to find a ₹120 rakhi. Leading with the
- * ₹120 rakhis instead reads as approachable, and the ₹499 boxes are still one
- * scroll away for anyone who wants them.
+ * before they had scrolled far enough to find anything cheap. Cheapest-first
+ * reads as approachable, and the ₹499 boxes are still one scroll away for
+ * anyone who wants them.
  *
  * `sort` is STABLE in every JS engine we target, so products at the same price
- * keep the hand-authored order of the arrays below: rakhis before painting
- * kits before crochet before combos. That is what keeps the ₹120 rakhis ahead
- * of the ₹120 painting kits they now tie with, rather than some arbitrary
- * tie-break deciding what a first-time visitor meets first.
+ * keep the hand-authored order of the arrays below: painting kits before
+ * crochet before combos. The ₹120 painting kits used to tie with the ₹120
+ * rakhis and win the tie-break by being listed second; with the rakhis gone
+ * they lead outright.
  *
  * The list price is derived here rather than typed into each product, so it
  * can never drift out of step with `price` when a price changes.
  */
 export const products: Product[] = [
-  ...rakhis,
   ...paintingKits,
   ...crochet,
   ...combos,

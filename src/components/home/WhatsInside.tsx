@@ -27,7 +27,7 @@ const CONTENTS = [
   {
     Icon: Heart,
     title: "A little keepsake to treasure",
-    body: "Choose a soft crochet toy, keychain or mini pouch, something they can keep close even after Raksha Bandhan.",
+    body: "Choose a soft crochet toy, keychain or mini pouch, something they can keep close long after the box is empty.",
   },
   {
     Icon: PaintBrush,
@@ -42,7 +42,7 @@ const CONTENTS = [
   {
     Icon: GiftBox,
     title: "Everything you need to create",
-    body: "Acrylic paints, a brush and a heartfelt Raksha Bandhan card, all packed and ready for your little celebration.",
+    body: "Acrylic paints, a brush and a heartfelt printed card, all packed and ready for your little celebration.",
   },
 ];
 
@@ -131,8 +131,8 @@ export function WhatsInside() {
           </div>
 
           {/* Links into the combos filter, not all of /shop: this section
-              describes what is in a COMBO BOX specifically, and /shop now
-              leads with 15 rakhis that have none of the above in them. */}
+              describes what is in a COMBO BOX specifically, and /shop leads
+              with painting kits that have none of the above in them. */}
           <div data-reveal="rise">
             <Button href="/shop?c=combos" size="lg" className="mt-10">
               Explore all combos

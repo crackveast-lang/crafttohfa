@@ -27,7 +27,7 @@ bunny-rakhi-paint-hamper                ✅ -1 added
 ```
 
 All five main photos are in. To add a **second or third angle** for any of
-them — a close-up of the rakhi, or the box closed — drop in e.g.
+them — a close-up of what is inside, or the box closed — drop in e.g.
 `bunny-rakhi-paint-hamper-2.jpg` and a thumbnail strip appears automatically
 on that product page.
 

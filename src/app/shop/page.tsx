@@ -9,9 +9,9 @@ import { getProductsByCategory, products } from "@/data/products";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Shop rakhis, combo boxes & crochet keepsakes",
+  title: "Shop painting kits, combo boxes & crochet keepsakes",
   description:
-    "Browse every Craftohfa handmade crochet rakhi, crochet keepsake and combo box, rakhi hampers and paint-your-own plaster sets. Order any of them straight over WhatsApp.",
+    "Browse every Craftohfa paint-your-own plaster set, hand-crocheted keepsake and combo box. Order any of them straight over WhatsApp.",
   path: "/shop",
 });
 
@@ -22,7 +22,7 @@ export const metadata: Metadata = buildMetadata({
  *
  * There is deliberately no price filter. There used to be an "Under ₹800" one,
  * which made sense when everything was a ₹749–₹849 combo box; now that the
- * most expensive thing on the site is ₹499 it would match all 26 products and
+ * most expensive thing on the site is ₹499 it would match all 34 products and
  * quietly tell people the filter is broken. Four real category chips do the
  * job that filter was standing in for.
  */
@@ -32,8 +32,8 @@ const filters: FilterOption[] = [
     ? activeCategories.map((c) => ({
         id: c.slug,
         /* The full category name, not a shortened one. There used to be a
-           chain of .replace() calls trimming "Handmade Rakhis" down to
-           "Rakhis" and so on, which meant the chip, the breadcrumb and the
+           chain of .replace() calls trimming "Crochet Keepsakes" down to
+           "Crochet" and so on, which meant the chip, the breadcrumb and the
            category card all called the same thing something different. The
            row scrolls horizontally on a phone, so the longer labels cost
            nothing. */
