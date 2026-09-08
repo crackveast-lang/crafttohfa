@@ -54,11 +54,18 @@ are real: ₹120–150 painting kits, ₹249–300 crochet, ₹499 combo boxes, 
 from the `PRICES` block at the top of the file.
 
 A fourth category, 15 standalone crocheted rakhis, was retired after Raksha
-Bandhan 2026 along with both festival countdowns. The combo boxes still contain
-a rakhi and were left exactly as they were. To bring the category back, restore
-the `rakhis` slug in `src/types/index.ts`, its entry in `src/data/categories.ts`
-and the `rakhi()` builder and array in `src/data/products.ts` — all four are
-in the git history, and each carries a comment saying so.
+Bandhan 2026 along with both festival countdowns, and the festival wording was
+then taken out of the combo boxes too — the crocheted item in each box is
+described as a "charm" now rather than by its festival name. Their **slugs
+still contain "rakhi"** on purpose: the slug is both the public URL and the
+photo filename, so renaming one would 404 every link already shared and mean
+renaming the image files to match. There is a comment above `combos` in
+`src/data/products.ts` saying exactly this.
+
+To bring the category back, restore the `rakhis` slug in `src/types/index.ts`,
+its entry in `src/data/categories.ts` and the `rakhi()` builder and array in
+`src/data/products.ts` — all are in the git history, and each carries a
+comment saying so.
 
 Still needs your eye:
 

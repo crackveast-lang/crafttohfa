@@ -199,19 +199,6 @@ export function PaintBrush(props: D) {
   );
 }
 
-/** A rakhi: thread with a decorated centre. */
-export function RakhiThread(props: D) {
-  return (
-    <svg viewBox="0 0 64 48" {...base} {...props}>
-      <path d="M4 32c8-8 14-10 20-10M60 32c-8-8-14-10-20-10" {...drawable} />
-      <circle cx="32" cy="22" r="9" {...drawable} />
-      <circle cx="32" cy="22" r="3.5" {...drawable} />
-      <path d="M32 6v4M23 9l2 3.5M41 9l-2 3.5" {...drawable} />
-      <path d="M6 36c3 3 6 4 9 3M58 36c-3 3-6 4-9 3" {...drawable} />
-    </svg>
-  );
-}
-
 export function GiftBox(props: D) {
   return (
     <svg viewBox="0 0 48 48" {...base} {...props}>
@@ -266,7 +253,6 @@ export function InstagramGlyph(props: D) {
 /** Keyed by `Category.doodle` — one mark per product category. */
 export const doodleMap = {
   PaintBrush,
-  RakhiThread,
   GiftBox,
   Heart,
 } as const;

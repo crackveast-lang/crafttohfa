@@ -60,12 +60,12 @@ export const faqs: Faq[] = [
     id: "delivery-deadline",
     group: "Shipping",
     question: "Will it arrive in time for a particular date?",
-    /* Deliberately quotes NO date. This was "Will my rakhi reach in time for
-       Raksha Bandhan?" and before that it opened with "If you order by the
-       date shown in the banner at the top of the site" — which broke the day
-       the banner stopped carrying one. Asking for the customer's date instead
-       of naming ours is the version that cannot go stale, whether or not
-       there is a festival in site.config.ts. */
+    /* Deliberately quotes NO date. This question used to name a festival, and
+       before that it opened with "If you order by the date shown in the banner
+       at the top of the site" — which broke the day the banner stopped
+       carrying one. Asking for the customer's date instead of naming ours is
+       the version that cannot go stale, whether or not there is a festival in
+       site.config.ts. */
     answer:
       "Usually, yes — and where it is tight we will say so rather than take the order and hope. Message us with the date you need it by and we'll confirm whether it makes it, with express shipping if that is what it takes.",
   },
@@ -90,7 +90,7 @@ export const faqs: Faq[] = [
     group: "Products",
     question: "What's actually in a combo box?",
     answer:
-      "Every combo box has the same five things: a hand-crocheted rakhi on a printed card, a crochet keepsake (a soft toy, keychain or little bag), a paint-your-own bhai–behen idol, a second plaster piece to paint that matches the theme, and acrylic paints with a brush. Plus a greeting card, all packed in a gift box. You can also buy the crochet keepsakes and the painting kits on their own.",
+      "Every combo box has the same five things: a hand-crocheted charm on a printed card, a crochet keepsake (a soft toy, keychain or little bag), a paint-your-own idol, a second plaster piece to paint that matches the theme, and acrylic paints with a brush. Plus a printed card, all packed in a gift box. You can also buy the crochet keepsakes and the painting kits on their own.",
   },
   {
     id: "age-suitable",

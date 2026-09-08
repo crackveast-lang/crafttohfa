@@ -20,7 +20,7 @@ export const testimonials: Testimonial[] = [
     name: "Priya S.",
     city: "Pune",
     rating: 5,
-    purchased: "Kitty Rakhi & Paint Combo",
+    purchased: "Kitty & Piggy Paint Combo",
     isPlaceholder: true,
   },
   {
@@ -40,7 +40,7 @@ export const testimonials: Testimonial[] = [
     name: "Sneha R.",
     city: "Delhi",
     rating: 5,
-    purchased: "Little Car Rakhi & Puppy Combo",
+    purchased: "Little Car & Puppy Combo",
     isPlaceholder: true,
   },
   {
@@ -70,7 +70,7 @@ export const testimonials: Testimonial[] = [
     name: "Kavita P.",
     city: "Nagpur",
     rating: 5,
-    purchased: "Bunny Rakhi & Seashore Combo",
+    purchased: "Bunny & Seashore Combo",
     isPlaceholder: true,
   },
 ];

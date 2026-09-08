@@ -9,10 +9,11 @@
  * The slug is the original one, so old /shop?c=painting-kits links work again.
  *
  * There was a fourth, `rakhis`, holding fifteen standalone crocheted rakhis.
- * It was retired once Raksha Bandhan 2026 had passed. The combo boxes still
- * contain a rakhi and are unaffected; it is only the standalone category that
- * is gone. Re-adding it means putting the slug back here, restoring the entry
- * in categories.ts and the `rakhi()` builder in data/products.ts.
+ * It was retired once Raksha Bandhan 2026 had passed, and the festival wording
+ * was taken out of the combo boxes at the same time — the crocheted item they
+ * contain is described as a "charm" now. Re-adding the category means putting
+ * the slug back here, restoring the entry in categories.ts and the `rakhi()`
+ * builder in data/products.ts; all three are in the git history.
  *
  * Order here is not meaningful. `categories.ts` owns display order.
  */
@@ -61,7 +62,7 @@ export interface Category {
   slug: CategorySlug;
   name: string;
   blurb: string;
-  doodle: "PaintBrush" | "RakhiThread" | "GiftBox" | "Heart";
+  doodle: "PaintBrush" | "GiftBox" | "Heart";
   /** Tailwind background token used as this category's colour anchor. */
   tone: "blush" | "peach" | "sage" | "cream";
   image: ProductImage;

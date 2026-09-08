@@ -2,7 +2,7 @@ import { Container } from "@/components/layout/Container";
 import { CountdownClock } from "./CountdownClock";
 import { Divider } from "@/components/ui/Divider";
 import { Button } from "@/components/ui/Button";
-import { RakhiThread } from "@/components/doodles";
+import { Confetti } from "@/components/doodles";
 import {
   getActiveFestival,
   getCountdown,
@@ -40,16 +40,20 @@ export function CountdownBand() {
         reveal
       />
 
-      {/* The signature beat of this section: the two threaded doodles draw
-          themselves in from the edges of the page toward the clock, the right
-          one trailing the left. They are the only decoration here, and having
-          them appear fully-formed wasted the one gesture the artwork is for. */}
-      <RakhiThread
+      {/* The signature beat of this section: the two doodles draw themselves
+          in from the edges of the page toward the clock, the right one
+          trailing the left. They are the only decoration here, and having them
+          appear fully-formed wasted the one gesture the artwork is for.
+
+          Confetti since the rakhi doodle was retired with the festival — it is
+          the other mark in the set built from separate strokes, which is what
+          the draw-in needs to read as drawing rather than fading. */}
+      <Confetti
         aria-hidden="true"
         data-reveal="draw"
         className="pointer-events-none absolute -left-8 top-1/2 hidden size-40 -translate-y-1/2 text-ink/8 [animation-duration:1.1s] lg:block"
       />
-      <RakhiThread
+      <Confetti
         aria-hidden="true"
         data-reveal="draw"
         className="pointer-events-none absolute -right-8 top-1/2 hidden size-40 -translate-y-1/2 text-ink/8 [animation-delay:120ms] [animation-duration:1.1s] lg:block"

@@ -348,9 +348,9 @@ const crochet: Product[] = [
 
 /** Every combo box contains these. Listed once so it can't fall out of sync. */
 const IN_EVERY_BOX = [
-  "1 paint-your-own bhai–behen idol",
+  "1 paint-your-own idol",
   "Acrylic paint pots and a brush",
-  '"Happy Raksha Bandhan" card',
+  "Printed Craftohfa card",
   "Gift box with shredded-paper filling",
 ];
 
@@ -358,13 +358,10 @@ const IN_EVERY_BOX = [
  * The multi-piece paint sets, shipped as combos at your instruction.
  *
  * They deliberately do NOT use IN_EVERY_BOX. Every photograph of these shows
- * plaster pieces, paint pots, a brush and the printed card — there is no
- * bhai–behen idol and no "Happy Raksha Bandhan" card in any of them, so
- * listing those would be describing a box we don't pack. `includes` per set
- * below states only what is actually in the shot, plus the paints and brush.
- *
- * They are also NOT seasonal: nothing in them is rakhi-linked, so they should
- * keep selling in November.
+ * plaster pieces, paint pots, a brush and the printed card — there is no idol
+ * in any of them, so listing one would be describing a box we don't pack.
+ * `includes` per set below states only what is actually in the shot, plus the
+ * paints and brush.
  */
 const PAINT_SET_EXTRAS = [
   "Acrylic paint pots and a brush",
@@ -375,7 +372,7 @@ const PAINT_SET_EXTRAS = [
  * Shared by the paint sets. The difference between them is only the pieces.
  *
  * Defaults to the `painting-kits` category, because eleven of the thirteen
- * calls are paint sets. The two that are not are the rakhi hampers at the
+ * calls are paint sets. The two that are not are the combo boxes at the
  * bottom of this file, which pass `category: "combos"` explicitly: they use
  * this helper for its shape, not for its meaning.
  *
@@ -398,9 +395,9 @@ function paintSet(o: {
   featured?: boolean;
   /** Overrides the category default. Say why at the call site. */
   price?: number;
-  /** Defaults false: the paint sets are evergreen. True for rakhi hampers. */
+  /** Defaults false: the paint sets are evergreen. True for the combo boxes. */
   seasonal?: boolean;
-  /** Defaults to painting-kits. Only the two rakhi hampers set this. */
+  /** Defaults to painting-kits. Only the two combo boxes set this. */
   category?: Extract<CategorySlug, "painting-kits" | "combos">;
 }): Product {
   const category = o.category ?? "painting-kits";
@@ -428,7 +425,7 @@ function paintSet(o: {
  *
  * Their own category again as of this release. They lived under `combos` for
  * one release, which put a ₹120 tray of plaster flowers on the same shelf as
- * a ₹499 rakhi hamper and gave both of them a breadcrumb that fitted neither.
+ * a ₹499 combo box and gave both of them a breadcrumb that fitted neither.
  *
  * No ratings on any of these: they are new, so there is nothing to average.
  */
@@ -763,23 +760,41 @@ const paintingKits: Product[] = [
   }),
 ];
 
+/**
+ * ⚠️ THE SLUGS STILL SAY "rakhi". THAT IS DELIBERATE — DO NOT "FIX" THEM.
+ *
+ * Nothing a customer reads mentions a rakhi or Raksha Bandhan any more: the
+ * names, taglines, descriptions, highlights, contents and alt text were all
+ * rewritten when the festival passed. The slug is the one thing that was not,
+ * because it is simultaneously the public URL and the filename stem of the
+ * photograph (see `photos()`). Renaming one would 404 every product link
+ * already shared on WhatsApp and Instagram, drop whatever Google has indexed,
+ * and require renaming the image files to match — a lot of breakage to change
+ * a word almost nobody reads.
+ *
+ * The crocheted item in each box is called a "charm" in the copy. It is the
+ * same physical thing that used to be called a rakhi: a crocheted motif on an
+ * adjustable cotton tie, and it is still in the box and still in the photos.
+ * Describing it plainly rather than deleting it keeps the copy honest about
+ * what is packed.
+ */
 const combos: Product[] = [
   {
     slug: "hello-kitty-rakhi-paint-hamper",
-    name: "Kitty Rakhi & Paint Combo",
+    name: "Kitty & Piggy Paint Combo",
     category: "combos",
     price: PRICES.combos,
-    tagline: "A crochet kitty rakhi, a pink piggy friend, and two things to paint",
+    tagline: "A crochet kitty charm, a pink piggy friend, and two things to paint",
     description:
-      "A hand-crocheted kitty rakhi with pearl beads, a soft pink crochet piggy to keep, and two plaster pieces waiting to be painted: the bhai–behen idol and a kitty face. Four colours and a brush are in the box, so the afternoon carries on after the thread is tied.",
+      "A hand-crocheted kitty charm with pearl beads, a soft pink crochet piggy to keep, and two plaster pieces waiting to be painted: an idol and a kitty face. Four colours and a brush are in the box, so the afternoon carries on long after the wrapping comes off.",
     highlights: [
-      "Crochet kitty rakhi with pearl and gold beads",
+      "Crochet kitty charm with pearl and gold beads",
       "Soft pink crochet piggy, hers to keep afterwards",
       "Two plaster pieces to paint, not one",
       "Everything supplied, nothing else to buy",
     ],
     includes: [
-      "1 crochet kitty rakhi on a printed card",
+      "1 crochet kitty charm on a printed card",
       "1 pink crochet piggy soft toy",
       "1 paint-your-own kitty face",
       ...IN_EVERY_BOX,
@@ -790,7 +805,7 @@ const combos: Product[] = [
       "combos",
       "hello-kitty-rakhi-paint-hamper",
       [
-        "Kitty rakhi combo box open, showing a pink crochet piggy, a crochet kitty rakhi, a bhai–behen idol and a kitty face to paint with four paint pots",
+        "Kitty combo box open, showing a pink crochet piggy, a crochet kitty charm, an idol and a kitty face to paint with four paint pots",
       ],
       "jpg",
     ),
@@ -806,17 +821,17 @@ const combos: Product[] = [
     name: "Butterfly & Rainbow Combo",
     category: "combos",
     price: PRICES.combos,
-    tagline: "A crochet rainbow, a butterfly rakhi, and a butterfly to paint",
+    tagline: "A crochet rainbow, a butterfly charm, and a butterfly to paint",
     description:
-      "A pink crocheted rainbow, a matching butterfly rakhi, and a plaster butterfly to paint alongside the bhai–behen idol. The softest of the five, and the one that tends to get chosen for younger sisters.",
+      "A pink crocheted rainbow, a matching butterfly charm, and a plaster butterfly to paint alongside the idol. The softest of the five, and the one that tends to get chosen for younger children.",
     highlights: [
-      "Hand-crocheted pink butterfly rakhi with beads",
+      "Hand-crocheted pink butterfly charm with beads",
       "Chunky crochet rainbow, a keepsake, not a filler",
       "Butterfly and idol both ready to paint",
       "Four paint pots and a brush included",
     ],
     includes: [
-      "1 crochet butterfly rakhi on a printed card",
+      "1 crochet butterfly charm on a printed card",
       "1 crochet rainbow in pink and cream",
       "1 paint-your-own butterfly",
       ...IN_EVERY_BOX,
@@ -827,7 +842,7 @@ const combos: Product[] = [
       "combos",
       "butterfly-rainbow-rakhi-paint-hamper",
       [
-        "Butterfly and rainbow combo box with a pink crochet rainbow, a crochet butterfly rakhi, a bhai–behen idol and a plaster butterfly with four paint pots",
+        "Butterfly and rainbow combo box with a pink crochet rainbow, a crochet butterfly charm, an idol and a plaster butterfly with four paint pots",
       ],
       "jpg",
     ),
@@ -839,20 +854,20 @@ const combos: Product[] = [
 
   {
     slug: "little-car-rakhi-paint-hamper",
-    name: "Little Car Rakhi & Puppy Combo",
+    name: "Little Car & Puppy Combo",
     category: "combos",
     price: PRICES.combos,
     tagline: "For a brother who'd rather have a car than a flower",
     description:
-      "A crocheted blue car rakhi instead of the usual florals, a puppy keychain in red dungarees, and a plaster car with a coin slot to paint and then actually use. Made for the brother who has never once wanted a rakhi with beads on it.",
+      "A crocheted blue car charm instead of the usual florals, a puppy keychain in red dungarees, and a plaster car with a coin slot to paint and then actually use. Made for the brother who has never once wanted anything with beads on it.",
     highlights: [
-      "Crochet car rakhi, no flowers, no pearls",
+      "Crochet car charm, no flowers, no pearls",
       "Puppy keychain that clips onto a school bag",
       "The plaster car is a working money box",
       "Red, blue and white paints included",
     ],
     includes: [
-      "1 crochet car rakhi on a printed card",
+      "1 crochet car charm on a printed card",
       "1 crochet puppy keychain in dungarees",
       "1 paint-your-own car money box",
       ...IN_EVERY_BOX,
@@ -863,7 +878,7 @@ const combos: Product[] = [
       "combos",
       "little-car-rakhi-paint-hamper",
       [
-        "Little car combo box with a crochet puppy keychain, a blue crochet car rakhi, a bhai–behen idol and a plaster car money box with three paint pots",
+        "Little car combo box with a crochet puppy keychain, a blue crochet car charm, an idol and a plaster car money box with three paint pots",
       ],
       "jpg",
     ),
@@ -881,15 +896,15 @@ const combos: Product[] = [
     price: PRICES.combos,
     tagline: "A crocheted pouch she'll actually keep using",
     description:
-      "A hand-crocheted mini pouch with a felted strawberry on the front, the piece in this collection that outlives the festival by months. With a rainbow spiral rakhi, a plaster strawberry to paint, and the bhai–behen idol.",
+      "A hand-crocheted mini pouch with a felted strawberry on the front, the piece in this collection that outlives the gift by months. With a rainbow spiral charm, a plaster strawberry to paint, and an idol.",
     highlights: [
       "Crochet mini pouch with a felted strawberry",
-      "Rainbow spiral rakhi with pearl and gold beads",
+      "Rainbow spiral charm with pearl and gold beads",
       "Four paints, red, yellow, green and pink",
-      "The pouch gets used well past Raksha Bandhan",
+      "The pouch stays in use for months afterwards",
     ],
     includes: [
-      "1 rainbow crochet rakhi on a printed card",
+      "1 rainbow crochet charm on a printed card",
       "1 crochet strawberry pouch",
       "1 paint-your-own strawberry",
       ...IN_EVERY_BOX,
@@ -900,7 +915,7 @@ const combos: Product[] = [
       "combos",
       "strawberry-bag-rakhi-paint-hamper",
       [
-        "Strawberry pouch combo box with a white crochet pouch, a rainbow crochet rakhi, a bhai–behen idol and a plaster strawberry with four paint pots",
+        "Strawberry pouch combo box with a white crochet pouch, a rainbow crochet charm, an idol and a plaster strawberry with four paint pots",
       ],
       "jpg",
     ),
@@ -913,20 +928,20 @@ const combos: Product[] = [
 
   {
     slug: "bunny-rakhi-paint-hamper",
-    name: "Bunny Rakhi & Seashore Combo",
+    name: "Bunny & Seashore Combo",
     category: "combos",
     price: PRICES.combos,
     tagline: "A bunny with a note, and three pieces to paint",
     description:
-      'A cream crochet bunny holding a small card that reads "Happy Rabbit, today you are the happiest person", a rainbow spiral rakhi, and three plaster pieces to paint: the bhai–behen idol, a starfish and a shell. The most to paint of any box here.',
+      'A cream crochet bunny holding a small card that reads "Happy Rabbit, today you are the happiest person", a rainbow spiral charm, and three plaster pieces to paint: an idol, a starfish and a shell. The most to paint of any box here.',
     highlights: [
       "Three plaster pieces to paint, not two",
       "Crochet bunny with its own little note",
-      "Rainbow spiral rakhi with pearl beads",
+      "Rainbow spiral charm with pearl beads",
       "Four paint pots and a brush",
     ],
     includes: [
-      "1 rainbow crochet rakhi on a printed card",
+      "1 rainbow crochet charm on a printed card",
       "1 cream crochet bunny with a message card",
       "1 paint-your-own starfish and 1 shell",
       ...IN_EVERY_BOX,
@@ -937,7 +952,7 @@ const combos: Product[] = [
       "combos",
       "bunny-rakhi-paint-hamper",
       [
-        "Bunny combo box with a cream crochet bunny holding a note, a rainbow crochet rakhi, a bhai–behen idol, a starfish and a shell to paint with four paint pots",
+        "Bunny combo box with a cream crochet bunny holding a note, a rainbow crochet charm, an idol, a starfish and a shell to paint with four paint pots",
       ],
       "jpg",
     ),
@@ -949,31 +964,31 @@ const combos: Product[] = [
   },
 
 
-  // ── Two more rakhi hampers ──────────────────────────────────────────────
-  // These DO contain a rakhi, a crochet keepsake and the bhai–behen idol, so
+  // ── Two more combo boxes ────────────────────────────────────────────────
+  // These DO contain a crochet charm, a crochet keepsake and the idol, so
   // unlike the paint sets they are described as the full box.
 
   paintSet({
     category: "combos",
     slug: "car-rainbow-rakhi-combo",
-    name: "Car Rakhi & Blue Rainbow Combo",
-    tagline: "A blue crochet rainbow, a car rakhi, and a car to paint",
+    name: "Car & Blue Rainbow Combo",
+    tagline: "A blue crochet rainbow, a car charm, and a car to paint",
     description:
-      "A chunky crochet rainbow in teal and lilac to keep, a blue crochet car rakhi on its printed card, and two plaster pieces to paint: the bhai–behen idol and a car money box. Boxed on shredded paper, ready to give.",
+      "A chunky crochet rainbow in teal and lilac to keep, a blue crochet car charm on its printed card, and two plaster pieces to paint: an idol and a car money box. Boxed on shredded paper, ready to give.",
     highlights: [
-      "Crochet car rakhi, no flowers, no pearls",
+      "Crochet car charm, no flowers, no pearls",
       "Blue crochet rainbow, a keepsake rather than a filler",
       "The plaster car is a working money box",
       "Four paint pots and a brush included",
     ],
     pieces: [
-      "1 crochet car rakhi on a printed card",
+      "1 crochet car charm on a printed card",
       "1 crochet rainbow in teal and lilac",
-      "1 paint-your-own bhai–behen idol",
+      "1 paint-your-own idol",
       "1 paint-your-own car money box",
       "Gift box with shredded-paper filling",
     ],
-    alt: "An open combo box with a teal and lilac crochet rainbow, a blue crochet car rakhi, a bhai–behen idol and a plaster car money box with four paint pots and a brush",
+    alt: "An open combo box with a teal and lilac crochet rainbow, a blue crochet car charm, an idol and a plaster car money box with four paint pots and a brush",
     ageRange: "5–12 years",
     craftTime: "45–60 minutes",
     badges: ["For brothers"],
@@ -984,23 +999,23 @@ const combos: Product[] = [
     category: "combos",
     slug: "strawberry-evil-eye-rakhi-combo",
     name: "Strawberry Pouch & Evil Eye Combo",
-    tagline: "A strawberry pouch, a nazar rakhi, and a butterfly to paint",
+    tagline: "A strawberry pouch, a nazar charm, and a butterfly to paint",
     description:
-      "A powder-blue crochet pouch with a red strawberry on the front, an evil eye rakhi strung with pearls, and two plaster pieces to paint: the bhai–behen idol and a butterfly. The pouch is the part still in use months later.",
+      "A powder-blue crochet pouch with a red strawberry on the front, an evil eye charm strung with pearls, and two plaster pieces to paint: an idol and a butterfly. The pouch is the part still in use months later.",
     highlights: [
       "Crochet strawberry pouch on a gold clip, hers to keep",
-      "Evil eye rakhi with pearl beads on the tie",
+      "Evil eye charm with pearl beads on the tie",
       "Idol and butterfly both ready to paint",
       "Four paint pots and a brush included",
     ],
     pieces: [
-      "1 crochet evil eye rakhi on a printed card",
+      "1 crochet evil eye charm on a printed card",
       "1 powder-blue crochet strawberry pouch",
-      "1 paint-your-own bhai–behen idol",
+      "1 paint-your-own idol",
       "1 paint-your-own butterfly",
       "Gift box with shredded-paper filling",
     ],
-    alt: "An open combo box with a powder-blue crochet strawberry pouch, a crochet evil eye rakhi with pearls, a bhai–behen idol and a plaster butterfly with four paint pots and a brush",
+    alt: "An open combo box with a powder-blue crochet strawberry pouch, a crochet evil eye charm with pearls, an idol and a plaster butterfly with four paint pots and a brush",
     ageRange: "5–12 years",
     craftTime: "45–60 minutes",
     badges: ["New"],

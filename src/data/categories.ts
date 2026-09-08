@@ -11,9 +11,9 @@ import { getProductsByCategory } from "./products";
  * boxes and the same catalogue reads as expensive.
  *
  * A fourth category, "Handmade Rakhis", sat at the top of this list until
- * Raksha Bandhan 2026 passed and the standalone rakhis were retired. Its
- * entry is gone rather than emptied, because `activeCategories` hides an
- * empty category but the type still has to list a slug nothing uses.
+ * Raksha Bandhan 2026 passed and it was retired. Its entry is gone rather
+ * than emptied, because `activeCategories` hides an empty category but the
+ * type still has to list a slug nothing uses.
  *
  * If a price changes enough to reorder these, move the entry. It is not
  * derived from the data on purpose: a category list that silently reshuffles
@@ -53,12 +53,11 @@ export const categories: Category[] = [
     },
   },
   {
-    /* "Rakhi Combo Boxes" until the paint sets briefly lived here too. Every
-       box in this one does still contain a crocheted rakhi — retiring the
-       standalone rakhi category did not change what is packed in these — but
-       the blurb leads on the craft rather than the festival now that Raksha
-       Bandhan has passed. The slug is untouched, so /shop?c=combos and every
-       existing link still work. */
+    /* "Rakhi Combo Boxes" until the paint sets briefly lived here too, and
+       then simply "Combo Boxes" once the festival wording came out. What is
+       packed in them did not change — the crocheted item is described as a
+       charm rather than by its festival name. The slug is untouched, so
+       /shop?c=combos and every existing link still work. */
     slug: "combos",
     name: "Combo Boxes",
     blurb:
@@ -67,7 +66,7 @@ export const categories: Category[] = [
     tone: "peach",
     image: {
       src: "/images/products/combos/strawberry-bag-rakhi-paint-hamper-1.jpg",
-      alt: "A combo box with a crochet pouch, a crocheted charm and pieces to paint",
+      alt: "A combo box with a crochet pouch, a crocheted charm and plaster pieces to paint",
     },
   },
 ];

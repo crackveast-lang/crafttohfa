@@ -52,10 +52,9 @@ const CANDIDATES: (Omit<Highlight, "value"> & { value: string | null })[] = [
     label: "Cities across India",
   },
   {
-    /* A gift box, not the threaded doodle. RakhiThread is six strokes and two
-       concentric circles in a 64×48 box — at the 24px this chip renders it
-       collapses into a smudge. Nothing in this row may be more detailed than
-       a heart. */
+    /* A gift box, and nothing busier. Anything with several strokes and a
+       couple of concentric circles collapses into a smudge at the 24px this
+       chip renders. Nothing in this row may be more detailed than a heart. */
     Icon: GiftBox,
     chip: "bg-blush",
     value: "2–3 days",

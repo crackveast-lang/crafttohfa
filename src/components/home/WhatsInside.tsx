@@ -8,8 +8,8 @@ import {
   GiftBox,
   Heart,
   PaintBrush,
-  RakhiThread,
   Sparkle,
+  Star,
 } from "@/components/doodles";
 import { getProduct } from "@/data/products";
 
@@ -20,9 +20,9 @@ import { getProduct } from "@/data/products";
  */
 const CONTENTS = [
   {
-    Icon: RakhiThread,
-    title: "A Rakhi, handmade with love",
-    body: "Soft cotton, delicate beads and thoughtful details, made to celebrate the bond.",
+    Icon: Star,
+    title: "A crocheted charm, handmade with love",
+    body: "Soft cotton, delicate beads and thoughtful details, worked by hand on an adjustable tie.",
   },
   {
     Icon: Heart,
@@ -32,7 +32,7 @@ const CONTENTS = [
   {
     Icon: PaintBrush,
     title: "A little keepsake of togetherness",
-    body: "Bring your sibling bond to life with colours, creativity and a little imagination.",
+    body: "Bring the whole set to life with colours, creativity and a little imagination.",
   },
   {
     Icon: Sparkle,
@@ -126,7 +126,7 @@ export function WhatsInside() {
               style={{ animationDelay: "320ms" }}
               className="mt-5 text-sm font-bold uppercase tracking-[0.16em] text-ink/70"
             >
-              Tie it. Paint it. Create together. Make a memory.
+              Open it. Paint it. Create together. Make a memory.
             </p>
           </div>
 
