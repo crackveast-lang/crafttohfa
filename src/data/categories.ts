@@ -2,11 +2,11 @@ import type { Category, CategorySlug } from "@/types";
 import { getProductsByCategory } from "./products";
 
 /**
- * The three things Craftohfa sells, in the order they appear on /shop.
+ * The four things Craftohfa sells, in the order they appear on /shop.
  *
  * ORDER IS CHEAPEST-FIRST, and that is a deliberate commercial decision rather
  * than a tidy alphabetical accident: painting kits start at ₹120, crochet at
- * ₹249 and combo boxes at ₹499. Someone landing on /shop meets the ₹120
+ * ₹249, combo boxes at ₹499 and crochet bags at ₹550. Someone landing on /shop meets the ₹120
  * painting kits first and reads the brand as approachable. Lead with the ₹499
  * boxes and the same catalogue reads as expensive.
  *
@@ -67,6 +67,18 @@ export const categories: Category[] = [
     image: {
       src: "/images/products/combos/strawberry-bag-rakhi-paint-hamper-1.jpg",
       alt: "A combo box with a crochet pouch, a crocheted charm and plaster pieces to paint",
+    },
+  },
+  {
+    slug: "crochet-bags",
+    name: "Crochet Bag",
+    blurb:
+      "Hand-crocheted shoulder bags with bows, blossoms and playful details. A little something to carry and keep.",
+    doodle: "Heart",
+    tone: "blush",
+    image: {
+      src: "/images/products/crochet-bags/lilac-garden-bag-1.jpeg",
+      alt: "A lilac crochet shoulder bag with a pale scalloped flap and a flower with green leaves",
     },
   },
 ];

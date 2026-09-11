@@ -31,7 +31,7 @@ const MOTIFS = {
     "M20 20h56v56H20zM20 56l16-16 12 12 12-12 16 16M36 36a5 5 0 1 0 0 .1Z",
 } as const;
 
-export type MotifKey = keyof typeof MOTIFS;
+export type MotifKey = keyof typeof MOTIFS | "crochet-bags";
 
 export function PlaceholderArt({
   label,
@@ -102,7 +102,7 @@ export function PlaceholderArt({
         strokeLinejoin="round"
         opacity="0.28"
       >
-        <path d={MOTIFS[motif]} />
+        <path d={MOTIFS[motif === "crochet-bags" ? "crochet" : motif]} />
       </g>
 
       {showLabel

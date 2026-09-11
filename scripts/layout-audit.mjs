@@ -4,6 +4,12 @@ const WIDTHS = [320, 360, 390, 430, 768, 1024, 1280];
 const PAGES = [
   "/",
   "/shop",
+  "/shop?c=crochet-bags",
+  "/product/polka-dot-bow-bag",
+  "/product/lilac-garden-bag",
+  "/product/blossom-pearl-bag",
+  "/product/sailor-bow-bag",
+  "/product/strawberry-sweetheart-bag",
   "/product/hello-kitty-rakhi-paint-hamper",
   "/about",
   "/faq",

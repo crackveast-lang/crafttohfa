@@ -1,5 +1,5 @@
 /**
- * The three things Craftohfa sells. `combos` was called `hampers` until the
+ * The four things Craftohfa sells. `combos` was called `hampers` until the
  * catalogue was split by category; it is the same product line, renamed so the
  * URL (/shop?c=combos) matches what these are called everywhere else.
  *
@@ -17,7 +17,7 @@
  *
  * Order here is not meaningful. `categories.ts` owns display order.
  */
-export type CategorySlug = "painting-kits" | "crochet" | "combos";
+export type CategorySlug = "painting-kits" | "crochet" | "combos" | "crochet-bags";
 
 export interface ProductImage {
   /**

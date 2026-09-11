@@ -59,7 +59,12 @@ export function CraftImage({
           sizes={sizes}
           loading={eager ? "eager" : "lazy"}
           fetchPriority={eager ? "high" : "auto"}
-          className={cn("object-cover", imgClassName)}
+          // Bag photos are portraits: retain the full bag and strap inside
+          // the existing square card/gallery frames, including thumbnails.
+          className={cn(
+            motif === "crochet-bags" ? "object-contain" : "object-cover",
+            imgClassName,
+          )}
         />
       ) : (
         <PlaceholderArt

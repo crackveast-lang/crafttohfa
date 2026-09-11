@@ -4,7 +4,7 @@ import type { CategorySlug, Product } from "@/types";
  * ┌──────────────────────────────────────────────────────────────────────┐
  * │  YOUR PRODUCT CATALOGUE                                              │
  * │                                                                      │
- * │  Three categories. PRICES below is the DEFAULT for each one — a      │
+ * │  Four categories. PRICES below is the DEFAULT for each one — a       │
  * │  product can override it, and a handful now do; each says why.       │
  * │  Names, descriptions and photos are written from your photographs.   │
  * │                                                                      │
@@ -31,6 +31,7 @@ const PRICES = {
   paintingKits: 150,
   crochet: 249,
   combos: 499,
+  crochetBags: 550,
 } as const;
 
 /**
@@ -49,6 +50,110 @@ function photos(
     alt,
   }));
 }
+
+// These shoulder bags are separate from the existing clip-on keepsakes.
+// Photos use the same slug/number convention; the supplied originals remain
+// in `public/images/products/crochet bags/` for reference.
+const crochetBags: Product[] = [
+  {
+    slug: "polka-dot-bow-bag",
+    name: "Polka Dot Bow Bag",
+    category: "crochet-bags",
+    // User-specified price; the other four bags use the ₹550 default.
+    price: 699,
+    tagline: "Red polka dots, a little bow and a ruffled white edge",
+    description:
+      "A hand-crocheted shoulder bag with a red-and-white polka-dot base, a black flap and a red bow. White ruffles frame the flap, with a matching black crochet strap to carry it along.",
+    highlights: [
+      "Red base with white crochet polka dots",
+      "Black flap with a red bow and white ruffled trim",
+      "Matching crocheted shoulder strap",
+    ],
+    includes: ["1 Polka Dot Bow Bag with a crochet shoulder strap"],
+    images: photos("crochet-bags", "polka-dot-bow-bag", [
+      "A red and black crochet shoulder bag with white polka dots, white ruffles and a red bow",
+      "A child wearing the Polka Dot Bow Bag, showing the black shoulder strap and red polka-dot base",
+    ]),
+    inStock: true,
+  },
+  {
+    slug: "lilac-garden-bag",
+    name: "Lilac Garden Bag",
+    category: "crochet-bags",
+    price: PRICES.crochetBags,
+    tagline: "A lilac shoulder bag with a flower that stays in bloom",
+    description:
+      "A lilac crochet bag with a pale scalloped flap and a purple flower above a green stem and leaves. Its matching crochet strap carries the floral detail from a thoughtful gift into an everyday little outing.",
+    highlights: [
+      "Lilac crochet body with a pale scalloped flap",
+      "Flower detail with a green stem and leaves",
+      "Matching lilac shoulder strap",
+    ],
+    includes: ["1 Lilac Garden Bag with a crochet shoulder strap"],
+    images: photos("crochet-bags", "lilac-garden-bag", [
+      "A child wearing a lilac crochet bag with a pale scalloped flap, purple flower and green leaves",
+    ]),
+    inStock: true,
+  },
+  {
+    slug: "blossom-pearl-bag",
+    name: "Blossom Pearl Bag",
+    category: "crochet-bags",
+    price: PRICES.crochetBags,
+    tagline: "A round pink blossom with ruffles and a pearl-style strap",
+    description:
+      "A round pink crochet bag framed by lilac and pale ruffles, with a cream flower and green leaves at its centre. A pearl-style beaded strap adds a dress-up detail to the handmade floral design.",
+    highlights: [
+      "Round pink crochet body",
+      "Cream flower with green leaves and layered ruffles",
+      "Pearl-style beaded shoulder strap",
+    ],
+    includes: ["1 Blossom Pearl Bag with a pearl-style beaded strap"],
+    images: photos("crochet-bags", "blossom-pearl-bag", [
+      "A round pink crochet bag with a cream flower, green leaves, lilac ruffles and a pearl-style beaded strap",
+    ]),
+    inStock: true,
+  },
+  {
+    slug: "sailor-bow-bag",
+    name: "Sailor Bow Bag",
+    category: "crochet-bags",
+    price: PRICES.crochetBags,
+    tagline: "A bright red bow over blue, white and sunny yellow",
+    description:
+      "A hand-crocheted shoulder bag with a blue flap, a sunny yellow base and a generous red bow. White ruffles trace the flap, while a matching blue strap finishes the playful sailor-inspired colours.",
+    highlights: [
+      "Blue flap and yellow crochet base",
+      "Large red bow with white ruffled trim",
+      "Matching blue crochet shoulder strap",
+    ],
+    includes: ["1 Sailor Bow Bag with a crochet shoulder strap"],
+    images: photos("crochet-bags", "sailor-bow-bag", [
+      "A blue and yellow crochet shoulder bag with a large red bow and white ruffled trim",
+      "A child wearing the Sailor Bow Bag, showing its blue strap, red bow and yellow base",
+    ]),
+    inStock: true,
+  },
+  {
+    slug: "strawberry-sweetheart-bag",
+    name: "Strawberry Sweetheart Bag",
+    category: "crochet-bags",
+    price: PRICES.crochetBags,
+    tagline: "Soft pink crochet with a tiny strawberry and cream ruffles",
+    description:
+      "A pink crochet shoulder bag with a cream ruffled edge and a little red strawberry on the flap. Pale bow-like loops sit behind the strawberry, paired with a matching pink crochet strap.",
+    highlights: [
+      "Pink crochet body and matching shoulder strap",
+      "Red strawberry detail with a green leaf",
+      "Cream ruffles around the flap",
+    ],
+    includes: ["1 Strawberry Sweetheart Bag with a crochet shoulder strap"],
+    images: photos("crochet-bags", "strawberry-sweetheart-bag", [
+      "A pink crochet shoulder bag with cream ruffles, pale loops and a small red strawberry on the flap",
+    ]),
+    inStock: true,
+  },
+];
 
 // ════════════════════════════  CROCHET KEEPSAKES  ═══════════════════════════
 
@@ -1088,6 +1193,7 @@ export const products: Product[] = [
   ...paintingKits,
   ...crochet,
   ...combos,
+  ...crochetBags,
 ]
   .map((p) => ({ ...p, compareAtPrice: listPrice(p.price) }))
   .sort((a, b) => a.price - b.price);
