@@ -31,7 +31,7 @@ const PRICES = {
   paintingKits: 150,
   crochet: 249,
   combos: 499,
-  crochetBags: 550,
+  crochetBags: 699,
 } as const;
 
 /**
@@ -80,7 +80,7 @@ const crochetBags: Product[] = [
     slug: "lilac-garden-bag",
     name: "Lilac Garden Bag",
     category: "crochet-bags",
-    price: PRICES.crochetBags,
+    price: 550,
     tagline: "A lilac shoulder bag with a flower that stays in bloom",
     description:
       "A lilac crochet bag with a pale scalloped flap and a purple flower above a green stem and leaves. Its matching crochet strap carries the floral detail from a thoughtful gift into an everyday little outing.",
