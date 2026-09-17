@@ -59,7 +59,7 @@ const crochetBags: Product[] = [
     slug: "polka-dot-bow-bag",
     name: "Polka Dot Bow Bag",
     category: "crochet-bags",
-    // User-specified price; the other four bags use the ₹550 default.
+    // User-specified launch price.
     price: 699,
     tagline: "Red polka dots, a little bow and a ruffled white edge",
     description:
@@ -138,7 +138,8 @@ const crochetBags: Product[] = [
     slug: "strawberry-sweetheart-bag",
     name: "Strawberry Sweetheart Bag",
     category: "crochet-bags",
-    price: PRICES.crochetBags,
+    // User-specified launch price.
+    price: 669,
     tagline: "Soft pink crochet with a tiny strawberry and cream ruffles",
     description:
       "A pink crochet shoulder bag with a cream ruffled edge and a little red strawberry on the flap. Pale bow-like loops sit behind the strawberry, paired with a matching pink crochet strap.",
